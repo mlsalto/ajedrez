@@ -1,4 +1,7 @@
 #pragma once
+#include "ETSIDI.h"
+
+using namespace ETSIDI;
 
 enum class TipoPieza { REY, REINA, TORRE, ALFIL, CABALLO, PEON, VACIO};
 enum class ColorPieza { BLANCO, NEGRO };
