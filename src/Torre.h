@@ -1,5 +1,8 @@
 #pragma once
-class Torre
+#include "Pieza.h"
+
+class Torre : public Pieza
 {
+
 };
 

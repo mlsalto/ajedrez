@@ -1,5 +1,7 @@
 #pragma once
-class Caballo
+#include "Pieza.h"
+
+class Caballo: public Pieza
 {
 };
 

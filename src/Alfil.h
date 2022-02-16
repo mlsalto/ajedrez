@@ -1,5 +1,7 @@
 #pragma once
-class Alfil
+#include "Pieza.h"
+
+class Alfil: public Pieza
 {
 };
 
