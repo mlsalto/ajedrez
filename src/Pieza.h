@@ -11,7 +11,6 @@ class Pieza
 private:
 	ColorPieza color;
 	TipoPieza pieza;
-
 	Vector2D casilla;
 
 public:
