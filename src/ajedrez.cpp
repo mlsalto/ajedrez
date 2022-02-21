@@ -4,6 +4,8 @@
 #include <iostream>
 #include "ETSIDI.h"
 #include "freeglut.h"
+#include "Pieza.h"
+//#include "ListaPiezas.h"
 
 using namespace ETSIDI;
 Sprite* sprite1;
@@ -19,11 +21,13 @@ Sprite* spriteB;
 Sprite* spriteC;
 Sprite* spriteD;
 Sprite* spriteE;
-Sprite* spriteF;
+//Sprite* spriteF;
 Sprite* spriteG;
 Sprite* spriteH;
 
+//ListaPiezas pieza;
 
+Pieza pieza;
 
 void OnDraw(void);
 void OnTimer(int value);
@@ -66,11 +70,12 @@ int main(int argc, char* argv[])
 	spriteC = new Sprite("recursos/peonN.png", 0, 0, 8, 8);
 	spriteD = new Sprite("recursos/caballoN.png", 0, 8, 8, 8);
 	spriteE = new Sprite("recursos/reyB.png", 0, 16, 8, 8);
-	spriteF = new Sprite("recursos/torreB.png", 0, 24, 8, 8);
+	//spriteF = new Sprite("recursos/torreB.png", 0, 24, 8, 8);
 	spriteG = new Sprite("recursos/caballoN.png", 0, 32, 8, 8);
 	spriteH = new Sprite("recursos/reinaB.png", 0, 40, 8, 8);
 
-
+	/*pieza->setColorPieza(NEGRO);
+	pieza->setTipoPieza(REY);*/
 	glutMainLoop();
 
 	return 0;
@@ -110,11 +115,13 @@ void OnDraw(void)
 	spriteC->draw();
 	spriteD->draw();
 	spriteE->draw();
-	spriteF->draw();
+	//spriteF->draw();
 	spriteG->draw();
 	spriteH->draw();
 
+	/*pieza.dibujar(BLANCO);*/
 
+	pieza.dibujarPieza();
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }

@@ -3,6 +3,9 @@
 
 class Torre : public Pieza
 {
-
+public:
+	Torre(ColorPieza t);
+private:
+	//bool movimiento 
 };
 
