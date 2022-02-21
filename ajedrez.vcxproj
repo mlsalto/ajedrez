@@ -150,7 +150,6 @@
     <ClCompile Include="src\ajedrez.cpp" />
     <ClCompile Include="src\Alfil.cpp" />
     <ClCompile Include="src\Caballo.cpp" />
-    <ClCompile Include="src\ListaPiezas.cpp" />
     <ClCompile Include="src\Peon.cpp" />
     <ClCompile Include="src\Pieza.cpp" />
     <ClCompile Include="src\Reina.cpp" />
@@ -160,7 +159,6 @@
   <ItemGroup>
     <ClInclude Include="src\Alfil.h" />
     <ClInclude Include="src\Caballo.h" />
-    <ClInclude Include="src\ListaPiezas.h" />
     <ClInclude Include="src\Peon.h" />
     <ClInclude Include="src\Pieza.h" />
     <ClInclude Include="src\Reina.h" />

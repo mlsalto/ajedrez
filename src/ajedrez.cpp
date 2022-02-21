@@ -5,7 +5,7 @@
 #include "ETSIDI.h"
 #include "freeglut.h"
 #include "Pieza.h"
-//#include "ListaPiezas.h"
+
 
 using namespace ETSIDI;
 Sprite* sprite1;
@@ -17,7 +17,7 @@ Sprite* sprite6;
 Sprite* sprite7;
 Sprite* sprite8;
 
-Sprite* spriteB;
+//Sprite* spriteB;
 Sprite* spriteC;
 Sprite* spriteD;
 Sprite* spriteE;
@@ -25,7 +25,7 @@ Sprite* spriteE;
 Sprite* spriteG;
 Sprite* spriteH;
 
-//ListaPiezas pieza;
+
 
 Pieza pieza;
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 	sprite8 = new Sprite("recursos/caballoB.png", 24, -16, 8, 8);
 
 	
-	spriteB = new Sprite("recursos/torreN.png", 0, -8, 8, 8);
+	//spriteB = new Sprite("recursos/torreN.png", 0, -8, 8, 8);
 	spriteC = new Sprite("recursos/peonN.png", 0, 0, 8, 8);
 	spriteD = new Sprite("recursos/caballoN.png", 0, 8, 8, 8);
 	spriteE = new Sprite("recursos/reyB.png", 0, 16, 8, 8);
@@ -74,8 +74,6 @@ int main(int argc, char* argv[])
 	spriteG = new Sprite("recursos/caballoN.png", 0, 32, 8, 8);
 	spriteH = new Sprite("recursos/reinaB.png", 0, 40, 8, 8);
 
-	/*pieza->setColorPieza(NEGRO);
-	pieza->setTipoPieza(REY);*/
 	glutMainLoop();
 
 	return 0;
@@ -97,10 +95,6 @@ void OnDraw(void)
 
 //aqui es donde hay que poner el código de dibujo
 
-
-
-
-
 	sprite1->draw();
 	sprite2->draw();
 	sprite3->draw();
@@ -111,7 +105,7 @@ void OnDraw(void)
 	sprite8->draw();
 
 
-	spriteB->draw();
+	//spriteB->draw();
 	spriteC->draw();
 	spriteD->draw();
 	spriteE->draw();
@@ -122,6 +116,7 @@ void OnDraw(void)
 	/*pieza.dibujar(BLANCO);*/
 
 	pieza.dibujarPieza();
+	/*pieza.dibujar(BLANCO);*/
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }

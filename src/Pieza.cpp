@@ -1,21 +1,20 @@
 #include "Pieza.h"
 
 Pieza::Pieza() {
-	color = NEGRO;
-	pieza = REY;
+	color == NEGRO;
+	pieza == TORRE;
 }
 
 void Pieza::dibujarPieza() {
-	TorreB.setPos(0, 24);
-	TorreB.draw();
-	/*switch (t)
+	switch (pieza)
 	{
 	case REY:
 		break;
 	case REINA:
 		break;
 	case TORRE:
-		TorreB.draw();
+		if (color == NEGRO) { TorreN.draw(); }
+		else { TorreB.draw(); }
 		break;
 	case ALFIL:
 		break;
@@ -25,17 +24,17 @@ void Pieza::dibujarPieza() {
 		break;
 	case VACIO:
 		break;
-	}*/
+	}
 }
 
 void Pieza::setColorPieza(ColorPieza x)
 {
-	color = x;
+	color == x;
 }
 
 void Pieza::setTipoPieza(TipoPieza x)
 {
-	pieza = x;
+	pieza == x;
 }
 
 //void Pieza::setCasilla(Vector2D x)
