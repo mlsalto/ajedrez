@@ -25,7 +25,7 @@ Sprite* spriteE;
 Sprite* spriteG;
 Sprite* spriteH;
 
-
+Sprite* spriteTablero;
 
 Pieza pieza;
 
@@ -74,6 +74,8 @@ int main(int argc, char* argv[])
 	spriteG = new Sprite("recursos/caballoN.png", 0, 32, 8, 8);
 	spriteH = new Sprite("recursos/reinaB.png", 0, 40, 8, 8);
 
+
+	spriteTablero= new Sprite("recursos/tablero.png", -4, 12, 64, 64);
 	glutMainLoop();
 
 	return 0;
@@ -113,6 +115,7 @@ void OnDraw(void)
 	spriteG->draw();
 	spriteH->draw();
 
+	spriteTablero->draw();
 	/*pieza.dibujar(BLANCO);*/
 
 	pieza.dibujarPieza();
