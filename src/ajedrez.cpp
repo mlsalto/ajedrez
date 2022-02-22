@@ -193,7 +193,7 @@ void OnMouseClick(int button, int state, int x, int y) //arreglar el defaulta ya
 		break;
 	default:
 	x_tablero = 0;
-	//	y_tablero = 0;
+	//y_tablero = 0;
 	break;
 	}
 
