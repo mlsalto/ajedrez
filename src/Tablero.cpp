@@ -21,5 +21,5 @@ void Tablero::dibujar()
 
 Casilla** Tablero::getCasilla(int _columna, int _fila)
 {
-
+	return casillas[0][0];
 }

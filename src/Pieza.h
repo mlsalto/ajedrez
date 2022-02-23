@@ -23,15 +23,15 @@ private:
 public:
 
 	Pieza(void);
-	//~Pieza();
+	
 
-	void dibujarPieza(); //debe ser abstracta
+	virtual void dibujarPieza(); //debe ser abstracta
 
 	//bool movimientoLegal(Casilla* x);//permite ver o saber que moviientos se pueden hacer (implementado tambien en Rey, Reina...)
 	//bool mover(Casilla* x /*,añadir jugador*/); //movimiento que realiza el jugador
 
-	void setColorPieza(ColorPieza x); //asigna el color blanco o negro
-	void setTipoPieza(TipoPieza x); //asigna el tipo de pieza (Rey, Reina...)
+	virtual void setColorPieza(ColorPieza x); //asigna el color blanco o negro
+	virtual void setTipoPieza(TipoPieza x); //asigna el tipo de pieza (Rey, Reina...)
 	//void setCasilla(Casilla* x); //asigna en la casilla que se encuentra la pieza
 
 	ColorPieza getColorPieza(); //devuelve el color blanco o negro
