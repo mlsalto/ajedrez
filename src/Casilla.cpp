@@ -5,6 +5,10 @@ Casilla::Casilla(int x, int y)
 
 }
 
+bool Casilla :: casillaOcupada()
+{
+	return true;
+}
 
 int Casilla::getFila()
 {
