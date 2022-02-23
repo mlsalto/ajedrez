@@ -7,7 +7,7 @@ TipoPieza Torre:: getTipoPieza()
 
 bool Torre::movimientoLegal(Casilla& n_casilla) 
 {
-	int i, x_casilla_ini, y_casilla_ini;
+	int i, x_casilla_ini, y_casilla_ini; //casilla desde la que empieza la pieza
 	bool obstaculo;
 	int x_casilla_legal = n_casilla.getColumna(); //casilla que queremos comprobar si podemos mover ahí o no
 	int y_casilla_legal = n_casilla.getFila();

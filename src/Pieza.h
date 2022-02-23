@@ -25,7 +25,7 @@ public:
 	Pieza(void);
 	//~Pieza();
 
-	void dibujarPieza();
+	void dibujarPieza(); //debe ser abstracta
 
 	//bool movimientoLegal(Casilla* x);//permite ver o saber que moviientos se pueden hacer (implementado tambien en Rey, Reina...)
 	//bool mover(Casilla* x /*,añadir jugador*/); //movimiento que realiza el jugador
