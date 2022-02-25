@@ -209,7 +209,7 @@ void OnMouseClick(int button, int state, int x, int y) //arreglar el defaulta ya
 
 	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){ 
 		cout << "(" << x_tablero << "," << y_tablero << ")" << endl; 
-		casilla_iluminada->setPos(-36 + (x_tablero * 8), -36 + (y_tablero * 8)); //funcion para dibujar casilla iluminada en función del ratón
+		if (x_tablero != 0 && y_tablero != 0) { casilla_iluminada->setPos(-36 + (x_tablero * 8), -36 + (y_tablero * 8)); } //funcion para dibujar casilla iluminada en función del ratón
 	}
 
 
