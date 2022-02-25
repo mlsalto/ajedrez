@@ -29,6 +29,8 @@ Sprite* spriteTablero;
 
 Pieza pieza;
 
+Sprite* casilla_iluminada;
+
 void OnDraw(void);
 void OnTimer(int value);
 void OnKeyboardDown(unsigned char key, int x, int y);
@@ -58,24 +60,25 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 	glutMouseFunc(OnMouseClick);
 
-	sprite1 = new Sprite("recursos/alfilN.png", -32, -16, 8, 8);
-	sprite2 = new Sprite("recursos/alfilB.png", -24, -16, 8, 8);
-	sprite3 = new Sprite("recursos/peonB.png", -16, -16, 8, 8);
-	sprite4 = new Sprite("recursos/caballoB.png", -8, -16, 8, 8);
-	sprite5 = new Sprite("recursos/alfilN.png", 0, -16, 8, 8);
-	sprite6 = new Sprite("recursos/reyN.png", 8, -16, 8, 8);
-	sprite7 = new Sprite("recursos/reinaN.png", 16, -16, 8, 8);
-	sprite8 = new Sprite("recursos/caballoB.png", 24, -16, 8, 8);
+	sprite1 = new Sprite("recursos/alfilN.png", -28, -20, 8, 8);
+	sprite2 = new Sprite("recursos/alfilB.png", -20, -20, 8, 8);
+	sprite3 = new Sprite("recursos/peonB.png", -12, -20, 8, 8);
+	sprite4 = new Sprite("recursos/caballoB.png", -4, -20, 8, 8);
+	sprite5 = new Sprite("recursos/alfilN.png", 4, -20, 8, 8);
+	sprite6 = new Sprite("recursos/reyN.png", 12, -20, 8, 8);
+	sprite7 = new Sprite("recursos/reinaN.png", 20, -20, 8, 8);
+	sprite8 = new Sprite("recursos/caballoB.png", 28, -20, 8, 8);
 
 	
 	//spriteB = new Sprite("recursos/torreN.png", 0, -8, 8, 8);
-	spriteC = new Sprite("recursos/peonN.png", 0, 0, 8, 8);
-	spriteD = new Sprite("recursos/caballoN.png", 0, 8, 8, 8);
-	spriteE = new Sprite("recursos/reyB.png", 0, 16, 8, 8);
-	//spriteF = new Sprite("recursos/torreB.png", 0, 24, 8, 8);
-	spriteG = new Sprite("recursos/caballoN.png", 0, 32, 8, 8);
-	spriteH = new Sprite("recursos/reinaB.png", 0, 40, 8, 8);
+	spriteC = new Sprite("recursos/peonN.png", 4, -4, 8, 8);
+	spriteD = new Sprite("recursos/caballoN.png", 4, 4, 8, 8);
+	spriteE = new Sprite("recursos/reyB.png", 4, 12, 8, 8);
+	//spriteF = new Sprite("recursos/torreB.png", 0, 20, 8, 8);
+	spriteG = new Sprite("recursos/caballoN.png", 4, 28, 8, 8);
+	spriteH = new Sprite("recursos/reinaB.png", 4, 20, 8, 8);
 
+	casilla_iluminada = new Sprite("recursos/casilla_iluminada.png", 12, 12, 8, 8);
 
 	spriteTablero= new Sprite("recursos/tablero.png", 0, 0, 64, 64); //CENTRO TABLERO 0,0
 	glutMainLoop();
@@ -117,7 +120,12 @@ void OnDraw(void)
 	spriteG->draw();
 	spriteH->draw();
 
+	//spriteTablero->draw();
+
+	casilla_iluminada->draw();
+
 	spriteTablero->draw();
+
 	/*pieza.dibujar(BLANCO);*/
 
 	pieza.dibujarPieza();
@@ -197,7 +205,14 @@ void OnMouseClick(int button, int state, int x, int y) //arreglar el defaulta ya
 	break;
 	}
 
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){ cout << "(" << x_tablero << "," << y_tablero << ")" << endl; }
+	
+
+	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){ 
+		cout << "(" << x_tablero << "," << y_tablero << ")" << endl; 
+		casilla_iluminada->setPos(-36 + (x_tablero * 8), -36 + (y_tablero * 8)); //funcion para dibujar casilla iluminada en función del ratón
+	}
+
+
 }
 
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
