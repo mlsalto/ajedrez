@@ -1,31 +1,59 @@
 #include "Casilla.h"
 
-Casilla::Casilla(int x, int y)
+Casilla::Casilla()
 {
 
 }
 
-bool Casilla :: casillaOcupada()
+void Casilla::draw()
 {
-	return true;
+	pieza.draw();
+	//cout << "uwu" << endl;
+}
+
+void Casilla::setPieza(int x)
+{
+	pieza.setTipoPieza(x);
+}
+
+void Casilla::setColor(int x)
+{
+	pieza.setColorPieza(x);
+}
+
+void Casilla::setFila(int x)
+{
+	fila = x;
+}
+
+void Casilla::setColumna(int x)
+{
+	columna = x;
+}
+
+void Casilla::setPos(int x, int y)
+{
+	pos.x = -28 + (8 * x);
+	pos.y = -28 + (8 * y);
+	pieza.setPos(pos.x, pos.y);
+}
+
+Pieza Casilla::getPieza()
+{
+	return pieza;
 }
 
 int Casilla::getFila()
 {
-	return _fila;
+	return fila;
 }
 
 int Casilla::getColumna()
 {
-	return _columna;
+	return columna;
 }
 
-//Pieza* Casilla::getPieza()
-//{
-//	return lista[MAX_PIEZAS];
-//}
-//
-//void Casilla::setPieza(Pieza* x)
-//{
-//	lista[MAX_PIEZAS] = x;
-//}
+Vector2D Casilla::getPos()
+{
+	return pos;
+}

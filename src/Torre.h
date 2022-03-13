@@ -5,11 +5,22 @@ using namespace ETSIDI;
 class Torre : public Pieza
 {
 private:
-	Vector2D _posini; //posición desde la que parte la torre
+	Vector2D pos; //posición desde la que parte la torre
 
-	Casilla& casillafin;
+	//Sprite TorreN{ "recursos/torreN.png",0,-8,8,8 };
+	//Sprite TorreB{ "recursos/torreB.png",0,24,8,8 };
+
+	/*Sprite TorreN{ "recursos/torreN.png", pos.x, pos.y, 8, 8 };
+	Sprite TorreB{ "recursos/torreB.png", pos.x, pos.y, 8, 8 };*/
+
+	/*Casilla& casillafin;*/
 public:
-	TipoPieza getTipoPieza();
-	bool movimientoLegal(Casilla& n_casilla);
+	Torre();
+	Torre(int x, int y);
+	~Torre();
+
+	void draw();
+	/*bool movimientoLegal(Casilla& n_casilla);*/
+
 };
 

@@ -1,42 +1,61 @@
 #pragma once
+#include <iostream>
 #include "ETSIDI.h"
-#include "Casilla.h"
+
 
 using namespace ETSIDI;
 
-enum TipoPieza { REY, REINA, TORRE, ALFIL, CABALLO, PEON, VACIO};
-enum ColorPieza { BLANCO, NEGRO };
+// 0 blanco, 1 negro // 
+//  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
 
 class Pieza
 {
 private:
-	ColorPieza _color;
-	TipoPieza _pieza;
-	//Casilla* _ncasilla; //lo que viene siendo la posicion
-	//prueba
-	
-	Sprite TorreN{ "recursos/torreN.png",0,-8,8,8 };
-	Sprite TorreB{ "recursos/torreB.png",0,24,8,8 };
+	//atributos comunes de todas las piezas, que viene siendo: tipo, color
+	//ATENCION: el atributo posicion, se implementará según la casilla
+	/*ColorPieza _color;
+	TipoPieza _pieza;*/
 
-	friend class ajedrez;
+	int color;
+	int pieza;
+	Vector2D posini;
+
+	Sprite PeonN{ "recursos/peonN.png", posini.x, posini.y, 8, 8 };
+	Sprite PeonB{ "recursos/peonB.png", posini.x, posini.y, 8, 8 };
+
+	Sprite TorreN{ "recursos/torreN.png", posini.x, posini.y, 8, 8 };
+	Sprite TorreB{ "recursos/torreB.png", posini.x, posini.y, 8, 8 };
+
+	Sprite AlfilN{ "recursos/alfilN.png", posini.x, posini.y, 8, 8 };
+	Sprite AlfilB{ "recursos/alfilB.png", posini.x, posini.y, 8, 8 };
+
+	Sprite CaballoN{"recursos/caballoN.png", posini.x, posini.y, 8, 8};
+	Sprite CaballoB{ "recursos/caballoB.png",posini.x, posini.y, 8, 8 };
+
+	Sprite ReinaN{"recursos/reinaN.png", posini.x, posini.y, 8, 8 };
+	Sprite ReinaB{ "recursos/reinaB.png",posini.x, posini.y, 8, 8 };
+
+	Sprite ReyN{ "recursos/reyN.png", posini.x, posini.y, 8, 8 };
+	Sprite ReyB{ "recursos/reyB.png", posini.x, posini.y, 8, 8 };
+
 
 public:
-
-	Pieza(void);
 	
 
-	virtual void dibujarPieza(); //debe ser abstracta
+	Pieza();
+	~Pieza();
+	
+	virtual bool moverPieza();
 
-	//bool movimientoLegal(Casilla* x);//permite ver o saber que moviientos se pueden hacer (implementado tambien en Rey, Reina...)
-	//bool mover(Casilla* x /*,añadir jugador*/); //movimiento que realiza el jugador
+	/*static*/ void draw(); //debe ser abstracta
 
-	virtual void setColorPieza(ColorPieza x); //asigna el color blanco o negro
-	virtual void setTipoPieza(TipoPieza x); //asigna el tipo de pieza (Rey, Reina...)
-	//void setCasilla(Casilla* x); //asigna en la casilla que se encuentra la pieza
+	/*virtual*/ void setColorPieza(int x); //asigna el color blanco o negro
+	/*virtual*/ void setTipoPieza(int x); //asigna el tipo de pieza (Rey, Reina...)
+	void setPos(int x, int y);
 
-	ColorPieza getColorPieza(); //devuelve el color blanco o negro
-	TipoPieza getTipoPieza(); //devuelve el tipo de pieza (Rey, Reina...)
-	//Casilla* getCasilla(); //devuelve la casilla en la que está la pieza
 
+	int getColorPieza(); //devuelve el color blanco o negro
+	int getTipoPieza(); //devuelve el tipo de pieza (Rey, Reina...)
+	Vector2D getPos();
 };
 
