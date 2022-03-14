@@ -14,6 +14,10 @@ private:
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
     //	Torre TorreN, TorreB;
 	int i, j;
+	bool seleccionpieza = FALSE;
+	int colorini , piezaini ;
+	int posinix, posiniy;
+	int turno;
 
 public:
 	Tablero();
@@ -21,7 +25,7 @@ public:
 
 	void dibuja();
 	void nuevoTablero(); //similar a un inicializa???
-
+	void ratonTablero(int button, int state, int x, int y);
    /* Casilla getCasilla(int _columna, int _fila); *///dos punteros porque es vector de vectores (matriz) de casillas
 };
 

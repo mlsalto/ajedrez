@@ -20,6 +20,11 @@ void Coordinador::tecla(unsigned char key)
 
 }
 
+void Coordinador::raton(int button, int state, int x, int y)
+{
+	tablero.ratonTablero(button,state,x,y);
+}
+
 void Coordinador::mueve()
 {
 

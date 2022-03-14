@@ -66,83 +66,8 @@ void OnDraw(void)
 
 void OnMouseClick(int button, int state, int x, int y) //arreglar el defaulta ya que en el primer switch no lo 
 {
-	int x_cell, y_cell;
-	int x_tablero, y_tablero;
-	x_cell = x / 76;
-	y_cell = y / 77;
-	
-
-	switch (y_cell)
-	{
-	case 1:
-		y_tablero = 8;
-		break;
-	case 2:
-		y_tablero = 7;
-		break;
-	case 3:
-		y_tablero = 6;
-		break;
-	case 4:
-		y_tablero = 5;
-		break;
-	case 5:
-		y_tablero = 4;
-		break;
-	case 6:
-		y_tablero = 3;
-		break;
-	case 7:
-		y_tablero = 2;
-		break;
-	case 8:
-		y_tablero = 1;
-		break;
-	default:
-		y_tablero = 0;
-		break;
-	}
-
-	switch (x_cell)
-	{
-	case 5:
-		x_tablero = 1;
-		break;
-	case 6:
-		x_tablero = 2;
-		break;
-	case 7:
-		x_tablero = 3;
-		break;
-	case 8:
-		x_tablero = 4;
-		break;
-	case 9:
-		x_tablero = 5;
-		break;
-	case 10:
-		x_tablero = 6;
-		break;
-	case 11:
-		x_tablero = 7;
-		break;
-	case 12:
-		x_tablero = 8;
-		break;
-	default:
-	x_tablero = 0;
-	//y_tablero = 0;
-	break;
-	}
-
-	
-
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){ 
-		cout << "(" << x_tablero << "," << y_tablero << ")" << endl; 
-		//casilla_iluminada->setPos(-36 + (x_tablero * 8), -36 + (y_tablero * 8)); //funcion para dibujar casilla iluminada en función del ratón
-	}
-
-
+	coordinador.raton(button,state,x,y);
+	glutPostRedisplay;
 }
 
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)

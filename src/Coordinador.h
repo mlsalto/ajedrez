@@ -8,6 +8,7 @@ public:
 	virtual ~Coordinador();
 	void inicializa();
 	void tecla(unsigned char key);
+	void raton(int button, int state, int x, int y);
 	void mueve();
 	void dibuja();
 	int getEstado();

@@ -28,7 +28,8 @@ public:
 	void setColumna(int x); 
 	void setPos(int x, int y);
 
-	Pieza getPieza();
+	int getPieza();
+	int getColor();
 	int getFila();
 	int getColumna();
 	Vector2D getPos();

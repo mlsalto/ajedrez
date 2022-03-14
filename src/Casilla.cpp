@@ -38,9 +38,14 @@ void Casilla::setPos(int x, int y)
 	pieza.setPos(pos.x, pos.y);
 }
 
-Pieza Casilla::getPieza()
+int Casilla::getPieza()
 {
-	return pieza;
+	return pieza.getTipoPieza();
+}
+
+int Casilla::getColor()
+{
+	return pieza.getColorPieza();
 }
 
 int Casilla::getFila()
