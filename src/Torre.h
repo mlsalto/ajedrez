@@ -20,7 +20,7 @@ public:
 	~Torre();
 
 	void draw();
-	/*bool movimientoLegal(Casilla& n_casilla);*/
+	bool movimientoLegal();
 
 };
 

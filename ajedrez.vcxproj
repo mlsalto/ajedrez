@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Movimientos.cpp" />
     <ClCompile Include="src\ajedrez.cpp" />
     <ClCompile Include="src\Alfil.cpp" />
     <ClCompile Include="src\Caballo.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="src\Torre.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Movimientos.h" />
     <ClInclude Include="src\Alfil.h" />
     <ClInclude Include="src\Caballo.h" />
     <ClInclude Include="src\Casilla.h" />
