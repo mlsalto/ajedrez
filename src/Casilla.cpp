@@ -24,6 +24,7 @@ void Casilla::colocarPieza(Pieza* p)
 	pieza = p;
 }
 
+
 void Casilla::setColorPieza(char x)
 {
 	colorPieza = x;

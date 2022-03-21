@@ -29,11 +29,15 @@ private:
 	int turno;
 
 public:
+
 	Tablero();
 	//Tablero(int _filas, int _columnas);
 
 	void dibuja();
 	void nuevoTablero(); //similar a un inicializa???
+
+	Casilla* getCasilla(int x, int y) const;
+
 	void ratonTablero(int button, int state, int x, int y);
    /* Casilla getCasilla(int _columna, int _fila); *///dos punteros porque es vector de vectores (matriz) de casillas
 };

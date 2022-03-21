@@ -2,7 +2,7 @@
 #define MAX_PIEZAS 32
 #include "ETSIDI.h"
 //#include "Pieza.h"
-//
+
 class Pieza;
 
 using namespace ETSIDI;

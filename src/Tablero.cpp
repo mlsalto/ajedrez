@@ -156,6 +156,11 @@ void movimientoVertical()  //indica si hasta donde se puede mover en vertical
 {
 
 }
+
+Casilla* Tablero::getCasilla(int x, int y) const
+{
+	return casillas[x][y];
+}
 //Casilla Tablero::getCasilla(int _columna, int _fila)
 //{
 //	return casilla[0][0];
