@@ -5,7 +5,7 @@ using namespace ETSIDI;
 class Torre : public Pieza
 {
 private:
-	Vector2D pos; //posición desde la que parte la torre
+	//Vector2D pos; //posición desde la que parte la torre
 
 	//Sprite TorreN{ "recursos/torreN.png",0,-8,8,8 };
 	//Sprite TorreB{ "recursos/torreB.png",0,24,8,8 };
@@ -16,8 +16,8 @@ private:
 	/*Casilla& casillafin;*/
 public:
 	Torre();
-	Torre(int x, int y);
-	~Torre();
+	Torre(char colorEquipo);
+	//~Torre();
 
 	void draw();
 	bool movimientoLegal();

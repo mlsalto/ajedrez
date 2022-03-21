@@ -2,7 +2,9 @@
 #include "freeglut.h"
 
 Tablero::Tablero()
-{
+{/*
+	Torre* t1 = new Torre('B');*/
+	
     //casilla;
 }
 
@@ -11,55 +13,45 @@ Tablero::Tablero()
 
 void Tablero::nuevoTablero()
 {
+
+	Torre* t1b = new Torre('B');
+	Torre* t2b = new Torre('B');
+
+	Torre* t1n = new Torre('N');
+	Torre* t2n = new Torre('N');
+
 	// posiciona i, j segun el [][]
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
 			casillas[i][j].setPos(i, j);
 
-    //colocar casillas de iniciacion (color y piezas) 
-	
-	// PIEZAS BLANCAS
-	for (i = 0; i < 8; i++)
-	{
-		casillas[i][1].setPieza(1); casillas[i][1].setColor(0); //peones
-		casillas[i][0].setColor(0); //todas blancas
+	//coloca las piezas en cada casilla
+	casillas[0][0].colocarPieza(t1b);
+	casillas[7][0].colocarPieza(t2b);
 
-		casillas[0][0].setPieza(2); //torre 1
-		casillas[1][0].setPieza(4); //caballo 1
-		casillas[2][0].setPieza(3); //alfil 1
-		casillas[3][0].setPieza(5); //reina
-		casillas[4][0].setPieza(6); //rey 
-		casillas[5][0].setPieza(3); //alfil 2
-		casillas[6][0].setPieza(4); //caballo 2
-		casillas[7][0].setPieza(2); //torre 2
-	}
+	casillas[0][7].colocarPieza(t1n);
+    casillas[7][7].colocarPieza(t2n);
 
-	// PIEZAS NEGRAS
-	for (i = 0; i < 8; i++)
-	{
-		casillas[i][6].setPieza(1); casillas[i][6].setColor(1); //peones
-		casillas[i][7].setColor(1); //todas negras
 
-		casillas[0][7].setPieza(2); //torre 1
-		casillas[1][7].setPieza(4); //caballo 1
-		casillas[2][7].setPieza(3); //alfil 1
-		casillas[3][7].setPieza(5); //reina
-		casillas[4][7].setPieza(6); //rey 
-		casillas[5][7].setPieza(3); //alfil 2
-		casillas[6][7].setPieza(4); //caballo 2
-		casillas[7][7].setPieza(2); //torre 2
-	}
+	//agregar listas 
+	piezas.agregar(t1b);
+    piezas.agregar(t2b);
+    piezas.agregar(t1n);
+    piezas.agregar(t2n);
+
+
 }
+
+
 
 void Tablero::dibuja()
 {
-	//dibuja todas las casillas
-	for (i = 0; i < 8; i++)
-		for (j = 0; j < 8; j++)
-			casillas[i][j].draw();
-
 	//el tablero tiene que dibujarse el último para dibujarse detrás y que no
 	//tape a las figuras
+
+
+	piezas.draw();
+
 	tableroAjedrez.draw();
 	//casilla.draw();
 }
@@ -138,10 +130,10 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 
 		if (seleccionpieza == FALSE) { //AUN NO HAY PIEZA SELECCIONADA
 	
-			if (casillas[x_tablero][y_tablero].getPieza() != 0)
+			if (casillas[x_tablero][y_tablero].getTipoPieza() != 0)
 			{
-				piezaini = casillas[x_tablero][y_tablero].getPieza();
-				colorini = casillas[x_tablero][y_tablero].getColor();
+				piezaini = casillas[x_tablero][y_tablero].getTipoPieza();
+				colorini = casillas[x_tablero][y_tablero].getColorPieza();
 				posinix = x_tablero;	posiniy = y_tablero;
 
 				cout << "(" << x_tablero << "," << y_tablero << "," << piezaini << "," << colorini << ")" << endl;
@@ -152,11 +144,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		}
 
 		else if (seleccionpieza == TRUE) { //HAY PIEZA SELECCIONADA
-
-			casillas[x_tablero][y_tablero].setPieza(piezaini);
-			casillas[x_tablero][y_tablero].setColor(colorini);
-			casillas[posinix][posiniy].setPieza(0);
-
+			casillas[x_tablero][y_tablero].colocarPieza(piezaini);
 			seleccionpieza = FALSE;
 		}
 	}

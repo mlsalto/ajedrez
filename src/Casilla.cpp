@@ -7,58 +7,34 @@ Casilla::Casilla()
 
 void Casilla::draw()
 {
-	pieza.draw();
+	//pieza->draw();
 	//cout << "uwu" << endl;
 }
 
-void Casilla::setPieza(int x)
+void Casilla::colocarPieza(Pieza* p)
 {
-	pieza.setTipoPieza(x);
+	p->setPos(-28 + (8 * columna), -28 + (8 * fila));
+	/*p->setCasilla(this);*/ //esto tengo que mirar a ver que es
+	pieza = p;
 }
 
-void Casilla::setColor(int x)
+void Casilla::setColorPieza(char x)
 {
-	pieza.setColorPieza(x);
-}
-
-void Casilla::setFila(int x)
-{
-	fila = x;
-}
-
-void Casilla::setColumna(int x)
-{
-	columna = x;
+	colorPieza = x;
 }
 
 void Casilla::setPos(int x, int y)
 {
-	pos.x = -28 + (8 * x);
-	pos.y = -28 + (8 * y);
-	pieza.setPos(pos.x, pos.y);
+	columna = x;
+	fila = y;
 }
 
-int Casilla::getPieza()
+Pieza* Casilla::getTipoPieza()
 {
-	return pieza.getTipoPieza();
+	return pieza;
 }
 
-int Casilla::getColor()
+char Casilla::getColorPieza()
 {
-	return pieza.getColorPieza();
-}
-
-int Casilla::getFila()
-{
-	return fila;
-}
-
-int Casilla::getColumna()
-{
-	return columna;
-}
-
-Vector2D Casilla::getPos()
-{
-	return pos;
+	return colorPieza;
 }

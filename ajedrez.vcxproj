@@ -152,6 +152,7 @@
     <ClCompile Include="src\Caballo.cpp" />
     <ClCompile Include="src\Casilla.cpp" />
     <ClCompile Include="src\Coordinador.cpp" />
+    <ClCompile Include="src\ListaPiezas.cpp" />
     <ClCompile Include="src\Movimientos.cpp" />
     <ClCompile Include="src\Peon.cpp" />
     <ClCompile Include="src\Pieza.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\Caballo.h" />
     <ClInclude Include="src\Casilla.h" />
     <ClInclude Include="src\Coordinador.h" />
+    <ClInclude Include="src\ListaPiezas.h" />
     <ClInclude Include="src\Movimientos.h" />
     <ClInclude Include="src\Peon.h" />
     <ClInclude Include="src\Pieza.h" />
