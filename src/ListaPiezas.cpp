@@ -23,6 +23,7 @@ void ListaPiezas::draw()
 		lista[i]->draw();
 }
 
+
 void ListaPiezas::destruirContenido()
 {
 	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas

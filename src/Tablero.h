@@ -11,7 +11,7 @@ using namespace ETSIDI;
 class Tablero
 {
 private:
-	Casilla casillas[8][8]; //esto no se si está bien??????
+	Casilla *casillas[8][8]; //esto no se si está bien??????
 	//en principio la idea es crear una matriz 8x8 de casillas
 
 	Torre torre;

@@ -1,9 +1,9 @@
 #pragma once
 #define MAX_PIEZAS 32
 #include "ETSIDI.h"
-#include "Pieza.h"
+//#include "Pieza.h"
 //
-//class Pieza;
+class Pieza;
 
 using namespace ETSIDI;
 
@@ -17,9 +17,13 @@ private:
 	Vector2D pos;
 	char colorPieza;
 
+	Pieza* pieza; //ver como implementar con la clase !!!!!!
+
 public:
 	Casilla(); // filas y columnas
-	Pieza* pieza; //ver como implementar con la clase !!!!!!
+	Casilla(int x, int y);
+	//~Casilla();
+
 	void draw();
 
 	void colocarPieza(Pieza* pieza);

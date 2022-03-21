@@ -23,14 +23,14 @@ void Tablero::nuevoTablero()
 	// posiciona i, j segun el [][]
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
-			casillas[i][j].setPos(i, j);
+			  casillas[i][j] = new Casilla(i, j);
 
 	//coloca las piezas en cada casilla
-	casillas[0][0].colocarPieza(t1b);
-	casillas[7][0].colocarPieza(t2b);
+	casillas[0][0]->colocarPieza(t1b);
+	casillas[7][0]->colocarPieza(t2b);
 
-	casillas[0][7].colocarPieza(t1n);
-    casillas[7][7].colocarPieza(t2n);
+	casillas[0][7]->colocarPieza(t1n);
+    casillas[7][7]->colocarPieza(t2n);
 
 
 	//agregar listas 
@@ -38,8 +38,7 @@ void Tablero::nuevoTablero()
     piezas.agregar(t2b);
     piezas.agregar(t1n);
     piezas.agregar(t2n);
-
-
+	
 }
 
 
@@ -130,10 +129,10 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 
 		if (seleccionpieza == FALSE) { //AUN NO HAY PIEZA SELECCIONADA
 	
-			if (casillas[x_tablero][y_tablero].getTipoPieza() != 0)
+			if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0)
 			{
-				piezaini = casillas[x_tablero][y_tablero].getTipoPieza();
-				colorini = casillas[x_tablero][y_tablero].getColorPieza();
+				piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+				colorini = casillas[x_tablero][y_tablero]->getColorPieza();
 				posinix = x_tablero;	posiniy = y_tablero;
 
 				cout << "(" << x_tablero << "," << y_tablero << "," << piezaini << "," << colorini << ")" << endl;
@@ -144,12 +143,16 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		}
 
 		else if (seleccionpieza == TRUE) { //HAY PIEZA SELECCIONADA
-			casillas[x_tablero][y_tablero].colocarPieza(piezaini);
+			casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
 			seleccionpieza = FALSE;
 		}
 	}
 }
 
+void movimientoVertical()  //indica si hasta donde se puede mover en vertical
+{
+
+}
 //Casilla Tablero::getCasilla(int _columna, int _fila)
 //{
 //	return casilla[0][0];

@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "ETSIDI.h"
-
+#include "Casilla.h"
 
 
 using namespace ETSIDI;
@@ -11,17 +11,18 @@ using namespace ETSIDI;
 
 class Pieza
 {
+private:
+	Casilla* casilla;
 protected:
 	//atributos comunes de todas las piezas, que viene siendo: tipo, color
 	//ATENCION: el atributo posicion, se implementará según la casilla
-	/*ColorPieza _color;
-	TipoPieza _pieza;*/
-	
+
 	char color;
 
 	int pieza;
 
 	Vector2D pos;
+	Vector2D poscas;
 
 	Sprite PeonN{ "recursos/peonN.png", pos.x, pos.y, 8, 8 };
 	Sprite PeonB{ "recursos/peonB.png", pos.x, pos.y, 8, 8 };
@@ -48,19 +49,19 @@ public:
 	Pieza();
 	Pieza(char colorJugador);
 
-	~Pieza();
+	virtual ~Pieza();
 	
 	virtual bool moverPieza();
 
 	virtual void draw(); //debe ser abstracta
 
-	/*virtual*//* void setColorPieza(int x); *///asigna el color blanco o negro
+    ///asigna el color blanco o negro
 	/*virtual*/ void setTipoPieza(int x); //asigna el tipo de pieza (Rey, Reina...)
 	void setPos(int x, int y);
-	
+	void setCasilla(Casilla* c);
+
 
 	char getColorPieza(); //devuelve el color blanco o negro
-	/*int getTipoPieza(); *///devuelve el tipo de pieza (Rey, Reina...)
-	/*Vector2D getPos();*/
+	Casilla* getCasilla();
 };
 

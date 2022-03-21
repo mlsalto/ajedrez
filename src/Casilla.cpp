@@ -1,8 +1,14 @@
 #include "Casilla.h"
+#include "Pieza.h"
 
 Casilla::Casilla()
 {
 
+}
+
+Casilla::Casilla(int x ,int y)
+{
+	setPos(x, y);
 }
 
 void Casilla::draw()

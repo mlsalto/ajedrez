@@ -13,20 +13,6 @@ Torre::Torre(char colorEquipo)
 
 void Torre::draw()
 {
-	//switch (color)
-	//{
-	//	case 'B':
-	//		TorreB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
-	//		TorreB.draw();
-	//		break;
-	//	case 'N':
-	//		TorreN.setPos(pos.x, pos.x);
-	//		TorreN.draw();
-	//		break;
-	//	default:
-	//		break;
- //   }
-
 	if (color == 'B') {
 		TorreB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
 		TorreB.draw();
@@ -35,9 +21,12 @@ void Torre::draw()
 		TorreN.setPos(pos.x, pos.y);
 		TorreN.draw();
 	}
-
 }
-
+bool Torre::movimientoLegal()
+{
+	//[poscas.x, poscas.y];
+	return true;
+}
 //bool Torre::movimientoLegal() 
 //{
 //	int i, x_ini = 0, y_ini = 0; //casilla desde la que empieza la pieza
