@@ -23,6 +23,11 @@ void ListaPiezas::draw()
 		lista[i]->draw();
 }
 
+void ListaPiezas::movimientoValido(Casilla * c, Casilla * d)
+{
+	for (int i = 0; i < numero; i++)
+		lista[i]->movimientoLegal(c, d);
+}
 
 void ListaPiezas::destruirContenido()
 {

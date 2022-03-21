@@ -143,8 +143,11 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		}
 
 		else if (seleccionpieza == TRUE) { //HAY PIEZA SELECCIONADA
-			casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
-			seleccionpieza = FALSE;
+			if (piezaini->movimientoLegal(casillas[posinix][posiniy],casillas[x_tablero][y_tablero]) == true)
+			{
+				casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
+				seleccionpieza = FALSE;
+			}
 		}
 	}
 }

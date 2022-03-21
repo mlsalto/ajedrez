@@ -10,6 +10,6 @@ public:
 	//~Torre();
 
 	void draw();
-	bool movimientoLegal();
+	bool movimientoLegal(Casilla* x, Casilla* y);
 };
 

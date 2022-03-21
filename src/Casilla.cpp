@@ -44,3 +44,13 @@ char Casilla::getColorPieza()
 {
 	return colorPieza;
 }
+
+int Casilla::getFila()
+{
+	return fila;
+}
+
+int Casilla::getColumna()
+{
+	return columna;
+}

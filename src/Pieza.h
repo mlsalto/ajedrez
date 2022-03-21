@@ -11,7 +11,7 @@ using namespace ETSIDI;
 
 class Pieza
 {
-private:
+protected:
 	Casilla* casilla;
 protected:
 	//atributos comunes de todas las piezas, que viene siendo: tipo, color
@@ -51,7 +51,7 @@ public:
 
 	virtual ~Pieza();
 	
-	virtual bool moverPieza();
+	virtual bool movimientoLegal(Casilla* x, Casilla* y);
 
 	virtual void draw(); //debe ser abstracta
 

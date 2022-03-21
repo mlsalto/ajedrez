@@ -14,6 +14,7 @@ public:
 
 	bool agregar(Pieza* p);
 	void draw();
+	void movimientoValido(Casilla* c, Casilla* d);
 
 	void destruirContenido();
 

@@ -22,11 +22,14 @@ void Torre::draw()
 		TorreN.draw();
 	}
 }
-bool Torre::movimientoLegal()
+
+bool Torre::movimientoLegal(Casilla* x,Casilla* y)
 {
-	//[poscas.x, poscas.y];
-	return true;
+
+	if (x->getColumna() == y->getColumna() || x->getFila() == y->getFila()) return true;
+	else return false;
 }
+
 //bool Torre::movimientoLegal() 
 //{
 //	int i, x_ini = 0, y_ini = 0; //casilla desde la que empieza la pieza

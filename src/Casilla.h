@@ -32,6 +32,7 @@ public:
 
 	Pieza* getTipoPieza();
 	char getColorPieza();
-
+	int getFila();
+	int getColumna();
 };
 
