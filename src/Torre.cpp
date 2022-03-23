@@ -30,6 +30,6 @@ bool Torre::movimientoLegal(Casilla* x, Casilla* y)
 	else return false;*/
 
 	Tablero tablero;
-	return tablero.movimientoDerechaLibre(x,y);
-
+	//return tablero.movimientoDerechaLibre(x,y);
+	return false;
 }
