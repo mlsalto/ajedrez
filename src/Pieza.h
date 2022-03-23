@@ -12,16 +12,12 @@ using namespace ETSIDI;
 class Pieza
 {
 protected:
-	Casilla* casilla;
-	int pieza;
-protected:
 	//atributos comunes de todas las piezas, que viene siendo: tipo, color
-	//ATENCION: el atributo posicion, se implementará según la casilla
-
-	char color;
-
 	Vector2D pos;
 	Vector2D poscas;
+	Casilla* casilla;
+	//int pieza;
+	char color;
 
 	Sprite PeonN{ "recursos/peonN.png", pos.x, pos.y, 8, 8 };
 	Sprite PeonB{ "recursos/peonB.png", pos.x, pos.y, 8, 8 };

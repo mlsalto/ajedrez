@@ -25,6 +25,7 @@ private:
 	bool seleccionpieza = FALSE;
 	char colorini;
 	Pieza* piezaini;
+	Pieza* piezaT;
 	int posinix, posiniy;
 	int turno;
 

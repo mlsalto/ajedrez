@@ -24,12 +24,43 @@ void Torre::draw()
 	}
 }
 
-bool Torre::movimientoLegal(Casilla* x, Casilla* y)
+bool Torre::movimientoLegal(Casilla* ini, Casilla* fin)
 {
 	/*if (x->getColumna() == y->getColumna() || x->getFila() == y->getFila()) return true;
 	else return false;*/
+	int i, j;
 
 	Tablero tablero;
-	return tablero.movimientoDerechaLibre(x,y);
+	//Casilla* copia_tablero[8][8];
+	//
+	//for (i = 0; i < 8; i++)
+	//	for (j = 0; j < 8; j++)
+	//		copia_tablero[i][j]->colocarPieza(tablero.getPiezasT(i, j));
+
+	//return tablero.movimientoDerechaLibre(x,y);
+
+	return true;
+
+	//int x_ini = ini->getColumna();
+	//int y_ini = ini->getFila();
+
+	//int x_fin = fin->getColumna();
+	//int y_fin = fin->getFila();
+
+	//bool obstaculo = false;
+
+	///// MOVIMIENTO A DERECHA /////
+
+	//if (x_ini < 7 && y_ini == y_fin)
+	//{
+	//	for (i = x_ini + 1; i <= x_fin && !obstaculo; i++)
+	//	{
+	//		if (tablero.getPiezasT(i, y_fin) != 0) {
+	//			obstaculo = true;
+	//			return false;
+	//		}
+	//	}
+	//	return true;
+	//}
 
 }

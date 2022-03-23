@@ -14,7 +14,7 @@ class Casilla
 private:
 	int fila;   //a lo mejor hay que cambiar fila/ columna, ir viendo
 	int columna;
-	Vector2D pos;
+	//Vector2D pos;
 	char colorPieza;
 	
 	bool ocupada;
@@ -29,7 +29,7 @@ public:
 	void draw();
 
 	void colocarPieza(Pieza* pieza);
-	void setColorPieza(char x);
+	void setColorPieza(Pieza* pieza);
 	void setPos(int x, int y);
 	void setOcupada(bool x);
 
@@ -39,5 +39,6 @@ public:
 	char getColorPieza();
 	int getFila();
 	int getColumna();
+
 };
 

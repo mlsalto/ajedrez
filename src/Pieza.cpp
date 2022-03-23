@@ -25,7 +25,7 @@ bool Pieza::movimientoLegal(Casilla* x, Casilla* y)
 
 void Pieza::setTipoPieza(int x)
 {
-	pieza = x;
+	//pieza = x;
 }
 
 void Pieza::setPos(int x, int y) 
