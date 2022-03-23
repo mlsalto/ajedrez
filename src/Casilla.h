@@ -16,6 +16,8 @@ private:
 	int columna;
 	Vector2D pos;
 	char colorPieza;
+	
+	bool ocupada;
 
 	Pieza* pieza; //ver como implementar con la clase !!!!!!
 
@@ -29,6 +31,9 @@ public:
 	void colocarPieza(Pieza* pieza);
 	void setColorPieza(char x);
 	void setPos(int x, int y);
+	void setOcupada(bool x);
+
+	bool getOcupada();
 
 	Pieza* getTipoPieza();
 	char getColorPieza();

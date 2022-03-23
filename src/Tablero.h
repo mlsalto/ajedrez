@@ -28,6 +28,8 @@ private:
 	int posinix, posiniy;
 	int turno;
 
+
+	Pieza* prueba;
 public:
 
 	Tablero();
@@ -36,9 +38,12 @@ public:
 	void dibuja();
 	void nuevoTablero(); //similar a un inicializa???
 
-	Casilla* getCasilla(int x, int y) const;
+	bool movimientoDerechaLibre(Casilla* ini, Casilla* fin);
 
 	void ratonTablero(int button, int state, int x, int y);
    /* Casilla getCasilla(int _columna, int _fila); *///dos punteros porque es vector de vectores (matriz) de casillas
+	Pieza* getPiezasT(int x, int y);
+	Casilla* getCasillaT(int x, int y);
+
 };
 

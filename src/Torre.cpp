@@ -1,9 +1,9 @@
 #include "Torre.h"
-
+#include "Tablero.h"
 
 Torre::Torre()
 {
-	/*setTipoPieza(2);*/ //funcion de PIEZA
+	//pieza = 2; //funcion de PIEZA
 }
 
 Torre::Torre(char colorEquipo)
@@ -26,18 +26,10 @@ void Torre::draw()
 
 bool Torre::movimientoLegal(Casilla* x, Casilla* y)
 {
-	if (x->getColumna() == y->getColumna() || x->getFila() == y->getFila()) return true;
-	else return false;
+	/*if (x->getColumna() == y->getColumna() || x->getFila() == y->getFila()) return true;
+	else return false;*/
 
-
-	bool obstaculo = false;
-	int i;
-
-	int x_ini = x->getColumna();
-	int y_ini = x->getFila();
-
-	int x_fin = y->getColumna();
-	int y_fin = y->getFila();
-
+	Tablero tablero;
+	return tablero.movimientoDerechaLibre(x,y);
 
 }

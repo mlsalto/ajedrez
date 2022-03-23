@@ -26,7 +26,7 @@ void Tablero::nuevoTablero()
 			  casillas[i][j] = new Casilla(i, j);
 
 	//coloca las piezas en cada casilla
-	casillas[0][0]->colocarPieza(t1b);
+	casillas[0][0]->colocarPieza(t1b); t1b->setCasilla(casillas[0][0]);
 	casillas[7][0]->colocarPieza(t2b);
 
 	casillas[0][7]->colocarPieza(t1n);
@@ -146,6 +146,8 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			if (piezaini->movimientoLegal(casillas[posinix][posiniy],casillas[x_tablero][y_tablero]) == true)
 			{
 				casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
+				piezaini->setCasilla(casillas[x_tablero][y_tablero]);
+
 				seleccionpieza = FALSE;
 			}
 		}
@@ -157,11 +159,35 @@ void movimientoVertical()  //indica si hasta donde se puede mover en vertical
 
 }
 
-Casilla* Tablero::getCasilla(int x, int y) const
+bool Tablero::movimientoDerechaLibre(Casilla * ini, Casilla* fin)
+{
+	int x_ini = ini->getColumna();
+	int y_ini = ini->getFila();
+
+	int x_fin = fin->getColumna();
+	int y_fin = fin->getFila();
+
+	bool obstaculo = false;
+
+	if (x_ini < 7 && y_ini == y_fin)
+    {
+	for (i = x_ini + 1; i <= x_fin && !obstaculo; i++)
+	  {
+		if (casillas[x_fin][y_fin]->getTipoPieza() != NULL) {
+			obstaculo = true;
+			return false;
+		}
+		return true;
+	  }
+    }
+}
+
+Pieza* Tablero::getPiezasT(int x, int y)
+{
+	return casillas[x][y]->getTipoPieza();
+}
+
+Casilla* Tablero::getCasillaT(int x, int y)
 {
 	return casillas[x][y];
 }
-//Casilla Tablero::getCasilla(int _columna, int _fila)
-//{
-//	return casilla[0][0];
-//}

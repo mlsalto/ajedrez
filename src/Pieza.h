@@ -13,13 +13,12 @@ class Pieza
 {
 protected:
 	Casilla* casilla;
+	int pieza;
 protected:
 	//atributos comunes de todas las piezas, que viene siendo: tipo, color
 	//ATENCION: el atributo posicion, se implementará según la casilla
 
 	char color;
-
-	int pieza;
 
 	Vector2D pos;
 	Vector2D poscas;
