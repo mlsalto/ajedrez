@@ -17,23 +17,16 @@ void Pieza::draw() {
 
 }
 
-bool Pieza::movimientoLegal(Casilla* x, Casilla* y)
+bool Pieza::movimientoLegal( Casilla* y)
 {
 	return true;
 }
 
-
-void Pieza::setTipoPieza(int x)
-{
-	//pieza = x;
-}
-
-void Pieza::setPos(int x, int y) 
+void Pieza::setPos(int x, int y) //sirve a la hora de dibujar la posicion
 {
 	pos.x = x;
 	pos.y = y;
 }
-
 
 void Pieza::setCasilla(Casilla* c)
 {

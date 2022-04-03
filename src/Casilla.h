@@ -12,33 +12,31 @@ class Casilla
 // 0 blanco, 1 negro // 
 //  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
 private:
-	int fila;   //a lo mejor hay que cambiar fila/ columna, ir viendo
+	int fila;   
 	int columna;
-	//Vector2D pos;
-	char colorPieza;
-	
+
 	bool ocupada;
 
-	Pieza* pieza; //ver como implementar con la clase !!!!!!
+	Pieza* pieza; 
 
 public:
 	Casilla(); // filas y columnas
 	Casilla(int x, int y);
-	//~Casilla();
+	//~Casilla(); //destructor
 
 	void draw();
 
-	void colocarPieza(Pieza* pieza);
-	void setColorPieza(Pieza* pieza);
-	void setPos(int x, int y);
-	void setOcupada(bool x);
+	void colocarPieza(Pieza* pieza); //coloca una pieza en una casilla
 
-	bool getOcupada();
+	bool getOcupada();  // devuelve si la casilla está ocupada o no
 
-	Pieza* getTipoPieza();
-	char getColorPieza();
+	Pieza* getTipoPieza();   //devuelve la pieza que está en la casilla
+
 	int getFila();
+	void setFila(int x);
+
 	int getColumna();
+	void setColumna(int x);
 
 };
 

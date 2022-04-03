@@ -8,9 +8,9 @@ Casilla::Casilla()
 
 Casilla::Casilla(int x ,int y)
 {
-	setPos(x, y);
-	setOcupada(false);
-
+	columna = x; 
+	fila = y;
+	ocupada = false;
 }
 
 void Casilla::draw()
@@ -26,25 +26,9 @@ void Casilla::colocarPieza(Pieza* p)
 	//p->setCasilla(this);
 	/*p->setCasilla(this);*/ //esto tengo que mirar a ver que es
 	pieza = p;
-	setOcupada(true);
+	ocupada = true;
 }
 
-
-void Casilla::setColorPieza(Pieza* p)
-{
-	colorPieza = p->getColorPieza();
-}
-
-void Casilla::setPos(int x, int y)
-{
-	columna = x;
-	fila = y;
-}
-
-void Casilla::setOcupada(bool x)
-{
-	ocupada = x;
-}
 
 bool Casilla::getOcupada()
 {
@@ -56,17 +40,23 @@ Pieza* Casilla::getTipoPieza()
 	return pieza;
 }
 
-char Casilla::getColorPieza()
-{
-	return colorPieza;
-}
 
 int Casilla::getFila()
 {
 	return fila;
 }
 
+void Casilla::setFila(int x)
+{
+	fila = x;
+}
+
 int Casilla::getColumna()
 {
 	return columna;
+}
+
+void Casilla::setColumna(int x)
+{
+	columna = x;
 }

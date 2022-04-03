@@ -10,9 +10,7 @@ using namespace ETSIDI;
 
 class Tablero
 {
-private:
-	Casilla *casillas[8][8]; //esto no se si está bien??????
-	//en principio la idea es crear una matriz 8x8 de casillas
+private: 
 
 	Torre torre;
 
@@ -29,9 +27,8 @@ private:
 	int posinix, posiniy;
 	int turno;
 
-
-	Pieza* prueba;
 public:
+	Casilla* casillas[8][8]; //esto no se si está bien??????
 
 	Tablero();
 	//Tablero(int _filas, int _columnas);
@@ -39,7 +36,6 @@ public:
 	void dibuja();
 	void nuevoTablero(); //similar a un inicializa???
 
-	bool movimientoDerechaLibre(Casilla* ini, Casilla* fin);
 
 	void ratonTablero(int button, int state, int x, int y);
    /* Casilla getCasilla(int _columna, int _fila); *///dos punteros porque es vector de vectores (matriz) de casillas

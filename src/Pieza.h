@@ -46,12 +46,10 @@ public:
 
 	virtual ~Pieza();
 	
-	virtual bool movimientoLegal(Casilla* x, Casilla* y);
+	virtual bool movimientoLegal( Casilla* y); //debe ser abstracta
 
 	virtual void draw(); //debe ser abstracta
 
-    ///asigna el color blanco o negro
-	/*virtual*/ void setTipoPieza(int x); //asigna el tipo de pieza (Rey, Reina...)
 	void setPos(int x, int y);
 	void setCasilla(Casilla* c);
 
