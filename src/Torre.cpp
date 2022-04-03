@@ -28,7 +28,6 @@ bool Torre::movimientoLegal(Casilla* fin)
 {
 
 	Tablero tablero;
-<<<<<<< HEAD
 	int i, j, row,coll;
 	Casilla* copia_casillas[8][8];
 
@@ -84,8 +83,4 @@ bool Torre::movimientoLegal(Casilla* fin)
 	//	return true;
 	//}
 
-=======
-	//return tablero.movimientoDerechaLibre(x,y);
-	return false;
->>>>>>> cc211856a5f9289cb63ba90dc2345de6d84997ec
 }
