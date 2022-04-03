@@ -24,6 +24,7 @@ Tablero::Tablero()
 	casillas[7][0]->colocarPieza(t2b);
 
 	casillas[5][0]->colocarPieza(t1n);
+<<<<<<< HEAD
 	casillas[7][7]->colocarPieza(t2n);
 
 	piezas.agregar(t1b);
@@ -53,6 +54,9 @@ void Tablero::nuevoTablero()
 
 	//casillas[5][0]->colocarPieza(t1n);
     //casillas[7][7]->colocarPieza(t2n);
+=======
+    casillas[7][7]->colocarPieza(t2n);
+>>>>>>> cc211856a5f9289cb63ba90dc2345de6d84997ec
 
 
 	//agregar listas 
@@ -165,7 +169,11 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		}
 
 		else if (seleccionpieza == TRUE) { //HAY PIEZA SELECCIONADA
+<<<<<<< HEAD
 			if (piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == true)
+=======
+			if (movimientoDerechaLibre(casillas[posinix][posiniy],casillas[x_tablero][y_tablero]) == true)
+>>>>>>> cc211856a5f9289cb63ba90dc2345de6d84997ec
 			{
 				casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
 				piezaini->setCasilla(casillas[x_tablero][y_tablero]);
@@ -182,6 +190,22 @@ void movimientoVertical()  //indica si hasta donde se puede mover en vertical
 }
 
 
+<<<<<<< HEAD
+=======
+	bool obstaculo = false;
+
+	if (x_ini < 7 && y_ini == y_fin)
+	{
+		for (i = x_ini + 1; i <= x_fin && !obstaculo; i++)
+		{
+			if (casillas[x_fin][y_fin]->getTipoPieza() != NULL) {
+				obstaculo = true;	
+			}
+		}
+	}
+	else return false;
+}
+>>>>>>> cc211856a5f9289cb63ba90dc2345de6d84997ec
 
 Pieza* Tablero::getPiezasT(int x, int y)
 {
