@@ -22,7 +22,7 @@ Tablero::Tablero()
 	casillas[0][0]->colocarPieza(t1b); // t1b->setCasilla(casillas[0][0]);
 	casillas[7][0]->colocarPieza(t2b);
 
-	casillas[5][0]->colocarPieza(t1n);
+	casillas[0][7]->colocarPieza(t1n);
 	casillas[7][7]->colocarPieza(t2n);
 
 	piezas.agregar(t1b);
