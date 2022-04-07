@@ -26,27 +26,28 @@ void Torre::draw()
 
 bool Torre::movimientoLegal(Casilla* fin)
 {
-
+	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
 	Tablero tablero;
 	int i, j, row,coll;
 	Casilla* copia_casillas[8][8];
+	bool obstaculo = false;
 
-
+	////// COPIA DEL TABLERO //////
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
 			copia_casillas[i][j] = tablero.getCasillaT(i, j);
 
+	////// FILA Y COLUMNA //////
 	row = (pos.x + 28) / 8;
 	coll = (pos.y + 28) / 8;
 
+	////// ALMACENAMIENTO DATOS DE ENTRADA //////
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
 
-	bool obstaculo = false;
+	
 
-	//return tablero.CasillaOcupada(fin);
-
-	/// MOVIMIENTO A DERECHA /////
+	///////////       MOVIMIENTO A DERECHA      ///////////
 
 	if (row < 7 && coll == y_fin)
 	{
@@ -59,28 +60,5 @@ bool Torre::movimientoLegal(Casilla* fin)
 		}
 		return true;
 	}
-
-
-	//int x_ini = ini->getColumna();
-	//int y_ini = ini->getFila();
-
-	//int x_fin = fin->getColumna();
-	//int y_fin = fin->getFila();
-
-	//bool obstaculo = false;
-
-	///// MOVIMIENTO A DERECHA /////
-
-	//if (x_ini < 7 && y_ini == y_fin)
-	//{
-	//	for (i = x_ini + 1; i <= x_fin && !obstaculo; i++)
-	//	{
-	//		if (tablero.getPiezasT(i, y_fin) != 0) {
-	//			obstaculo = true;
-	//			return false;
-	//		}
-	//	}
-	//	return true;
-	//}
 
 }

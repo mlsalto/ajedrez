@@ -14,7 +14,6 @@ class Pieza
 protected:
 	//atributos comunes de todas las piezas, que viene siendo: tipo, color
 	Vector2D pos;
-	Vector2D poscas;
 	Casilla* casilla;
 	//int pieza;
 	char color;

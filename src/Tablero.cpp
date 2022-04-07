@@ -10,7 +10,6 @@ Tablero::Tablero()
 
 
 
-
 	Torre* t1b = new Torre('B');
 	Torre* t2b = new Torre('B');
 
@@ -39,28 +38,6 @@ Tablero::Tablero()
 void Tablero::nuevoTablero()
 {
 
-	//Torre* t1b = new Torre('B');
-	//Torre* t2b = new Torre('B');
-
-	//Torre* t1n = new Torre('N');
-	//Torre* t2n = new Torre('N');
-
-
-
-	////coloca las piezas en cada casilla
-	//casillas[0][0]->colocarPieza(t1b); // t1b->setCasilla(casillas[0][0]);
-	//casillas[7][0]->colocarPieza(t2b); 
-
-	//casillas[5][0]->colocarPieza(t1n);
-    //casillas[7][7]->colocarPieza(t2n);
-
-
-	//agregar listas 
-	//piezas.agregar(t1b);
- //   piezas.agregar(t2b);
- //   piezas.agregar(t1n);
- //   piezas.agregar(t2n);
-	//
 }
 
 
@@ -147,6 +124,8 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		break;
 	}
 
+	////////////////// FUNCION DE SELECCIÓN PIEZAS DEL TABLERO ////////////////////////////
+
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 
 		if (seleccionpieza == FALSE) { //AUN NO HAY PIEZA SELECCIONADA
@@ -175,13 +154,6 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		}
 	}
 }
-
-void movimientoVertical()  //indica si hasta donde se puede mover en vertical
-{
-
-}
-
-
 
 Pieza* Tablero::getPiezasT(int x, int y)
 {

@@ -4,9 +4,6 @@ using namespace ETSIDI;
 
 class Torre : public Pieza
 {
-private:
-	Casilla* casilla_prueba;
-
 public:
 	Torre();
 	Torre(char colorEquipo);
