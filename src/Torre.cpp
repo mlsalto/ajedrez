@@ -47,7 +47,7 @@ bool Torre::movimientoLegal(Casilla* fin)
 
 	
 
-	///////////       MOVIMIENTO A DERECHA      ///////////
+	///////////       MOVIMIENTO DERECHA      ///////////
 
 	if (row < 7 && coll == y_fin)
 	{
@@ -57,8 +57,20 @@ bool Torre::movimientoLegal(Casilla* fin)
 				obstaculo = true;
 				return false;
 			}
+
+			return true;
 		}
-		return true;
 	}
+
+
+	///////////       MOVIMIENTO IZQUIERDA    ///////////
+
+
+
+	///////////       MOVIMIENTO ARRIBA    ///////////
+
+
+
+	///////////       MOVIMIENTO ABAJO      ///////////
 
 }

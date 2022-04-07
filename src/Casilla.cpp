@@ -21,12 +21,20 @@ void Casilla::draw()
 
 void Casilla::colocarPieza(Pieza* p)
 {
-	p->setPos(-28 + (8 * columna), -28 + (8 * fila));
-	//p->getColorPieza();
-	//p->setCasilla(this);
-	/*p->setCasilla(this);*/ //esto tengo que mirar a ver que es
-	pieza = p;
-	ocupada = true;
+	if (p != NULL) {
+		p->setPos(-28 + (8 * columna), -28 + (8 * fila));
+		//p->getColorPieza();
+		//p->setCasilla(this);
+		/*p->setCasilla(this);*/ //esto tengo que mirar a ver que es
+		pieza = p;
+		ocupada = true;
+	}
+
+	else if (p == NULL)
+	{
+		pieza = NULL;
+		ocupada = false;
+	}
 }
 
 

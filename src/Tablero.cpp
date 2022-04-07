@@ -135,7 +135,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			//AUN NO HAY PIEZA SELECCIONADA
 			if (seleccionpieza == FALSE) {
 
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() != 'N')
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'B')
 				{
 					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
 
@@ -165,21 +165,29 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 				}
 
 				//////// COMER PIEZA NEGRA //////////
-				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'N')
+				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'N' && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
 				{
-					//ESTO HAY QUE ARREBLAR
-					/*casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
-					piezaini->setCasilla(casillas[x_tablero][y_tablero]);*/
+					piezas.eliminar(casillas[x_tablero][y_tablero]->getTipoPieza()); //elimina pieza
+
+					casillas[x_tablero][y_tablero]->colocarPieza(piezaini); //colocar pieza seleccionada
+					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
+
+					casillas[posinix][posiniy]->colocarPieza(0);
+
+					casilla_seleccionada.setPos(1000, 1000);
+					casilla_seleccionada.draw();
 
 					seleccionpieza = FALSE;
 					turno = FALSE;
 				}
 
 				//////// MOVER A CASILLA VACÍA ///////
-				else if (casillas[x_tablero][y_tablero]->getTipoPieza() == 0)
+				else if (casillas[x_tablero][y_tablero]->getTipoPieza() == 0 && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
 				{
 					casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
 					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
+
+					casillas[posinix][posiniy]->colocarPieza(0);
 
 					casilla_seleccionada.setPos(1000, 1000);
 					casilla_seleccionada.draw();
@@ -197,7 +205,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			//AUN NO HAY PIEZA SELECCIONADA
 			if (seleccionpieza == FALSE) {
 
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() != 'B')
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'N')
 				{
 					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
 
@@ -215,10 +223,44 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			//HAY PIEZA SELECCIONADA
 			else if (seleccionpieza == TRUE) {
 
-				if (piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == true)
+				////////    SELECCIÓN NUEVA PIEZA NEGRA   ////////
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'N')
+				{
+					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+
+					posinix = x_tablero;	posiniy = y_tablero;
+
+					casilla_seleccionada.setPos(-28 + (posinix * 8), -28 + (posiniy * 8));
+					casilla_seleccionada.draw();
+				}
+
+				//////// COMER PIEZA BLANCA//////////
+				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'B' && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
+				{
+					piezas.eliminar(casillas[x_tablero][y_tablero]->getTipoPieza()); //elimina pieza
+
+					casillas[x_tablero][y_tablero]->colocarPieza(piezaini); //colocar pieza seleccionada
+					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
+
+					casillas[posinix][posiniy]->colocarPieza(0);
+
+					casilla_seleccionada.setPos(1000, 1000);
+					casilla_seleccionada.draw();
+
+					seleccionpieza = FALSE;
+					turno = TRUE;
+				}
+
+				//////// MOVER A CASILLA VACÍA ///////
+				else if (casillas[x_tablero][y_tablero]->getTipoPieza() == 0 && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
 				{
 					casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
 					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
+
+					casillas[posinix][posiniy]->colocarPieza(0);
+
+					casilla_seleccionada.setPos(1000, 1000);
+					casilla_seleccionada.draw();
 
 					seleccionpieza = FALSE;
 					turno = TRUE;
