@@ -14,13 +14,16 @@ private:
 	ListaPiezas piezas;
 
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
-   
+	Sprite casilla_seleccionada{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
+
 	int i, j;
 	bool seleccionpieza = FALSE;
 	char colorini;
 	Pieza* piezaini;
 	int posinix, posiniy;
-	int turno;
+	Vector2D pos;
+	bool turno = TRUE; // blancas(1)   negras(0)
+
 
 public:
 	Casilla* casillas[8][8]; //esto no se si está bien??????

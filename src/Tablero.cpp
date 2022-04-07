@@ -50,6 +50,8 @@ void Tablero::dibuja()
 
 	piezas.draw();
 
+	casilla_seleccionada.draw();
+
 	tableroAjedrez.draw();
 	//casilla.draw();
 }
@@ -128,28 +130,99 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 
-		if (seleccionpieza == FALSE) { //AUN NO HAY PIEZA SELECCIONADA
-	
-			if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0)
-			{
-				piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
-	
-				posinix = x_tablero;	posiniy = y_tablero;
+		if (turno == TRUE) //TURNO BLANCAS
+		{
+			//AUN NO HAY PIEZA SELECCIONADA
+			if (seleccionpieza == FALSE) {
 
-				cout << "(" << x_tablero << "," << y_tablero << "," << piezaini << "," << colorini << ")" << endl;
-				seleccionpieza = TRUE;
-		
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() != 'N')
+				{
+					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+
+					posinix = x_tablero;	posiniy = y_tablero;
+
+					cout << "(" << x_tablero << "," << y_tablero << "," << piezaini << "," << colorini << ")" << endl;
+					seleccionpieza = TRUE;
+
+					casilla_seleccionada.setPos(-28 + (posinix * 8), -28 + (posiniy * 8));
+					casilla_seleccionada.draw();
+
+				}
 			}
-				//casilla_iluminada->setPos(-36 + (x_tablero * 8), -36 + (y_tablero * 8)); //funcion para dibujar casilla iluminada en función del ratón
+
+			//HAY PIEZA SELECCIONADA
+			else if (seleccionpieza == TRUE) {
+				 
+				////////    SELECCIÓN NUEVA PIEZA BLANCA    ////////
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'B')
+				{
+					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+
+					posinix = x_tablero;	posiniy = y_tablero;
+
+					casilla_seleccionada.setPos(-28 + (posinix * 8), -28 + (posiniy * 8));
+					casilla_seleccionada.draw();
+				}
+
+				//////// COMER PIEZA NEGRA //////////
+				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'N')
+				{
+					//ESTO HAY QUE ARREBLAR
+					/*casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
+					piezaini->setCasilla(casillas[x_tablero][y_tablero]);*/
+
+					seleccionpieza = FALSE;
+					turno = FALSE;
+				}
+
+				//////// MOVER A CASILLA VACÍA ///////
+				else if (casillas[x_tablero][y_tablero]->getTipoPieza() == 0)
+				{
+					casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
+					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
+
+					casilla_seleccionada.setPos(1000, 1000);
+					casilla_seleccionada.draw();
+
+					seleccionpieza = FALSE;
+					turno = FALSE;
+				}
+			}
 		}
 
-		else if (seleccionpieza == TRUE) { //HAY PIEZA SELECCIONADA
-			if (piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == true)
-			{
-				casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
-				piezaini->setCasilla(casillas[x_tablero][y_tablero]);
 
-				seleccionpieza = FALSE;
+
+		if (turno == FALSE) //TURNO NEGRAS
+		{
+			//AUN NO HAY PIEZA SELECCIONADA
+			if (seleccionpieza == FALSE) {
+
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() != 'B')
+				{
+					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+
+					posinix = x_tablero;	posiniy = y_tablero;
+
+					cout << "(" << x_tablero << "," << y_tablero << "," << piezaini << "," << colorini << ")" << endl;
+					seleccionpieza = TRUE;
+
+					casilla_seleccionada.setPos(-28 + (posinix * 8), -28 + (posiniy * 8));
+					casilla_seleccionada.draw();
+
+				}
+			}
+
+			//HAY PIEZA SELECCIONADA
+			else if (seleccionpieza == TRUE) {
+
+				if (piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == true)
+				{
+					casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
+					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
+
+					seleccionpieza = FALSE;
+					turno = TRUE;
+				}
 			}
 		}
 	}
