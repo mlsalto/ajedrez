@@ -11,22 +11,23 @@ using namespace ETSIDI;
 class Tablero
 {
 private: 
+	/////// ELEMENTOS PARA CREAR TABLERO INICIAL  ///////
 	ListaPiezas piezas;
-
-	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
-	Sprite casilla_seleccionada{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
-
+	Casilla* casillas[8][8]; 
 	int i, j;
+
+	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////
 	bool seleccionpieza = FALSE;
 	char colorini;
 	Pieza* piezaini;
 	int posinix, posiniy;
-	Vector2D pos;
 	bool turno = TRUE; // blancas(1)   negras(0)
 
+	///////// ELEMENTOS DE DIBUJO //////////
+	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
+	Sprite casilla_seleccionada{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
 
 public:
-	Casilla* casillas[8][8]; //esto no se si está bien??????
 
 	Tablero();
 
