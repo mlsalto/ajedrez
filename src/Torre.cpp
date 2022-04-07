@@ -48,7 +48,6 @@ bool Torre::movimientoLegal(Casilla* fin)
 	
 
 	///////////       MOVIMIENTO DERECHA      ///////////
-
 	if (row < 7 && coll == y_fin)
 	{
 		for (i = row + 1; i <= x_fin && !obstaculo; i++)
@@ -62,15 +61,46 @@ bool Torre::movimientoLegal(Casilla* fin)
 		}
 	}
 
-
 	///////////       MOVIMIENTO IZQUIERDA    ///////////
+	if (row > 0 && coll == y_fin)
+	{
+		for (i = row - 1; i >= x_fin && !obstaculo; i--)
+		{
+			if (copia_casillas[i][y_fin]->getOcupada() == true) {
+				obstaculo = true;
+				return false;
+			}
 
-
+			return true;
+		}
+	}
 
 	///////////       MOVIMIENTO ARRIBA    ///////////
+	if (row == x_fin && coll < 7)
+	{
+		for (i = coll + 1; i <= y_fin && !obstaculo; i++)
+		{
+			if (copia_casillas[x_fin][i]->getOcupada() == true) {
+				obstaculo = true;
+				return false;
+			}
 
-
+			return true;
+		}
+	}
 
 	///////////       MOVIMIENTO ABAJO      ///////////
+	if (row == x_fin && coll > 0)
+	{
+		for (i = coll -1; i >= y_fin && !obstaculo; i--)
+		{
+			if (copia_casillas[x_fin][i]->getOcupada() == true) {
+				obstaculo = true;
+				return false;
+			}
+
+			return true;
+		}
+	}
 
 }
