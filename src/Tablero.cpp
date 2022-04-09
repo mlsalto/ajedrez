@@ -8,27 +8,33 @@ Tablero::Tablero()
 		for (j = 0; j < 8; j++)
 			casillas[i][j] = new Casilla(i, j);
 
-
-
 	Torre* t1b = new Torre('B');
 	Torre* t2b = new Torre('B');
 
 	Torre* t1n = new Torre('N');
 	Torre* t2n = new Torre('N');
 
+	//Peones blancos (1)
+	Peon* p1b = new Peon('B');
 
+	//Peones negros (1)
+	Peon* p1n = new Peon('N');
 
 	//coloca las piezas en cada casilla
 	casillas[0][0]->colocarPieza(t1b); // t1b->setCasilla(casillas[0][0]);
 	casillas[7][0]->colocarPieza(t2b);
+	casillas[1][1]->colocarPieza(p1b);
 
 	casillas[0][7]->colocarPieza(t1n);
 	casillas[7][7]->colocarPieza(t2n);
+	casillas[1][6]->colocarPieza(p1n);
 
 	piezas.agregar(t1b);
 	piezas.agregar(t2b);
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
+	piezas.agregar(p1b);
+	piezas.agregar(p1n);
 
 }
 

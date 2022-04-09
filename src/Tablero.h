@@ -3,8 +3,8 @@
 #include "ETSIDI.h"
 #include "Pieza.h"
 #include "Torre.h"
+#include "Peon.h"
 #include "ListaPiezas.h"
-
 
 using namespace ETSIDI;
 

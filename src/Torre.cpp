@@ -45,8 +45,6 @@ bool Torre::movimientoLegal(Casilla* fin)
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
 
-	
-
 	///////////       MOVIMIENTO DERECHA      ///////////
 	if (row < 7 && coll == y_fin)
 	{
