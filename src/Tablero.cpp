@@ -29,7 +29,6 @@ Tablero::Tablero()
 	piezas.agregar(t2b);
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
-
 }
 
 // 0 blanco, 1 negro // 
