@@ -1,31 +1,19 @@
 #include "Casilla.h"
 #include "Pieza.h"
 
-Casilla::Casilla()
-{
-
-}
-
 Casilla::Casilla(int x ,int y)
 {
 	columna = x; 
 	fila = y;
 	ocupada = false;
-}
-
-void Casilla::draw()
-{
-	//pieza->draw();
-	//cout << "uwu" << endl;
+	pieza = NULL;
 }
 
 void Casilla::colocarPieza(Pieza* p)
 {
 	if (p != NULL) {
 		p->setPos(-28 + (8 * columna), -28 + (8 * fila));
-		//p->getColorPieza();
-		//p->setCasilla(this);
-		/*p->setCasilla(this);*/ //esto tengo que mirar a ver que es
+		p->setCasilla(this);//esto tengo que mirar a ver que es
 		pieza = p;
 		ocupada = true;
 	}
@@ -37,7 +25,6 @@ void Casilla::colocarPieza(Pieza* p)
 	}
 }
 
-
 bool Casilla::getOcupada()
 {
 	return ocupada;
@@ -47,7 +34,6 @@ Pieza* Casilla::getTipoPieza()
 {
 	return pieza;
 }
-
 
 int Casilla::getFila()
 {

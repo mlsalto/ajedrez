@@ -11,20 +11,16 @@ class Casilla
 {
 // 0 blanco, 1 negro // 
 //  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
-private:
+protected:
 	int fila;   
 	int columna;
-
 	bool ocupada;
-
 	Pieza* pieza; 
 
 public:
-	Casilla(); // filas y columnas
+
 	Casilla(int x, int y);
 	//~Casilla(); //destructor
-
-	void draw();
 
 	void colocarPieza(Pieza* pieza); //coloca una pieza en una casilla
 
@@ -33,9 +29,9 @@ public:
 	Pieza* getTipoPieza();   //devuelve la pieza que está en la casilla
 
 	int getFila();
-	void setFila(int x);
-
 	int getColumna();
+
+	void setFila(int x);
 	void setColumna(int x);
 
 };
