@@ -68,6 +68,7 @@ void Tablero::dibuja()
 	casilla_seleccionada.draw();
 
 	tableroAjedrez.draw();
+	marcoTablero.draw();
 	//casilla.draw();
 }
 
