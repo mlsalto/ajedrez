@@ -36,94 +36,92 @@ bool Peon::movimientoLegal(Casilla* fin)
 			copia_casillas[i][j] = tablero.getCasillaT(i, j);
 
 	////// FILA Y COLUMNA ACTUAL DE LA PIEZA //////
-	row = (pos.x + 28) / 8;
-	coll = (pos.y + 28) / 8;
+	coll = (pos.x + 28) / 8;
+	row = (pos.y + 28) / 8;
 
 	////// ALMACENAMIENTO DATOS DE ENTRADA QUE INTRODUCE EL USUARIO//////
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
 
-	switch (color)
-	{
-		// los peones blancos solo se mueven hacia arriba y diagonales de arriba derecha/izquierda en caso de haber una pieza negra
-	case 'B':
-		if (coll == 1)
+	// los peones blancos solo se mueven hacia arriba y diagonales de arriba derecha/izquierda en caso de haber una pieza negra
+	if (color == 'B')
+	{		
+		////// MOVIMIENTO 1: máximo 2 casillas hacia delante //////
+		if (row == 1 && y_fin == row + 2 && x_fin == coll)
 		{
-			////// PRIMER MOVIMIENTO A ESCOGER ENTRE 1-2 CASILLAS HACIA ARRIBA //////
-			if (y_fin <= coll + 2)
+			return true;
+			// Bucle para que el programa compruebe que el peón no se salta ninguna pieza
+			/*
+			for (i=row+1; y_fin <= row + 2 && obstaculo==false;i++)
 			{
-				// Si hay una pieza en la casilla donde se quiere desplazar y no hay nada
-				if (copia_casillas[row][y_fin]->getOcupada() == false) {
+				// En caso de que la casilla esté ocupada, el movimiento NO es legal				
+				if (copia_casillas[i][y_fin]->getOcupada() == true) {
 					obstaculo = true;
 					return false;
 				}
-				return true;
+				
 			}
-		}
-		else
-		{
-			////// RESTO DE MOVIMIENTOS 1 CASILLA HACIA ARRIBA /////
-			if (y_fin = coll + 1)
-			{
-				// Si hay una pieza en la casilla donde se quiere desplazar y no hay nada
-				if (copia_casillas[row][y_fin]->getOcupada() == false) {
-					obstaculo = true;
-					return false;
-				}
-				return true;
-			}
+			*/
 		}
 
-		////// MOVIMIENTO DIAGONAL ARRIBA (IZQUIERDA Y DERECHA) - 1 CASILLA /////
-		if ((y_fin = (coll + 1)) && ((x_fin = (row + 1)) || (x_fin = (row - 1))))
+		////// SIGUIENTES MOVIMIENTOS: 1 CASILLA POR TURNO //////
+		else if (y_fin == row + 1 && x_fin == coll)
 		{
-			if (copia_casillas[x_fin][y_fin]->getOcupada() == false) { //No sé cómo hacer para que no se coman entre sí las piezas blancas :v
-				obstaculo = true;
-				return false;
-			}
 			return true;
-		}
-		break;
-	//Los peones negros solo se mueven hacia abajo y diagonales de abajo derecha/izquierda
-	case 'N':
-		if (y_fin == 6)
-		{
-			////// PRIMER MOVIMIENTO A ESCOGER ENTRE 1-2 CASILLAS HACIA ARRIBA //////
-			if (y_fin <= coll - 2)
-			{
-				// Si hay una pieza en la casilla donde se quiere desplazar y no hay nada
-				if (copia_casillas[row][y_fin]->getOcupada() == false) {
-					obstaculo = true;
-					return false;
-				}
-				return true;
-			}
-		}
-		else
-		{
-			////// RESTO DE MOVIMIENTOS 1 CASILLA HACIA ARRIBA /////
-			if (y_fin = coll - 1)
-			{
-				// Si hay una pieza en la casilla donde se quiere desplazar y no hay nada
-				if (copia_casillas[row][y_fin]->getOcupada() == false) {
-					obstaculo = true;
-					return false;
-				}
-				return true;
-			}
 		}
 
-		////// MOVIMIENTO DIAGONAL ARRIBA (IZQUIERDA Y DERECHA) - 1 CASILLA /////
-		if ((y_fin = (coll - 1)) && ((x_fin = (row + 1)) || (row = (row - 1))))
+		////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
+		else if (y_fin == row + 1 && x_fin == coll + 1)
 		{
-			if (copia_casillas[x_fin][y_fin]->getOcupada() == false) { //No sé cómo hacer para que no se coman entre sí las piezas blancas :v
-				obstaculo = true;
-				return false;
-			}
 			return true;
 		}
-		break;
+		else if (y_fin == row + 1 && x_fin == coll - 1)
+		{
+			return true;
+		}
+
+
+		return false;  // No se cumple ninguno de los movimientos legales de los peones y por tanto, NO es un movimiento legal
 	}
 
-	return false;
+	//Los peones negros solo se mueven hacia abajo y diagonales de abajo derecha/izquierda
+	if (color == 'N')
+	{
+		////// MOVIMIENTO 1: máximo 2 casillas hacia delante //////
+		if (row == 6 && y_fin == row - 2 && x_fin == coll)
+		{
+			return true;
+			// Bucle para que el programa compruebe que el peón no se salta ninguna pieza
+			/*
+			for (i=row+1; y_fin <= row + 2 && obstaculo==false;i++)
+			{
+				// En caso de que la casilla esté ocupada, el movimiento NO es legal
+				if (copia_casillas[i][y_fin]->getOcupada() == true) {
+					obstaculo = true;
+					return false;
+				}
+
+			}
+			*/
+		}
+
+		////// SIGUIENTES MOVIMIENTOS: 1 CASILLA POR TURNO //////
+		else if (y_fin == row - 1 && x_fin == coll)
+		{
+			return true;
+		}
+
+		////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
+		else if (y_fin == row - 1 && x_fin == coll + 1)
+		{
+			return true;
+		}
+		else if (y_fin == row - 1 && x_fin == coll - 1)
+		{
+			return true;
+		}
+
+
+		return false;  // No se cumple ninguno de los movimientos legales de los peones y por tanto, NO es un movimiento legal
+	}
 }
