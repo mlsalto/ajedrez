@@ -25,15 +25,8 @@ void Peon::draw()
 bool Peon::movimientoLegal(Casilla* fin)
 {
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
-	Tablero tablero;
 	int i, j, row, coll;
-	Casilla* copia_casillas[8][8];
 	bool obstaculo = false;
-
-	////// COPIA DEL TABLERO //////
-	for (i = 0; i < 8; i++)
-		for (j = 0; j < 8; j++)
-			copia_casillas[i][j] = tablero.getCasillaT(i, j);
 
 	////// FILA Y COLUMNA ACTUAL DE LA PIEZA //////
 	coll = (pos.x + 28) / 8;
@@ -47,17 +40,12 @@ bool Peon::movimientoLegal(Casilla* fin)
 	if (color == 'B')
 	{		
 		////// MOVIMIENTO 1: máximo 2 casillas hacia delante //////
-		if (row == 1 && y_fin == row + 2 && x_fin == coll)
+		if (row == 1 && (y_fin == row + 1 || y_fin <= row + 2) && x_fin == coll)
 		{
-			// Bucle para que el programa compruebe que el peón no se salta ninguna pieza
-			for (i = row + 1; y_fin <= row + 2 && obstaculo == false; i++)
+			for (i = row + 1; i <= y_fin && !obstaculo; i++)
 			{
-				// En caso de que la casilla esté ocupada, el movimiento NO es legal				
-				if (Tablero::getCasillaOcupada(i, y_fin) == true) {
-					obstaculo = true; // Para que el bucle no se siga ejecutando
-					return false;
-				}
-				
+				if (Tablero::getCasillaOcupada(x_fin, i) == true)
+					return false;					
 			}
 			return true;
 		}
@@ -65,22 +53,18 @@ bool Peon::movimientoLegal(Casilla* fin)
 		////// SIGUIENTES MOVIMIENTOS: 1 CASILLA POR TURNO //////
 		else if (y_fin == row + 1 && x_fin == coll)
 		{
-			if (Tablero::getCasillaOcupada(i, y_fin) == true)
+			if (Tablero::getCasillaOcupada(x_fin, y_fin) == true)
 				return false;
 			return true;
 		}
 
 		////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
-		else if (y_fin == row + 1 && x_fin == coll + 1)
+		else if (y_fin == row + 1 && x_fin == coll + 1 && Tablero::getCasillaOcupada(x_fin, y_fin) == true)
 		{
-			if (Tablero::getCasillaOcupada(i, y_fin) == true)
-				return false;
 			return true;
 		}
-		else if (y_fin == row + 1 && x_fin == coll - 1)
+	    else if (y_fin == row + 1 && x_fin == coll - 1 && Tablero::getCasillaOcupada(x_fin, y_fin) == true)
 		{
-			if (Tablero::getCasillaOcupada(i, y_fin) == true)
-				return false;
 			return true;
 		}
 
@@ -91,35 +75,30 @@ bool Peon::movimientoLegal(Casilla* fin)
 	if (color == 'N')
 	{
 		////// MOVIMIENTO 1: máximo 2 casillas hacia delante //////
-		if (row == 6 && y_fin == row - 2 && x_fin == coll)
+		if (row == 6 && (y_fin == row - 1 || y_fin == row - 2) && x_fin == coll)
 		{
-			return true;
-			// Bucle para que el programa compruebe que el peón no se salta ninguna pieza
-			/*
-			for (i=row+1; y_fin <= row + 2 && obstaculo==false;i++)
+			for (i = row - 1; i >= y_fin && !obstaculo; i--)
 			{
-				// En caso de que la casilla esté ocupada, el movimiento NO es legal
-				if (copia_casillas[i][y_fin]->getOcupada() == true) {
-					obstaculo = true;
+				if (Tablero::getCasillaOcupada(x_fin, i) == true)
 					return false;
-				}
-
 			}
-			*/
+			return true;
 		}
 
 		////// SIGUIENTES MOVIMIENTOS: 1 CASILLA POR TURNO //////
 		else if (y_fin == row - 1 && x_fin == coll)
 		{
+			if (Tablero::getCasillaOcupada(x_fin, y_fin) == true)
+				return false;
 			return true;
 		}
 
 		////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
-		else if (y_fin == row - 1 && x_fin == coll + 1)
+		else if (y_fin == row - 1 && x_fin == coll + 1 && Tablero::getCasillaOcupada(x_fin, y_fin) == true)
 		{
 			return true;
 		}
-		else if (y_fin == row - 1 && x_fin == coll - 1)
+		else if (y_fin == row - 1 && x_fin == coll - 1 && Tablero::getCasillaOcupada(x_fin, y_fin) == true)
 		{
 			return true;
 		}
