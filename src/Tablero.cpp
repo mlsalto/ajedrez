@@ -1,9 +1,18 @@
 #include "Tablero.h"
 #include "freeglut.h"
 
+Casilla* Tablero::casillas[8][8];
+
 Tablero::Tablero()
 {
-	// posiciona i, j segun el [][]
+
+}
+
+// 0 blanco, 1 negro // 
+//  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
+
+void Tablero::nuevoTablero()
+{
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
 			casillas[i][j] = new Casilla(i, j);
@@ -11,9 +20,14 @@ Tablero::Tablero()
 	Torre* t1b = new Torre('B');
 	Torre* t2b = new Torre('B');
 
+	Caballo* c1b = new Caballo('B');
+	Caballo* c2b = new Caballo('B');
+
 	Torre* t1n = new Torre('N');
 	Torre* t2n = new Torre('N');
 
+	Caballo* c1n = new Caballo('N');
+	Caballo* c2n = new Caballo('N');
 	//Peones blancos (1)
 	Peon* p1b = new Peon('B');
 	Peon* p2b = new Peon('B');
@@ -34,7 +48,13 @@ Tablero::Tablero()
 	Peon* p7n = new Peon('N');
 	Peon* p8n = new Peon('N');
 
+
 	//coloca las piezas en cada casilla
+	// Torre(t), Caballo(c), Peon (p), Rey(k), Reina(q), Alfil (a)
+
+	casillas[0][0]->colocarPieza(t1b);
+	casillas[1][0]->colocarPieza(c1b);
+	casillas[6][0]->colocarPieza(c2b);
 	//TORRES BLANCAS
 	casillas[0][0]->colocarPieza(t1b); // t1b->setCasilla(casillas[0][0]);
 	casillas[7][0]->colocarPieza(t2b);
@@ -51,7 +71,9 @@ Tablero::Tablero()
 
 	//TORRES NEGRAS
 	casillas[0][7]->colocarPieza(t1n);
-	casillas[7][7]->colocarPieza(t2n);
+	casillas[1][7]->colocarPieza(c1n);
+	casillas[6][7]->colocarPieza(c2n);
+	casillas[7][7]->colocarPieza(t2n); 
 
 	//PEONES NEGROS
 	casillas[0][6]->colocarPieza(p1n);
@@ -78,6 +100,11 @@ Tablero::Tablero()
 
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
+
+	piezas.agregar(c1b);
+	piezas.agregar(c2b);
+	piezas.agregar(c1n);
+	piezas.agregar(c2n);
 	
 	piezas.agregar(p1n);
 	piezas.agregar(p2n);
@@ -104,12 +131,12 @@ void Tablero::dibuja()
 	//el tablero tiene que dibujarse el último para dibujarse detrás y que no
 	//tape a las figuras
 
-
 	piezas.draw();
 
 	casilla_seleccionada.draw();
 
 	tableroAjedrez.draw();
+	marcoTablero.draw();
 	//casilla.draw();
 }
 
@@ -227,7 +254,6 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 					piezas.eliminar(casillas[x_tablero][y_tablero]->getTipoPieza()); //elimina pieza
 
 					casillas[x_tablero][y_tablero]->colocarPieza(piezaini); //colocar pieza seleccionada
-					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
 
 					casillas[posinix][posiniy]->colocarPieza(0);
 
@@ -242,7 +268,6 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 				else if (casillas[x_tablero][y_tablero]->getTipoPieza() == 0 && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
 				{
 					casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
-					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
 
 					casillas[posinix][posiniy]->colocarPieza(0);
 
@@ -297,7 +322,6 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 					piezas.eliminar(casillas[x_tablero][y_tablero]->getTipoPieza()); //elimina pieza
 
 					casillas[x_tablero][y_tablero]->colocarPieza(piezaini); //colocar pieza seleccionada
-					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
 
 					casillas[posinix][posiniy]->colocarPieza(0);
 
@@ -312,7 +336,6 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 				else if (casillas[x_tablero][y_tablero]->getTipoPieza() == 0 && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
 				{
 					casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
-					piezaini->setCasilla(casillas[x_tablero][y_tablero]);
 
 					casillas[posinix][posiniy]->colocarPieza(0);
 
@@ -329,12 +352,19 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 
 Pieza* Tablero::getPiezasT(int x, int y)
 {
-	casillas[x][y]->getTipoPieza();
-	return 0;
-
+	return casillas[x][y]->getTipoPieza();
 }
 
 Casilla* Tablero::getCasillaT(int x, int y)
 {
 	return casillas[x][y];
 }
+
+bool Tablero::getCasillaOcupada(int x, int y)
+{
+	return casillas[x][y]->getOcupada();
+}
+
+
+
+
