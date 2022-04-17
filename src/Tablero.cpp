@@ -48,6 +48,8 @@ void Tablero::nuevoTablero()
 	Peon* p6n = new Peon('N');
 	Peon* p7n = new Peon('N');
 	Peon* p8n = new Peon('N');
+
+	//reina
 	Reina* qb = new Reina('B');
 	Reina* qn = new Reina('N');
 
