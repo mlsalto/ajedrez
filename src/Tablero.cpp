@@ -16,6 +16,8 @@ Tablero::Tablero()
 	Torre* t1n = new Torre('N');
 	Torre* t2n = new Torre('N');
 
+	Reina* qb = new Reina('B');
+	Reina* qn = new Reina('N');
 
 
 	//coloca las piezas en cada casilla
@@ -25,10 +27,16 @@ Tablero::Tablero()
 	casillas[0][7]->colocarPieza(t1n);
 	casillas[7][7]->colocarPieza(t2n);
 
+	casillas[3][0]->colocarPieza(qb);
+	casillas[3][7]->colocarPieza(qn);
+
 	piezas.agregar(t1b);
 	piezas.agregar(t2b);
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
+
+	piezas.agregar(qb);
+	piezas.agregar(qn);
 
 }
 

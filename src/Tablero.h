@@ -3,6 +3,7 @@
 #include "ETSIDI.h"
 #include "Pieza.h"
 #include "Torre.h"
+#include "Reina.h"
 #include "ListaPiezas.h"
 
 
