@@ -26,12 +26,9 @@ void Tablero::nuevoTablero()
 	Torre* t1n = new Torre('N');
 	Torre* t2n = new Torre('N');
 
-<<<<<<< HEAD
-=======
 	Reina* qb = new Reina('B');
 	Reina* qn = new Reina('N');
 
->>>>>>> 8b7a9410ed678811d73cd853555962ffe277bc2e
 	Caballo* c1n = new Caballo('N');
 	Caballo* c2n = new Caballo('N');
 
@@ -55,12 +52,9 @@ void Tablero::nuevoTablero()
 	Peon* p7n = new Peon('N');
 	Peon* p8n = new Peon('N');
 
-<<<<<<< HEAD
 	//reina
 	Reina* qb = new Reina('B');
 	Reina* qn = new Reina('N');
-=======
->>>>>>> 8b7a9410ed678811d73cd853555962ffe277bc2e
 
 
 	//coloca las piezas en cada casilla
@@ -86,14 +80,12 @@ void Tablero::nuevoTablero()
 	//TORRES NEGRAS
 	casillas[0][7]->colocarPieza(t1n);
 <<<<<<< HEAD
-=======
 	casillas[7][7]->colocarPieza(t2n);
 
 	casillas[3][0]->colocarPieza(qb);
 	casillas[3][7]->colocarPieza(qn);
 
-
->>>>>>> 8b7a9410ed678811d73cd853555962ffe277bc2e
+=======
 	casillas[1][7]->colocarPieza(c1n);
 	casillas[6][7]->colocarPieza(c2n);
 	casillas[7][7]->colocarPieza(t2n); 
@@ -108,13 +100,8 @@ void Tablero::nuevoTablero()
 	casillas[6][6]->colocarPieza(p7n);
 	casillas[7][6]->colocarPieza(p8n);
 
-<<<<<<< HEAD
 	//
-	casillas[3][0]->colocarPieza(qb);
-	casillas[3][7]->colocarPieza(qn);
-=======
->>>>>>> 8b7a9410ed678811d73cd853555962ffe277bc2e
-
+>>>>>>> 8cb373d8a7e8d61608d6c5c9216ec97d608ca2c4
 	piezas.agregar(t1b);
 	piezas.agregar(t2b);
 
@@ -131,12 +118,10 @@ void Tablero::nuevoTablero()
 	piezas.agregar(t2n);
 
 <<<<<<< HEAD
-=======
 	piezas.agregar(qb);
 	piezas.agregar(qn);
 
-
->>>>>>> 8b7a9410ed678811d73cd853555962ffe277bc2e
+=======
 	piezas.agregar(c1b);
 	piezas.agregar(c2b);
 	piezas.agregar(c1n);
@@ -150,12 +135,7 @@ void Tablero::nuevoTablero()
 	piezas.agregar(p6n);
 	piezas.agregar(p7n);
 	piezas.agregar(p8n);
-<<<<<<< HEAD
-	piezas.agregar(qb);
-	piezas.agregar(qn);
-
-=======
->>>>>>> 8b7a9410ed678811d73cd853555962ffe277bc2e
+>>>>>>> 8cb373d8a7e8d61608d6c5c9216ec97d608ca2c4
 }
 
 // 0 blanco, 1 negro // 
