@@ -32,6 +32,8 @@ void Coordinador::mueve()
 
 void Coordinador::dibuja()
 {
+	/*MenuInicial.setPos(0, 0);
+	MenuInicial.draw();*/
 	tablero.dibuja();
 }
 

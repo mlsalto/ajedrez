@@ -3,6 +3,8 @@
 
 class Coordinador
 {
+private:
+	Sprite MenuInicial{ "recursos/MENU.png", 0, 0, 130, 80 };
 public:
 	Coordinador();
 	virtual ~Coordinador();
