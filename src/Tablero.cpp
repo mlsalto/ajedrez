@@ -26,6 +26,9 @@ void Tablero::nuevoTablero()
 	Torre* t1n = new Torre('N');
 	Torre* t2n = new Torre('N');
 
+	Reina* qb = new Reina('B');
+	Reina* qn = new Reina('N');
+
 	Caballo* c1n = new Caballo('N');
 	Caballo* c2n = new Caballo('N');
 
@@ -50,6 +53,7 @@ void Tablero::nuevoTablero()
 	Peon* p8n = new Peon('N');
 
 
+
 	//coloca las piezas en cada casilla
 	// Torre(t), Caballo(c), Peon (p), Rey(k), Reina(q), Alfil (a)
 
@@ -72,6 +76,12 @@ void Tablero::nuevoTablero()
 
 	//TORRES NEGRAS
 	casillas[0][7]->colocarPieza(t1n);
+	casillas[7][7]->colocarPieza(t2n);
+
+	casillas[3][0]->colocarPieza(qb);
+	casillas[3][7]->colocarPieza(qn);
+
+
 	casillas[1][7]->colocarPieza(c1n);
 	casillas[6][7]->colocarPieza(c2n);
 	casillas[7][7]->colocarPieza(t2n); 
@@ -86,7 +96,7 @@ void Tablero::nuevoTablero()
 	casillas[6][6]->colocarPieza(p7n);
 	casillas[7][6]->colocarPieza(p8n);
 
-	//
+
 	piezas.agregar(t1b);
 	piezas.agregar(t2b);
 
@@ -101,6 +111,10 @@ void Tablero::nuevoTablero()
 
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
+
+	piezas.agregar(qb);
+	piezas.agregar(qn);
+
 
 	piezas.agregar(c1b);
 	piezas.agregar(c2b);
