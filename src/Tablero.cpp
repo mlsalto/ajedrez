@@ -57,12 +57,25 @@ void Tablero::nuevoTablero()
 	//coloca las piezas en cada casilla
 	// Torre(t), Caballo(c), Peon (p), Rey(k), Reina(q), Alfil (a)
 
-	casillas[0][0]->colocarPieza(t1b);
+	//REINAS 
+	casillas[3][0]->colocarPieza(qb);
+	casillas[3][7]->colocarPieza(qn);
+
+	//CABALLOS BLANCOS
 	casillas[1][0]->colocarPieza(c1b);
 	casillas[6][0]->colocarPieza(c2b);
+
+	//CABALLOS NEGROS
+	casillas[1][7]->colocarPieza(c1n);
+	casillas[6][7]->colocarPieza(c2n);
+
 	//TORRES BLANCAS
 	casillas[0][0]->colocarPieza(t1b); // t1b->setCasilla(casillas[0][0]);
 	casillas[7][0]->colocarPieza(t2b);
+
+	//TORRES NEGRAS
+	casillas[0][7]->colocarPieza(t1n);
+	casillas[7][7]->colocarPieza(t2n);
 
 	//PEONES BLANCOS
 	casillas[0][1]->colocarPieza(p1b);
@@ -72,18 +85,7 @@ void Tablero::nuevoTablero()
 	casillas[4][1]->colocarPieza(p5b);
 	casillas[5][1]->colocarPieza(p6b);
 	casillas[6][1]->colocarPieza(p7b);
-	casillas[7][1]->colocarPieza(p8b);
-
-	//TORRES NEGRAS
-	casillas[0][7]->colocarPieza(t1n);
-	casillas[7][7]->colocarPieza(t2n);
-
-	casillas[3][0]->colocarPieza(qb);
-	casillas[3][7]->colocarPieza(qn);
-
-	casillas[1][7]->colocarPieza(c1n);
-	casillas[6][7]->colocarPieza(c2n);
-	casillas[7][7]->colocarPieza(t2n); 
+	casillas[7][1]->colocarPieza(p8b);		
 
 	//PEONES NEGROS
 	casillas[0][6]->colocarPieza(p1n);
@@ -95,8 +97,7 @@ void Tablero::nuevoTablero()
 	casillas[6][6]->colocarPieza(p7n);
 	casillas[7][6]->colocarPieza(p8n);
 
-	//
-
+	//Agregar a lista de piezas las piezas :)
 	piezas.agregar(t1b);
 	piezas.agregar(t2b);
 
@@ -112,10 +113,8 @@ void Tablero::nuevoTablero()
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
 
-
 	piezas.agregar(qb);
 	piezas.agregar(qn);
-
 
 	piezas.agregar(c1b);
 	piezas.agregar(c2b);
@@ -130,12 +129,10 @@ void Tablero::nuevoTablero()
 	piezas.agregar(p6n);
 	piezas.agregar(p7n);
 	piezas.agregar(p8n);
-
 }
 
 // 0 blanco, 1 negro // 
 //  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
-
 
 void Tablero::dibuja()
 {
