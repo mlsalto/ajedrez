@@ -28,19 +28,12 @@ void Alfil::draw()
 bool Alfil::movimientoLegal(Casilla* fin) {
 
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
-	Tablero tablero;
 	int i, j, row, coll;
-	Casilla* copia_casillas[8][8];
 	bool obstaculo = false;
 
-	////// COPIA DEL TABLERO //////
-	for (i = 0; i < 8; i++)
-		for (j = 0; j < 8; j++)
-			copia_casillas[i][j] = tablero.getCasillaT(i, j);
-
 	////// FILA Y COLUMNA //////
-	row = (pos.x + 28) / 8;
-	coll = (pos.y + 28) / 8;
+	coll = (pos.x + 28) / 8;
+	row = (pos.y + 28) / 8;
 
 	////// ALMACENAMIENTO DATOS DE ENTRADA //////
 	int x_fin = fin->getColumna();
@@ -53,14 +46,12 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 		for (i = row + 1, j = coll + 1; i <= x_fin && j <= y_fin && !obstaculo; i++, j++)
 		{
 
-			if (copia_casillas[i][j]->getOcupada() == true || fabs(x_fin - i) != fabs(y_fin - j)) {
+			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
 				obstaculo = true;
 				return false;
 			}
-
-			return true;
 		}
-
+		return true;
 	}
 
 	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
@@ -69,13 +60,12 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 		for (i = row - 1, j = coll + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
 		{
 
-			if (copia_casillas[i][j]->getOcupada() == true || fabs(x_fin - i) != fabs(y_fin - j)) {
+			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
 				obstaculo = true;
 				return false;
 			}
-
-			return true;
 		}
+		return true;
 	}
 
 	///////////       MOVIMIENTO DERECHA/ABAJO    ///////////
@@ -83,13 +73,12 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 	{
 		for (i = row + 1, j = coll - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
 		{
-			if (copia_casillas[i][j]->getOcupada() == true || fabs(x_fin - i) != fabs(y_fin - j)) {
+			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
 				obstaculo = true;
 				return false;
 			}
-
-			return true;
 		}
+		return true;
 	}
 
 	///////////       MOVIMIENTO IZQUIERDA/ABAJO      ///////////
@@ -97,13 +86,12 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 	{
 		for (i = row - 1, j = coll - 1; i >= x_fin && j >= y_fin && !obstaculo; i--, j--)
 		{
-			if (copia_casillas[i][j]->getOcupada() == true || fabs(x_fin - i) != fabs(y_fin - j)) {
+			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
 				obstaculo = true;
 				return false;
 			}
-
-			return true;
 		}
+		return true;
 	}
 
 }
