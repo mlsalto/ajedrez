@@ -1,7 +1,7 @@
 #include "Pieza.h"
 
 Pieza::Pieza() {
-	
+	tipoPieza = 0;
 }
 
 Pieza::Pieza(char colorJugador)
@@ -33,6 +33,10 @@ void Pieza::setCasilla(Casilla* c)
 	casilla = c;
 }
 
+int Pieza::getTipoPieza()
+{
+	return tipoPieza;
+}
 
 char Pieza::getColorPieza()
 {
