@@ -3,11 +3,8 @@
 #include "ETSIDI.h"
 #include "Pieza.h"
 #include "Torre.h"
-<<<<<<< HEAD
 #include "Peon.h"
-=======
 #include "Caballo.h"
->>>>>>> pruebas_lisa
 #include "ListaPiezas.h"
 
 using namespace ETSIDI;

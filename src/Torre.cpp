@@ -36,10 +36,7 @@ bool Torre::movimientoLegal(Casilla* fin)
 	////// ALMACENAMIENTO DATOS DE ENTRADA //////
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
-<<<<<<< HEAD
-=======
-	
->>>>>>> pruebas_lisa
+
 
 	///////////       MOVIMIENTO DERECHA      ///////////
 	if (coll < x_fin && row == y_fin)
