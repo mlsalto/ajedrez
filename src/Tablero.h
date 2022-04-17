@@ -29,7 +29,6 @@ private:
 	Sprite casilla_seleccionada{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
 
 
-////////////// PRUEBA //////////////
 
 public:
 	static Casilla* casillas[8][8];
