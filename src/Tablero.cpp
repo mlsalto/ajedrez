@@ -16,26 +16,77 @@ Tablero::Tablero()
 
 	//Peones blancos (1)
 	Peon* p1b = new Peon('B');
+	Peon* p2b = new Peon('B');
+	Peon* p3b = new Peon('B');
+	Peon* p4b = new Peon('B');
+	Peon* p5b = new Peon('B');
+	Peon* p6b = new Peon('B');
+	Peon* p7b = new Peon('B');
+	Peon* p8b = new Peon('B');
 
 	//Peones negros (1)
 	Peon* p1n = new Peon('N');
+	Peon* p2n = new Peon('N');
+	Peon* p3n = new Peon('N');
+	Peon* p4n = new Peon('N');
+	Peon* p5n = new Peon('N');
+	Peon* p6n = new Peon('N');
+	Peon* p7n = new Peon('N');
+	Peon* p8n = new Peon('N');
 
 	//coloca las piezas en cada casilla
+	//TORRES BLANCAS
 	casillas[0][0]->colocarPieza(t1b); // t1b->setCasilla(casillas[0][0]);
 	casillas[7][0]->colocarPieza(t2b);
-	casillas[1][1]->colocarPieza(p1b);
 
+	//PEONES BLANCOS
+	casillas[0][1]->colocarPieza(p1b);
+	casillas[1][1]->colocarPieza(p2b);
+	casillas[2][1]->colocarPieza(p3b);
+	casillas[3][1]->colocarPieza(p4b);
+	casillas[4][1]->colocarPieza(p5b);
+	casillas[5][1]->colocarPieza(p6b);
+	casillas[6][1]->colocarPieza(p7b);
+	casillas[7][1]->colocarPieza(p8b);
+
+	//TORRES NEGRAS
 	casillas[0][7]->colocarPieza(t1n);
 	casillas[7][7]->colocarPieza(t2n);
-	casillas[1][6]->colocarPieza(p1n);
 
+	//PEONES NEGROS
+	casillas[0][6]->colocarPieza(p1n);
+	casillas[1][6]->colocarPieza(p2n);
+	casillas[2][6]->colocarPieza(p3n);
+	casillas[3][6]->colocarPieza(p4n);
+	casillas[4][6]->colocarPieza(p5n);
+	casillas[5][6]->colocarPieza(p6n);
+	casillas[6][6]->colocarPieza(p7n);
+	casillas[7][6]->colocarPieza(p8n);
+
+	//
 	piezas.agregar(t1b);
 	piezas.agregar(t2b);
+
+	piezas.agregar(p1b);
+	piezas.agregar(p2b);
+	piezas.agregar(p3b);
+	piezas.agregar(p4b);
+	piezas.agregar(p5b);
+	piezas.agregar(p6b);
+	piezas.agregar(p7b);
+	piezas.agregar(p8b);
+
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
-	piezas.agregar(p1b);
+	
 	piezas.agregar(p1n);
-
+	piezas.agregar(p2n);
+	piezas.agregar(p3n);
+	piezas.agregar(p4n);
+	piezas.agregar(p5n);
+	piezas.agregar(p6n);
+	piezas.agregar(p7n);
+	piezas.agregar(p8n);
 }
 
 // 0 blanco, 1 negro // 
