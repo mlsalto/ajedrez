@@ -15,8 +15,10 @@ protected:
 	//atributos comunes de todas las piezas, que viene siendo: tipo, color
 	Vector2D pos;
 	Casilla* casilla;
-	//int pieza;
+
 	char color;
+
+	int tipoPieza;
 
 	Sprite PeonN{ "recursos/peonN.png", pos.x, pos.y, 8, 8 };
 	Sprite PeonB{ "recursos/peonB.png", pos.x, pos.y, 8, 8 };
@@ -52,7 +54,7 @@ public:
 	void setPos(int x, int y);
 	void setCasilla(Casilla* c);
 
-
+	int getTipoPieza();
 	char getColorPieza(); //devuelve el color blanco o negro
 	Casilla* getCasilla();
 };
