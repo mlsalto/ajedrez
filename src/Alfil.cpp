@@ -50,8 +50,8 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 				obstaculo = true;
 				return false;
 			}
+			return true;
 		}
-		return true;
 	}
 
 	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
@@ -64,8 +64,8 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 				obstaculo = true;
 				return false;
 			}
+			return true;
 		}
-		return true;
 	}
 
 	///////////       MOVIMIENTO DERECHA/ABAJO    ///////////
@@ -77,8 +77,8 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 				obstaculo = true;
 				return false;
 			}
+			return true;
 		}
-		return true;
 	}
 
 	///////////       MOVIMIENTO IZQUIERDA/ABAJO      ///////////
@@ -90,8 +90,8 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 				obstaculo = true;
 				return false;
 			}
+			return true;
 		}
-		return true;
 	}
 
 }
