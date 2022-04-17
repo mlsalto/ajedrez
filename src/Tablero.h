@@ -3,12 +3,9 @@
 #include "ETSIDI.h"
 #include "Pieza.h"
 #include "Torre.h"
-<<<<<<< HEAD
 #include "Reina.h"
-=======
 #include "Peon.h"
 #include "Caballo.h"
->>>>>>> 8cb373d8a7e8d61608d6c5c9216ec97d608ca2c4
 #include "ListaPiezas.h"
 
 using namespace ETSIDI;
