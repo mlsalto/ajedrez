@@ -72,8 +72,8 @@ void Tablero::nuevoTablero()
 	casillas[0][0]->colocarPieza(t1b);
 	casillas[1][0]->colocarPieza(c1b);
 	casillas[2][0]->colocarPieza(a1b);
-	casillas[3][0]->colocarPieza(kb);
-	casillas[4][0]->colocarPieza(qb);
+	casillas[3][0]->colocarPieza(qb);
+	casillas[4][0]->colocarPieza(kb);
 	casillas[5][0]->colocarPieza(a2b);
 	casillas[6][0]->colocarPieza(c2b);
 	casillas[7][0]->colocarPieza(t2b);
@@ -92,8 +92,8 @@ void Tablero::nuevoTablero()
 	casillas[0][7]->colocarPieza(t1n);
 	casillas[1][7]->colocarPieza(c1n);
 	casillas[2][7]->colocarPieza(a1n);
-	casillas[3][7]->colocarPieza(kn);
-	casillas[4][7]->colocarPieza(qn);
+	casillas[3][7]->colocarPieza(qn);
+	casillas[4][7]->colocarPieza(kn);
 	casillas[5][7]->colocarPieza(a2n);
 	casillas[6][7]->colocarPieza(c2n);
 	casillas[7][7]->colocarPieza(t2n);
