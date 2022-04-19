@@ -100,57 +100,59 @@ bool Reina::movimientoLegal(Casilla* fin)
 
 
 
-	//////////////**************    DIAGONAL?    **************///////////
+	//////////////**************    DIAGONAL     **************///////////
 	
-	///////////       MOVIMIENTO DERECHA      ///////////
-	if (coll < 7 && row == y_fin)
+	///////////       MOVIMIENTO DERECHA/ARRIBA     ///////////
+	if (coll < 7 && row < 7)
 	{
-		for (i = coll + 1; i <= x_fin && !obstaculo; i++)
+		for (i = row + 1, j = coll + 1; i <= x_fin && j <= y_fin && !obstaculo; i++, j++)
 		{
-			if (Tablero::getCasillaOcupada(i, y_fin) == false)
-			{
+
+			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
 				obstaculo = true;
 				return false;
 			}
+			return true;
 		}
 	}
 
-	///////////       MOVIMIENTO IZQUIERDA    ///////////
-	if (coll > 0 && row == y_fin)
+	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
+	if (coll < 7 && row > 0)
 	{
-		for (i = coll - 1; i >= x_fin && !obstaculo; i--)
+		for (i = row - 1, j = coll + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
 		{
-			if (Tablero::getCasillaOcupada(i, y_fin) == false)
-			{
+
+			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
 				obstaculo = true;
 				return false;
 			}
+			return true;
 		}
 	}
 
-	///////////       MOVIMIENTO ARRIBA    ///////////
-	if (coll == x_fin && row < 7)
+	///////////       MOVIMIENTO DERECHA/ABAJO    ///////////
+	if (coll > 0 && row < 7)
 	{
-		for (i = row + 1; i <= y_fin && !obstaculo; i++)
+		for (i = row + 1, j = coll - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
 		{
-			if (Tablero::getCasillaOcupada(x_fin, i) == false)
-			{
+			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
 				obstaculo = true;
 				return false;
 			}
+			return true;
 		}
 	}
 
-	///////////       MOVIMIENTO ABAJO      ///////////
-	if (coll == x_fin && row > 0)
+	///////////       MOVIMIENTO IZQUIERDA/ABAJO      ///////////
+	if (coll > 0 && row > 0)
 	{
-		for (i = row - 1; i >= y_fin && !obstaculo; i--)
+		for (i = row - 1, j = coll - 1; i >= x_fin && j >= y_fin && !obstaculo; i--, j--)
 		{
-			if (Tablero::getCasillaOcupada(x_fin, i) == false)
-			{
+			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
 				obstaculo = true;
 				return false;
 			}
+			return true;
 		}
 	}
 
