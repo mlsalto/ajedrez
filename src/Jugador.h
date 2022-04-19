@@ -6,11 +6,14 @@
 
 class Jugador
 {
+private:
+	char color;
+	int puntos_totales;
 public:
-	Jugador();
+	Jugador(char colorJugador);
 	~Jugador();
 
-	bool movimiento();
+	bool movimientoRealizado();
 	int puntos();
 
 	int funcionIA();

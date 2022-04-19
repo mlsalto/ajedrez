@@ -1,41 +1,22 @@
 #include "Jugador.h"
 
 
-////// PRUEBAS PARA REALIZACIÓN DE UNA IA SENCILLA ////////
+Jugador::Jugador(char colorJugador)
+{
+	color = colorJugador;
+}
 
-/* Valores matemáticos para la evaluación de la función
+bool Jugador::movimientoRealizado()
+{
+	/// hay que poner funcion que realice movimiento
+	return true;
+}
 
- peon.
-   - Por cada peon +100 puntos
-   - Por cada peon en el centro del tablero +12 puntos
-   - Por cada casilla que un peon avanza +2 puntos
-
- caballo.
-   - Por cada caballo +315 puntos
-   - Si está cerca o lejos del centro del tablero +-0-15 puntos
-
- alfil.
-   - Por cada alfil +330 puntos
-   - Añadir un punto por cada casilla a la que se pueda mover el alfil
-
- torre.
-   - Por cada torre +500 puntos
-   - Añadir un punto por cada casilla a la que se pueda mover la torre
-
- dama.
-   - Por cada dama +940 puntos
-   - Si está cerca o lejos del centro del tablero +-0-10 puntos
-
-*/
-
-
-
-int Jugador::funcionIA()
+int Jugador::puntos() //cuenta los puntos sobre el tablero del jugador
 {
 	int i, j;
 	Pieza* p;
 	int puntos_pieza, tipoPieza = 0; // según el tipo de pieza que sea
-	int puntos_totales = 0; //inicializa los puntos totales
 	bool color_pieza;
 	bool movimiento_legal;
 	// HAY QUE PONERLO EN FUNCIÓN DEL COLOR //
@@ -81,24 +62,5 @@ int Jugador::funcionIA()
 			}
 		}
 	return puntos_totales;
-
-
-	// ESTO DEBE SER UNA FUNCIÓN APARTE
-	//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
-
-	for (i = 0; i < 8; i++)
-		for (j = 0; j < 8; j++) {
-			if (color_pieza == 0) { //color de la pieza es igual que la nuestra
-
-				for (i = 0; i < 8; i++) //movimiento final en el tablero de la pieza que hemos encontrado
-					for (j = 0; j < 8; j++) {
-						if (/* movimiento es legal a i,j*/ movimiento_legal == true) {
-							//hacer una copia del tablero y realizar el movimiento
-							//evaluamos los puntos obtenidos
-							//lo comparamos los puntos obtenidos con lo máximos if(puntos > maximo) maximo = puntos;
-							// guardamos los valores de la pieza que se mueve y a donde se mueve
-						}
-					}
-			}
-		}
 }
+
