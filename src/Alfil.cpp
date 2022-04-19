@@ -4,12 +4,12 @@
 
 Alfil::Alfil() {
 
-	tipoPieza= 3;
 }
 
 Alfil::Alfil(char colorEquipo) {
 
 	color = colorEquipo;
+	tipoPieza = 3;
 	//draw();
 }
 

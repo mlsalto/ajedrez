@@ -2,5 +2,5 @@
 
 bool Persona::movimientoRealizado()
 {
-
+	return true;
 }

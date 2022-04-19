@@ -1,14 +1,12 @@
 #include "Torre.h"
 #include "Tablero.h"
 
-Torre::Torre()
-{
-	tipoPieza = 2;
-}
+Torre::Torre(){}
 
 Torre::Torre(char colorEquipo)
 {
 	color = colorEquipo;
+	tipoPieza = 2;
 }
 
 void Torre::draw()

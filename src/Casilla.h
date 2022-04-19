@@ -15,6 +15,7 @@ protected:
 	int fila;   
 	int columna;
 	bool ocupada;
+	int tipoPieza;
 	Pieza* pieza; 
 
 public:

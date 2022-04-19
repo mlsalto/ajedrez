@@ -1,14 +1,12 @@
 #include "Reina.h"
 #include "Tablero.h"
 
-Reina::Reina() 
-{
-	tipoPieza = 5;
-}
+Reina::Reina() {}
 
 Reina::Reina(char colorEquipo)
 {
 	color = colorEquipo;
+	tipoPieza = 5;
 }
 
 void Reina::draw()

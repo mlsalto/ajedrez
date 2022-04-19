@@ -5,6 +5,8 @@ bool IA::movimientoRealizado()
 	//movimientos realizados según la mecánica de la IA
 	return true;
 }
+
+
 ////// PRUEBAS PARA REALIZACIÓN DE UNA IA SENCILLA ////////
 
 /* Valores matemáticos para la evaluación de la función
@@ -40,8 +42,8 @@ int IA::funcionIA()
 	Pieza* p;
 	int puntos_pieza, tipoPieza = 0; // según el tipo de pieza que sea
 	int puntos_totales = 0; //inicializa los puntos totales
-	bool color_pieza;
-	bool movimiento_legal;
+	bool color_pieza = 0;
+	bool movimiento_legal = 0;
 	// HAY QUE PONERLO EN FUNCIÓN DEL COLOR //
 
 	// ESTO DEBE SER UNA FUNCIÓN APARTE
@@ -62,4 +64,6 @@ int IA::funcionIA()
 					}
 			}
 		}
+
+	return 0;
 }

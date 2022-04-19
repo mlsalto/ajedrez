@@ -1,13 +1,12 @@
 #include "Rey.h"
 #include "Tablero.h"
 
-Rey::Rey()
-{
-	tipoPieza = 6;
-}
+Rey::Rey(){}
 
-Rey::Rey(char colorEquipo) {
+Rey::Rey(char colorEquipo) 
+{
 	color = colorEquipo;
+	tipoPieza = 6;
 }
 
 void Rey::draw() {
