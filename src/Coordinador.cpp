@@ -10,7 +10,7 @@ Coordinador::~Coordinador()
 
 }
 
-void Coordinador::inicializa()
+void Coordinador::inicializa() //esta funcion en realidad no hace falta
 {
 	tablero.nuevoTablero();
 }
