@@ -4,6 +4,7 @@
 #include "Pieza.h"
 #include "Torre.h"
 #include "Reina.h"
+#include "Rey.h"
 #include "Peon.h"
 #include "Caballo.h"
 #include "Alfil.h"
