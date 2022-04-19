@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.29.30133:VCServicingVersionCrtHeaders=14.29.30136:TargetPlatformVersion=10.0.18362.0:
-Debug|x64|C:\Users\E5440\Documents\Gema\Universidad\3º\Asignaturas\2º Cuatri\(3) Informática Industrial\Trabajo\|
-=======
 PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.29.30133:VCServicingVersionCrtHeaders=14.29.30136:TargetPlatformVersion=10.0.19041.0:
+<<<<<<< Updated upstream
 Debug|x64|C:\Users\GU502D\Source\Repos\ajedrez\|
 >>>>>>> 4b637f1e2e85250ff0452d6cf656866937e474c0
+=======
+>>>>>>> Stashed changes
 Debug|x64|C:\Users\lucia\source\repos\ajedrez\|
