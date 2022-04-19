@@ -13,6 +13,9 @@ Coordinador::~Coordinador()
 void Coordinador::inicializa() //esta funcion en realidad no hace falta
 {
 	tablero.nuevoTablero();
+	
+	Persona* Jugador1 = new Persona('B');
+	Persona* Jugador1 = new Persona('N');
 }
 
 void Coordinador::tecla(unsigned char key)

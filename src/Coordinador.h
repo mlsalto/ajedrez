@@ -1,6 +1,7 @@
 #pragma once
 #include "Tablero.h"
 #include "Jugador.h"
+#include "Persona.h"
 
 class Coordinador
 {

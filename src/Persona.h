@@ -6,6 +6,8 @@ class Persona:public Jugador
 private:
 
 public:
+	Persona();
+	Persona(char colorJugador);
 	bool movimientoRealizado();
 };
 
