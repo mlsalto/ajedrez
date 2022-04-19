@@ -71,14 +71,11 @@ void Tablero::nuevoTablero()
 	// PRIMERA FILA BLANCA
 	casillas[0][0]->colocarPieza(t1b);
 	casillas[1][0]->colocarPieza(c1b);
-<<<<<<< HEAD
 	casillas[3][0]->colocarPieza(qb);
-=======
 	casillas[2][0]->colocarPieza(a1b);
 	casillas[3][0]->colocarPieza(qb);
 	casillas[4][0]->colocarPieza(kb);
 	casillas[5][0]->colocarPieza(a2b);
->>>>>>> master
 	casillas[6][0]->colocarPieza(c2b);
 	casillas[7][0]->colocarPieza(t2b);
 
@@ -94,19 +91,14 @@ void Tablero::nuevoTablero()
 
 	// PRIMERA FILA NEGRA
 	casillas[0][7]->colocarPieza(t1n);
-	casillas[1][7]->colocarPieza(c1n);
-<<<<<<< HEAD
-	casillas[3][7]->colocarPieza(qn);
-	casillas[6][7]->colocarPieza(c2n);
-	casillas[7][7]->colocarPieza(t2n); 
-=======
+	casillas[1][7]->colocarPieza(c1n); 
 	casillas[2][7]->colocarPieza(a1n);
 	casillas[3][7]->colocarPieza(qn);
 	casillas[4][7]->colocarPieza(kn);
 	casillas[5][7]->colocarPieza(a2n);
 	casillas[6][7]->colocarPieza(c2n);
 	casillas[7][7]->colocarPieza(t2n);
->>>>>>> master
+
 
 	// SEGUNDA FILA NEGRA
 	casillas[0][6]->colocarPieza(p1n);
@@ -122,11 +114,7 @@ void Tablero::nuevoTablero()
 	piezas.agregar(c1b);
 	piezas.agregar(c2b);
 
-<<<<<<< HEAD
-=======
 	piezas.agregar(kb);
-
->>>>>>> master
 	piezas.agregar(qb);
 
 	piezas.agregar(t1b);
@@ -148,22 +136,17 @@ void Tablero::nuevoTablero()
 	piezas.agregar(c1n);
 	piezas.agregar(c2n);
 
-<<<<<<< HEAD
-=======
+
 	piezas.agregar(kn);
 
->>>>>>> master
 	piezas.agregar(qn);
 
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
 
-<<<<<<< HEAD
-=======
 	piezas.agregar(a1n);
 	piezas.agregar(a2n);
 
->>>>>>> master
 	piezas.agregar(p1n);
 	piezas.agregar(p2n);
 	piezas.agregar(p3n);
@@ -267,9 +250,9 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			//AUN NO HAY PIEZA SELECCIONADA
 			if (seleccionpieza == FALSE) {
 
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'B')
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'B')
 				{
-					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+					piezaini = casillas[x_tablero][y_tablero]->getPieza();
 
 					posinix = x_tablero;	posiniy = y_tablero;
 
@@ -286,9 +269,9 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			else if (seleccionpieza == TRUE) {
 				 
 				////////    SELECCIÓN NUEVA PIEZA BLANCA    ////////
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'B')
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'B')
 				{
-					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+					piezaini = casillas[x_tablero][y_tablero]->getPieza();
 
 					posinix = x_tablero;	posiniy = y_tablero;
 
@@ -297,9 +280,9 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 				}
 
 				//////// COMER PIEZA NEGRA //////////
-				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'N' && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
+				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'N' && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
 				{
-					piezas.eliminar(casillas[x_tablero][y_tablero]->getTipoPieza()); //elimina pieza
+					piezas.eliminar(casillas[x_tablero][y_tablero]->getPieza()); //elimina pieza
 
 					casillas[x_tablero][y_tablero]->colocarPieza(piezaini); //colocar pieza seleccionada
 
@@ -335,9 +318,9 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			//AUN NO HAY PIEZA SELECCIONADA
 			if (seleccionpieza == FALSE) {
 
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'N')
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'N')
 				{
-					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+					piezaini = casillas[x_tablero][y_tablero]->getPieza();
 
 					posinix = x_tablero;	posiniy = y_tablero;
 
@@ -354,9 +337,9 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			else if (seleccionpieza == TRUE) {
 
 				////////    SELECCIÓN NUEVA PIEZA NEGRA   ////////
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'N')
+				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'N')
 				{
-					piezaini = casillas[x_tablero][y_tablero]->getTipoPieza();
+					piezaini = casillas[x_tablero][y_tablero]->getPieza();
 
 					posinix = x_tablero;	posiniy = y_tablero;
 
@@ -365,9 +348,9 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 				}
 
 				//////// COMER PIEZA BLANCA//////////
-				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getTipoPieza()->getColorPieza() == 'B' && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
+				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'B' && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
 				{
-					piezas.eliminar(casillas[x_tablero][y_tablero]->getTipoPieza()); //elimina pieza
+					piezas.eliminar(casillas[x_tablero][y_tablero]->getPieza()); //elimina pieza
 
 					casillas[x_tablero][y_tablero]->colocarPieza(piezaini); //colocar pieza seleccionada
 
@@ -399,6 +382,12 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 }
 
 Pieza* Tablero::getPiezasT(int x, int y)
+{
+	return casillas[x][y]->getPieza();
+}
+
+
+int Tablero::getTipoPiezasT(int x, int y)
 {
 	return casillas[x][y]->getTipoPieza();
 }
@@ -448,7 +437,7 @@ int Tablero::funcionIA()
 {
 	int i, j;
 	Pieza* p;
-	int puntos_pieza, tipoPieza; // según el tipo de pieza que sea
+	int puntos_pieza, tipoPieza = 0; // según el tipo de pieza que sea
 	int puntos_totales = 0; //inicializa los puntos totales
 	bool color_pieza;
 	bool movimiento_legal;

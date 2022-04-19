@@ -1,7 +1,10 @@
 #include "Rey.h"
 #include "Tablero.h"
 
-Rey::Rey(){}
+Rey::Rey()
+{
+	tipoPieza = 6;
+}
 
 Rey::Rey(char colorEquipo) {
 	color = colorEquipo;

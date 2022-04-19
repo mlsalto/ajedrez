@@ -4,7 +4,7 @@
 
 Alfil::Alfil() {
 
-	//pieza= 2;
+	tipoPieza= 3;
 }
 
 Alfil::Alfil(char colorEquipo) {

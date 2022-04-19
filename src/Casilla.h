@@ -26,8 +26,8 @@ public:
 
 	bool getOcupada();  // devuelve si la casilla está ocupada o no
 
-	Pieza* getTipoPieza();   //devuelve la pieza que está en la casilla
-	int getTipoPiezaN();
+	Pieza* getPieza();   //devuelve la pieza que está en la casilla
+	int getTipoPieza();
 
 	int getFila();
 	int getColumna();

@@ -30,12 +30,12 @@ bool Casilla::getOcupada()
 	return ocupada;
 }
 
-Pieza* Casilla::getTipoPieza()
+Pieza* Casilla::getPieza()
 {
 	return pieza;
 }
 
-int Casilla::getTipoPiezaN()
+int Casilla::getTipoPieza()
 {
 	return pieza->getTipoPieza();
 }
