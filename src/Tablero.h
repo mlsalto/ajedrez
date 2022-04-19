@@ -6,6 +6,7 @@
 #include "Reina.h"
 #include "Peon.h"
 #include "Caballo.h"
+#include "Alfil.h"
 #include "ListaPiezas.h"
 
 using namespace ETSIDI;
