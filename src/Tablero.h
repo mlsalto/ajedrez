@@ -50,8 +50,5 @@ public:
 
 	static bool getCasillaOcupada(int x, int y);
 
-	/// FUNCION PRUEBA IA, DESPUES HAYQ UE QUITARLO
-	int funcionIA();
-
 };
 
