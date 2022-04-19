@@ -2,6 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <FullPath>C:\Users\patri\source\repos\ajedrez\bin\ajedrez.exe</FullPath>
 =======
@@ -10,7 +11,13 @@
 =======
       <FullPath>C:\Users\GU502D\Source\Repos\ajedrez\bin\ajedrez.exe</FullPath>
 >>>>>>> 4b637f1e2e85250ff0452d6cf656866937e474c0
+<<<<<<< HEAD
 >>>>>>> 6d3bb332c097d5058842d2aa7d4f606407264bf1
+=======
+=======
+>>>>>>> Stashed changes
+      <FullPath>C:\Users\lucia\source\repos\ajedrez\bin\ajedrez.exe</FullPath>
+>>>>>>> pruebas_lucia
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
