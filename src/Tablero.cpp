@@ -386,7 +386,6 @@ Pieza* Tablero::getPiezasT(int x, int y)
 	return casillas[x][y]->getPieza();
 }
 
-
 int Tablero::getTipoPiezasT(int x, int y)
 {
 	return casillas[x][y]->getTipoPieza();

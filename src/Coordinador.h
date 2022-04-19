@@ -1,5 +1,6 @@
 #pragma once
 #include "Tablero.h"
+#include "Jugador.h"
 
 class Coordinador
 {
@@ -14,9 +15,12 @@ public:
 	void mueve();
 	void dibuja();
 	int getEstado();
+
 protected:
 	Tablero tablero;
 	enum Estado { INICIO = 1, JUEGO, GAMEOVER, PAUSA, TIENDA, FIN, JEFE }; //editar los estados
 	Estado estado;
+
+	enum EstadoJuego{TURNO_BLANCAS, TURNO_NEGRAS}; // para gestionar Jugadores
 };
 
