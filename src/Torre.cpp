@@ -89,4 +89,6 @@ bool Torre::movimientoLegal(Casilla* fin)
 		}
 		return true;
 	}
+
+	else return false;
 }
