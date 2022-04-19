@@ -7,6 +7,12 @@
 class Jugador
 {
 public:
+	Jugador();
+	~Jugador();
+
+	bool movimiento();
+	int puntos();
+
 	int funcionIA();
 };
 
