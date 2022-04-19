@@ -49,6 +49,10 @@ void Tablero::nuevoTablero()
 	Peon* p7n = new Peon('N');
 	Peon* p8n = new Peon('N');
 
+	//rey
+	Rey* kb = new Rey('B');
+	Rey* kn = new Rey('N');
+
 	//reina
 	Reina* qb = new Reina('B');
 	Reina* qn = new Reina('N');
@@ -68,6 +72,7 @@ void Tablero::nuevoTablero()
 	casillas[0][0]->colocarPieza(t1b);
 	casillas[1][0]->colocarPieza(c1b);
 	casillas[2][0]->colocarPieza(a1b);
+	casillas[3][0]->colocarPieza(kb);
 	casillas[4][0]->colocarPieza(qb);
 	casillas[5][0]->colocarPieza(a2b);
 	casillas[6][0]->colocarPieza(c2b);
@@ -87,6 +92,7 @@ void Tablero::nuevoTablero()
 	casillas[0][7]->colocarPieza(t1n);
 	casillas[1][7]->colocarPieza(c1n);
 	casillas[2][7]->colocarPieza(a1n);
+	casillas[3][7]->colocarPieza(kn);
 	casillas[4][7]->colocarPieza(qn);
 	casillas[5][7]->colocarPieza(a2n);
 	casillas[6][7]->colocarPieza(c2n);
@@ -105,6 +111,8 @@ void Tablero::nuevoTablero()
 	/// AGREGAR PIEZAS BLANCAS ///
 	piezas.agregar(c1b);
 	piezas.agregar(c2b);
+
+	piezas.agregar(kb);
 
 	piezas.agregar(qb);
 
@@ -126,6 +134,8 @@ void Tablero::nuevoTablero()
 	/// AGREGAR PIEZAS NEGRAS ///
 	piezas.agregar(c1n);
 	piezas.agregar(c2n);
+
+	piezas.agregar(kn);
 
 	piezas.agregar(qn);
 

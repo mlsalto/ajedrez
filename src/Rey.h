@@ -4,6 +4,7 @@ using namespace ETSIDI;
 
 class Rey : public Pieza
 {
+public:
 	Rey();
 	Rey(char colorEquipo);
 	//~Rey();
