@@ -53,29 +53,26 @@ void Tablero::nuevoTablero()
 	Reina* qb = new Reina('B');
 	Reina* qn = new Reina('N');
 
+	//alfiles
+	Alfil* a1n = new Alfil('N');
+	Alfil* a2n = new Alfil('N');
 
-	//coloca las piezas en cada casilla
+	Alfil* a1b = new Alfil('B');
+	Alfil* a2b = new Alfil('B');
+
+
+    //coloca las piezas en cada casilla
 	// Torre(t), Caballo(c), Peon (p), Rey(k), Reina(q), Alfil (a)
 
-	//REINAS 
-	casillas[3][0]->colocarPieza(qb);
-	casillas[3][7]->colocarPieza(qn);
-
-	//CABALLOS BLANCOS
+	casillas[0][0]->colocarPieza(t1b);
 	casillas[1][0]->colocarPieza(c1b);
+	casillas[2][0]->colocarPieza(a1b);
+	casillas[3][0]->colocarPieza(qb);
+	casillas[5][0]->colocarPieza(a2b);
 	casillas[6][0]->colocarPieza(c2b);
-
-	//CABALLOS NEGROS
-	casillas[1][7]->colocarPieza(c1n);
-	casillas[6][7]->colocarPieza(c2n);
-
 	//TORRES BLANCAS
 	casillas[0][0]->colocarPieza(t1b); // t1b->setCasilla(casillas[0][0]);
 	casillas[7][0]->colocarPieza(t2b);
-
-	//TORRES NEGRAS
-	casillas[0][7]->colocarPieza(t1n);
-	casillas[7][7]->colocarPieza(t2n);
 
 	//PEONES BLANCOS
 	casillas[0][1]->colocarPieza(p1b);
@@ -87,6 +84,17 @@ void Tablero::nuevoTablero()
 	casillas[6][1]->colocarPieza(p7b);
 	casillas[7][1]->colocarPieza(p8b);		
 
+	//TORRES NEGRAS
+	casillas[0][7]->colocarPieza(t1n);
+	casillas[7][7]->colocarPieza(t2n);
+
+	casillas[3][0]->colocarPieza(qb);
+	casillas[3][7]->colocarPieza(qn);
+
+	casillas[1][7]->colocarPieza(c1n);
+	casillas[6][7]->colocarPieza(c2n);
+	casillas[7][7]->colocarPieza(t2n); 
+
 	//PEONES NEGROS
 	casillas[0][6]->colocarPieza(p1n);
 	casillas[1][6]->colocarPieza(p2n);
@@ -97,9 +105,13 @@ void Tablero::nuevoTablero()
 	casillas[6][6]->colocarPieza(p7n);
 	casillas[7][6]->colocarPieza(p8n);
 
-	//Agregar a lista de piezas las piezas :)
+	//
+
 	piezas.agregar(t1b);
 	piezas.agregar(t2b);
+
+	piezas.agregar(a1b);
+	piezas.agregar(a2b);
 
 	piezas.agregar(p1b);
 	piezas.agregar(p2b);
@@ -113,14 +125,14 @@ void Tablero::nuevoTablero()
 	piezas.agregar(t1n);
 	piezas.agregar(t2n);
 
+
 	piezas.agregar(qb);
 	piezas.agregar(qn);
 
-	piezas.agregar(c1b);
-	piezas.agregar(c2b);
-	piezas.agregar(c1n);
-	piezas.agregar(c2n);
-	
+
+	piezas.agregar(a1n);
+	piezas.agregar(a2n);
+
 	piezas.agregar(p1n);
 	piezas.agregar(p2n);
 	piezas.agregar(p3n);
