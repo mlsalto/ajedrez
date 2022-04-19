@@ -35,6 +35,11 @@ Pieza* Casilla::getTipoPieza()
 	return pieza;
 }
 
+int Casilla::getTipoPiezaN()
+{
+	return pieza->getTipoPieza();
+}
+
 int Casilla::getFila()
 {
 	return fila;

@@ -42,8 +42,8 @@ public:
 
 	void ratonTablero(int button, int state, int x, int y);
 
-	Pieza* getPiezasT(int x, int y);
-	Casilla* getCasillaT(int x, int y);
+	static Pieza* getPiezasT(int x, int y);
+	static Casilla* getCasillaT(int x, int y);
 
 	static bool getCasillaOcupada(int x, int y);
 

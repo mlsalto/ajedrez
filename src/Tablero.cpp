@@ -452,6 +452,7 @@ int Tablero::funcionIA()
 	return puntos_totales;
 
 
+	// ESTO DEBE SER UNA FUNCIÓN APARTE
 	//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 
 	for (i = 0; i < 8; i++)
@@ -470,3 +471,5 @@ int Tablero::funcionIA()
 			}
 		}
 }
+
+
