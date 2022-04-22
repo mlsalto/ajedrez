@@ -13,7 +13,6 @@
 ////// pruebas //////
 #include "Jugador.h"
 #include "Persona.h"
-#include "IA.h"
 
 using namespace ETSIDI;
 
@@ -40,7 +39,10 @@ private:
 
 
 	///// PRUEBAS ////
-	Jugador* jugador;
+	
+	Jugador* jugador1;
+	Jugador* jugador2;
+
 
 public:
 	static Casilla* casillas[8][8];
@@ -49,12 +51,13 @@ public:
 
 
 	void dibuja();
-	void nuevoTablero(int tipojuego); //similar a un inicializa???
+	void nuevoTablero(); //similar a un inicializa???
 
 	void ratonTablero(int button, int state, int x, int y);
 
 	//////// PRUEBAS /////////
-	void setColorJugador(bool color);
+	void setJugador1(Jugador* j );
+	void setJugador2(Jugador* j);
 	//////////////////////////
 
 	static Pieza* getPiezasT(int x, int y);

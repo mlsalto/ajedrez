@@ -7,7 +7,12 @@ Jugador::Jugador(char colorJugador)
 	color = colorJugador;
 }
 
-void Jugador::moverPieza(int x)
+void Jugador::moverPieza(int button, int state, int x, int y)
 {
 
+}
+
+bool Jugador::turnoTerminado()
+{
+	return turnoterminado;
 }

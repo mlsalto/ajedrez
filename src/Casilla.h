@@ -17,13 +17,17 @@ protected:
 	bool ocupada;
 	int tipoPieza;
 	Pieza* pieza; 
+	int tipocasilla; //base(0), seleccionada(1), 
 
+	Sprite casilla_seleccionada{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
 public:
 
 	Casilla(int x, int y);
 	//~Casilla(); //destructor
 
 	void colocarPieza(Pieza* pieza); //coloca una pieza en una casilla
+
+	void draw();
 
 	bool getOcupada();  // devuelve si la casilla está ocupada o no
 
@@ -35,6 +39,6 @@ public:
 
 	void setFila(int x);
 	void setColumna(int x);
-
+	void setTipoCasilla(int x);
 };
 

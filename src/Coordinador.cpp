@@ -2,7 +2,11 @@
 
 Coordinador::Coordinador()
 {
-	estado = JUEGO;
+	estado = INICIO;
+	estadojuego = TURNO_BLANCAS;
+	modojuego = FREE_PLAY;
+	pasada = FALSE;
+	
 }
 
 Coordinador::~Coordinador()
@@ -12,7 +16,7 @@ Coordinador::~Coordinador()
 
 void Coordinador::inicializa() //esta funcion en realidad no hace falta
 {
-	tablero.nuevoTablero(0);
+	tablero.nuevoTablero();
 
 }
 
@@ -38,21 +42,35 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 		// si se hace click en lo que sea se hace estado == Juego y
 		// el modo de juego se cambia (a lo que sea)
+
+		Persona* Jugador1 = new Persona('B');
+		Persona* Jugador2 = new Persona('N');
+
+		tablero.setJugador1(Jugador1);
+		tablero.setJugador2(Jugador2);
+
+		    estado = JUEGO;
 	}
+
 
 	if (estado == JUEGO) {
-		switch (modojuego)
-		{
-		case FREE_PLAY:
-			//tablero.ratonTablero();
-			break;
 
-		case STORY_MODE:
-			break;
-		}
+		tablero.ratonTablero(button, state, x, y);
+
+		//switch (modojuego)
+		//{
+		//case FREE_PLAY:
+		//	if(estadojuego == TURNO_BLANCAS){ tablero.ratonTablero(button, state, x, y);}
+		//	else if(estadojuego == TURNO_NEGRAS){ tablero.ratonTablero(button, state, x, y); }
+		//	//tablero.ratonTablero();
+		//	break;
+
+		//case STORY_MODE:
+		//	break;
+		//}
 	}
 	
-	tablero.ratonTablero(button,state,x,y);
+	//tablero.ratonTablero(button,state,x,y);
 }
 
 void Coordinador::dibuja()
@@ -75,6 +93,7 @@ void Coordinador::dibuja()
 		// dibujar según si ganan las negras o blancas
 		// ( hay que ver como implementarlo )
 	}
+	tablero.dibuja();
 }
 
 void Coordinador::mueve()

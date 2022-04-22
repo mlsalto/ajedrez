@@ -28,6 +28,21 @@ void Casilla::colocarPieza(Pieza* p)
 	}
 }
 
+void Casilla::draw()
+{
+	if (tipocasilla == 0)
+	{
+		casilla_seleccionada.setPos(1000, 1000);
+		casilla_seleccionada.draw();
+	}
+
+	if (tipocasilla == 1)
+	{
+		casilla_seleccionada.setPos(-28 + (columna* 8), -28 + (fila * 8));
+		casilla_seleccionada.draw();
+	}
+}
+
 bool Casilla::getOcupada()
 {
 	return ocupada;
@@ -61,4 +76,9 @@ int Casilla::getColumna()
 void Casilla::setColumna(int x)
 {
 	columna = x;
+}
+
+void Casilla::setTipoCasilla(int x)
+{
+	tipocasilla = x;
 }

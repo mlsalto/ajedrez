@@ -1,10 +1,12 @@
 #pragma once
 #include "Tablero.h"
-
+#include "Persona.h"
+#include "Jugador.h"
 class Coordinador
 {
 private:
 	Sprite MenuInicial{ "recursos/MENU.png", 0, 0, 130, 80 };
+	bool pasada;
 
 public:
 	Coordinador();
@@ -32,5 +34,10 @@ protected:
 
     enum ModoJuego{FREE_PLAY, STORY_MODE};
 	ModoJuego modojuego;
+
+
+	/*Persona* Jugador1 = new Persona('B');
+	Persona* Jugador2 = new Persona('N');*/
+
 };
 

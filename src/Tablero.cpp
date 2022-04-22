@@ -11,19 +11,8 @@ Tablero::Tablero()
 // 0 blanco, 1 negro // 
 //  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
 
-void Tablero::nuevoTablero(int tipojuego)
+void Tablero::nuevoTablero()
 {
-	if (tipojuego == 0) {
-		Persona* Jugador1 = new Persona('B');
-		Persona* Jugador2 = new Persona('N');
-	}
-
-	else if (tipojuego == 1) {
-		Persona* Jugador1 = new Persona('B');
-		IA* Jugador2 = new IA('N');
-	}
-
-
 	// aquí debe ir la inicialización de los jugadores también
 
 	for (i = 0; i < 8; i++)
@@ -174,10 +163,12 @@ void Tablero::dibuja()
 {
 	//el tablero tiene que dibujarse el último para dibujarse detrás y que no
 	//tape a las figuras
-
+	
 	piezas.draw();
 
-	casilla_seleccionada.draw();
+	for (i = 0; i < 8; i++)
+		for (j = 0; j < 8; j++)
+	        casillas[i][j]->draw();
 
 	tableroAjedrez.draw();
 	marcoTablero.draw();
@@ -186,217 +177,35 @@ void Tablero::dibuja()
 
 void Tablero::ratonTablero(int button, int state, int x, int y)
 {
-	int x_cell, y_cell;
-	int x_tablero, y_tablero;
-	x_cell = x / 76;
-	y_cell = y / 77;
 
-	switch (y_cell)
+	if (turno == TRUE)
 	{
-	case 1:
-		y_tablero = 7;
-		break;
-	case 2:
-		y_tablero = 6;
-		break;
-	case 3:
-		y_tablero = 5;
-		break;
-	case 4:
-		y_tablero = 4;
-		break;
-	case 5:
-		y_tablero = 3;
-		break;
-	case 6:
-		y_tablero = 2;
-		break;
-	case 7:
-		y_tablero = 1;
-		break;
-	case 8:
-		y_tablero = 0;
-		break;
-	default:
-		y_tablero = 8;
-		break;
-	}
-
-	switch (x_cell)
-	{
-	case 5:
-		x_tablero = 0;
-		break;
-	case 6:
-		x_tablero = 1;
-		break;
-	case 7:
-		x_tablero = 2;
-		break;
-	case 8:
-		x_tablero = 3;
-		break;
-	case 9:
-		x_tablero = 4;
-		break;
-	case 10:
-		x_tablero = 5;
-		break;
-	case 11:
-		x_tablero = 6;
-		break;
-	case 12:
-		x_tablero = 7;
-		break;
-	default:
-		x_tablero = 8;
-		//y_tablero = 0;
-		break;
-	}
-
-	////////////////// FUNCION DE SELECCIÓN PIEZAS DEL TABLERO ////////////////////////////
-
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-
-		if (turno == TRUE) //TURNO BLANCAS
+		jugador1->moverPieza(button, state, x, y);
+		if (jugador1->turnoTerminado() == TRUE)
 		{
-			//AUN NO HAY PIEZA SELECCIONADA
-			if (seleccionpieza == FALSE) {
-
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'B')
-				{
-					piezaini = casillas[x_tablero][y_tablero]->getPieza();
-
-					posinix = x_tablero;	posiniy = y_tablero;
-
-					cout << "(" << x_tablero << "," << y_tablero << "," << piezaini << "," << colorini << ")" << endl;
-					seleccionpieza = TRUE;
-
-					casilla_seleccionada.setPos(-28 + (posinix * 8), -28 + (posiniy * 8));
-					casilla_seleccionada.draw();
-
-				}
-			}
-
-			//HAY PIEZA SELECCIONADA
-			else if (seleccionpieza == TRUE) {
-				 
-				////////    SELECCIÓN NUEVA PIEZA BLANCA    ////////
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'B')
-				{
-					piezaini = casillas[x_tablero][y_tablero]->getPieza();
-
-					posinix = x_tablero;	posiniy = y_tablero;
-
-					casilla_seleccionada.setPos(-28 + (posinix * 8), -28 + (posiniy * 8));
-					casilla_seleccionada.draw();
-				}
-
-				//////// COMER PIEZA NEGRA //////////
-				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'N' && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
-				{
-					piezas.eliminar(casillas[x_tablero][y_tablero]->getPieza()); //elimina pieza
-
-					casillas[x_tablero][y_tablero]->colocarPieza(piezaini); //colocar pieza seleccionada
-
-					casillas[posinix][posiniy]->colocarPieza(0);
-
-					casilla_seleccionada.setPos(1000, 1000);
-					casilla_seleccionada.draw();
-
-					seleccionpieza = FALSE;
-					turno = FALSE;
-				}
-
-				//////// MOVER A CASILLA VACÍA ///////
-				else if (casillas[x_tablero][y_tablero]->getTipoPieza() == 0 && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
-				{
-					casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
-
-					casillas[posinix][posiniy]->colocarPieza(0);
-
-					casilla_seleccionada.setPos(1000, 1000);
-					casilla_seleccionada.draw();
-
-					seleccionpieza = FALSE;
-					turno = FALSE;
-				}
-			}
-		}
-
-
-
-		if (turno == FALSE) //TURNO NEGRAS
-		{
-			//AUN NO HAY PIEZA SELECCIONADA
-			if (seleccionpieza == FALSE) {
-
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'N')
-				{
-					piezaini = casillas[x_tablero][y_tablero]->getPieza();
-
-					posinix = x_tablero;	posiniy = y_tablero;
-
-					cout << "(" << x_tablero << "," << y_tablero << "," << piezaini << "," << colorini << ")" << endl;
-					seleccionpieza = TRUE;
-
-					casilla_seleccionada.setPos(-28 + (posinix * 8), -28 + (posiniy * 8));
-					casilla_seleccionada.draw();
-
-				}
-			}
-
-			//HAY PIEZA SELECCIONADA
-			else if (seleccionpieza == TRUE) {
-
-				////////    SELECCIÓN NUEVA PIEZA NEGRA   ////////
-				if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'N')
-				{
-					piezaini = casillas[x_tablero][y_tablero]->getPieza();
-
-					posinix = x_tablero;	posiniy = y_tablero;
-
-					casilla_seleccionada.setPos(-28 + (posinix * 8), -28 + (posiniy * 8));
-					casilla_seleccionada.draw();
-				}
-
-				//////// COMER PIEZA BLANCA//////////
-				else if (casillas[x_tablero][y_tablero]->getTipoPieza() != 0 && casillas[x_tablero][y_tablero]->getPieza()->getColorPieza() == 'B' && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
-				{
-					piezas.eliminar(casillas[x_tablero][y_tablero]->getPieza()); //elimina pieza
-
-					casillas[x_tablero][y_tablero]->colocarPieza(piezaini); //colocar pieza seleccionada
-
-					casillas[posinix][posiniy]->colocarPieza(0);
-
-					casilla_seleccionada.setPos(1000, 1000);
-					casilla_seleccionada.draw();
-
-					seleccionpieza = FALSE;
-					turno = TRUE;
-				}
-
-				//////// MOVER A CASILLA VACÍA ///////
-				else if (casillas[x_tablero][y_tablero]->getTipoPieza() == 0 && piezaini->movimientoLegal(casillas[x_tablero][y_tablero]) == TRUE)
-				{
-					casillas[x_tablero][y_tablero]->colocarPieza(piezaini);
-
-					casillas[posinix][posiniy]->colocarPieza(0);
-
-					casilla_seleccionada.setPos(1000, 1000);
-					casilla_seleccionada.draw();
-
-					seleccionpieza = FALSE;
-					turno = TRUE;
-				}
-			}
+			turno = FALSE;
 		}
 	}
+
+	if (turno == FALSE)
+	{
+		jugador2->moverPieza(button, state, x, y);
+		if (jugador2->turnoTerminado() == TRUE)
+		{
+			turno = TRUE;
+		}
+	}
+
 }
 
-void Tablero::setColorJugador(bool color)
+void Tablero::setJugador1(Jugador* j)
 {
-	colorJugador = color;
+	jugador1 = j;
+}
+
+void Tablero::setJugador2(Jugador* j)
+{
+	jugador2 = j;
 }
 
 Pieza* Tablero::getPiezasT(int x, int y)
