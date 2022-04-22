@@ -20,7 +20,7 @@ class Tablero
 {
 private: 
 	/////// ELEMENTOS PARA CREAR TABLERO INICIAL  ///////
-	ListaPiezas piezas;
+	static ListaPiezas piezas;
 	int i, j;
 
 	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////
@@ -54,6 +54,8 @@ public:
 	void nuevoTablero(); //similar a un inicializa???
 
 	void ratonTablero(int button, int state, int x, int y);
+
+	static void eliminarPiezaT(int x, int y);
 
 	//////// PRUEBAS /////////
 	void setJugador1(Jugador* j );

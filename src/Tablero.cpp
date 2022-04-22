@@ -2,6 +2,7 @@
 #include "freeglut.h"
 
 Casilla* Tablero::casillas[8][8];
+ListaPiezas Tablero::piezas;
 
 Tablero::Tablero()
 {
@@ -66,7 +67,6 @@ void Tablero::nuevoTablero()
 	Alfil* a1b = new Alfil('B');
 	Alfil* a2b = new Alfil('B');
 
-
     //coloca las piezas en cada casilla
 	// Torre(t), Caballo(c), Peon (p), Rey(k), Reina(q), Alfil (a)
 
@@ -100,7 +100,6 @@ void Tablero::nuevoTablero()
 	casillas[5][7]->colocarPieza(a2n);
 	casillas[6][7]->colocarPieza(c2n);
 	casillas[7][7]->colocarPieza(t2n);
-
 
 	// SEGUNDA FILA NEGRA
 	casillas[0][6]->colocarPieza(p1n);
@@ -138,9 +137,7 @@ void Tablero::nuevoTablero()
 	piezas.agregar(c1n);
 	piezas.agregar(c2n);
 
-
 	piezas.agregar(kn);
-
 	piezas.agregar(qn);
 
 	piezas.agregar(t1n);
@@ -196,6 +193,11 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		}
 	}
 
+}
+
+void Tablero::eliminarPiezaT(int x, int y)
+{
+	piezas.eliminar(casillas[x][y]->getPieza());
 }
 
 void Tablero::setJugador1(Jugador* j)
