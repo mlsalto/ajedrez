@@ -2,7 +2,7 @@
 
 Coordinador::Coordinador()
 {
-	estado = INICIO;
+	estado = JUEGO;
 }
 
 Coordinador::~Coordinador()
@@ -12,7 +12,7 @@ Coordinador::~Coordinador()
 
 void Coordinador::inicializa() //esta funcion en realidad no hace falta
 {
-	tablero.nuevoTablero();
+	tablero.nuevoTablero(0);
 
 }
 
@@ -24,33 +24,34 @@ void Coordinador::tecla(unsigned char key)
 		
 
 	}
+
+	if (estado == JUEGO) {
+
+
+	}
 }
 
 void Coordinador::raton(int button, int state, int x, int y)
 {
 	if (estado == INICIO) {
 		// RATON QUE FUNIONE EN INICIO
+
+		// si se hace click en lo que sea se hace estado == Juego y
+		// el modo de juego se cambia (a lo que sea)
 	}
 
 	if (estado == JUEGO) {
-		switch (modojuego) {
-
+		switch (modojuego)
+		{
 		case FREE_PLAY:
 			//tablero.ratonTablero();
 			break;
 
 		case STORY_MODE:
-			if (estadojuego == TURNO_BLANCAS) {
-				//RATON TABLERO
-			}
-			else if (estadojuego == TURNO_NEGRAS) {
-				// NO DEBERÍA FUNCIONAR EL RATÓN
-			}
 			break;
 		}
 	}
-
-
+	
 	tablero.ratonTablero(button,state,x,y);
 }
 
@@ -62,16 +63,8 @@ void Coordinador::dibuja()
 	}
 
 	if (estado == JUEGO) {
-		switch (modojuego) {
 
-		case FREE_PLAY:
-			// dibujar el tablero
-			break;
-
-		case STORY_MODE:
-			// dibujar el tablero del story mode
-			break;
-		}
+		tablero.dibuja();
 	}
 
 	if (estado == PAUSA) {
@@ -82,12 +75,6 @@ void Coordinador::dibuja()
 		// dibujar según si ganan las negras o blancas
 		// ( hay que ver como implementarlo )
 	}
-
-
-
-	///////////////////////////////
-	tablero.dibuja();
-	//////////////////////////////
 }
 
 void Coordinador::mueve()

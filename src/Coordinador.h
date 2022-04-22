@@ -1,8 +1,5 @@
 #pragma once
 #include "Tablero.h"
-#include "Jugador.h"
-#include "Persona.h"
-#include "IA.h"
 
 class Coordinador
 {
@@ -12,6 +9,7 @@ private:
 public:
 	Coordinador();
 	virtual ~Coordinador();
+
 	void inicializa();
 	void tecla(unsigned char key);
 	void raton(int button, int state, int x, int y);
@@ -25,6 +23,7 @@ public:
 
 protected:
 	Tablero tablero;
+
 	enum Estado { INICIO = 1, JUEGO, PAUSA, FIN,}; //editar los estados
 	Estado estado;
 

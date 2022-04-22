@@ -9,6 +9,11 @@
 #include "Caballo.h"
 #include "Alfil.h"
 #include "ListaPiezas.h"
+ 
+////// pruebas //////
+#include "Jugador.h"
+#include "Persona.h"
+#include "IA.h"
 
 using namespace ETSIDI;
 
@@ -26,6 +31,8 @@ private:
 	int posinix, posiniy;
 	bool turno = TRUE; // blancas(1)   negras(0)
 
+	bool colorJugador;
+
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
 	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
@@ -40,9 +47,13 @@ public:
 
 
 	void dibuja();
-	void nuevoTablero(); //similar a un inicializa???
+	void nuevoTablero(int tipojuego); //similar a un inicializa???
 
 	void ratonTablero(int button, int state, int x, int y);
+
+	//////// PRUEBAS /////////
+	void setColorJugador(bool color);
+	//////////////////////////
 
 	static Pieza* getPiezasT(int x, int y);
 	static int getTipoPiezasT(int x, int y);

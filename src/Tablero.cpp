@@ -11,8 +11,21 @@ Tablero::Tablero()
 // 0 blanco, 1 negro // 
 //  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
 
-void Tablero::nuevoTablero()
+void Tablero::nuevoTablero(int tipojuego)
 {
+	if (tipojuego == 0) {
+		Persona* Jugador1 = new Persona('B');
+		Persona* Jugador2 = new Persona('N');
+	}
+
+	else if (tipojuego == 1) {
+		Persona* Jugador1 = new Persona('B');
+		IA* Jugador2 = new IA('N');
+	}
+
+
+	// aquí debe ir la inicialización de los jugadores también
+
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
 			casillas[i][j] = new Casilla(i, j);
@@ -379,6 +392,11 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			}
 		}
 	}
+}
+
+void Tablero::setColorJugador(bool color)
+{
+	colorJugador = color;
 }
 
 Pieza* Tablero::getPiezasT(int x, int y)

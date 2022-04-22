@@ -1,13 +1,13 @@
 #pragma once
 #include "Jugador.h"
 
-class Persona:public Jugador
-{
-private:
 
+class Persona :public Jugador
+{
 public:
 	Persona();
 	Persona(char colorJugador);
-	bool movimientoRealizado();
+
+	// mas cositas
 };
 

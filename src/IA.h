@@ -1,14 +1,11 @@
 #pragma once
 #include "Jugador.h"
 
-class IA: public Jugador
-{
-private:
 
+class IA : public Jugador
+{
 public:
 	IA();
 	IA(char colorJugador);
-	int funcionIA();
-	bool movimientoRealizado();
 };
 
