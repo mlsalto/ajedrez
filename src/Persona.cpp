@@ -6,7 +6,7 @@ Persona::Persona() {}
 Persona::Persona(char colorJugador)
 {
 	color = colorJugador;
-	tipoJugador = 0;
+	//tipoJugador = 0;
 }
 
 void Persona::moverPieza(int button, int state, int x, int y)

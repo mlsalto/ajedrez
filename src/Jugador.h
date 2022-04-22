@@ -6,7 +6,7 @@ class Jugador
 {
 protected:
 	char color;
-	int tipoJugador; // 0 es persona 1 es IA
+	//int tipoJugador; // 0 es persona 1 es IA
 
 	bool turnoterminado = FALSE;
 
