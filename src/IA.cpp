@@ -1,5 +1,14 @@
 #include "IA.h"
 
+IA::IA() {
+
+}
+
+IA::IA(char colorJugador)
+{
+	color = colorJugador;
+}
+
 bool IA::movimientoRealizado()
 {
 	//movimientos realizados según la mecánica de la IA

@@ -52,6 +52,7 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 			}
 			return true;
 		}
+
 	}
 
 	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
