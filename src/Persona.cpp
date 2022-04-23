@@ -80,6 +80,8 @@ void Persona::moverPieza(int button, int state, int x, int y)
 		break;
 	}
 
+	if (x_tablero == 8 || y_tablero == 8) return; // si se sale del tablero no hace nada
+
 	////////////////// FUNCION DE SELECCIÓN PIEZAS DEL TABLERO ////////////////////////////
 
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {

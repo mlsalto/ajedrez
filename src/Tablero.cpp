@@ -4,31 +4,26 @@
 Casilla* Tablero::casillas[8][8];
 ListaPiezas Tablero::piezas;
 
-Tablero::Tablero()
-{
-	
-}
+Tablero::Tablero(){}
 
 // 0 blanco, 1 negro // 
 //  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
 
 void Tablero::nuevoTablero()
 {
-	// aquí debe ir la inicialización de los jugadores también
-
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
 			casillas[i][j] = new Casilla(i, j);
 
+	// torres
 	Torre* t1b = new Torre('B');
 	Torre* t2b = new Torre('B');
-
-	Caballo* c1b = new Caballo('B');
-	Caballo* c2b = new Caballo('B');
-
 	Torre* t1n = new Torre('N');
 	Torre* t2n = new Torre('N');
 
+	// caballos
+	Caballo* c1b = new Caballo('B');
+	Caballo* c2b = new Caballo('B');
 	Caballo* c1n = new Caballo('N');
 	Caballo* c2n = new Caballo('N');
 
@@ -63,7 +58,6 @@ void Tablero::nuevoTablero()
 	//alfiles
 	Alfil* a1n = new Alfil('N');
 	Alfil* a2n = new Alfil('N');
-
 	Alfil* a1b = new Alfil('B');
 	Alfil* a2b = new Alfil('B');
 
@@ -174,7 +168,6 @@ void Tablero::dibuja()
 
 void Tablero::ratonTablero(int button, int state, int x, int y)
 {
-
 	if (turno == TRUE)
 	{
 		jugador1->moverPieza(button, state, x, y);
@@ -192,7 +185,6 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 			turno = TRUE;
 		}
 	}
-
 }
 
 void Tablero::eliminarPiezaT(int x, int y)
@@ -229,7 +221,3 @@ bool Tablero::getCasillaOcupada(int x, int y)
 {
 	return casillas[x][y]->getOcupada();
 }
-
-
-
-
