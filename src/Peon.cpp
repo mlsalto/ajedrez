@@ -8,6 +8,7 @@ Peon::Peon()
 Peon::Peon(char colorEquipo)
 {
 	color = colorEquipo;
+	tipoPieza = 1;
 }
 
 void Peon::draw()
