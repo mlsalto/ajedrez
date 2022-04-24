@@ -1,7 +1,7 @@
 #include "Pieza.h"
 
 Pieza::Pieza() {
-	tipoPieza = 0;
+	//tipoPieza = 0;
 }
 
 Pieza::Pieza(char colorJugador)
