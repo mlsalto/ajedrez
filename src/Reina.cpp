@@ -72,7 +72,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	{
 		for (i = row + 1; i <= y_fin && !obstaculo; i++)
 		{
-			if (Tablero::getCasillaOcupada(x_fin,i) == true) {
+			if (Tablero::getCasillaOcupada(x_fin, i) == true) {
 				obstaculo = true;
 				return false;
 			}
@@ -94,64 +94,63 @@ bool Reina::movimientoLegal(Casilla* fin)
 			return true;
 		}
 	}
+	else return false;
 
+	////////////////**************    DIAGONAL     **************///////////
+	//
+	/////////////       MOVIMIENTO DERECHA/ARRIBA     ///////////
+	//if (coll < 7 && row < 7)
+	//{
+	//	for (i = row + 1, j = coll + 1; i <= x_fin && j <= y_fin && !obstaculo; i++, j++)
+	//	{
 
+	//		if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
+	//			obstaculo = true;
+	//			return false;
+	//		}
+	//		return true;
+	//	}
+	//}
 
-	//////////////**************    DIAGONAL     **************///////////
-	
-	///////////       MOVIMIENTO DERECHA/ARRIBA     ///////////
-	if (coll < 7 && row < 7)
-	{
-		for (i = row + 1, j = coll + 1; i <= x_fin && j <= y_fin && !obstaculo; i++, j++)
-		{
+	/////////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
+	//if (coll < 7 && row > 0)
+	//{
+	//	for (i = row - 1, j = coll + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
+	//	{
 
-			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
-				obstaculo = true;
-				return false;
-			}
-			return true;
-		}
-	}
+	//		if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
+	//			obstaculo = true;
+	//			return false;
+	//		}
+	//		return true;
+	//	}
+	//}
 
-	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
-	if (coll < 7 && row > 0)
-	{
-		for (i = row - 1, j = coll + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
-		{
+	/////////////       MOVIMIENTO DERECHA/ABAJO    ///////////
+	//if (coll > 0 && row < 7)
+	//{
+	//	for (i = row + 1, j = coll - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
+	//	{
+	//		if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
+	//			obstaculo = true;
+	//			return false;
+	//		}
+	//		return true;
+	//	}
+	//}
 
-			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
-				obstaculo = true;
-				return false;
-			}
-			return true;
-		}
-	}
+	/////////////       MOVIMIENTO IZQUIERDA/ABAJO      ///////////
+	//if (coll > 0 && row > 0)
+	//{
+	//	for (i = row - 1, j = coll - 1; i >= x_fin && j >= y_fin && !obstaculo; i--, j--)
+	//	{
+	//		if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
+	//			obstaculo = true;
+	//			return false;
+	//		}
+	//		return true;
+	//	}
+	//}
 
-	///////////       MOVIMIENTO DERECHA/ABAJO    ///////////
-	if (coll > 0 && row < 7)
-	{
-		for (i = row + 1, j = coll - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
-		{
-			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
-				obstaculo = true;
-				return false;
-			}
-			return true;
-		}
-	}
-
-	///////////       MOVIMIENTO IZQUIERDA/ABAJO      ///////////
-	if (coll > 0 && row > 0)
-	{
-		for (i = row - 1, j = coll - 1; i >= x_fin && j >= y_fin && !obstaculo; i--, j--)
-		{
-			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
-				obstaculo = true;
-				return false;
-			}
-			return true;
-		}
-	}
-
-	return true;
+	//return true;
 }
