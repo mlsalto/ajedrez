@@ -4,8 +4,10 @@
 
 Rey::Rey(){}
 
-Rey::Rey(char colorEquipo) {
+Rey::Rey(char colorEquipo) 
+{
 	color = colorEquipo;
+	tipoPieza = 6;
 }
 
 void Rey::draw() {
