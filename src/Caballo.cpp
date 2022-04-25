@@ -3,12 +3,13 @@
 
 Caballo::Caballo()
 {
-	tipoPieza = 4;
+//	tipoPieza = 4;
 }
 
 Caballo::Caballo(char colorEquipo)
 {
 	color = colorEquipo;
+	tipoPieza = 4;
 }
 
 void Caballo::draw()
