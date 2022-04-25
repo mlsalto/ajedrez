@@ -120,7 +120,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 				}
 
 				//////// COMER PIEZA NEGRA //////////
-				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() != 0 && Tablero::getCasillaT(x_tablero, y_tablero)->getPieza()->getColorPieza() == 'N' && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
+				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() != 0 && Tablero::getCasillaT(x_tablero, y_tablero)->getPieza()->getColorPieza() != color && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
 				{
 					Tablero::eliminarPiezaT(x_tablero, y_tablero); //elimina pieza
 
