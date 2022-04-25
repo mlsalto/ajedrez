@@ -6,6 +6,7 @@ Reina::Reina() {}
 Reina::Reina(char colorEquipo)
 {
 	color = colorEquipo;
+	tipoPieza = 5;
 }
 
 void Reina::draw()

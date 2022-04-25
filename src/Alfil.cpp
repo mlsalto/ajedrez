@@ -4,12 +4,12 @@
 
 Alfil::Alfil() {
 
-	//pieza= 2;
 }
 
 Alfil::Alfil(char colorEquipo) {
 
 	color = colorEquipo;
+	tipoPieza = 3;
 	//draw();
 }
 
@@ -52,6 +52,7 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 			}
 			return true;
 		}
+
 	}
 
 	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
