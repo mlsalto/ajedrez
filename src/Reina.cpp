@@ -12,7 +12,7 @@ Reina::Reina(char colorEquipo)
 
 void Reina::draw()
 {
-	if (color == 'B') 
+	if (color == 'B')
 	{
 		ReinaB.setPos(pos.x, pos.y); //se debe poner siempre para que dibuje el sprite
 		ReinaB.draw();
@@ -93,7 +93,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	}
 
 	//////////////**************    DIAGONAL     **************///////////
-	
+
 	///////////       MOVIMIENTO DERECHA/ARRIBA     ///////////
 	if (coll < x_fin && row < y_fin)
 	{
