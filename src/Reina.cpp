@@ -40,6 +40,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 
 
 	//////////////**************    VERTICAL & HORIZONTAL    **************///////////
+	
 	///////////       MOVIMIENTO DERECHA      ///////////
 	if (coll < 7 && row == y_fin)
 	{
@@ -122,7 +123,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 		}
 	}
 
-	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
+	///////////       MOVIMIENTO IZQUIERDA/ARRIBA       ///////////
 	if (coll > x_fin && row < y_fin)
 	{
 		for (i = coll - 1, j = row + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
@@ -136,7 +137,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 		}
 	}
 
-	///////////       MOVIMIENTO DERECHA/ABAJO    ///////////
+	///////////       MOVIMIENTO DERECHA/ABAJO       ///////////
 	if (coll < x_fin && row > y_fin)
 	{
 		for (i = coll + 1, j = row - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
