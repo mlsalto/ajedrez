@@ -93,7 +93,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 		}
 	}
 
-	//////////////**************    DIAGONAL     **************///////////
+	//////////////**************     DIAGONAL     **************///////////
 
 	///////////       MOVIMIENTO DERECHA/ARRIBA     ///////////
 	if (coll < x_fin && row < y_fin)
