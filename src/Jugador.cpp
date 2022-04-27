@@ -1,4 +1,5 @@
 #include "Jugador.h"
+#include "Tablero.h"
 
 Jugador::Jugador(){}
 
@@ -33,6 +34,95 @@ Jugador::Jugador(char colorJugador)
 
 */
 
+int Jugador::getPuntos(char colorJugador, Casilla * c)
+{
+	int i, j;
+	//Pieza* p;
+	int puntos_totales = 0;
+	int tipoPieza = 0; // según el tipo de pieza que sea
+	char colorPieza;
+	// HAY QUE PONERLO EN FUNCIÓN DEL COLOR //
+
+
+	//************************* LECTURA DE PUNTOS SOBRE EL TABLERO  *********************//
+	for (i = 0; i < 8; i++)
+		for (j = 0; j < 8; j++) {
+			tipoPieza = c->getTipoPieza(); // hay que hacer la funcion con get tipo
+			colorPieza = c->getPieza()->getColorPieza();
+
+			//  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
+
+			if (color = colorJugador) {
+
+				switch (tipoPieza)
+				{
+				case 0: //no pieza
+					break;
+
+				case 1: //peon
+					puntos_totales = puntos_totales + 100;
+
+					// si esta en el centro del tablero + 12 puntos
+					if (c->getFila() == 3 && c->getColumna() == 3 || c->getFila() == 3 && c->getColumna() == 4 || c->getFila() == 4 && c->getColumna() == 3 || c->getFila() == 4 && c->getColumna() == 4) {
+						puntos_totales = puntos_totales + 12;
+					}
+
+					// por cada casilla que avanza + 2 puntos
+					if(color == 'B'){
+						int x;
+						x = c->getFila() - 1;
+						puntos_totales = puntos_totales + x * 2;
+					}
+
+					if (color == 'N') {
+						int x;
+						x = 6 - c->getFila();
+						puntos_totales = puntos_totales + x * 2;
+					}
+					break;
+
+				case 2: //torre
+					puntos_totales = puntos_totales + 500;
+
+					// por cada casilla a la que se pueda mover + 1 puntos
+					int a, b;
+					for (a = 0; a < 8; a++)
+						for (b = 0; b < 8; b++)
+					       if (c->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b))) {
+							    puntos_totales = puntos_totales + 1;
+					       }
+
+					break;
+
+				case 3: //alfil
+					puntos_totales = puntos_totales + 330;
+
+					// por cada casilla a la que se pueda mover + 1 puntos
+					int a, b;
+					for (a = 0; a < 8; a++)
+						for (b = 0; b < 8; b++)
+							if (c->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b))) {
+								puntos_totales = puntos_totales + 1;
+							}
+
+					break;
+
+				case 4: //caballo
+					puntos_totales = puntos_totales + 315;
+					break;
+
+				case 5: //reina
+					puntos_totales = puntos_totales + 940;
+					break;
+
+				case 6: //rey
+					break;
+				}
+			}
+		}
+
+	return puntos_totales;
+}
 
 void Jugador::moverPieza(int button, int state, int x, int y)
 {
