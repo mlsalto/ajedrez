@@ -47,21 +47,19 @@ int main(int argc, char* argv[])
 
 void Mouse(int x, int y)
 {
-	cout << x << ',' << y << endl; //pruebas
-	//coordinador.PassiveMouse(x, y);
+	//cout << x << ',' << y << endl; //pruebas
 
 	if (x > 557 || x < 246 || y < 448 || y > 557) {
-		coordinador.setModoJuego(0);
+		coordinador.setModoJuego(0); //no hay modo juego
 	}
 
 	else if (x < 557 && x > 246 && y < 557 && y > 510) {
-		coordinador.setModoJuego(1);
+		coordinador.setModoJuego(1); //freeplay
 	}
 
 	else if (x < 557 && x > 246 && y < 490 && y > 448) {
-		coordinador.setModoJuego(2);
+		coordinador.setModoJuego(2); //storymode
 	}
-
 
 	OnDraw();
 

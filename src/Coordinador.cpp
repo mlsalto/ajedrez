@@ -5,8 +5,6 @@ Coordinador::Coordinador()
 	estado = INICIO; 
 	estadojuego = TURNO_BLANCAS;
 	modojuego = NONE;
-	pasada = FALSE;
-	
 }
 
 Coordinador::~Coordinador()
@@ -17,7 +15,6 @@ Coordinador::~Coordinador()
 void Coordinador::inicializa() //esta funcion en realidad no hace falta
 {
 	tablero.nuevoTablero();
-
 }
 
 void Coordinador::tecla(unsigned char key)
@@ -36,23 +33,6 @@ void Coordinador::tecla(unsigned char key)
 		//
 
 	}
-}
-
-void Coordinador::PassiveMouse(GLsizei x, GLsizei y)
-{
-	//cout << x << ',' << y << endl; //pruebas
-
-	//if(x < 557 && x > 246 && y < 490 && y > 448){ 
-	//	MenuStoryMode.setPos(0, 0);
-	//	MenuFreePlay.setPos(1000, 1000);
-	//	modojuego = STORY_MODE;
-	//}
-
-	//if(x < 557 && x > 246 && y < 557 && y > 510){ 
-	//	MenuStoryMode.setPos(1000, 1000);
-	//	MenuFreePlay.setPos(0, 0);
-	//	modojuego = FREE_PLAY;
-	//}
 }
 
 void Coordinador::raton(int button, int state, int x, int y)
@@ -79,10 +59,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 
 	if (estado == JUEGO) {
-
 		tablero.ratonTablero(button, state, x, y);
 	}
-	
 }
 
 void Coordinador::dibuja()
@@ -118,13 +96,9 @@ void Coordinador::dibuja()
 		// dibujar según si ganan las negras o blancas
 		// ( hay que ver como implementarlo )
 	}
-	//tablero.dibuja();
 }
 
-void Coordinador::mueve()
-{
-
-}
+void Coordinador::mueve(){}
 
 void Coordinador::setModoJuego( int x)
 {

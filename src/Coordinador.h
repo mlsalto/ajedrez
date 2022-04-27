@@ -9,15 +9,12 @@ private:
 	Sprite MenuStoryMode{ "recursos/M_StoryMode.png", 0, 0, 130, 80 };
 	Sprite MenuFreePlay{ "recursos/M_FreePlay.png", 0, 0, 130, 80 };
 
-	bool pasada;
-
 public:
 	Coordinador();
 	virtual ~Coordinador();
 
 	void inicializa();
 	void tecla(unsigned char key);
-	void PassiveMouse(GLsizei x, GLsizei y);
 	void raton(int button, int state, int x, int y);
 	void mueve();
 	void dibuja();
@@ -40,10 +37,5 @@ protected:
 
     enum ModoJuego{NONE = 0,FREE_PLAY, STORY_MODE};
 	ModoJuego modojuego;
-
-
-	/*Persona* Jugador1 = new Persona('B');
-	Persona* Jugador2 = new Persona('N');*/
-
 };
 
