@@ -2,7 +2,7 @@
 
 Coordinador::Coordinador()
 {
-	estado = INICIO;
+	estado = INICIO; 
 	estadojuego = TURNO_BLANCAS;
 	modojuego = NONE;
 	pasada = FALSE;
