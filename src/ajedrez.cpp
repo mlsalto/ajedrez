@@ -10,6 +10,7 @@ void OnDraw(void);
 void OnTimer(int value);
 void OnKeyboardDown(unsigned char key, int x, int y);
 void OnMouseClick(int button, int state, int x, int y);
+void Mouse(int x, int y);
 void onSpecialKeyboardDown(int key, int x, int y);
 
 int main(int argc, char* argv[])
@@ -30,6 +31,7 @@ int main(int argc, char* argv[])
 	gluPerspective(40.0, 1366 / 768.0f, 0.1, 150);
 
 	//Registrar los callbacks
+	glutPassiveMotionFunc(Mouse);
 	glutDisplayFunc(OnDraw);
 	glutTimerFunc(25, OnTimer, 0);//le decimos que dentro de 25ms llame 1 vez a la funcion OnTimer()
 	glutKeyboardFunc(OnKeyboardDown);
@@ -42,6 +44,30 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+
+void Mouse(int x, int y)
+{
+	cout << x << ',' << y << endl; //pruebas
+	//coordinador.PassiveMouse(x, y);
+
+	if (x > 557 || x < 246 || y < 448 || y > 557) {
+		coordinador.setModoJuego(0);
+	}
+
+	else if (x < 557 && x > 246 && y < 557 && y > 510) {
+		coordinador.setModoJuego(1);
+	}
+
+	else if (x < 557 && x > 246 && y < 490 && y > 448) {
+		coordinador.setModoJuego(2);
+	}
+
+
+	OnDraw();
+
+	glutPostRedisplay;
+}
+
 
 void OnDraw(void)
 {
@@ -60,6 +86,7 @@ void OnDraw(void)
     //aqui es donde hay que poner el código de dibujo
 
 	coordinador.dibuja();
+	//coordinador.PassiveMouse(x, y);
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }
@@ -69,6 +96,7 @@ void OnMouseClick(int button, int state, int x, int y) //arreglar el defaulta ya
 	coordinador.raton(button,state,x,y);
 	glutPostRedisplay;
 }
+
 
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {

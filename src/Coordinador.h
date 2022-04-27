@@ -5,7 +5,10 @@
 class Coordinador
 {
 private:
-	Sprite MenuInicial{ "recursos/MENU.png", 0, 0, 130, 80 };
+	Sprite MenuInicial{ "recursos/Menu.png", 0, 0, 130, 80 };
+	Sprite MenuStoryMode{ "recursos/M_StoryMode.png", 0, 0, 130, 80 };
+	Sprite MenuFreePlay{ "recursos/M_FreePlay.png", 0, 0, 130, 80 };
+
 	bool pasada;
 
 public:
@@ -14,10 +17,13 @@ public:
 
 	void inicializa();
 	void tecla(unsigned char key);
+	void PassiveMouse(GLsizei x, GLsizei y);
 	void raton(int button, int state, int x, int y);
 	void mueve();
 	void dibuja();
 
+	// setters //
+	void setModoJuego(int x);
 	// getters //
 	int getEstado();
 	int getModoJuego();
@@ -32,7 +38,7 @@ protected:
 	enum EstadoJuego{TURNO_BLANCAS = 0, TURNO_NEGRAS}; // para gestionar Jugadores
 	EstadoJuego estadojuego;
 
-    enum ModoJuego{FREE_PLAY, STORY_MODE};
+    enum ModoJuego{NONE = 0,FREE_PLAY, STORY_MODE};
 	ModoJuego modojuego;
 
 

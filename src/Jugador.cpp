@@ -98,7 +98,7 @@ int Jugador::getPuntos(char colorJugador, Casilla * c)
 					puntos_totales = puntos_totales + 330;
 
 					// por cada casilla a la que se pueda mover + 1 puntos
-					int a, b;
+					//int a, b;
 					for (a = 0; a < 8; a++)
 						for (b = 0; b < 8; b++)
 							if (c->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b))) {
