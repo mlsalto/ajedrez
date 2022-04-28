@@ -99,7 +99,6 @@ void Persona::moverPieza(int button, int state, int x, int y)
 					seleccionpieza = TRUE;
 					Tablero::getCasillaT(x_tablero, y_tablero)->setTipoCasilla(1);
 
-					// pruebas
 					// dibujar casillas legales
 					for (i = 0 ; i < 8; i++ )
 						for (j = 0; j < 8; j++) {
@@ -125,7 +124,6 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 					Tablero::getCasillaT(x_tablero, y_tablero)->setTipoCasilla(1);
 
-					// pruebas
 					// dibujar casillas legales
 					for (i = 0; i < 8; i++)
 						for (j = 0; j < 8; j++) {
@@ -143,8 +141,6 @@ void Persona::moverPieza(int button, int state, int x, int y)
 					Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini); //colocar pieza seleccionada
 					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 
-	
-					// pruebas
 					// dibujar casillas legales
 					for (i = 0; i < 8; i++)
 						for (j = 0; j < 8; j++) {
@@ -161,7 +157,6 @@ void Persona::moverPieza(int button, int state, int x, int y)
 					Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
 					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 
-			 	    // pruebas
 			       // dibujar casillas legales
 					for (i = 0; i < 8; i++)
 						for (j = 0; j < 8; j++) {
