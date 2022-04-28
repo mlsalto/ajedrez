@@ -16,6 +16,7 @@ public:
 	void inicializa();
 	void tecla(unsigned char key);
 	void raton(int button, int state, int x, int y);
+	void musica();
 	void mueve();
 	void dibuja();
 
