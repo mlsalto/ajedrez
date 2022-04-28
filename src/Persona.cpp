@@ -12,6 +12,7 @@ Persona::Persona(char colorJugador)
 void Persona::moverPieza(int button, int state, int x, int y)
 {
 	turnoterminado = FALSE;
+	int i, j;
 	int x_cell, y_cell;
 	int x_tablero, y_tablero;
 	x_cell = x / 76;
@@ -93,14 +94,20 @@ void Persona::moverPieza(int button, int state, int x, int y)
 				if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() != 0 && Tablero::getCasillaT(x_tablero, y_tablero)->getPieza()->getColorPieza() == color)
 				{
 					piezaini = Tablero::getCasillaT(x_tablero, y_tablero)->getPieza();
-
 					posinix = x_tablero;	posiniy = y_tablero;
 
-					//cout << "(" << x_tablero << "," << y_tablero << "," << piezaini << "," << colorini << ")" << endl;
 					seleccionpieza = TRUE;
-
 					Tablero::getCasillaT(x_tablero, y_tablero)->setTipoCasilla(1);
 
+					// pruebas
+					// dibujar casillas legales
+					for (i = 0 ; i < 8; i++ )
+						for (j = 0; j < 8; j++) {
+							if (piezaini->movimientoLegal(Tablero::getCasillaT(i, j)) == TRUE)
+							{
+								Tablero::getCasillaT(i, j)->setTipoCasilla(2);
+							}
+						}
 				}
 			}
 
@@ -110,25 +117,39 @@ void Persona::moverPieza(int button, int state, int x, int y)
 				////////    SELECCIÓN NUEVA PIEZA BLANCA    ////////
 				if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() != 0 && Tablero::getCasillaT(x_tablero, y_tablero)->getPieza()->getColorPieza() == color)
 				{
-					Tablero::getCasillaT(posinix, posiniy)->setTipoCasilla(0);
+					for (i = 0; i < 8; i++)
+						for (j = 0; j < 8; j++) {Tablero::getCasillaT(i, j)->setTipoCasilla(0);}
 
 					piezaini = Tablero::getCasillaT(x_tablero, y_tablero)->getPieza();
-
 					posinix = x_tablero;	posiniy = y_tablero;
 
 					Tablero::getCasillaT(x_tablero, y_tablero)->setTipoCasilla(1);
+
+					// pruebas
+					// dibujar casillas legales
+					for (i = 0; i < 8; i++)
+						for (j = 0; j < 8; j++) {
+							if (piezaini->movimientoLegal(Tablero::getCasillaT(i, j)) == TRUE)
+							{
+								Tablero::getCasillaT(i, j)->setTipoCasilla(2);
+							}
+						}
 				}
 
 				//////// COMER PIEZA NEGRA //////////
 				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() != 0 && Tablero::getCasillaT(x_tablero, y_tablero)->getPieza()->getColorPieza() != color && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
 				{
 					Tablero::eliminarPiezaT(x_tablero, y_tablero); //elimina pieza
-
 					Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini); //colocar pieza seleccionada
-
 					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 
-					Tablero::getCasillaT(posinix, posiniy)->setTipoCasilla(0);
+	
+					// pruebas
+					// dibujar casillas legales
+					for (i = 0; i < 8; i++)
+						for (j = 0; j < 8; j++) {
+								Tablero::getCasillaT(i, j)->setTipoCasilla(0);
+						}
 
 					seleccionpieza = FALSE;
 					turnoterminado = TRUE;
@@ -138,10 +159,14 @@ void Persona::moverPieza(int button, int state, int x, int y)
 				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() == 0 && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
 				{
 					Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
-
 					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 
-					Tablero::getCasillaT(posinix, posiniy)->setTipoCasilla(0);
+			 	    // pruebas
+			       // dibujar casillas legales
+					for (i = 0; i < 8; i++)
+						for (j = 0; j < 8; j++) {
+							Tablero::getCasillaT(i, j)->setTipoCasilla(0);
+						}
 
 					seleccionpieza = FALSE;
 					turnoterminado = TRUE;

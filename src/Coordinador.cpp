@@ -2,11 +2,11 @@
 
 Coordinador::Coordinador()
 {
-	estado = INICIO;
+	estado = INICIO; 
 	estadojuego = TURNO_BLANCAS;
-	modojuego = FREE_PLAY;
-	pasada = FALSE;
-	
+	modojuego = NONE;
+
+	musica(); // para que suene al inicio la música
 }
 
 Coordinador::~Coordinador()
@@ -16,8 +16,7 @@ Coordinador::~Coordinador()
 
 void Coordinador::inicializa() //esta funcion en realidad no hace falta
 {
-	tablero.nuevoTablero();
-
+//	tablero.nuevoTablero();
 }
 
 void Coordinador::tecla(unsigned char key)
@@ -31,6 +30,9 @@ void Coordinador::tecla(unsigned char key)
 
 	if (estado == JUEGO) {
 
+		// tecla H (help)
+		// tecla P (pause)
+		//
 
 	}
 }
@@ -38,46 +40,52 @@ void Coordinador::tecla(unsigned char key)
 void Coordinador::raton(int button, int state, int x, int y)
 {
 	if (estado == INICIO) {
-		// RATON QUE FUNIONE EN INICIO
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 
-		// si se hace click en lo que sea se hace estado == Juego y
-		// el modo de juego se cambia (a lo que sea)
+			if (x < 557 && x > 246 && y < 557 && y > 510) {
 
-		Persona* Jugador1 = new Persona('B');
-		Persona* Jugador2 = new Persona('N');
+				Persona* Jugador1 = new Persona('B');
+				Persona* Jugador2 = new Persona('N');
 
-		tablero.setJugador1(Jugador1);
-		tablero.setJugador2(Jugador2);
+				tablero.setJugador1(Jugador1);
+				tablero.setJugador2(Jugador2);
 
-		    estado = JUEGO;
+				estado = JUEGO;
+
+				tablero.nuevoTablero(); // inicializamos nuevo tablero
+				musica(); // para actualziar musica
+			}
+
+			if (x < 557 && x > 246 && y < 490 && y > 448) {
+				// no hace nada de mometo, debería iniciar juego modo IA
+			}
+		}
 	}
 
 
 	if (estado == JUEGO) {
-
 		tablero.ratonTablero(button, state, x, y);
-
-		//switch (modojuego)
-		//{
-		//case FREE_PLAY:
-		//	if(estadojuego == TURNO_BLANCAS){ tablero.ratonTablero(button, state, x, y);}
-		//	else if(estadojuego == TURNO_NEGRAS){ tablero.ratonTablero(button, state, x, y); }
-		//	//tablero.ratonTablero();
-		//	break;
-
-		//case STORY_MODE:
-		//	break;
-		//}
 	}
-	
-	//tablero.ratonTablero(button,state,x,y);
 }
 
 void Coordinador::dibuja()
 {
 	if (estado == INICIO) {
-		/*MenuInicial.setPos(0, 0);
-        MenuInicial.draw();*/
+
+		switch (modojuego) 
+		{
+		case NONE:
+			MenuInicial.setPos(0, 0);
+			MenuInicial.draw();
+
+		case FREE_PLAY:
+			MenuFreePlay.setPos(0, 0);
+			MenuFreePlay.draw();
+
+		case STORY_MODE:
+			MenuStoryMode.setPos(0, 0);
+			MenuStoryMode.draw();
+		}
 	}
 
 	if (estado == JUEGO) {
@@ -93,12 +101,22 @@ void Coordinador::dibuja()
 		// dibujar según si ganan las negras o blancas
 		// ( hay que ver como implementarlo )
 	}
-	tablero.dibuja();
 }
 
-void Coordinador::mueve()
+void Coordinador::musica()
 {
+	if (estado == INICIO) playMusica("recursos/menu.mp3");
+	if (estado == JUEGO) playMusica("recursos/juego.mp3", true);
+	
+}
 
+void Coordinador::mueve(){}
+
+void Coordinador::setModoJuego( int x)
+{
+	if (x == 0) modojuego = NONE;
+	if (x == 1) modojuego = FREE_PLAY;
+	if (x == 2) modojuego = STORY_MODE;
 }
 
 int Coordinador::getEstado()
