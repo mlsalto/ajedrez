@@ -19,7 +19,8 @@ protected:
 	Pieza* pieza; 
 	int tipocasilla; //base(0), seleccionada(1), 
 
-	Sprite casilla_seleccionada{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
+	Sprite casilla_legal{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
+	Sprite casilla_seleccionada{ "recursos/casilla_seleccionada.png",1000, 1000,8,8 };
 public:
 
 	Casilla(int x, int y);
