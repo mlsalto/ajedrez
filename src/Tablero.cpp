@@ -163,7 +163,6 @@ void Tablero::dibuja()
 
 	tableroAjedrez.draw();
 	marcoTablero.draw();
-	//casilla.draw();
 }
 
 void Tablero::ratonTablero(int button, int state, int x, int y)
