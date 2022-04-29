@@ -60,7 +60,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 			}
 
 			////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
-			if (y_fin == row + 1 && (x_fin == coll + 1 || x_fin == coll - 1) &&Tablero::getCasillaOcupada(x_fin, y_fin) == true)
+			if (y_fin == row + 1 && (x_fin == coll + 1 || x_fin == coll - 1) &&Tablero::getCasillaOcupada(x_fin, y_fin) == true && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color)
 			{
 				return true;
 			}
@@ -91,7 +91,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 			}
 
 			////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
-			if (y_fin == row - 1 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true)
+			if (y_fin == row - 1 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color)
 			{
 				return true;
 			}
