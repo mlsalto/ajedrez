@@ -19,35 +19,26 @@ using namespace ETSIDI;
 class Tablero
 {
 private: 
+	static Casilla* casillas[8][8];
+
 	/////// ELEMENTOS PARA CREAR TABLERO INICIAL  ///////
 	static ListaPiezas piezas;
 	int i, j;
 
-	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////
-	bool seleccionpieza = FALSE;
-	char colorini;
-	Pieza* piezaini;
-	int posinix, posiniy;
+	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////;
 	bool turno = TRUE; // blancas(1)   negras(0)
-
-	bool colorJugador;
 
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
 	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
 
-
-	///// PRUEBAS ////
-	
+	///// JUGADORES ////
 	Jugador* jugador1;
 	Jugador* jugador2;
 
 
 public:
-	static Casilla* casillas[8][8];
-
 	Tablero();
-
 
 	void dibuja();
 	void nuevoTablero(); //similar a un inicializa???
@@ -61,10 +52,10 @@ public:
 	void setJugador2(Jugador* j);
 	//////////////////////////
 
+	// getters //
 	static Pieza* getPiezasT(int x, int y);
 	static int getTipoPiezasT(int x, int y);
 	static Casilla* getCasillaT(int x, int y);
-
 	static bool getCasillaOcupada(int x, int y);
 
 };
