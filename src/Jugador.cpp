@@ -88,7 +88,7 @@ int Jugador::getPuntos(char colorJugador, Casilla * c)
 					int a, b;
 					for (a = 0; a < 8; a++)
 						for (b = 0; b < 8; b++)
-					       if (c->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b))) {
+					       if (c->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b)) == true) {
 							    puntos_totales = puntos_totales + 1;
 					       }
 
@@ -101,7 +101,7 @@ int Jugador::getPuntos(char colorJugador, Casilla * c)
 					//int a, b;
 					for (a = 0; a < 8; a++)
 						for (b = 0; b < 8; b++)
-							if (c->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b))) {
+							if (c->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b)) == true) {
 								puntos_totales = puntos_totales + 1;
 							}
 
