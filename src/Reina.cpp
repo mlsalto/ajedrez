@@ -1,5 +1,6 @@
 #include "Reina.h"
 #include "Tablero.h"
+#include <math.h>
 
 Reina::Reina() {}
 
@@ -11,7 +12,7 @@ Reina::Reina(char colorEquipo)
 
 void Reina::draw()
 {
-	if (color == 'B') 
+	if (color == 'B')
 	{
 		ReinaB.setPos(pos.x, pos.y); //se debe poner siempre para que dibuje el sprite
 		ReinaB.draw();
@@ -41,118 +42,142 @@ bool Reina::movimientoLegal(Casilla* fin)
 	//////////////**************    VERTICAL & HORIZONTAL    **************///////////
 
 	///////////       MOVIMIENTO DERECHA      ///////////
-	if (coll < 7 && row == y_fin)
+	if (coll < x_fin && row == y_fin)
 	{
 		for (i = coll + 1; i <= x_fin && !obstaculo; i++)
 		{
 			if (Tablero::getCasillaOcupada(i, y_fin) == true) {
-				obstaculo = true;
-				return false;
+				if (i == x_fin) 
+				{
+					if (Tablero::getCasillaT(i, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(i, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-
-			return true;
 		}
+		return true;
 	}
 
 	///////////       MOVIMIENTO IZQUIERDA    ///////////
-	if (coll > 0 && row == y_fin)
+	if (coll > x_fin && row == y_fin)
 	{
 		for (i = coll - 1; i >= x_fin && !obstaculo; i--)
 		{
-			if (Tablero::getCasillaOcupada(i, y_fin) == true) {
-				obstaculo = true;
-				return false;
+			if (Tablero::getCasillaOcupada(i, y_fin) == true) 
+			{
+				if (i == x_fin) {
+					if (Tablero::getCasillaT(i, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(i, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-
-			return true;
 		}
+		return true;
 	}
 
 	///////////       MOVIMIENTO ARRIBA    ///////////
-	if (coll == x_fin && row < 7)
+	if (coll == x_fin && row < y_fin)
 	{
 		for (i = row + 1; i <= y_fin && !obstaculo; i++)
 		{
-			if (Tablero::getCasillaOcupada(x_fin,i) == true) {
-				obstaculo = true;
-				return false;
+			if (Tablero::getCasillaOcupada(x_fin, i) == true) {
+				if (i == y_fin) 
+				{
+					if (Tablero::getCasillaT(x_fin, i)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, i)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-
-			return true;
 		}
+		return true;
 	}
 
-	///////////       MOVIMIENTO ABAJO      ///////////
-	if (coll == x_fin && row > 0)
+	/////////////       MOVIMIENTO ABAJO      ///////////
+	if (coll == x_fin && row > y_fin)
 	{
 		for (i = row - 1; i >= y_fin && !obstaculo; i--)
 		{
 			if (Tablero::getCasillaOcupada(x_fin, i) == true) {
-				obstaculo = true;
-				return false;
+				if (i == y_fin) {
+					if (Tablero::getCasillaT(x_fin, i)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, i)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-
-			return true;
 		}
+		return true;
 	}
 
+	//////////////**************     DIAGONAL     **************///////////
 
+	if (abs(x_fin - coll) != abs(y_fin - row)) return false; //no es diagonal
 
-	//////////////**************    DIAGONAL     **************///////////
-	
 	///////////       MOVIMIENTO DERECHA/ARRIBA     ///////////
-	if (coll < 7 && row < 7)
+	if (coll < x_fin && row < y_fin)
 	{
-		for (i = row + 1, j = coll + 1; i <= x_fin && j <= y_fin && !obstaculo; i++, j++)
+		for (i = coll + 1, j = row + 1; i <= x_fin && j <= y_fin && !obstaculo; i++, j++)
 		{
-
-			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
-				obstaculo = true;
-				return false;
+			if (Tablero::getCasillaOcupada(i, j) == true) 
+			{
+				if (i == x_fin && j == y_fin) {
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-			return true;
 		}
+		return true;
 	}
 
-	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
-	if (coll < 7 && row > 0)
+	///////////       MOVIMIENTO IZQUIERDA/ARRIBA       ///////////
+	if (coll > x_fin && row < y_fin)
 	{
-		for (i = row - 1, j = coll + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
+		for (i = coll - 1, j = row + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
 		{
-
-			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
-				obstaculo = true;
-				return false;
+			if (Tablero::getCasillaOcupada(i, j) == true) 
+			{
+				if (i == x_fin && j == y_fin) {
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-			return true;
 		}
+		return true;
 	}
 
-	///////////       MOVIMIENTO DERECHA/ABAJO    ///////////
-	if (coll > 0 && row < 7)
+	///////////       MOVIMIENTO DERECHA/ABAJO       ///////////
+	if (coll < x_fin && row > y_fin)
 	{
-		for (i = row + 1, j = coll - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
+		for (i = coll + 1, j = row - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
 		{
-			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
-				obstaculo = true;
-				return false;
+			if (Tablero::getCasillaOcupada(i, j) == true) 
+			{
+				if (i == x_fin && j == y_fin) {
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-			return true;
 		}
+		return true;
 	}
 
 	///////////       MOVIMIENTO IZQUIERDA/ABAJO      ///////////
-	if (coll > 0 && row > 0)
+	if (coll > x_fin && row > y_fin)
 	{
-		for (i = row - 1, j = coll - 1; i >= x_fin && j >= y_fin && !obstaculo; i--, j--)
+		for (i = coll - 1, j = row - 1; i >= x_fin && j >= y_fin && !obstaculo; i--, j--)
 		{
-			if (Tablero::getCasillaOcupada(i, j) == true || fabs(x_fin - i) != fabs(y_fin - j)) {
-				obstaculo = true;
-				return false;
+			if (Tablero::getCasillaOcupada(i, j) == true) 
+			{
+				if (i == x_fin && j == y_fin) {
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-			return true;
 		}
+		return true;
 	}
-
-	return true;
+	else return false;
 }
