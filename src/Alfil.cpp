@@ -39,17 +39,19 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
 
+	if (fabs(x_fin - coll) != fabs(y_fin - row)) return false;
 
 	///////////       MOVIMIENTO DERECHA/ARRIBA     ///////////
 	if (coll < x_fin && row < y_fin)
 	{
-		if (fabs(x_fin - coll) != fabs(y_fin - row)) return false;
-
-		for (i = coll + 1, j = row + 1; i <= x_fin && j <= y_fin && !obstaculo; i++, j++)
+		for (i = coll + 1, j = row + 1; i <= x_fin && j <= y_fin ; i++, j++)
 		{
 			if (Tablero::getCasillaOcupada(i, j) == true ) {
-				obstaculo = true;
-				return false;
+				if (i == x_fin && j == y_fin) {
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
 		}
 		return true;
@@ -58,16 +60,15 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 	///////////       MOVIMIENTO IZQUIERDA/ARRIBA    ///////////
 	if (coll > x_fin && row < y_fin)
 	{
-		if (fabs(x_fin - coll) != fabs(y_fin - row)) return false;
-
-		for (i = coll - 1, j = row + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
+		for (i = coll - 1, j = row + 1; i >= x_fin && j <= y_fin ; i--, j++)
 		{
-
 			if (Tablero::getCasillaOcupada(i, j) == true) {
-				obstaculo = true;
-				return false;
+				if(i == x_fin && j == y_fin) {
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+			else return false;
 			}
-
 		}
 		return true;
 	}
@@ -75,15 +76,15 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 	///////////       MOVIMIENTO DERECHA/ABAJO    ///////////
 	if (coll < x_fin && row > y_fin)
 	{
-		if (fabs(x_fin - coll) != fabs(y_fin - row)) return false;
-
-		for (i = coll + 1, j = row - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
+		for (i = coll + 1, j = row - 1; i <= x_fin && j >= y_fin ; i++, j--)
 		{
 			if (Tablero::getCasillaOcupada(i, j) == true) {
-				obstaculo = true;
-				return false;
+				if (i == x_fin && j == y_fin) {
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
-
 		}
 		return true;
 	}
@@ -91,13 +92,14 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 	///////////       MOVIMIENTO IZQUIERDA/ABAJO      ///////////
 	if (coll > x_fin && row > y_fin)
 	{
-		if (fabs(x_fin - coll) != fabs(y_fin - row)) return false;
-
-		for (i = coll - 1, j = row - 1; i >= x_fin && j >= y_fin && !obstaculo; i--, j--)
+		for (i = coll - 1, j = row - 1; i >= x_fin && j >= y_fin ; i--, j--)
 		{
 			if (Tablero::getCasillaOcupada(i, j) == true) {
-				obstaculo = true;
-				return false;
+				if (i == x_fin && j == y_fin) {
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) { return false; }
+					if (Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color) { return true; }
+				}
+				else return false;
 			}
 		}
 		return true;

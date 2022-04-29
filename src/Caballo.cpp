@@ -3,7 +3,7 @@
 
 Caballo::Caballo()
 {
-//	tipoPieza = 4;
+
 }
 
 Caballo::Caballo(char colorEquipo)
@@ -28,7 +28,6 @@ bool Caballo::movimientoLegal(Casilla* fin)
 {
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
 	int i, j, row, coll;
-	bool obstaculo = false;
 
 	////// FILA Y COLUMNA //////
 	coll = (pos.x + 28) / 8;
@@ -40,11 +39,14 @@ bool Caballo::movimientoLegal(Casilla* fin)
 
 	///////// EL CABALLO SE MUEVE EN L, 3 posiciones y despues 2 /////////
 
+	// para que funcione dependiendo del color
+	if (Tablero::getCasillaOcupada(x_fin, y_fin) == true && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() == color) return false;
+
 	///////////       MOVIMIENTO DERECHA      ///////////
 	if (coll + 2 == x_fin )
 	{
 		// movimiento arriba
-		if (row + 1 == y_fin)return true;
+		if (row + 1 == y_fin) return true;
 		// movimiento abajo
 		if (row - 1 == y_fin)return true;
 	}

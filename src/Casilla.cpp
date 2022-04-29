@@ -47,6 +47,12 @@ void Casilla::draw()
 		casilla_legal.setPos(-28 + (columna * 8), -28 + (fila * 8));
 		casilla_legal.draw();
 	}
+
+	if (tipocasilla == 3)
+	{
+		casilla_atacada.setPos(-28 + (columna * 8), -28 + (fila * 8));
+		casilla_atacada.draw();
+	}
 }
 
 bool Casilla::getOcupada()
