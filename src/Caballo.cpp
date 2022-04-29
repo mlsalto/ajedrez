@@ -46,7 +46,7 @@ bool Caballo::movimientoLegal(Casilla* fin)
 	if (coll + 2 == x_fin )
 	{
 		// movimiento arriba
-		if (row + 1 == y_fin)return true;
+		if (row + 1 == y_fin) return true;
 		// movimiento abajo
 		if (row - 1 == y_fin)return true;
 	}

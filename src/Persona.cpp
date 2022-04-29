@@ -104,7 +104,8 @@ void Persona::moverPieza(int button, int state, int x, int y)
 						for (j = 0; j < 8; j++) {
 							if (piezaini->movimientoLegal(Tablero::getCasillaT(i, j)) == TRUE)
 							{
-								Tablero::getCasillaT(i, j)->setTipoCasilla(2);
+								if(Tablero::getCasillaOcupada(i,j)== true && Tablero::getCasillaT(i,j)->getPieza()->getColorPieza() != color)Tablero::getCasillaT(i, j)->setTipoCasilla(3);
+								else Tablero::getCasillaT(i, j)->setTipoCasilla(2);
 							}
 						}
 				}
@@ -129,7 +130,8 @@ void Persona::moverPieza(int button, int state, int x, int y)
 						for (j = 0; j < 8; j++) {
 							if (piezaini->movimientoLegal(Tablero::getCasillaT(i, j)) == TRUE)
 							{
-								Tablero::getCasillaT(i, j)->setTipoCasilla(2);
+								if (Tablero::getCasillaOcupada(i, j) == true && Tablero::getCasillaT(i, j)->getPieza()->getColorPieza() != color)Tablero::getCasillaT(i, j)->setTipoCasilla(3);
+								else Tablero::getCasillaT(i, j)->setTipoCasilla(2);
 							}
 						}
 				}
