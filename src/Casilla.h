@@ -20,8 +20,8 @@ protected:
 	int tipocasilla; //base(0), seleccionada(1), legal(2), atacada (3)
 
 	Sprite casilla_seleccionada{ "recursos/casilla_seleccionada.png",1000, 1000,8,8 };
-	Sprite casilla_legal{ "recursos/casilla_sombreada3.png",1000, 1000,8,8 };
-	Sprite casilla_atacada{ "recursos/casilla_atacada3.png",1000, 1000,8,8 };
+	Sprite casilla_legal{ "recursos/casilla_legal.png",1000, 1000,8,8 };
+	Sprite casilla_atacada{ "recursos/casilla_atacada.png",1000, 1000,8,8 };
 
 public:
 
