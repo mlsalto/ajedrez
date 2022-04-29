@@ -35,7 +35,6 @@ private:
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
 	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
-	Sprite casilla_seleccionada{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
 
 
 	///// PRUEBAS ////

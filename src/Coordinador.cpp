@@ -4,7 +4,7 @@ Coordinador::Coordinador()
 {
 	estado = INICIO; 
 	estadojuego = TURNO_BLANCAS;
-	modojuego = NONE;
+	menu_inicio = I;
 
 	musica(); // para que suene al inicio la música
 }
@@ -19,21 +19,35 @@ void Coordinador::inicializa() //esta funcion en realidad no hace falta
 //	tablero.nuevoTablero();
 }
 
-void Coordinador::tecla(unsigned char key)
+void Coordinador::mouse(int x, int y)
 {
-	/// NO SE SI AÑADIREMOS TECLAS AÚN?? ///
-
+	//cout << x << ',' << y << endl; //pruebas
 	if (estado == INICIO) {
-		
-
+		if (x > 557 || x < 246 || y < 448 || y > 557) { setMenuInicio(0); /*no hay modo juego*/}
+		else if (x < 557 && x > 246 && y < 557 && y > 510) { setMenuInicio(1); /*freeplay*/}
+		else if (x < 557 && x > 246 && y < 490 && y > 448) {setMenuInicio(2); /*storymode*/}
 	}
 
+	if (estado == PAUSA) {}
+
+	if (estadojuego == CORONAR) {
+		if (x > 760 || x < 600 || y < 254 || y > 593) { setMenuCoronacion(0); /*no hay modo coronar*/ }
+		else if (x < 760 && x > 600 && y < 289 && y > 254) { setMenuCoronacion(3); /*ALFIL*/ }
+		else if (x < 760 && x > 600 && y < 391 && y > 353) { setMenuCoronacion(4); /*CABALLO*/ }
+		else if (x < 760 && x > 600 && y < 494 && y > 455) { setMenuCoronacion(2); /*TORRE*/ }
+		else if (x < 760 && x > 600 && y < 593 && y > 553) { setMenuCoronacion(1); /*REINA*/ }
+	}
+}
+
+void Coordinador::tecla(unsigned char key)
+{
 	if (estado == JUEGO) {
-
-		// tecla H (help)
-		// tecla P (pause)
-		//
-
+		switch (key) {
+		case 'P':
+			estado = PAUSA;
+		case 'H':
+			estado = AYUDA;
+		}
 	}
 }
 
@@ -66,15 +80,19 @@ void Coordinador::raton(int button, int state, int x, int y)
 	if (estado == JUEGO) {
 		tablero.ratonTablero(button, state, x, y);
 	}
+
+	if (estado == PAUSA) {
+
+	}
 }
 
 void Coordinador::dibuja()
 {
 	if (estado == INICIO) {
 
-		switch (modojuego) 
+		switch (menu_inicio)
 		{
-		case NONE:
+		case INICIO:
 			MenuInicial.setPos(0, 0);
 			MenuInicial.draw();
 
@@ -90,11 +108,55 @@ void Coordinador::dibuja()
 
 	if (estado == JUEGO) {
 
+		if (estadojuego == CORONAR) {
+
+			switch (coronar)
+			{
+				// HAY QUE PONERLO SEGÚN EL COLOR DEL JUGADOR
+			case C:
+			MenuCoronar_B.setPos(0, 0);
+			MenuCoronar_B.draw();
+
+			case REINA:
+			MenuCoronarReina_B.setPos(0, 0);
+			MenuCoronarReina_B.draw();
+
+			case TORRE:
+            MenuCoronarTorre_B.setPos(0, 0);
+			MenuCoronarTorre_B.draw();
+
+			case ALFIL:
+			MenuCoronarAlfil_B.setPos(0, 0);
+			MenuCoronarAlfil_B.draw();
+
+			case CABALLO:
+			MenuCoronarCaballo_B.setPos(0, 0);
+			MenuCoronarCaballo_B.draw();
+				
+			}
+
+		}
+
 		tablero.dibuja();
 	}
 
 	if (estado == PAUSA) {
 		// dibujar el menu de la pausa
+		
+		//switch (menu_pausa)
+		//{
+		//case P:
+
+		//case NEW_GAME:
+
+		//case BACK_TO_GAME:
+
+		//case BACK_TO_MENU:
+
+		//case EXIT:
+
+		//}
+
 	}
 
 	if (estado == FIN) {
@@ -105,18 +167,27 @@ void Coordinador::dibuja()
 
 void Coordinador::musica()
 {
-	if (estado == INICIO) playMusica("recursos/menu.mp3");
-	if (estado == JUEGO) playMusica("recursos/juego.mp3", true);
+	/*if (estado == INICIO) playMusica("recursos/menu.mp3");
+	if (estado == JUEGO) playMusica("recursos/juego.mp3", true);*/
 	
 }
 
 void Coordinador::mueve(){}
 
-void Coordinador::setModoJuego( int x)
+void Coordinador::setMenuInicio( int x)
 {
-	if (x == 0) modojuego = NONE;
-	if (x == 1) modojuego = FREE_PLAY;
-	if (x == 2) modojuego = STORY_MODE;
+	if (x == 0) menu_inicio = I;
+	if (x == 1) menu_inicio = FREE_PLAY;
+	if (x == 2) menu_inicio = STORY_MODE;
+}
+
+void Coordinador::setMenuCoronacion(int x)
+{
+	if (x == 0) coronar = C;
+	if (x == 1) coronar = REINA;
+	if (x == 2) coronar = TORRE;
+	if (x == 3) coronar = ALFIL;
+	if (x == 4) coronar = CABALLO;
 }
 
 int Coordinador::getEstado()
@@ -126,7 +197,7 @@ int Coordinador::getEstado()
 
 int Coordinador::getModoJuego()
 {
-	return modojuego;
+	return menu_inicio;
 }
 
 int Coordinador::getEstadoJuego()
