@@ -57,6 +57,6 @@ public:
 	static int getTipoPiezasT(int x, int y);
 	static Casilla* getCasillaT(int x, int y);
 	static bool getCasillaOcupada(int x, int y);
-
+	bool detectar_jaque(char color);
 };
 

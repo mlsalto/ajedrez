@@ -186,6 +186,43 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 	}
 }
 
+//En tu turno, compruebas si puedes hacer jaque al contrincante
+//A la función le pasas el color de las piezas que van a hacer el jaque
+bool Tablero::detectar_jaque(char color)
+{
+	//salida int para comprobar el jaque: 0=no hay jaque; 1=jaque al rey BLANCO; 2=jaque al rey NEGRO
+
+	//bucle anidado para recorrer el tablero y saber en qué casilla se encuentra el rey contrario
+	// rey == 6
+	bool rey = false;
+	int i, j;
+	int pos_rey_x, pos_rey_y;
+
+	for (i = 0; i < 8 && rey == false; i++)
+	{
+		for (j = 0; j < 8; j++)
+		{
+			if (casillas[i][j]->getTipoPieza() == 6 && casillas[i][j]->getPieza()->getColorPieza() == color)
+			{
+				pos_rey_x = casillas[i][j]->getColumna();
+				pos_rey_y = casillas[i][j]->getFila();
+				rey = true;
+			}
+		}
+	}
+
+	//bucle anidado para recorrer el tablero y comprobar si alguna pieza puede hacer jaque a la posición actual del rey
+	for (i = 0; i < 8; i++)
+	{
+		for (j = 0; j < 8; j++)
+		{
+			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_x][pos_rey_y]) == true)
+				return true;
+		}
+	}
+	return false;
+}
+
 void Tablero::eliminarPiezaT(int x, int y)
 {
 	piezas.eliminar(casillas[x][y]->getPieza());
