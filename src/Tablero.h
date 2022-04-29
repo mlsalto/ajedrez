@@ -68,5 +68,7 @@ public:
 
 	static bool getCasillaOcupada(int x, int y);
 
+	//función del jaque: 0=NINGÚN JAQUE, 1=jaque al rey blanco; 2=jaque al rey negro
+	bool detectar_jaque(char color);
 };
 

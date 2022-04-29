@@ -60,10 +60,32 @@ bool Peon::movimientoLegal(Casilla* fin)
 			}
 
 			////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
-			if (y_fin == row + 1 && (x_fin == coll + 1 || x_fin == coll - 1) &&Tablero::getCasillaOcupada(x_fin, y_fin) == true)
+			// el movimiento solo será verdadero si la casilla seleccionada por el jugador:
+			// 1) es la primera diagonal hacia arriba -derecha, izquierda-, 
+			// 2) esté ocupada
+			// 3) el color de esa casilla sea distinto a BLANCO
+			if (y_fin == row + 1 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color)
 			{
 				return true;
 			}
+
+			///// CORONACIÓN DEL PEON //////
+			if (y_fin == 7 && (x_fin == coll || ((x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true)))
+			{
+				bool coronacion;
+				if (Tablero::getCasillaOcupada(x_fin, y_fin) == true)
+				{
+					return false;
+					coronacion = false;
+				}
+				else
+				{
+					return true;
+					coronacion = true;
+				}
+			}
+
+
 			else return false;  // No se cumple ninguno de los movimientos legalesde los peones y por tanto, NO es un movimiento legal - la pieza no se	mueve -
 		}
 
@@ -91,7 +113,11 @@ bool Peon::movimientoLegal(Casilla* fin)
 			}
 
 			////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
-			if (y_fin == row - 1 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true)
+			// el movimiento solo será verdadero si la casilla seleccionada por el jugador:
+			// 1) es la primera diagonal hacia arriba -derecha, izquierda-, 
+			// 2) esté ocupada
+			// 3) el color de esa casilla sea distinto a NEGRO
+			if (y_fin == row - 1 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color)
 			{
 				return true;
 			}
