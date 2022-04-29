@@ -17,12 +17,12 @@ protected:
 	bool ocupada;
 	int tipoPieza;
 	Pieza* pieza; 
-	int tipocasilla; //base(0), seleccionada(1), legal(2)
+	int tipocasilla; //base(0), seleccionada(1), legal(2), atacada (3)
 
-	//Sprite casilla_legal{ "recursos/casilla_iluminada.png",1000, 1000,8,8 };
 	Sprite casilla_seleccionada{ "recursos/casilla_seleccionada.png",1000, 1000,8,8 };
 	Sprite casilla_legal{ "recursos/Celda_sombreada.png",1000, 1000,8,8 };
 	Sprite casilla_atacada{ "recursos/casilla_atacada.png",1000, 1000,8,8 };
+
 public:
 
 	Casilla(int x, int y);
