@@ -11,6 +11,13 @@ private:
 	Sprite MenuStoryMode{ "recursos/menu/M_StoryMode.png", 0, 0, 130, 80 };
 	Sprite MenuFreePlay{ "recursos/menu/M_FreePlay.png", 0, 0, 130, 80 };
 	Sprite MenuOpciones{ "recursos/menu/M_Options.png", 0, 0, 130, 80 };
+
+	// menu inicial gambito rey
+	Sprite MenuInicial2{ "recursos/menu/Menu2.png", 0, 0, 130, 80 };
+	Sprite MenuStoryMode2{ "recursos/menu/M_StoryMode2.png", 0, 0, 130, 80 };
+	Sprite MenuFreePlay2{ "recursos/menu/M_FreePlay2.png", 0, 0, 130, 80 };
+	Sprite MenuOpciones2{ "recursos/menu/M_Options2.png", 0, 0, 130, 80 };
+
 	// menu opciones
 	Sprite QueenGam{ "recursos/menu/M_OpcionesQ.png", 0, 0, 130, 80 };
 	Sprite QueenGamH{ "recursos/menu/M_OpcionesQH.png", 0, 0, 130, 80 };
@@ -61,7 +68,12 @@ public:
 protected:
 	Tablero tablero;
 
+	/// variables menu opciones //
 	int opciones; // Q(0) K(1) Q+H(2) K+H(3) Q+E(4) K+E(5) Q+H+E(6) K+H+E(7)
+	bool ayuda; // ayuda on(1)  ayuda off(0)
+	bool tipojuego; // queens(0)  kings(1)
+	/////////////////////////////
+
 
 	enum Estado { INICIO, OPCIONES , JUEGO, PAUSA, AYUDA, FIN}; //editar los estados
 	Estado estado;

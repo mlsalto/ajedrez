@@ -7,7 +7,12 @@ Coordinador::Coordinador()
 	estado = INICIO; 
 	estadojuego = TURNO;
 	menu_inicio = I;
+
+	// opciones
 	opciones = 2;
+	tipojuego = 0;
+	//////////////
+
 	musica(); // para que suene al inicio la música
 }
 
@@ -27,7 +32,7 @@ void Coordinador::mouse(int x, int y)
 	if (estado == INICIO) {
 		if (x > 557 || x < 246 || y < 448 || y > 610) { setMenuInicio(0); /*no hay modo juego*/}
 		else if (x < 557 && x > 246 && y < 557 && y > 510) { setMenuInicio(1); /*freeplay*/}
-		else if (x < 557 && x > 246 && y < 490 && y > 448) {setMenuInicio(2); /*storymode*/}
+		else if (x < 557 && x > 246 && y < 490 && y > 448) { setMenuInicio(2); /*storymode*/}
 		else if (x < 557 && x > 246 && y < 610 && y > 570) { setMenuInicio(3); /*opciones*/ }
 	}
 
@@ -126,10 +131,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 				if (opciones == 7)setOpciones(5);
 			}
 			else if (x < 378 && x > 287 && y < 642 && y > 601) { /*exit*/
-				if (opciones == 0)setOpciones(4);
-				if (opciones == 1)setOpciones(5);
-				if (opciones == 2)setOpciones(6);
-				if (opciones == 3)setOpciones(7);
+				estado = INICIO;
 			}
 		}
 	}
@@ -160,23 +162,46 @@ void Coordinador::dibuja()
 {
 	if (estado == INICIO) {
 
-		switch (menu_inicio)
-		{
-		case INICIO:
-			MenuInicial.setPos(0, 0);
-			MenuInicial.draw();
+		if (tipojuego == 0) {
+			switch (menu_inicio)
+			{
+			case INICIO:
+				MenuInicial.setPos(0, 0);
+				MenuInicial.draw();
 
-		case FREE_PLAY:
-			MenuFreePlay.setPos(0, 0);
-			MenuFreePlay.draw();
+			case FREE_PLAY:
+				MenuFreePlay.setPos(0, 0);
+				MenuFreePlay.draw();
 
-		case STORY_MODE:
-			MenuStoryMode.setPos(0, 0);
-			MenuStoryMode.draw();
+			case STORY_MODE:
+				MenuStoryMode.setPos(0, 0);
+				MenuStoryMode.draw();
 
-		case OPTIONS:
-			MenuOpciones.setPos(0, 0);
-			MenuOpciones.draw();
+			case OPTIONS:
+				MenuOpciones.setPos(0, 0);
+				MenuOpciones.draw();
+			}
+		}
+
+		if (tipojuego == 1) {
+			switch (menu_inicio)
+			{
+			case INICIO:
+				MenuInicial2.setPos(0, 0);
+				MenuInicial2.draw();
+
+			case FREE_PLAY:
+				MenuFreePlay2.setPos(0, 0);
+				MenuFreePlay2.draw();
+
+			case STORY_MODE:
+				MenuStoryMode2.setPos(0, 0);
+				MenuStoryMode2.draw();
+
+			case OPTIONS:
+				MenuOpciones2.setPos(0, 0);
+				MenuOpciones2.draw();
+			}
 		}
 	}
 
@@ -351,6 +376,15 @@ void Coordinador::setMenuCoronacion(int x)
 void Coordinador::setOpciones(int x)
 {
 	opciones = x;
+
+	if (x == 0) tipojuego = 0;
+	if (x == 1) tipojuego = 1;
+	if (x == 2) tipojuego = 0;
+	if (x == 3) tipojuego = 1;
+	if (x == 4) tipojuego = 0;
+	if (x == 5) tipojuego = 1;
+	if (x == 6) tipojuego = 0;
+	if (x == 7) tipojuego = 1;
 }
 
 int Coordinador::getEstado()
