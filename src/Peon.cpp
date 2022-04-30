@@ -57,7 +57,12 @@ bool Peon::movimientoLegal(Casilla* fin)
 		{
 			if (Tablero::getCasillaOcupada(x_fin, y_fin) == true)
 				return false;
-			else return true;
+			else
+			{
+				if (y_fin == 0)
+					coronacion = true;
+				return true;
+			}
 		}
 
 		////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
@@ -86,9 +91,14 @@ bool Peon::movimientoLegal(Casilla* fin)
 		////// SIGUIENTES MOVIMIENTOS: 1 CASILLA POR TURNO //////
 		if (y_fin == row - 1 && x_fin == coll)
 		{
-			if (Tablero::getCasillaOcupada(x_fin, y_fin) == true)
-				return false;
-			else return true;
+			if (Tablero::getCasillaOcupada(x_fin, y_fin) == true)					
+				return false;		
+			else
+			{
+				if (y_fin == 0)
+					coronacion = true;
+				return true;
+			}
 		}
 
 		////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
@@ -98,13 +108,5 @@ bool Peon::movimientoLegal(Casilla* fin)
 		}
 
 		else return false;  // No se cumple ninguno de los movimientos legales de los peones y por tanto, NO es un movimiento legal
-	}
-
-	//////// CORONACIÓN DEL PEÓN ///////
-	// Como el peón solo se mueve avanza hacia delante, y su casilla de inicio NO es la del final del tablero, se pueden hacer ambos colores a la vez:
-	if ((y_fin == 0 || y_fin == 7) && (x_fin == coll || ((x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true)))
-	{
-		coronacion = true;
-		return true;
 	}
 }
