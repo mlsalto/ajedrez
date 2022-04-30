@@ -9,6 +9,19 @@ Persona::Persona(char colorJugador)
 	//tipoJugador = 0;
 }
 
+void Persona::draw(int x)
+{
+	if (x == 1) {
+		player1.setPos(60, 0); // cambiar
+		player1.draw();
+	}
+	
+	if (x == 2) {
+		player2.setPos(-60, 0); // cambiar
+		player2.draw();
+	}
+}
+
 void Persona::moverPieza(int button, int state, int x, int y)
 {
 	turnoterminado = FALSE;

@@ -13,6 +13,7 @@ public:
 	Persona();
 	Persona(char colorJugador);
 
+	void draw(int x);
 	// mas cositas
 	void moverPieza(int button, int state, int x, int y);
 };
