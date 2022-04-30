@@ -31,6 +31,7 @@ private:
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
 	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
+	Sprite letrasTablero{ "recursos/numeros_y_letras.png", 0, 0, 88, 88 };
 
 	///// JUGADORES ////
 	Jugador* jugador1;
