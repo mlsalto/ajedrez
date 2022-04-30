@@ -20,23 +20,35 @@ protected:
 
 	int tipoPieza;
 
-	Sprite PeonN{ "recursos/peonN.png", pos.x, pos.y, 8, 8 };
-	Sprite PeonB{ "recursos/peonB.png", pos.x, pos.y, 8, 8 };
+	Sprite PeonN{ "recursos/piezas/peonN.png", pos.x, pos.y, 8, 8 };
+	Sprite PeonB{ "recursos/piezas/peonB.png", pos.x, pos.y, 8, 8 };
+	Sprite PeonA{ "recursos/piezas/peonA.png", pos.x, pos.y, 8, 8 };
+	Sprite PeonR{ "recursos/piezas/peonR.png", pos.x, pos.y, 8, 8 };
 
-	Sprite TorreN{ "recursos/torreN.png", pos.x, pos.y, 8, 8 };
-	Sprite TorreB{ "recursos/torreB.png", pos.x, pos.y, 8, 8 };
+	Sprite TorreN{ "recursos/piezas/torreN.png", pos.x, pos.y, 8, 8 };
+	Sprite TorreB{ "recursos/piezas/torreB.png", pos.x, pos.y, 8, 8 };
+	Sprite TorreA{ "recursos/piezas/torreA.png", pos.x, pos.y, 8, 8 };
+	Sprite TorreR{ "recursos/piezas/torreR.png", pos.x, pos.y, 8, 8 };
 
-	Sprite AlfilN{ "recursos/alfilN.png", pos.x, pos.y, 8, 8 };
-	Sprite AlfilB{ "recursos/alfilB.png", pos.x, pos.y, 8, 8 };
+	Sprite AlfilN{ "recursos/piezas/alfilN.png", pos.x, pos.y, 8, 8 };
+	Sprite AlfilB{ "recursos/piezas/alfilB.png", pos.x, pos.y, 8, 8 };
+	Sprite AlfilA{ "recursos/piezas/alfilA.png", pos.x, pos.y, 8, 8 };
+	Sprite AlfilR{ "recursos/piezas/alfilR.png", pos.x, pos.y, 8, 8 };
 
-	Sprite CaballoN{"recursos/caballoN.png", pos.x, pos.y, 8, 8};
-	Sprite CaballoB{ "recursos/caballoB.png",pos.x, pos.y, 8, 8 };
+	Sprite CaballoN{ "recursos/piezas/caballoN.png", pos.x, pos.y, 8, 8};
+	Sprite CaballoB{ "recursos/piezas/caballoB.png",pos.x, pos.y, 8, 8 };
+	Sprite CaballoA{ "recursos/piezas/caballoA.png", pos.x, pos.y, 8, 8 };
+	Sprite CaballoR{ "recursos/piezas/caballoR.png",pos.x, pos.y, 8, 8 };
 
-	Sprite ReinaN{"recursos/reinaN.png", pos.x, pos.y, 8, 8 };
-	Sprite ReinaB{ "recursos/reinaB.png",pos.x, pos.y, 8, 8 };
+	Sprite ReinaN{ "recursos/piezas/reinaN.png", pos.x, pos.y, 8, 8 };
+	Sprite ReinaB{ "recursos/piezas/reinaB.png",pos.x, pos.y, 8, 8 };
+	Sprite ReinaA{ "recursos/piezas/reinaA.png", pos.x, pos.y, 8, 8 };
+	Sprite ReinaR{ "recursos/piezas/reinaR.png",pos.x, pos.y, 8, 8 };
 
-	Sprite ReyN{ "recursos/reyN.png", pos.x, pos.y, 8, 8 };
-	Sprite ReyB{ "recursos/reyB.png", pos.x, pos.y, 8, 8 };
+	Sprite ReyN{ "recursos/piezas/reyN.png", pos.x, pos.y, 8, 8 };
+	Sprite ReyB{ "recursos/piezas/reyB.png", pos.x, pos.y, 8, 8 };
+	Sprite ReyA{ "recursos/piezas/reyA.png", pos.x, pos.y, 8, 8 };
+	Sprite ReyR{ "recursos/piezas/reyR.png", pos.x, pos.y, 8, 8 };
 
 
 public:
