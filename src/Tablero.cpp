@@ -262,8 +262,8 @@ bool Tablero::detectar_jaque_mate(char color) {
 
 			if (casillas[pos_rey_x][pos_rey_y]->getPieza()->movimientoLegal(casillas[i][j]) == true) {
 				posiciones++;
-				if (detectar_jaque(i, j) == true)
-					posiciones--;
+				//if (detectar_jaque(i, j) == true)
+				//	posiciones--;
 			}
 
 		}
