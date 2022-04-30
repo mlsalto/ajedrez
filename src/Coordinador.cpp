@@ -1,4 +1,6 @@
 #include "Coordinador.h"
+#include <ctime>
+#include <iostream>
 
 Coordinador::Coordinador()
 {
@@ -206,6 +208,25 @@ void Coordinador::dibuja()
 	}
 }
 
+bool Coordinador::tiempo(char color)
+{
+	clock_t tiempo; //inicilizar una variable del tipo clock_t -librería <ctime>
+	// siempre va al inicio de cuando queremos empezar a contar el tiempo -cuando empiecen a jugar las blancas o negras en sus respectivos turnos
+	tiempo = clock(); //asignar a tiempo el valor de la función clock();
+
+	// clock() -> es el tiempo actual del ordenador
+
+	//AQUÍ VA LA ACCIÓN QUE TIENE QUE TEMPORIZAR
+
+	//Para 'parar' el tiempo: solo resta el tiempo actual con el tiempo que se ha cogido antes del juego
+	tiempo = clock() - tiempo; 
+
+	//tiempo NO contiene en sí, la cantidad de segundos que ha pasado, contiene CLOCKS -> conversión
+	int tiempo_s = int(tiempo) / CLOCKS_PER_SEC;
+
+	return false;
+}
+
 void Coordinador::musica()
 {
 	/*if (estado == INICIO) playMusica("recursos/menu.mp3");
@@ -245,3 +266,4 @@ int Coordinador::getEstadoJuego()
 {
 	return estadojuego;
 }
+
