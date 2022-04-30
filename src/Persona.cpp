@@ -12,13 +12,21 @@ Persona::Persona(char colorJugador)
 void Persona::draw(int x)
 {
 	if (x == 1) {
-		player1.setPos(60, 0); // cambiar
+		if(color == 'B') player1.setPos(60, 0); 
+		if(color == 'N') player1.setPos(-60, 0);
 		player1.draw();
 	}
 	
 	if (x == 2) {
-		player2.setPos(-60, 0); // cambiar
+		if (color == 'B')player2.setPos(60, 0); 
+		if (color == 'N')player2.setPos(-60, 0); 
 		player2.draw();
+	}
+
+	if (x == 3) {
+		if (color == 'B')player3.setPos(60, 0);
+		if (color == 'N')player3.setPos(-60, 0);
+		player3.draw();
 	}
 }
 
