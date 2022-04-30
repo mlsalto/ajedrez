@@ -7,7 +7,7 @@ Coordinador::Coordinador()
 	estado = INICIO; 
 	estadojuego = TURNO;
 	menu_inicio = I;
-
+	tipoJuego = 1;
 	musica(); // para que suene al inicio la música
 }
 
@@ -25,9 +25,10 @@ void Coordinador::mouse(int x, int y)
 {
 	//cout << x << ',' << y << endl; //pruebas
 	if (estado == INICIO) {
-		if (x > 557 || x < 246 || y < 448 || y > 557) { setMenuInicio(0); /*no hay modo juego*/}
+		if (x > 557 || x < 246 || y < 448 || y > 610) { setMenuInicio(0); /*no hay modo juego*/}
 		else if (x < 557 && x > 246 && y < 557 && y > 510) { setMenuInicio(1); /*freeplay*/}
 		else if (x < 557 && x > 246 && y < 490 && y > 448) {setMenuInicio(2); /*storymode*/}
+		else if (x < 557 && x > 246 && y < 610 && y > 570) { setMenuInicio(3); /*opciones*/ }
 	}
 
 	if (estado == PAUSA) {}
@@ -75,9 +76,19 @@ void Coordinador::raton(int button, int state, int x, int y)
 			if (x < 557 && x > 246 && y < 490 && y > 448) {
 				// no hace nada de mometo, debería iniciar juego modo IA
 			}
+
+			if (x < 557 && x > 246 && y < 610 && y > 570){
+				estado = OPCIONES;
+				// ABRIR MENU OPCIONES
+			}
 		}
 	}
 
+	if (estado == OPCIONES) {
+
+
+
+	}
 
 	if (estado == JUEGO) {
 		tablero.ratonTablero(button, state, x, y);
@@ -119,9 +130,25 @@ void Coordinador::dibuja()
 		case STORY_MODE:
 			MenuStoryMode.setPos(0, 0);
 			MenuStoryMode.draw();
+
+		case OPTIONS:
+			MenuOpciones.setPos(0, 0);
+			MenuOpciones.draw();
 		}
 	}
-
+	if (estado == OPCIONES) {
+		switch (opciones) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		}
+	}
 	if (estado == JUEGO) {
 
 		if (estadojuego == TURNO)  { tablero.dibuja(); }
@@ -241,6 +268,7 @@ void Coordinador::setMenuInicio( int x)
 	if (x == 0) menu_inicio = I;
 	if (x == 1) menu_inicio = FREE_PLAY;
 	if (x == 2) menu_inicio = STORY_MODE;
+	if (x == 3) menu_inicio = OPTIONS;
 }
 
 void Coordinador::setMenuCoronacion(int x)
@@ -250,6 +278,11 @@ void Coordinador::setMenuCoronacion(int x)
 	if (x == 2) coronar = TORRE;
 	if (x == 3) coronar = ALFIL;
 	if (x == 4) coronar = CABALLO;
+}
+
+void Coordinador::setOpciones(int x)
+{
+	opciones = x;
 }
 
 int Coordinador::getEstado()
