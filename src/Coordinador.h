@@ -49,7 +49,7 @@ protected:
 	enum Estado { INICIO , JUEGO, PAUSA, AYUDA, FIN}; //editar los estados
 	Estado estado;
 
-	enum EstadoJuego{TURNO_BLANCAS , TURNO_NEGRAS, CORONAR, CORONAR_NEGRAS}; // para gestionar Jugadores
+	enum EstadoJuego{TURNO, TURNO_NEGRAS, CORONAR_BLANCAS, CORONAR_NEGRAS}; // para gestionar Jugadores
 	EstadoJuego estadojuego;
 
 	enum Coronar{ C, REINA, TORRE, ALFIL, CABALLO};

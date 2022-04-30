@@ -223,6 +223,7 @@ bool Tablero::detectar_jaque(char color)
 	return false;
 }
 
+
 void Tablero::eliminarPiezaT(int x, int y)
 {
 	piezas.eliminar(casillas[x][y]->getPieza());
@@ -256,4 +257,67 @@ Casilla* Tablero::getCasillaT(int x, int y)
 bool Tablero::getCasillaOcupada(int x, int y)
 {
 	return casillas[x][y]->getOcupada();
+}
+
+
+bool Tablero::getCoronacion(char color)
+{
+	for (i = 0; i < 8 ; i++)
+		for (j = 0; j < 8; j++)	{
+			if (casillas[i][j]->getTipoPieza() == 1 && casillas[i][j]->getPieza()->getColorPieza() == color) {
+				if (color == 'N')
+					if (j == 0) return true;
+				if (color == 'B')
+					if (j == 7) return true;
+		    }
+		}
+
+	return false;
+}
+
+void Tablero::setCoronacion(int tipoficha)
+{
+	int pos_peon_x = 0, pos_peon_y = 0;
+	char color = 'N';
+
+	for (i = 0; i < 8; i++)
+		for (j = 0; j < 8; j++) {
+			if (casillas[i][j]->getTipoPieza() == 1 && (j == 7 || j == 0)) {
+				if (j == 0) {
+					color = 'N';
+					pos_peon_x = i;
+					pos_peon_y = j;
+				}
+				if (j == 7) {
+					color = 'B';
+					pos_peon_x = i;
+					pos_peon_y = j;
+				}
+			}
+		}
+
+	eliminarPiezaT(pos_peon_x, pos_peon_y);
+
+	if( tipoficha == 2 ) {
+		Torre* t = new Torre(color);
+		casillas[pos_peon_x][pos_peon_y]->colocarPieza(t);
+		piezas.agregar(t);
+	}
+	if (tipoficha == 3){
+		Alfil* a = new Alfil(color);
+		casillas[pos_peon_x][pos_peon_y]->colocarPieza(a);
+		piezas.agregar(a);
+	}
+
+	if (tipoficha == 4) {
+		Caballo* c = new Caballo(color);
+		casillas[pos_peon_x][pos_peon_y]->colocarPieza(c);
+		piezas.agregar(c);
+	}
+
+	if (tipoficha == 5) {
+		Reina* q = new Reina(color);
+		casillas[pos_peon_x][pos_peon_y]->colocarPieza(q);
+		piezas.agregar(q);
+	}
 }

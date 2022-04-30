@@ -58,5 +58,8 @@ public:
 	static Casilla* getCasillaT(int x, int y);
 	static bool getCasillaOcupada(int x, int y);
 	bool detectar_jaque(char color);
+
+	bool getCoronacion(char color);
+	void setCoronacion(int tipoficha);
 };
 
