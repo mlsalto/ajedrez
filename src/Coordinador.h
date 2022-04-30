@@ -12,7 +12,15 @@ private:
 	Sprite MenuFreePlay{ "recursos/menu/M_FreePlay.png", 0, 0, 130, 80 };
 	Sprite MenuOpciones{ "recursos/menu/M_Options.png", 0, 0, 130, 80 };
 	// menu opciones
-	//Sprite Reina{};
+	Sprite QueenGam{ "recursos/menu/M_OpcionesQ.png", 0, 0, 130, 80 };
+	Sprite QueenGamH{ "recursos/menu/M_OpcionesQH.png", 0, 0, 130, 80 };
+	Sprite QueenGamE{ "recursos/menu/M_OpcionesQE.png", 0, 0, 130, 80 };
+	Sprite QueenGamHE{ "recursos/menu/M_OpcionesQHE.png", 0, 0, 130, 80 };
+	Sprite KingGam{ "recursos/menu/M_OpcionesK.png", 0, 0, 130, 80 };
+	Sprite KingGamH{ "recursos/menu/M_OpcionesKH.png", 0, 0, 130, 80 };
+	Sprite KingGamE{ "recursos/menu/M_OpcionesKE.png", 0, 0, 130, 80 };
+	Sprite KingGamHE{ "recursos/menu/M_OpcionesKHE.png", 0, 0, 130, 80 };
+
 	// coronaciones blancas //
 	Sprite MenuCoronar_B{"recursos/menu/M_CoronacionB.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarReina_B{ "recursos/menu/M_CoronacionReinaB.png", 0 , 0,40 ,60 };
@@ -53,9 +61,7 @@ public:
 protected:
 	Tablero tablero;
 
-	int tipoJuego; // queensgambit(0), kingsgambit(1)
-
-	int opciones; // Q(0) K(1) Q+H(3) K+H(4) Q+E(5) K+E(6) Q+H+E(7) K+H+E(8)
+	int opciones; // Q(0) K(1) Q+H(2) K+H(3) Q+E(4) K+E(5) Q+H+E(6) K+H+E(7)
 
 	enum Estado { INICIO, OPCIONES , JUEGO, PAUSA, AYUDA, FIN}; //editar los estados
 	Estado estado;
