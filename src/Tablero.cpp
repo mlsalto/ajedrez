@@ -154,8 +154,8 @@ void Tablero::dibuja()
 {
 	//el tablero tiene que dibujarse el último para dibujarse detrás y que no
 	//tape a las figuras
-	jugador1->draw(1);
-	jugador2->draw(2);
+	jugador1->draw(2); // blancas
+	jugador2->draw(3); // negras
 
 	piezas.draw();
 
