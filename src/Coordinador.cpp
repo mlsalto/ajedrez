@@ -7,7 +7,7 @@ Coordinador::Coordinador()
 	estado = INICIO; 
 	estadojuego = TURNO;
 	menu_inicio = I;
-	tipoJuego = 1;
+	opciones = 2;
 	musica(); // para que suene al inicio la música
 }
 
@@ -29,6 +29,21 @@ void Coordinador::mouse(int x, int y)
 		else if (x < 557 && x > 246 && y < 557 && y > 510) { setMenuInicio(1); /*freeplay*/}
 		else if (x < 557 && x > 246 && y < 490 && y > 448) {setMenuInicio(2); /*storymode*/}
 		else if (x < 557 && x > 246 && y < 610 && y > 570) { setMenuInicio(3); /*opciones*/ }
+	}
+
+	if (estado == OPCIONES) {
+		if (x > 378 || x < 287 || y < 601 || y > 642) {  /*no hay modo opciones*/ 
+			if (opciones == 4)setOpciones(0);
+			if (opciones == 5)setOpciones(1);
+			if (opciones == 6)setOpciones(2);
+			if (opciones == 7)setOpciones(3);
+		}
+		else if (x < 378 && x > 287 && y < 642 && y > 601) { /*exit*/
+			if (opciones == 0)setOpciones(4);
+			if (opciones == 1)setOpciones(5);
+			if (opciones == 2)setOpciones(6);
+			if (opciones == 3)setOpciones(7);
+		}
 	}
 
 	if (estado == PAUSA) {}
@@ -73,21 +88,50 @@ void Coordinador::raton(int button, int state, int x, int y)
 				musica(); // para actualziar musica
 			}
 
-			if (x < 557 && x > 246 && y < 490 && y > 448) {
+			else if (x < 557 && x > 246 && y < 490 && y > 448) {
 				// no hace nada de mometo, debería iniciar juego modo IA
 			}
 
-			if (x < 557 && x > 246 && y < 610 && y > 570){
+			else if (x < 557 && x > 246 && y < 610 && y > 570){
 				estado = OPCIONES;
-				// ABRIR MENU OPCIONES
 			}
 		}
 	}
 
 	if (estado == OPCIONES) {
-
-
-
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+			if (x > 730 || x < 287 || y < 191 || y > 642) {  /*no hay modo opciones*/ }
+			else if (x < 730 && x > 377 && y < 231 && y > 191) { /*queens*/ 
+				if (opciones == 1)setOpciones(0); 
+				if (opciones == 3)setOpciones(2);
+				if (opciones == 5)setOpciones(4); 
+				if (opciones == 7)setOpciones(6);
+			}
+			else if (x < 730 && x > 377 && y < 307 && y > 264) { /*kings*/ 
+				if (opciones == 0)setOpciones(1);
+				if (opciones == 2)setOpciones(3);
+				if (opciones == 4)setOpciones(5);
+				if (opciones == 6)setOpciones(7);
+			}
+			else if (x < 440 && x > 377 && y < 480 && y > 452) { /*on*/
+				if (opciones == 0)setOpciones(2);
+				if (opciones == 1)setOpciones(3);
+				if (opciones == 4)setOpciones(6);
+				if (opciones == 5)setOpciones(7);
+			}
+			else if (x < 440 && x > 377 && y < 531 && y > 496) { /*off*/
+				if (opciones == 2)setOpciones(0);
+				if (opciones == 3)setOpciones(1);
+				if (opciones == 6)setOpciones(4);
+				if (opciones == 7)setOpciones(5);
+			}
+			else if (x < 378 && x > 287 && y < 642 && y > 601) { /*exit*/
+				if (opciones == 0)setOpciones(4);
+				if (opciones == 1)setOpciones(5);
+				if (opciones == 2)setOpciones(6);
+				if (opciones == 3)setOpciones(7);
+			}
+		}
 	}
 
 	if (estado == JUEGO) {
@@ -102,7 +146,6 @@ void Coordinador::raton(int button, int state, int x, int y)
 				else if (x < 760 && x > 600 && y < 593 && y > 553) { tablero.setCoronacion(5); estadojuego = TURNO;/*REINA*/ }
 			}
 		}
-
 
 		if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
 		else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
@@ -136,19 +179,44 @@ void Coordinador::dibuja()
 			MenuOpciones.draw();
 		}
 	}
+
 	if (estado == OPCIONES) {
-		//switch (opciones) {
-		//case 0:
-		//case 1:
-		//case 2:
-		//case 3:
-		//case 4:
-		//case 5:
-		//case 6:
-		//case 7:
-		//case 8:
-		//}
+
+		switch (opciones) {
+		case 0:
+			QueenGam.setPos(0, 0);
+			QueenGam.draw();
+
+		case 1:
+			KingGam.setPos(0, 0);
+			KingGam.draw();
+
+		case 2:
+			QueenGamH.setPos(0, 0);
+			QueenGamH.draw();
+
+		case 3:
+			KingGamH.setPos(0, 0);
+			KingGamH.draw();
+
+		case 4:
+			QueenGamE.setPos(0, 0);
+			QueenGamE.draw();
+
+		case 5:
+			KingGamE.setPos(0, 0);
+			KingGamE.draw();
+
+		case 6:
+			QueenGamHE.setPos(0, 0);
+			QueenGamHE.draw();
+
+		case 7:
+			KingGamHE.setPos(0, 0);
+			KingGamHE.draw();
+		}
 	}
+
 	if (estado == JUEGO) {
 
 		if (estadojuego == TURNO)  { tablero.dibuja(); }
