@@ -59,7 +59,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 				return false;
 			else
 			{
-				if (y_fin == 0)
+				if (y_fin == 7)
 					coronacion = true;
 				return true;
 			}

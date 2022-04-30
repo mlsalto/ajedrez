@@ -3,7 +3,7 @@
 Coordinador::Coordinador()
 {
 	estado = INICIO; 
-	estadojuego = TURNO_BLANCAS;
+	estadojuego = TURNO;
 	menu_inicio = I;
 
 	musica(); // para que suene al inicio la música
@@ -30,7 +30,7 @@ void Coordinador::mouse(int x, int y)
 
 	if (estado == PAUSA) {}
 
-	if (estadojuego == CORONAR) {
+	if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
 		if (x > 760 || x < 600 || y < 254 || y > 593) { setMenuCoronacion(0); /*no hay modo coronar*/ }
 		else if (x < 760 && x > 600 && y < 289 && y > 254) { setMenuCoronacion(3); /*ALFIL*/ }
 		else if (x < 760 && x > 600 && y < 391 && y > 353) { setMenuCoronacion(4); /*CABALLO*/ }
@@ -79,6 +79,20 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 	if (estado == JUEGO) {
 		tablero.ratonTablero(button, state, x, y);
+
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+			if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
+				if (x > 760 || x < 600 || y < 254 || y > 593) {  /*no hay modo coronar*/ }
+				else if (x < 760 && x > 600 && y < 289 && y > 254) { tablero.setCoronacion(3); estadojuego = TURNO;/*ALFIL*/ }
+				else if (x < 760 && x > 600 && y < 391 && y > 353) { tablero.setCoronacion(4); estadojuego = TURNO; /*CABALLO*/ }
+				else if (x < 760 && x > 600 && y < 494 && y > 455) { tablero.setCoronacion(2); estadojuego = TURNO;/*TORRE*/ }
+				else if (x < 760 && x > 600 && y < 593 && y > 553) { tablero.setCoronacion(5); estadojuego = TURNO;/*REINA*/ }
+			}
+		}
+
+
+		if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
+		else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
 	}
 
 	if (estado == PAUSA) {
@@ -108,35 +122,62 @@ void Coordinador::dibuja()
 
 	if (estado == JUEGO) {
 
-		if (estadojuego == CORONAR) {
+		if (estadojuego == TURNO)  { tablero.dibuja(); }
+
+		if (estadojuego == CORONAR_BLANCAS) {
 
 			switch (coronar)
 			{
 				// HAY QUE PONERLO SEGÚN EL COLOR DEL JUGADOR
 			case C:
-			MenuCoronar_B.setPos(0, 0);
-			MenuCoronar_B.draw();
+				MenuCoronar_B.setPos(0, 0);
+				MenuCoronar_B.draw();
 
 			case REINA:
-			MenuCoronarReina_B.setPos(0, 0);
-			MenuCoronarReina_B.draw();
+				MenuCoronarReina_B.setPos(0, 0);
+				MenuCoronarReina_B.draw();
 
 			case TORRE:
-            MenuCoronarTorre_B.setPos(0, 0);
-			MenuCoronarTorre_B.draw();
+				MenuCoronarTorre_B.setPos(0, 0);
+				MenuCoronarTorre_B.draw();
 
 			case ALFIL:
-			MenuCoronarAlfil_B.setPos(0, 0);
-			MenuCoronarAlfil_B.draw();
+				MenuCoronarAlfil_B.setPos(0, 0);
+				MenuCoronarAlfil_B.draw();
 
 			case CABALLO:
-			MenuCoronarCaballo_B.setPos(0, 0);
-			MenuCoronarCaballo_B.draw();
-				
-			}
+				MenuCoronarCaballo_B.setPos(0, 0);
+				MenuCoronarCaballo_B.draw();
 
+			}
 		}
 
+		if (estadojuego == CORONAR_NEGRAS) {
+
+			switch (coronar)
+			{
+				// HAY QUE PONERLO SEGÚN EL COLOR DEL JUGADOR
+			case C:
+				MenuCoronar_N.setPos(0, 0);
+				MenuCoronar_N.draw();
+
+			case REINA:
+				MenuCoronarReina_N.setPos(0, 0);
+				MenuCoronarReina_N.draw();
+
+			case TORRE:
+				MenuCoronarTorre_N.setPos(0, 0);
+				MenuCoronarTorre_N.draw();
+
+			case ALFIL:
+				MenuCoronarAlfil_N.setPos(0, 0);
+				MenuCoronarAlfil_N.draw();
+
+			case CABALLO:
+				MenuCoronarCaballo_N.setPos(0, 0);
+				MenuCoronarCaballo_N.draw();
+			}
+		}
 		tablero.dibuja();
 	}
 
