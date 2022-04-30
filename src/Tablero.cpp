@@ -190,25 +190,51 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 }
 
 //En tu turno, compruebas si puedes hacer jaque al contrincante
-bool Tablero::detectar_jaque(int pos_rey_x, int pos_rey_y) {
-
-
+int Tablero::detectar_jaque() {
 	int i, j;
+	int pos_rey_N_x, pos_rey_N_y, pos_rey_B_x, pos_rey_B_y;
 
+	int jaque; // no hay jaque(0)  hay jaque negro(1)  hay jaque blanco(2)
 	//bucle anidado para recorrer el tablero y comprobar si alguna pieza puede hacer jaque a la posición actual del rey
+
+	for (i = 0; i < 8; i++)
+		for (j = 0; j < 8; j++)
+		{
+			if (casillas[i][j]->getTipoPieza() == 6)
+			{
+				if(casillas[i][j]->getPieza()->getColorPieza() == 'N') //rey negro
+				{
+				    pos_rey_N_x = Tablero::getCasillaT(i, j)->getColumna();
+				    pos_rey_N_y = Tablero::getCasillaT(i, j)->getFila();
+				}
+
+				if (casillas[i][j]->getPieza()->getColorPieza() == 'B') // rey blanco
+				{
+				    pos_rey_B_x = Tablero::getCasillaT(i, j)->getColumna();
+					pos_rey_B_y = Tablero::getCasillaT(i, j)->getFila();
+				}
+			}
+		}
+
 	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++)
 		{
-			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_x][pos_rey_y]) == true)
+			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_N_x][pos_rey_N_y]) == true)
+			{
+				jaque = 1;
+			}
 
-				return true;
+			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_B_x][pos_rey_B_y]) == true)
+			{
+				jaque = 2;
+			}
 
-
-
+			else jaque = 0;
 		}
 	}
-	return false;
+
+	return jaque;
 }
 
 bool Tablero::detectar_jaque_mate(char color) {

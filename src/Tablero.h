@@ -58,7 +58,7 @@ public:
 	static int getTipoPiezasT(int x, int y);
 	static Casilla* getCasillaT(int x, int y);
 	static bool getCasillaOcupada(int x, int y);
-	bool detectar_jaque(int pos_rey_x, int pos_rey_y);
+	int detectar_jaque();
 	bool detectar_jaque_mate(char color);
 
 	bool getCoronacion(char color);

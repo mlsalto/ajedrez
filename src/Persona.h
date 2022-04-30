@@ -16,5 +16,8 @@ public:
 	void draw(int x);
 	// mas cositas
 	void moverPieza(int button, int state, int x, int y);
+
+
+	void funciondejaqueturno();
 };
 

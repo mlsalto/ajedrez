@@ -194,3 +194,25 @@ void Persona::moverPieza(int button, int state, int x, int y)
 		
 	}
 }
+
+void Persona::funciondejaqueturno()
+{
+	int i, j;
+	Casilla* copia_tablero[8][8];
+	int pos_pieza_x, pos_pieza_y;
+	int posinix, posiniy;
+	Pieza* pieza_prueba;
+
+	int i, j, pos_rey_x, pos_rey_y, posiciones = 0;
+
+	for (i = 0; i < 8 ; i++)
+		for (j = 0; j < 8; j++)
+			copia_tablero[i][j] = Tablero::getCasillaT(i, j);
+	
+	copia_tablero[pos_pieza_x][pos_pieza_y]->colocarPieza(pieza_prueba);
+	copia_tablero[posinix][posiniy]->colocarPieza(0);
+
+	for (i = 0; i < 8; i++)
+		for (j = 0; j < 8; j++)
+			if()
+}
