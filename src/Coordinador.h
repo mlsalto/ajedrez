@@ -2,6 +2,7 @@
 #include "Tablero.h"
 #include "Persona.h"
 #include "Jugador.h"
+
 class Coordinador
 {
 private:
@@ -34,6 +35,7 @@ public:
 	void musica();
 	void mueve();
 	void dibuja();
+	bool tiempo(char color);
 
 	// setters //
 	void setMenuInicio(int x);
