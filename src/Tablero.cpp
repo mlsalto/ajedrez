@@ -190,51 +190,38 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 }
 
 //En tu turno, compruebas si puedes hacer jaque al contrincante
-int Tablero::detectar_jaque() {
+bool Tablero::detectar_jaque(char color) {
 	int i, j;
-	int pos_rey_N_x, pos_rey_N_y, pos_rey_B_x, pos_rey_B_y;
-
-	int jaque; // no hay jaque(0)  hay jaque negro(1)  hay jaque blanco(2)
+	int pos_rey_x, pos_rey_y;
 	//bucle anidado para recorrer el tablero y comprobar si alguna pieza puede hacer jaque a la posición actual del rey
+	bool rey = false;
 
-	for (i = 0; i < 8; i++)
+	for (i = 0; i < 8 && rey == false; i++)
+	{
 		for (j = 0; j < 8; j++)
 		{
-			if (casillas[i][j]->getTipoPieza() == 6)
+			if (casillas[i][j]->getTipoPieza() == 6 && casillas[i][j]->getPieza()->getColorPieza() == color)
 			{
-				if(casillas[i][j]->getPieza()->getColorPieza() == 'N') //rey negro
-				{
-				    pos_rey_N_x = Tablero::getCasillaT(i, j)->getColumna();
-				    pos_rey_N_y = Tablero::getCasillaT(i, j)->getFila();
-				}
-
-				if (casillas[i][j]->getPieza()->getColorPieza() == 'B') // rey blanco
-				{
-				    pos_rey_B_x = Tablero::getCasillaT(i, j)->getColumna();
-					pos_rey_B_y = Tablero::getCasillaT(i, j)->getFila();
-				}
+				pos_rey_x = casillas[i][j]->getColumna();
+				pos_rey_y = casillas[i][j]->getFila();
+				rey = true;
 			}
 		}
+	}
+
 
 	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++)
 		{
-			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_N_x][pos_rey_N_y]) == true)
+			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_x][pos_rey_y]) == true)
 			{
-				jaque = 1;
+				return true;
 			}
-
-			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_B_x][pos_rey_B_y]) == true)
-			{
-				jaque = 2;
-			}
-
-			else jaque = 0;
 		}
 	}
 
-	return jaque;
+	return false;
 }
 
 bool Tablero::detectar_jaque_mate(char color) {
@@ -279,6 +266,11 @@ bool Tablero::detectar_jaque_mate(char color) {
 void Tablero::eliminarPiezaT(int x, int y)
 {
 	piezas.eliminar(casillas[x][y]->getPieza());
+}
+
+void Tablero::eliminarPieza(Pieza * pieza)
+{
+	piezas.eliminar(pieza);
 }
 
 void Tablero::setJugador1(Jugador* j)

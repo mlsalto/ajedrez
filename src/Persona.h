@@ -7,6 +7,7 @@ class Persona :public Jugador
 private:
 	bool seleccionpieza = FALSE;
 	Pieza* piezaini;
+	Pieza* piezafin;
 	int posinix, posiniy;
 
 public:
