@@ -15,13 +15,25 @@ Alfil::Alfil(char colorEquipo) {
 
 void Alfil::draw()
 {
-	if (color == 'B') {
-		AlfilB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
-		AlfilB.draw();
+	if (Tablero::getTipoJuego() == true) {
+		if (color == 'B') {
+			AlfilB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			AlfilB.draw();
+		}
+		else if (color == 'N') {
+			AlfilA.setPos(pos.x, pos.y);
+			AlfilA.draw();
+		}
 	}
-	else if (color == 'N') {
-		AlfilN.setPos(pos.x, pos.y);
-		AlfilN.draw();
+	if (Tablero::getTipoJuego() == false) {
+		if (color == 'B') {
+			AlfilR.setPos(pos.x, pos.y); 
+			AlfilR.draw();
+		}
+		else if (color == 'N') {
+			AlfilN.setPos(pos.x, pos.y);
+			AlfilN.draw();
+		}
 	}
 }
 

@@ -29,7 +29,7 @@ private:
 	bool turno = TRUE; // blancas(1)   negras(0)
 	bool turnoterminado = FALSE;
 	bool finturno = false;
-	//int pasada = 0;
+
 	
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
@@ -40,6 +40,8 @@ private:
 	Jugador* jugador1;
 	Jugador* jugador2;
 
+	///// MODO JUEGO ////
+	static bool tipojuego; // queens(false)  kings(true)
 
 public:
 	Tablero();
@@ -63,7 +65,7 @@ public:
 	static int getTipoPiezasT(int x, int y);
 	static Casilla* getCasillaT(int x, int y);
 	static bool getCasillaOcupada(int x, int y);
-
+	static bool getTipoJuego();
 	bool getTurnoAcabado();
 
 	static bool detectar_jaque(char color);
@@ -71,5 +73,7 @@ public:
 
 	bool getCoronacion(char color);
 	void setCoronacion(int tipoficha);
+
+	void setTipoJuego(bool x);
 };
 

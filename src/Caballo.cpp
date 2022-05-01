@@ -14,14 +14,29 @@ Caballo::Caballo(char colorEquipo)
 
 void Caballo::draw()
 {
-	if (color == 'B') {
-		CaballoB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
-		CaballoB.draw();
+	if (Tablero::getTipoJuego() == true) {
+
+		if (color == 'B') {
+			CaballoB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			CaballoB.draw();
+		}
+		else if (color == 'N') {
+			CaballoA.setPos(pos.x, pos.y);
+			CaballoA.draw();
+		}
 	}
-	else if (color == 'N') {
-		CaballoN.setPos(pos.x, pos.y);
-		CaballoN.draw();
-	}
+
+	else if (Tablero::getTipoJuego() == false) {
+
+		if (color == 'B') {
+			CaballoR.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			CaballoR.draw();
+		}
+		else if (color == 'N') {
+			CaballoN.setPos(pos.x, pos.y);
+			CaballoN.draw();
+		}
+	}  
 }
 
 bool Caballo::movimientoLegal(Casilla* fin)

@@ -3,6 +3,7 @@
 
 Casilla* Tablero::casillas[8][8];
 ListaPiezas Tablero::piezas;
+bool Tablero::tipojuego;
 
 Tablero::Tablero(){}
 
@@ -311,9 +312,19 @@ bool Tablero::getCasillaOcupada(int x, int y)
 	return casillas[x][y]->getOcupada();
 }
 
+bool Tablero::getTipoJuego()
+{
+	return tipojuego;
+}
+
 bool Tablero::getTurnoAcabado()
 {
 	return finturno;
+}
+
+void Tablero::setTipoJuego(bool x)
+{
+	 tipojuego = x;
 }
 
 bool Tablero::getCoronacion(char color)
