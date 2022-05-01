@@ -175,15 +175,18 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		jugador1->moverPieza(button, state, x, y);
 		if (jugador1->turnoTerminado() == TRUE)
 		{
+			//if(Tablero::detectar_jaque('B') == true)
 			turno = FALSE;
 		}
 	}
 
 	if (turno == FALSE)
 	{
+		turnoterminado = FALSE;
 		jugador2->moverPieza(button, state, x, y);
 		if (jugador2->turnoTerminado() == TRUE)
 		{
+		    //if (Tablero::detectar_jaque('B') == true)
 			turno = TRUE;
 		}
 	}
@@ -262,6 +265,12 @@ bool Tablero::detectar_jaque_mate(char color) {
 	else return false;
 }
 
+void Tablero::mueve(float t)
+{
+
+//posicionx = posicionx - 60 * t;
+	
+}
 
 void Tablero::eliminarPiezaT(int x, int y)
 {
@@ -303,6 +312,12 @@ bool Tablero::getCasillaOcupada(int x, int y)
 	return casillas[x][y]->getOcupada();
 }
 
+bool Tablero::getTurnoAcabado()
+{
+	if (turno == FALSE && jugador1->turnoTerminado()) return true;
+	else if (turno == TRUE && jugador2->turnoTerminado()) return true;
+	else return false;
+}
 
 bool Tablero::getCoronacion(char color)
 {

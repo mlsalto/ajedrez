@@ -5,7 +5,7 @@
 Coordinador::Coordinador()
 {
 	estado = INICIO; 
-	estadojuego = TURNO;
+	estadojuego == JAQUE;
 	menu_inicio = I;
 
 	// opciones
@@ -244,7 +244,16 @@ void Coordinador::dibuja()
 
 	if (estado == JUEGO) {
 
-		if (estadojuego == TURNO)  { tablero.dibuja(); }
+		if (estadojuego == TURNO)  { 
+			tablero.dibuja();
+		}
+
+		if (estadojuego == JAQUE) {
+			Jaque.setPos(posicionx, 0);
+			Jaque.draw();
+			tablero.dibuja();
+		}
+
 
 		if (estadojuego == CORONAR_BLANCAS) {
 
@@ -354,7 +363,13 @@ void Coordinador::musica()
 	
 }
 
-void Coordinador::mueve(){}
+void Coordinador::mueve(float t)
+{
+	if (estadojuego == JAQUE)
+	{
+		tablero.mueve(t);
+	}
+}
 
 void Coordinador::setMenuInicio( int x)
 {

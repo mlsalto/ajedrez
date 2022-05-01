@@ -174,6 +174,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 					else if (Tablero::detectar_jaque(color) == false)
 					{
 						Tablero::eliminarPieza(piezafin); //elimina pieza
+
 						// dibujar casillas legales
 						for (i = 0; i < 8; i++)
 							for (j = 0; j < 8; j++) {
