@@ -7,7 +7,7 @@ class Jugador
 protected:
 	char color;
 	//int tipoJugador; // 0 es persona 1 es IA
-	bool turnoterminado = FALSE;
+	 bool turnoterminado = FALSE;
 
 	Sprite player1{ "recursos/jugadores/beth.png", 0, 0, 28,40 };
 	Sprite player2{ "recursos/jugadores/señor1.png", 0, 0, 28,40 };
@@ -22,6 +22,6 @@ public:
 
 	int getPuntos(char colorJugador, Casilla* c);
 	virtual void moverPieza(int button, int state, int x, int y); // el int x de momento, ya se irá cambiando
-	bool turnoTerminado();
+    bool turnoTerminado();
 };
 

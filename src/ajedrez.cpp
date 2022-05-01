@@ -92,4 +92,10 @@ void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 void OnTimer(int value)
 {
 	//poner aqui el código de animacion
+	//poner aqui el código de animacion
+	coordinador.mueve(0.025);
+
+	//no borrar estas lineas
+	glutTimerFunc(25, OnTimer, 0);
+	glutPostRedisplay();
 }

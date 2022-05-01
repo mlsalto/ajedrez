@@ -27,7 +27,9 @@ private:
 
 	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////;
 	bool turno = TRUE; // blancas(1)   negras(0)
-
+	bool turnoterminado = FALSE;
+	//int pasada = 0;
+	
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
 	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
@@ -53,12 +55,16 @@ public:
 	void setJugador1(Jugador* j );
 	void setJugador2(Jugador* j);
 	//////////////////////////
+	void mueve(float t);
 
 	// getters //
 	static Pieza* getPiezasT(int x, int y);
 	static int getTipoPiezasT(int x, int y);
 	static Casilla* getCasillaT(int x, int y);
 	static bool getCasillaOcupada(int x, int y);
+
+	bool getTurnoAcabado();
+
 	static bool detectar_jaque(char color);
 	bool detectar_jaque_mate(char color);
 

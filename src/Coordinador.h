@@ -6,6 +6,11 @@
 class Coordinador
 {
 private:
+
+	// PRUEBAS //
+	Sprite Jaque{ "recursos/CHECK.png", 0, 0, 150, 90 };
+	////////////
+	
 	// menu inicial gambito dama
 	Sprite MenuInicial{ "recursos/menu/Menu.png", 0, 0, 130, 80 };
 	Sprite MenuStoryMode{ "recursos/menu/M_StoryMode.png", 0, 0, 130, 80 };
@@ -51,7 +56,7 @@ public:
 	void tecla(unsigned char key);
 	void raton(int button, int state, int x, int y);
 	void musica();
-	void mueve();
+	void mueve(float t);
 	void dibuja();
 	bool tiempo(char color);
 
@@ -67,6 +72,10 @@ public:
 
 protected:
 	Tablero tablero;
+	// variables animacion //
+	float posicionx = 100;
+	int parada;
+	//////////////////////////
 
 	/// variables menu opciones //
 	int opciones; // Q(0) K(1) Q+H(2) K+H(3) Q+E(4) K+E(5) Q+H+E(6) K+H+E(7)
@@ -78,7 +87,7 @@ protected:
 	enum Estado { INICIO, OPCIONES , JUEGO, PAUSA, AYUDA, FIN}; //editar los estados
 	Estado estado;
 
-	enum EstadoJuego{TURNO, TURNO_NEGRAS, CORONAR_BLANCAS, CORONAR_NEGRAS}; // para gestionar Jugadores
+	enum EstadoJuego{TURNO, TURNO_NEGRAS, JAQUE, CORONAR_BLANCAS, CORONAR_NEGRAS}; // para gestionar Jugadores
 	EstadoJuego estadojuego;
 
 	enum Coronar{ C, REINA, TORRE, ALFIL, CABALLO};
