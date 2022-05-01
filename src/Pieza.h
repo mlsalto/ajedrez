@@ -20,6 +20,8 @@ protected:
 
 	int tipoPieza;
 
+	bool enroque = false;
+
 	Sprite PeonN{ "recursos/piezas/peonN.png", pos.x, pos.y, 8, 8 };
 	Sprite PeonB{ "recursos/piezas/peonB.png", pos.x, pos.y, 8, 8 };
 	Sprite PeonA{ "recursos/piezas/peonA.png", pos.x, pos.y, 8, 8 };
@@ -65,9 +67,11 @@ public:
 
 	void setPos(int x, int y);
 	void setCasilla(Casilla* c);
+	void setEnroque(bool x);
 
 	int getTipoPieza();
 	char getColorPieza(); //devuelve el color blanco o negro
 	Casilla* getCasilla();
+	bool getEnroque();
 };
 

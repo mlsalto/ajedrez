@@ -33,6 +33,11 @@ void Pieza::setCasilla(Casilla* c)
 	casilla = c;
 }
 
+void Pieza::setEnroque(bool x)
+{
+	enroque = true;
+}
+
 int Pieza::getTipoPieza()
 {
 	return tipoPieza;
@@ -46,4 +51,9 @@ char Pieza::getColorPieza()
 Casilla* Pieza::getCasilla()
 {
 	return casilla;
+}
+
+bool Pieza::getEnroque()
+{
+	return enroque;
 }
