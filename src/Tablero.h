@@ -28,6 +28,7 @@ private:
 	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////;
 	bool turno = TRUE; // blancas(1)   negras(0)
 	bool turnoterminado = FALSE;
+	bool finturno = false;
 	//int pasada = 0;
 	
 	///////// ELEMENTOS DE DIBUJO //////////

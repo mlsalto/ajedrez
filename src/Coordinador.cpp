@@ -149,6 +149,15 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 		}
 
+		if (tablero.getTurnoAcabado() == true)
+		{
+			if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque('B') == true)
+			{
+				estadojuego = JAQUE;
+				posicionx = 100;
+			}
+		}
+
 		if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
 		else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
 	}
@@ -367,7 +376,10 @@ void Coordinador::mueve(float t)
 {
 	if (estadojuego == JAQUE)
 	{
-		tablero.mueve(t);
+		posicionx = posicionx - 60 * t;	
+
+		if (posicionx < -100) estadojuego == TURNO;
+		//tablero.mueve(t);
 	}
 }
 
