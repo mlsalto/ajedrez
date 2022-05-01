@@ -12,6 +12,12 @@ Tablero::Tablero(){}
 
 void Tablero::nuevoTablero()
 {
+	// inicializacion valores //
+	turno = TRUE; // blancas(1)   negras(0)
+	turnoterminado = FALSE;
+	finturno = false;
+
+	// casillas
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
 			casillas[i][j] = new Casilla(i, j);
@@ -288,6 +294,15 @@ void Tablero::eliminarPiezaT(int x, int y)
 void Tablero::eliminarPieza(Pieza * pieza)
 {
 	piezas.eliminar(pieza);
+}
+
+void Tablero::eliminarTablero()
+{
+	int i , j;
+
+	for (i = 0; i < 8; i++)
+		for (j = 0; j < 8; j++)
+			piezas.eliminar(casillas[i][j]->getPieza());
 }
 
 void Tablero::setJugador1(Jugador* j)

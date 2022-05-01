@@ -52,7 +52,13 @@ void Coordinador::mouse(int x, int y)
 		}
 	}
 
-	if (estado == PAUSA) {}
+	if (estadojuego == PAUSA) {
+		if (x > 737 || x < 498 || y < 329 || y > 539) { setMenuAyuda(0); /*no hay modo ayuda*/ }
+		else if (x < 643 && x > 498 && y < 370 && y > 329) { setMenuAyuda(1); /*resume*/ }
+		else if (x < 643 && x > 498 && y < 452 && y > 380) { setMenuAyuda(2); /*restart*/ }
+		else if (x < 737 && x > 498 && y < 481 && y > 462) { setMenuAyuda(3); /*back to*/ }
+		else if (x < 524 && x > 498 && y < 539 && y > 507) { setMenuAyuda(4); /*exit*/ }
+	}
 
 	if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
 		if (x > 760 || x < 600 || y < 254 || y > 593) { setMenuCoronacion(0); /*no hay modo coronar*/ }
@@ -66,12 +72,7 @@ void Coordinador::mouse(int x, int y)
 void Coordinador::tecla(unsigned char key)
 {
 	if (estado == JUEGO) {
-		switch (key) {
-		case 'P':
-			estado = PAUSA;
-		case 'H':
-			estado = AYUDA;
-		}
+		if (key == 'p' || key == 'P') { estadojuego = PAUSA; }
 	}
 }
 
@@ -148,8 +149,17 @@ void Coordinador::raton(int button, int state, int x, int y)
 				else if (x < 760 && x > 600 && y < 494 && y > 455) { tablero.setCoronacion(2); estadojuego = TURNO;/*TORRE*/ }
 				else if (x < 760 && x > 600 && y < 593 && y > 553) { tablero.setCoronacion(5); estadojuego = TURNO;/*REINA*/ }
 			}
+
+			if (estadojuego == PAUSA) {
+				if (x > 737 || x < 498 || y < 329 || y > 539) {  /*no hay modo ayuda*/ }
+				else if (x < 643 && x > 498 && y < 370 && y > 329) { estadojuego = TURNO; /*resume*/ }
+				else if (x < 643 && x > 498 && y < 452 && y > 380) { tablero.eliminarTablero(); tablero.nuevoTablero(); estadojuego = TURNO;/*restart*/ } 
+				else if (x < 737 && x > 498 && y < 481 && y > 462) { tablero.eliminarTablero(); estado = INICIO; estadojuego = TURNO;/*back to*/ } 
+				else if (x < 524 && x > 498 && y < 539 && y > 507) { exit(0);/*exit*/ }
+			}
 		}
 
+	
 		if (tablero.getTurnoAcabado() == true)
 		{
 			if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque('B') == true)
@@ -258,6 +268,28 @@ void Coordinador::dibuja()
 			tablero.dibuja();
 		}
 
+		if (estadojuego == PAUSA) {
+			switch (help) 
+			{
+			case 0:
+				PausaM.setPos(0, 0);
+				PausaM.draw();
+			case 1:
+				PausaResume.setPos(0, 0);
+				PausaResume.draw();
+			case 2:
+				PausaRestart.setPos(0, 0);
+				PausaRestart.draw();
+			case 3:
+				PausaBack.setPos(0, 0);
+				PausaBack.draw();
+			case 4:
+				PausaExit.setPos(0, 0);
+				PausaExit.draw();
+			}
+			tablero.dibuja();
+		}
+
 		if (estadojuego == JAQUE) {
 			Jaque.setPos(posicionx, 0);
 			Jaque.draw();
@@ -320,25 +352,6 @@ void Coordinador::dibuja()
 			}
 		}
 		tablero.dibuja();
-	}
-
-	if (estado == PAUSA) {
-		// dibujar el menu de la pausa
-		
-		//switch (menu_pausa)
-		//{
-		//case P:
-
-		//case NEW_GAME:
-
-		//case BACK_TO_GAME:
-
-		//case BACK_TO_MENU:
-
-		//case EXIT:
-
-		//}
-
 	}
 
 	if (estado == FIN) {
@@ -413,6 +426,11 @@ void Coordinador::setOpciones(int x)
 	if (x == 5) { tipojuego = 1; tablero.setTipoJuego(false); }
 	if (x == 6) { tipojuego = 0; tablero.setTipoJuego(true); }
 	if (x == 7) { tipojuego = 1; tablero.setTipoJuego(false); }
+}
+
+void Coordinador::setMenuAyuda(int x)
+{
+	help = x;
 }
 
 int Coordinador::getEstado()

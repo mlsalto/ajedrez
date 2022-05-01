@@ -26,9 +26,9 @@ private:
 	int i, j;
 
 	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////;
-	bool turno = TRUE; // blancas(1)   negras(0)
-	bool turnoterminado = FALSE;
-	bool finturno = false;
+	bool turno; // blancas(1)   negras(0)
+	bool turnoterminado;
+	bool finturno;
 
 	
 	///////// ELEMENTOS DE DIBUJO //////////
@@ -55,7 +55,7 @@ public:
 
 	static void eliminarPiezaT(int x, int y);
 	static void eliminarPieza(Pieza* pieza);
-
+	static void eliminarTablero();
 	//////// PRUEBAS /////////
 	void setJugador1(Jugador* j );
 	void setJugador2(Jugador* j);
