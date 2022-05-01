@@ -12,15 +12,29 @@ Reina::Reina(char colorEquipo)
 
 void Reina::draw()
 {
-	if (color == 'B')
-	{
-		ReinaB.setPos(pos.x, pos.y); //se debe poner siempre para que dibuje el sprite
-		ReinaB.draw();
+	if (Tablero::getTipoJuego() == true) {
+		if (color == 'B')
+		{
+			ReinaB.setPos(pos.x, pos.y); //se debe poner siempre para que dibuje el sprite
+			ReinaB.draw();
+		}
+		else if (color == 'N')
+		{
+			ReinaA.setPos(pos.x, pos.y);
+			ReinaA.draw();
+		}
 	}
-	else if (color == 'N')
-	{
-		ReinaN.setPos(pos.x, pos.y);
-		ReinaN.draw();
+	if (Tablero::getTipoJuego() == false) {
+		if (color == 'B')
+		{
+			ReinaR.setPos(pos.x, pos.y); 
+			ReinaR.draw();
+		}
+		else if (color == 'N')
+		{
+			ReinaN.setPos(pos.x, pos.y);
+			ReinaN.draw();
+		}
 	}
 }
 

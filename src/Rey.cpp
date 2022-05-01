@@ -11,15 +11,29 @@ Rey::Rey(char colorEquipo)
 }
 
 void Rey::draw() {
-	if (color == 'B')
-	{
-		ReyB.setPos(pos.x, pos.y);
-		ReyB.draw();
+	if (Tablero::getTipoJuego() == true) {
+		if (color == 'B')
+		{
+			ReyB.setPos(pos.x, pos.y);
+			ReyB.draw();
+		}
+		else if (color == 'N')
+		{
+			ReyA.setPos(pos.x, pos.y);
+			ReyA.draw();
+		}
 	}
-	else if (color == 'N')
-	{
-		ReyN.setPos(pos.x, pos.y);
-		ReyN.draw();
+	if (Tablero::getTipoJuego() == false) {
+		if (color == 'B')
+		{
+			ReyR.setPos(pos.x, pos.y);
+			ReyR.draw();
+		}
+		else if (color == 'N')
+		{
+			ReyN.setPos(pos.x, pos.y);
+			ReyN.draw();
+		}
 	}
 }
 
