@@ -170,12 +170,14 @@ void Tablero::dibuja()
 
 void Tablero::ratonTablero(int button, int state, int x, int y)
 {
+	finturno = false;
+
 	if (turno == TRUE)
 	{
 		jugador1->moverPieza(button, state, x, y);
 		if (jugador1->turnoTerminado() == TRUE)
 		{
-			//if(Tablero::detectar_jaque('B') == true)
+			finturno = true;
 			turno = FALSE;
 		}
 	}
@@ -186,7 +188,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		jugador2->moverPieza(button, state, x, y);
 		if (jugador2->turnoTerminado() == TRUE)
 		{
-		    //if (Tablero::detectar_jaque('B') == true)
+			finturno = true;
 			turno = TRUE;
 		}
 	}
@@ -267,9 +269,6 @@ bool Tablero::detectar_jaque_mate(char color) {
 
 void Tablero::mueve(float t)
 {
-
-//posicionx = posicionx - 60 * t;
-	
 }
 
 void Tablero::eliminarPiezaT(int x, int y)
@@ -314,9 +313,7 @@ bool Tablero::getCasillaOcupada(int x, int y)
 
 bool Tablero::getTurnoAcabado()
 {
-	if (turno == FALSE && jugador1->turnoTerminado()) return true;
-	else if (turno == TRUE && jugador2->turnoTerminado()) return true;
-	else return false;
+	return finturno;
 }
 
 bool Tablero::getCoronacion(char color)
