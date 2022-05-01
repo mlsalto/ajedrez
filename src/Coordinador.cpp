@@ -68,7 +68,11 @@ void Coordinador::tecla(unsigned char key)
 	if (estado == JUEGO) {
 		switch (key) {
 		case 'P':
-			estado = PAUSA;
+			estadojuego = PAUSA;
+			dibuja();
+		case 'p':
+			estadojuego = PAUSA;
+			dibuja();
 		case 'H':
 			estado = AYUDA;
 		}
@@ -258,6 +262,11 @@ void Coordinador::dibuja()
 			tablero.dibuja();
 		}
 
+		if (estadojuego == PAUSA) {
+			PausaM.setPos(0, 0);
+			PausaM.draw();
+			tablero.dibuja();
+		}
 		if (estadojuego == JAQUE) {
 			Jaque.setPos(posicionx, 0);
 			Jaque.draw();
@@ -322,24 +331,26 @@ void Coordinador::dibuja()
 		tablero.dibuja();
 	}
 
-	if (estado == PAUSA) {
-		// dibujar el menu de la pausa
-		
-		//switch (menu_pausa)
-		//{
-		//case P:
+	//if (estado == PAUSA) {
+	//	// dibujar el menu de la pausa
 
-		//case NEW_GAME:
+	//	/*Pausa.setPos(0, 0);
+	//	Pausa.draw();*/
+	//	//switch (menu_pausa)
+	//	//{
+	//	//case P:
 
-		//case BACK_TO_GAME:
+	//	//case NEW_GAME:
 
-		//case BACK_TO_MENU:
+	//	//case BACK_TO_GAME:
 
-		//case EXIT:
+	//	//case BACK_TO_MENU:
 
-		//}
+	//	//case EXIT:
 
-	}
+	//	//}
+	//	tablero.dibuja();
+	//}
 
 	if (estado == FIN) {
 		// dibujar según si ganan las negras o blancas

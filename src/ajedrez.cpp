@@ -86,6 +86,8 @@ void OnMouseClick(int button, int state, int x, int y) //arreglar el defaulta ya
 
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
+	coordinador.tecla(key);
+	glutPostRedisplay();
 	//poner aqui el código de teclado	
 }
 

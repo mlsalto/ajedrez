@@ -33,6 +33,13 @@ private:
 	Sprite KingGamE{ "recursos/menu/M_OpcionesKE.png", 0, 0, 130, 80 };
 	Sprite KingGamHE{ "recursos/menu/M_OpcionesKHE.png", 0, 0, 130, 80 };
 
+    // menu Pausa // 
+	Sprite PausaM{ "recursos/menu/PAUSE_NS.png", 0, 0, 70, 50 };
+	Sprite PausaResume{ "recursos/menu/PAUSE_RESUME.png", 0, 0, 130, 80 };
+	Sprite PausaRestart{ "recursos/menu/PAUSE_RESTAR.png", 0, 0, 130, 80 };
+	Sprite PausaBack{ "recursos/menu/PAUSE_BACKTO.png", 0, 0, 130, 80 };
+	Sprite PausaExit{ "recursos/menu/PAUSE_EXIR.png", 0, 0, 130, 80 };
+
 	// coronaciones blancas //
 	Sprite MenuCoronar_B{"recursos/menu/M_CoronacionB.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarReina_B{ "recursos/menu/M_CoronacionReinaB.png", 0 , 0,40 ,60 };
@@ -84,10 +91,10 @@ protected:
 	/////////////////////////////
 
 
-	enum Estado { INICIO, OPCIONES , JUEGO, PAUSA, AYUDA, FIN}; //editar los estados
+	enum Estado { INICIO, OPCIONES , JUEGO, AYUDA, FIN}; //editar los estados
 	Estado estado;
 
-	enum EstadoJuego{TURNO, TURNO_NEGRAS, JAQUE, CORONAR_BLANCAS, CORONAR_NEGRAS}; // para gestionar Jugadores
+	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, PAUSA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
 	EstadoJuego estadojuego;
 
 	enum Coronar{ C, REINA, TORRE, ALFIL, CABALLO};
@@ -99,8 +106,8 @@ protected:
 	enum Juego{ J , HELP, PAUSE,};
 	Juego menu_juego;
 
-	enum Pausa{P, NEW_GAME , BACK_TO_GAME, BACK_TO_MENU, EXIT};
-	Pausa menu_pausa;
+	/*enum Pausa{P, NEW_GAME , BACK_TO_GAME, BACK_TO_MENU, EXIT};
+	Pausa menu_pausa;*/
 
 	enum Ayuda { A, MOVEMENTS, SPECIAL_RULESS, END_GAME };
 	Ayuda menu_ayuda;
