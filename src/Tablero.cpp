@@ -164,8 +164,16 @@ void Tablero::dibuja()
 		for (j = 0; j < 8; j++)
 	        casillas[i][j]->draw();
 
-	tableroAjedrez.draw();
-	marcoTablero.draw();
+	if (tipojuego == true) {
+		tableroAjedrez.draw();
+		marcoTablero.draw();
+	}
+	
+	else if (tipojuego == false) {
+		tableroAjedrez2.draw();
+		marcoTablero2.draw();
+	}
+
 	letrasTablero.draw();
 }
 
