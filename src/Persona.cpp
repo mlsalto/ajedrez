@@ -190,6 +190,62 @@ void Persona::moverPieza(int button, int state, int x, int y)
 					}
 				}
 
+				//////// HACER ENROQUE ///
+                else if (Tablero::getTipoPiezasT(posinix, posiniy) == 6 && (x_tablero == 6 || x_tablero == 2) && piezaini->getEnroque() == false && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
+{
+	                     if (color == 'N')
+	                     {
+		                     if (x_tablero == 6) // derecha
+		                     {
+			                     piezafin = Tablero::getCasillaT(7, 7)->getPieza(); // torre
+		                 	    Tablero::getCasillaT(7, 7)->colocarPieza(0);
+			                    Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+		                    	Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+			                    Tablero::getCasillaT(5, 7)->colocarPieza(piezafin);
+		                     }
+
+		                     if (x_tablero == 2) // izquierda
+		                     {
+			                    piezafin = Tablero::getCasillaT(0, 7)->getPieza(); // torre
+			                    Tablero::getCasillaT(0, 7)->colocarPieza(0);
+			                    Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+			                    Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+			                    Tablero::getCasillaT(3, 7)->colocarPieza(piezafin);
+		                     }
+	                     }
+
+	                     if (color == 'B')
+	                     {
+		                     if (x_tablero == 6) // derecha
+		                     {
+								piezafin = Tablero::getCasillaT(7, 0)->getPieza(); // torre
+								Tablero::getCasillaT(7, 0)->colocarPieza(0);
+								Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+								Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+								Tablero::getCasillaT(5, 0)->colocarPieza(piezafin);
+		                     }
+
+		                     if (x_tablero == 2) // izquierda
+		                     {
+			                    piezafin = Tablero::getCasillaT(0, 0)->getPieza(); // torre
+			                    Tablero::getCasillaT(0, 0)->colocarPieza(0);
+								Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+								Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+								Tablero::getCasillaT(3, 0)->colocarPieza(piezafin);
+		                     }
+	                     }
+
+						piezaini->setEnroque(true);
+
+						for (i = 0; i < 8; i++)
+							for (j = 0; j < 8; j++) {
+							Tablero::getCasillaT(i, j)->setTipoCasilla(0);
+							}
+
+						seleccionpieza = FALSE;
+						turnoterminado = TRUE;
+				}
+
 				//////// MOVER A CASILLA VACÍA ///////
 				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() == 0 && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
 				{
@@ -222,58 +278,3 @@ void Persona::moverPieza(int button, int state, int x, int y)
 }
 
 
-
-///// en el caso de que haya enroque // 
-//if (Tablero::getTipoPiezasT(posinix, posiniy) == 6 && (x_tablero == 6 || x_tablero == 2) && piezaini->getEnroque() == false && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
-//{
-//	if (color == 'N')
-//	{
-//		if (x_tablero == 6) // derecha
-//		{
-//			piezafin = Tablero::getCasillaT(7, 7)->getPieza(); // torre
-//			Tablero::getCasillaT(7, 7)->colocarPieza(0);
-//			Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-//			Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
-//			Tablero::getCasillaT(5, 7)->colocarPieza(piezafin);
-//		}
-//
-//		if (x_tablero == 2) // izquierda
-//		{
-//			piezafin = Tablero::getCasillaT(0, 7)->getPieza(); // torre
-//			Tablero::getCasillaT(0, 7)->colocarPieza(0);
-//			Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-//			Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
-//			Tablero::getCasillaT(3, 7)->colocarPieza(piezafin);
-//		}
-//	}
-//
-//	if (color == 'B')
-//	{
-//		if (x_tablero == 6) // derecha
-//		{
-//			piezafin = Tablero::getCasillaT(7, 0)->getPieza(); // torre
-//			Tablero::getCasillaT(7, 0)->colocarPieza(0);
-//			Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-//			Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
-//			Tablero::getCasillaT(5, 0)->colocarPieza(piezafin);
-//		}
-//
-//		if (x_tablero == 2) // izquierda
-//		{
-//			piezafin = Tablero::getCasillaT(0, 0)->getPieza(); // torre
-//			Tablero::getCasillaT(0, 0)->colocarPieza(0);
-//			Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-//			Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
-//			Tablero::getCasillaT(3, 0)->colocarPieza(piezafin);
-//		}
-//	}
-//	piezaini->setEnroque(true);
-//
-//	for (i = 0; i < 8; i++)
-//		for (j = 0; j < 8; j++) {
-//			Tablero::getCasillaT(i, j)->setTipoCasilla(0);
-//		}
-//
-//	seleccionpieza = FALSE;
-//	turnoterminado = TRUE;
-//}
