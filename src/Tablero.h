@@ -47,6 +47,7 @@ public:
 	void ratonTablero(int button, int state, int x, int y);
 
 	static void eliminarPiezaT(int x, int y);
+	static void eliminarPieza(Pieza* pieza);
 
 	//////// PRUEBAS /////////
 	void setJugador1(Jugador* j );
@@ -58,7 +59,7 @@ public:
 	static int getTipoPiezasT(int x, int y);
 	static Casilla* getCasillaT(int x, int y);
 	static bool getCasillaOcupada(int x, int y);
-	int detectar_jaque();
+	static bool detectar_jaque(char color);
 	bool detectar_jaque_mate(char color);
 
 	bool getCoronacion(char color);
