@@ -40,19 +40,33 @@ private:
 	Sprite PausaBack{ "recursos/menu/PAUSE_BACKTO.png", 0, 0, 110, 50 };
 	Sprite PausaExit{ "recursos/menu/PAUSE_EXIR.png", 0, 0, 110, 50 };
 
-	// coronaciones blancas //
+	// coronaciones blancas queen //
 	Sprite MenuCoronar_B{"recursos/menu/M_CoronacionB.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarReina_B{ "recursos/menu/M_CoronacionReinaB.png", 0 , 0,40 ,60 };
 	Sprite MenuCoronarAlfil_B{ "recursos/menu/M_CoronacionAlfilB.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarCaballo_B{ "recursos/menu/M_CoronacionCaballoB.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarTorre_B{ "recursos/menu/M_CoronacionTorreB.png", 0 , 0, 40 ,60 };
 
-	// coronaciones negras //
+	// coronaciones blancas king //
+	Sprite MenuCoronar_B2{ "recursos/menu/M_CoronacionB2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarReina_B2{ "recursos/menu/M_CoronacionReinaB2.png", 0 , 0,40 ,60 };
+	Sprite MenuCoronarAlfil_B2{ "recursos/menu/M_CoronacionAlfilB2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarCaballo_B2{ "recursos/menu/M_CoronacionCaballoB2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarTorre_B2{ "recursos/menu/M_CoronacionTorreB2.png", 0 , 0, 40 ,60 };
+
+	// coronaciones negras queen //
 	Sprite MenuCoronar_N{ "recursos/menu/M_CoronacionN.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarReina_N{ "recursos/menu/M_CoronacionReinaN.png", 0 , 0,40 ,60 };
 	Sprite MenuCoronarAlfil_N{ "recursos/menu/M_CoronacionAlfilN.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarCaballo_N{ "recursos/menu/M_CoronacionCaballoN.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarTorre_N{ "recursos/menu/M_CoronacionTorreN.png", 0 , 0, 40 ,60 };
+
+	// coronaciones negras king//
+	Sprite MenuCoronar_N2{ "recursos/menu/M_CoronacionN2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarReina_N2{ "recursos/menu/M_CoronacionReinaN2.png", 0 , 0,40 ,60 };
+	Sprite MenuCoronarAlfil_N2{ "recursos/menu/M_CoronacionAlfilN2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarCaballo_N2{ "recursos/menu/M_CoronacionCaballoN2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarTorre_N2{ "recursos/menu/M_CoronacionTorreN2.png", 0 , 0, 40 ,60 };
 
 public:
 	Coordinador();
