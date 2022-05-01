@@ -135,16 +135,19 @@ void Persona::moverPieza(int button, int state, int x, int y)
 			//HAY PIEZA SELECCIONADA
 			else if (seleccionpieza == TRUE) {
 
-				////////    SELECCIÓN NUEVA PIEZA BLANCA    ////////
+				////////    SELECCIÓN NUEVA PIEZA BLANCA   ////////
 				if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() != 0 && Tablero::getCasillaT(x_tablero, y_tablero)->getPieza()->getColorPieza() == color)
 				{
+
+					// codigo que habia antes
 					for (i = 0; i < 8; i++)
-						for (j = 0; j < 8; j++) {Tablero::getCasillaT(i, j)->setTipoCasilla(0);}
+						for (j = 0; j < 8; j++) { Tablero::getCasillaT(i, j)->setTipoCasilla(0); }
 
 					piezaini = Tablero::getCasillaT(x_tablero, y_tablero)->getPieza();
 					posinix = x_tablero;	posiniy = y_tablero;
 
 					Tablero::getCasillaT(x_tablero, y_tablero)->setTipoCasilla(1);
+
 
 					// dibujar casillas legales
 					for (i = 0; i < 8; i++)
@@ -155,6 +158,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 								else Tablero::getCasillaT(i, j)->setTipoCasilla(2);
 							}
 						}
+
 				}
 
 				//////// COMER PIEZA NEGRA //////////
@@ -186,33 +190,91 @@ void Persona::moverPieza(int button, int state, int x, int y)
 					}
 				}
 
-				//////// MOVER A CASILLA VACÍA ///////
-				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() == 0 && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
-				{
-					Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
-					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+				//////// HACER ENROQUE ///
+                else if (Tablero::getTipoPiezasT(posinix, posiniy) == 6 && (x_tablero == 6 || x_tablero == 2) && piezaini->getEnroque() == false && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
+{
+	                     if (color == 'N')
+	                     {
+		                     if (x_tablero == 6) // derecha
+		                     {
+			                     piezafin = Tablero::getCasillaT(7, 7)->getPieza(); // torre
+		                 	    Tablero::getCasillaT(7, 7)->colocarPieza(0);
+			                    Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+		                    	Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+			                    Tablero::getCasillaT(5, 7)->colocarPieza(piezafin);
+		                     }
 
-					if (Tablero::detectar_jaque(color) == true)// si jaque es cierto
-					{
-						Tablero::getCasillaT(posinix, posiniy)->colocarPieza(piezaini);
-						Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(0);
-						//deshacemos los cambios y salimos de la función
-					}
+		                     if (x_tablero == 2) // izquierda
+		                     {
+			                    piezafin = Tablero::getCasillaT(0, 7)->getPieza(); // torre
+			                    Tablero::getCasillaT(0, 7)->colocarPieza(0);
+			                    Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+			                    Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+			                    Tablero::getCasillaT(3, 7)->colocarPieza(piezafin);
+		                     }
+	                     }
 
-					else if (Tablero::detectar_jaque(color) == false)
-					{
-						// dibujar casillas legales
+	                     if (color == 'B')
+	                     {
+		                     if (x_tablero == 6) // derecha
+		                     {
+								piezafin = Tablero::getCasillaT(7, 0)->getPieza(); // torre
+								Tablero::getCasillaT(7, 0)->colocarPieza(0);
+								Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+								Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+								Tablero::getCasillaT(5, 0)->colocarPieza(piezafin);
+		                     }
+
+		                     if (x_tablero == 2) // izquierda
+		                     {
+			                    piezafin = Tablero::getCasillaT(0, 0)->getPieza(); // torre
+			                    Tablero::getCasillaT(0, 0)->colocarPieza(0);
+								Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+								Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+								Tablero::getCasillaT(3, 0)->colocarPieza(piezafin);
+		                     }
+	                     }
+
+						piezaini->setEnroque(true);
+
 						for (i = 0; i < 8; i++)
 							for (j = 0; j < 8; j++) {
-								Tablero::getCasillaT(i, j)->setTipoCasilla(0);
+							Tablero::getCasillaT(i, j)->setTipoCasilla(0);
 							}
 
 						seleccionpieza = FALSE;
 						turnoterminado = TRUE;
-					}
+				}
+
+				//////// MOVER A CASILLA VACÍA ///////
+				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() == 0 && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
+				{
+
+						Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+						Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+
+						if (Tablero::detectar_jaque(color) == true)// si jaque es cierto
+						{
+							Tablero::getCasillaT(posinix, posiniy)->colocarPieza(piezaini);
+							Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(0);
+							//deshacemos los cambios y salimos de la función
+						}
+
+						else if (Tablero::detectar_jaque(color) == false)
+						{
+							// dibujar casillas legales
+							for (i = 0; i < 8; i++)
+								for (j = 0; j < 8; j++) {
+									Tablero::getCasillaT(i, j)->setTipoCasilla(0);
+								}
+
+							seleccionpieza = FALSE;
+							turnoterminado = TRUE;
+						}
 				}
 			}
-		}
-		
+		}	
 	}
 }
+
+
