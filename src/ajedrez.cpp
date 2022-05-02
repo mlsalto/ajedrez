@@ -95,9 +95,9 @@ void OnTimer(int value)
 {
 	//poner aqui el código de animacion
 	//poner aqui el código de animacion
-	coordinador.mueve(0.025);
+	coordinador.mueve(0);
 
 	//no borrar estas lineas
-	glutTimerFunc(25, OnTimer, 0);
+	glutTimerFunc(100, OnTimer, 0);
 	glutPostRedisplay();
 }
