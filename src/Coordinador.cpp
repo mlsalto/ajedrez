@@ -174,9 +174,22 @@ void Coordinador::raton(int button, int state, int x, int y)
 	}
 
 	if (estado == JUEGO) {
-		tablero.ratonTablero(button, state, x, y);
-
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+
+			if (estadojuego == TURNO) {
+				tablero.ratonTablero(button, state, x, y);
+				if (tablero.getTurnoAcabado() == true)
+				{
+					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque('B') == true)
+					{
+						estadojuego = JAQUE;
+					}
+				}
+
+				if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
+				else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
+			}
+
 			if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
 				if (x > 760 || x < 600 || y < 254 || y > 593) {  /*no hay modo coronar*/ }
 				else if (x < 760 && x > 600 && y < 289 && y > 254) { tablero.setCoronacion(3); estadojuego = TURNO;/*ALFIL*/ }
@@ -221,19 +234,6 @@ void Coordinador::raton(int button, int state, int x, int y)
 				if (menu_help == END) {
 
 				}
-			}
-
-			if (estadojuego == TURNO) {
-				if (tablero.getTurnoAcabado() == true)
-				{
-					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque('B') == true)
-					{
-						estadojuego = JAQUE;
-					}
-				}
-
-				if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
-				else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
 			}
 		}
 	}
