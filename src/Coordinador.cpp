@@ -13,6 +13,7 @@ Coordinador::Coordinador()
 	tipojuego = 0;
 	tablero.setTipoJuego(true);
 	//////////////
+	help = 0;
 
 	musica(); // para que suene al inicio la música
 
@@ -54,11 +55,41 @@ void Coordinador::mouse(int x, int y)
 	}
 
 	if (estadojuego == PAUSA) {
-		if (x > 737 || x < 498 || y < 329 || y > 539) { setMenuAyuda(0); /*no hay modo ayuda*/ }
-		else if (x < 643 && x > 498 && y < 370 && y > 329) { setMenuAyuda(1); /*resume*/ }
-		else if (x < 643 && x > 498 && y < 452 && y > 380) { setMenuAyuda(2); /*restart*/ }
-		else if (x < 737 && x > 498 && y < 481 && y > 462) { setMenuAyuda(3); /*back to*/ }
-		else if (x < 524 && x > 498 && y < 539 && y > 507) { setMenuAyuda(4); /*exit*/ }
+		if (x > 737 || x < 498 || y < 329 || y > 539) { setMenuPausa(0); /*no hay modo pausa*/ }
+		else if (x < 643 && x > 498 && y < 370 && y > 329) { setMenuPausa(1); /*resume*/ }
+		else if (x < 643 && x > 498 && y < 452 && y > 380) { setMenuPausa(2); /*restart*/ }
+		else if (x < 737 && x > 498 && y < 481 && y > 462) { setMenuPausa(3); /*back to*/ }
+		else if (x < 524 && x > 498 && y < 539 && y > 507) { setMenuPausa(4); /*exit*/ }
+	}
+
+	if (estadojuego == AYUDA) {
+		if (menu_help == H) {
+			if (x > 742 || x < 509 || y < 345 || y > 540) { setMenuAyuda(0); /*no hay modo ayuda*/ }
+			else if (x < 742 && x > 509 && y < 374 && y > 345) { setMenuAyuda(1); /*movimientos*/ }
+			else if (x < 716 && x > 509 && y < 463 && y > 423) { setMenuAyuda(2); /*movimientos especiales*/ }
+			else if (x < 665 && x > 509 && y < 540 && y > 514) { setMenuAyuda(3); /*fin juego*/ }
+		}
+
+		if (menu_help == MOVS) {
+			if (x > 628 || x < 537 || y < 300 || y > 568) { setMenuMovs(0); /*no hay modo movs*/ }
+			else if (x < 628 && x > 537 && y < 332 && y > 300) { setMenuMovs(1); /*pawn*/ }
+			else if (x < 628 && x > 537 && y < 382 && y > 332) { setMenuMovs(2); /*bishop*/ }
+			else if (x < 628 && x > 537 && y < 424 && y > 382) { setMenuMovs(3); /*knight*/ }
+			else if (x < 628 && x > 537 && y < 474 && y > 424) { setMenuMovs(4); /*rook*/ }
+			else if (x < 628 && x > 537 && y < 522 && y > 474) { setMenuMovs(5); /*queen*/ }
+			else if (x < 628 && x > 537 && y < 568 && y > 522) { setMenuMovs(6); /*king*/ }
+		}
+
+		if (menu_help == MOVSE) {
+			if (x > 688 || x < 505 || y < 347 || y > 506) { setMenuMovsEspeciales(0); /*no hay modo ayuda*/ }
+			else if (x < 643 && x > 505 && y < 383 && y > 347) { setMenuMovsEspeciales(1); /*movimientos*/ }
+			else if (x < 688 && x > 505 && y < 441 && y > 414) { setMenuMovsEspeciales(2); /*movimientos especiales*/ }
+			else if (x < 670 && x > 505 && y < 506 && y > 471) { setMenuMovsEspeciales(3); /*fin juego*/ }
+		}
+
+		if (menu_help == END) {
+
+		}
 	}
 
 	if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
@@ -73,7 +104,10 @@ void Coordinador::mouse(int x, int y)
 void Coordinador::tecla(unsigned char key)
 {
 	if (estado == JUEGO) {
-		if (key == 'p' || key == 'P') { estadojuego = PAUSA; }
+		if (estadojuego == TURNO) {
+			if (key == 'p' || key == 'P') { estadojuego = PAUSA; }
+			if (key == 'h' || key == 'H') { estadojuego = AYUDA;  menu_help == H; }
+		}
 	}
 }
 
@@ -152,11 +186,41 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (estadojuego == PAUSA) {
-				if (x > 737 || x < 498 || y < 329 || y > 539) {  /*no hay modo ayuda*/ }
+				if (x > 737 || x < 498 || y < 329 || y > 539) {  /*no hay modo pausa*/ }
 				else if (x < 643 && x > 498 && y < 370 && y > 329) { estadojuego = TURNO; /*resume*/ }
 				else if (x < 643 && x > 498 && y < 452 && y > 380) { tablero.eliminarTablero(); tablero.nuevoTablero(); estadojuego = TURNO;/*restart*/ } 
 				else if (x < 737 && x > 498 && y < 481 && y > 462) { tablero.eliminarTablero(); estado = INICIO; estadojuego = TURNO;/*back to*/ } 
 				else if (x < 524 && x > 498 && y < 539 && y > 507) { exit(0);/*exit*/ }
+			}
+
+			if (estadojuego == AYUDA) {
+				if (menu_help == H) {
+					if (x > 742 || x < 509 || y < 345 || y > 540) {  /*no hay modo ayuda*/ }
+					else if (x < 742 && x > 509 && y < 374 && y > 345) { menu_help = MOVS; /*movimientos*/ }
+					else if (x < 716 && x > 509 && y < 463 && y > 423) { menu_help = MOVSE; /*movimientos especiales*/ }
+					else if (x < 665 && x > 509 && y < 540 && y > 514) { menu_help = END; /*fin juego*/ }
+				}
+
+				if (menu_help == MOVS) {
+					if (x > 628 || x < 537 || y < 300 || y > 568) { ; /*no hay modo movs*/ }
+					else if (x < 628 && x > 537 && y < 332 && y > 300) { ; /*pawn*/ }
+					else if (x < 628 && x > 537 && y < 382 && y > 332) { ; /*bishop*/ }
+					else if (x < 628 && x > 537 && y < 424 && y > 382) { ; /*knight*/ }
+					else if (x < 628 && x > 537 && y < 474 && y > 424) { ; /*rook*/ }
+					else if (x < 628 && x > 537 && y < 522 && y > 474) { ; /*queen*/ }
+					else if (x < 628 && x > 537 && y < 568 && y > 522) { ; /*king*/ }
+				}
+
+				if (menu_help == MOVSE) {
+					if (x > 688 || x < 505 || y < 347 || y > 506) { ; /*no hay modo ayuda*/ }
+					else if (x < 643 && x > 505 && y < 383 && y > 347) { ; /*movimientos*/ }
+					else if (x < 688 && x > 505 && y < 441 && y > 414) { ; /*movimientos especiales*/ }
+					else if (x < 670 && x > 505 && y < 506 && y > 471) { ; /*fin juego*/ }
+				}
+
+				if (menu_help == END) {
+
+				}
 			}
 
 			if (estadojuego == TURNO) {
@@ -187,19 +251,12 @@ void Coordinador::dibuja()
 			switch (menu_inicio)
 			{
 			case INICIO:
-				MenuInicial.setPos(0, 0);
 				MenuInicial.draw();
-
 			case FREE_PLAY:
-				MenuFreePlay.setPos(0, 0);
 				MenuFreePlay.draw();
-
 			case STORY_MODE:
-				MenuStoryMode.setPos(0, 0);
 				MenuStoryMode.draw();
-
 			case OPTIONS:
-				MenuOpciones.setPos(0, 0);
 				MenuOpciones.draw();
 			}
 		}
@@ -208,23 +265,15 @@ void Coordinador::dibuja()
 			switch (menu_inicio)
 			{
 			case INICIO:
-				MenuInicial2.setPos(0, 0);
 				MenuInicial2.draw();
-
 			case FREE_PLAY:
-				MenuFreePlay2.setPos(0, 0);
 				MenuFreePlay2.draw();
-
 			case STORY_MODE:
-				MenuStoryMode2.setPos(0, 0);
 				MenuStoryMode2.draw();
-
 			case OPTIONS:
-				MenuOpciones2.setPos(0, 0);
 				MenuOpciones2.draw();
 			}
 		}
-
 		// para la carga de sprite sequences //
 		Jaque.draw();
 		Jaque1.draw();
@@ -234,35 +283,20 @@ void Coordinador::dibuja()
 
 		switch (opciones) {
 		case 0:
-			QueenGam.setPos(0, 0);
 			QueenGam.draw();
-
 		case 1:
-			KingGam.setPos(0, 0);
 			KingGam.draw();
-
 		case 2:
-			QueenGamH.setPos(0, 0);
 			QueenGamH.draw();
-
 		case 3:
-			KingGamH.setPos(0, 0);
 			KingGamH.draw();
-
 		case 4:
-			QueenGamE.setPos(0, 0);
 			QueenGamE.draw();
-
 		case 5:
-			KingGamE.setPos(0, 0);
 			KingGamE.draw();
-
 		case 6:
-			QueenGamHE.setPos(0, 0);
 			QueenGamHE.draw();
-
 		case 7:
-			KingGamHE.setPos(0, 0);
 			KingGamHE.draw();
 		}
 	}
@@ -274,25 +308,74 @@ void Coordinador::dibuja()
 		}
 
 		if (estadojuego == PAUSA) {
-			switch (help) 
+			switch (pause) 
 			{
 			case 0:
-				PausaM.setPos(0, 0);
 				PausaM.draw();
 			case 1:
-				PausaResume.setPos(0, 0);
 				PausaResume.draw();
 			case 2:
-				PausaRestart.setPos(0, 0);
 				PausaRestart.draw();
 			case 3:
-				PausaBack.setPos(0, 0);
 				PausaBack.draw();
 			case 4:
-				PausaExit.setPos(0, 0);
 				PausaExit.draw();
 			}
 			tablero.dibuja();
+		}
+
+		if (estadojuego == AYUDA) {
+			if (menu_help == H) {
+				switch (help)
+				{
+				case 0:
+					HelpM.draw();
+				case 1:
+					HelpMov.draw();
+				case 2:
+					HelpSpeMov.draw();
+				case 3:
+					HelpEnd.draw();
+				}
+			}
+
+			if (menu_help == MOVS) {
+				switch (movs)
+				{
+				case 0:
+					HelpMovM.draw();
+				case 1:
+					HelpMovP.draw();
+				case 2:
+					HelpMovB.draw();
+				case 3:
+					HelpMovKn.draw();
+				case 4:
+					HelpMovR.draw();
+				case 5:
+					HelpMovQ.draw();
+				case 6:
+					HelpMovK.draw();
+				}
+			}
+
+			if (menu_help == MOVSE) {
+				switch (specialmovs)
+				{
+				case 0:
+					HelpMovEspM.draw();
+				case 1:
+					HelpMovEspC.draw();
+				case 2:
+					HelpMovEspE.draw();
+				case 3:
+					HelpMovEspP.draw();
+				}
+			}
+
+			if (menu_help == END) {
+
+			}
 		}
 
 		if (estadojuego == JAQUE) {
@@ -309,57 +392,34 @@ void Coordinador::dibuja()
 			if (tipojuego == 0) {
 				switch (coronar)
 				{
-					// HAY QUE PONERLO SEGÚN EL COLOR DEL JUGADOR
 				case C:
-					MenuCoronar_B.setPos(0, 0);
 					MenuCoronar_B.draw();
-
 				case REINA:
-					MenuCoronarReina_B.setPos(0, 0);
 					MenuCoronarReina_B.draw();
-
 				case TORRE:
-					MenuCoronarTorre_B.setPos(0, 0);
 					MenuCoronarTorre_B.draw();
-
 				case ALFIL:
-					MenuCoronarAlfil_B.setPos(0, 0);
 					MenuCoronarAlfil_B.draw();
-
 				case CABALLO:
-					MenuCoronarCaballo_B.setPos(0, 0);
 					MenuCoronarCaballo_B.draw();
-
 				}
 			}
 
 			if (tipojuego == 1) {
 				switch (coronar)
 				{
-					// HAY QUE PONERLO SEGÚN EL COLOR DEL JUGADOR
 				case C:
-					MenuCoronar_B2.setPos(0, 0);
 					MenuCoronar_B2.draw();
-
 				case REINA:
-					MenuCoronarReina_B2.setPos(0, 0);
 					MenuCoronarReina_B2.draw();
-
 				case TORRE:
-					MenuCoronarTorre_B2.setPos(0, 0);
 					MenuCoronarTorre_B2.draw();
-
 				case ALFIL:
-					MenuCoronarAlfil_B2.setPos(0, 0);
 					MenuCoronarAlfil_B2.draw();
-
 				case CABALLO:
-					MenuCoronarCaballo_B2.setPos(0, 0);
 					MenuCoronarCaballo_B2.draw();
-
 				}
 			}
-			
 			tablero.dibuja();
 		}
 
@@ -367,25 +427,15 @@ void Coordinador::dibuja()
 			if (tipojuego == 0) {
 				switch (coronar)
 				{
-					// HAY QUE PONERLO SEGÚN EL COLOR DEL JUGADOR
 				case C:
-					MenuCoronar_N.setPos(0, 0);
 					MenuCoronar_N.draw();
-
 				case REINA:
-					MenuCoronarReina_N.setPos(0, 0);
 					MenuCoronarReina_N.draw();
-
 				case TORRE:
-					MenuCoronarTorre_N.setPos(0, 0);
 					MenuCoronarTorre_N.draw();
-
 				case ALFIL:
-					MenuCoronarAlfil_N.setPos(0, 0);
 					MenuCoronarAlfil_N.draw();
-
 				case CABALLO:
-					MenuCoronarCaballo_N.setPos(0, 0);
 					MenuCoronarCaballo_N.draw();
 				}
 			}
@@ -393,25 +443,15 @@ void Coordinador::dibuja()
 			if (tipojuego == 1) {
 				switch (coronar)
 				{
-					// HAY QUE PONERLO SEGÚN EL COLOR DEL JUGADOR
 				case C:
-					MenuCoronar_N2.setPos(0, 0);
 					MenuCoronar_N2.draw();
-
 				case REINA:
-					MenuCoronarReina_N2.setPos(0, 0);
 					MenuCoronarReina_N2.draw();
-
 				case TORRE:
-					MenuCoronarTorre_N2.setPos(0, 0);
 					MenuCoronarTorre_N2.draw();
-
 				case ALFIL:
-					MenuCoronarAlfil_N2.setPos(0, 0);
 					MenuCoronarAlfil_N2.draw();
-
 				case CABALLO:
-					MenuCoronarCaballo_N2.setPos(0, 0);
 					MenuCoronarCaballo_N2.draw();
 				}
 			}
@@ -512,9 +552,24 @@ void Coordinador::setOpciones(int x)
 	if (x == 7) { tipojuego = 1; tablero.setTipoJuego(false); }
 }
 
+void Coordinador::setMenuPausa(int x)
+{
+	pause = x;
+}
+
 void Coordinador::setMenuAyuda(int x)
 {
 	help = x;
+}
+
+void Coordinador::setMenuMovs(int x)
+{
+	movs = x;
+}
+
+void Coordinador::setMenuMovsEspeciales(int x)
+{
+	specialmovs = x;
 }
 
 int Coordinador::getEstado()
