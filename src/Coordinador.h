@@ -8,24 +8,23 @@ class Coordinador
 private:
 
 	// PRUEBAS //
-	// Sprite Jaque{ "recursos/CHECK.png", 0, 0, 150, 90 };
 	SpriteSequence Jaque{ "recursos/CHECK_FRAME1.png", 34, 1, 50, true,0, 0, 150, 90 , 0};
 	SpriteSequence Jaque1{ "recursos/CHECK_FRAME1_rojo.png", 34, 1, 50, true,0, 0, 150, 90 , 0 };
-	 ////////////
+	////////////
 	
-	// menu inicial gambito dama
+	// menu inicial gambito dama //
 	Sprite MenuInicial{ "recursos/menu/Menu.png", 0, 0, 130, 80 };
 	Sprite MenuStoryMode{ "recursos/menu/M_StoryMode.png", 0, 0, 130, 80 };
 	Sprite MenuFreePlay{ "recursos/menu/M_FreePlay.png", 0, 0, 130, 80 };
 	Sprite MenuOpciones{ "recursos/menu/M_Options.png", 0, 0, 130, 80 };
 
-	// menu inicial gambito rey
+	// menu inicial gambito rey //
 	Sprite MenuInicial2{ "recursos/menu/Menu2.png", 0, 0, 130, 80 };
 	Sprite MenuStoryMode2{ "recursos/menu/M_StoryMode2.png", 0, 0, 130, 80 };
 	Sprite MenuFreePlay2{ "recursos/menu/M_FreePlay2.png", 0, 0, 130, 80 };
 	Sprite MenuOpciones2{ "recursos/menu/M_Options2.png", 0, 0, 130, 80 };
 
-	// menu opciones
+	// menu opciones //
 	Sprite QueenGam{ "recursos/menu/M_OpcionesQ.png", 0, 0, 130, 80 };
 	Sprite QueenGamH{ "recursos/menu/M_OpcionesQH.png", 0, 0, 130, 80 };
 	Sprite QueenGamE{ "recursos/menu/M_OpcionesQE.png", 0, 0, 130, 80 };
@@ -41,6 +40,27 @@ private:
 	Sprite PausaRestart{ "recursos/menu/PAUSE_RESTAR.png", 0, 0, 110, 50 };
 	Sprite PausaBack{ "recursos/menu/PAUSE_BACKTO.png", 0, 0, 110, 50 };
 	Sprite PausaExit{ "recursos/menu/PAUSE_EXIR.png", 0, 0, 110, 50 };
+
+	// menu ayuda queen //
+	Sprite HelpM{ "recursos/menu/help/HELP_NS.png", 0, 0, 110, 50 };
+	Sprite HelpMov{ "recursos/menu/help/HELP_mov.png", 0, 0, 110, 50 };
+	Sprite HelpSpeMov{ "recursos/menu/help/HELP_SP.png", 0, 0, 110, 50 };
+	Sprite HelpEnd{ "recursos/menu/help/HELP_END.png", 0, 0, 110, 50 };
+
+	// menu ayuda movs queen //
+	Sprite HelpMovM{ "recursos/menu/help/HELP_MOV_NS.png", 0, 0, 110, 50 };
+	Sprite HelpMovP{ "recursos/menu/help/HELP_MOV_PAWN.png", 0, 0, 110, 50 };
+	Sprite HelpMovB{ "recursos/menu/help/HELP_MOV_BISHOP.png", 0, 0, 110, 50 };
+	Sprite HelpMovKn{ "recursos/menu/help/HELP_MOV_KNIGHT.png", 0, 0, 110, 50 };
+	Sprite HelpMovR{ "recursos/menu/help/HELP_MOV_ROOK.png", 0, 0, 110, 50 };
+	Sprite HelpMovQ{ "recursos/menu/help/HELP_MOV_QUEEN.png", 0, 0, 110, 50 };
+	Sprite HelpMovK{ "recursos/menu/help/HELP_MOV_KING.png", 0, 0, 110, 50 };
+
+	// menu ayuda mov esp queen //
+	Sprite HelpMovEspM{ "recursos/menu/help/HELP_SP_NS.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspC{ "recursos/menu/help/HELP_SP_CAS.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspE{ "recursos/menu/help/HELP_SP_ENP.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspP{ "recursos/menu/help/HELP_SP_PRO.png", 0, 0, 110, 50 };
 
 	// coronaciones blancas queen //
 	Sprite MenuCoronar_B{"recursos/menu/M_CoronacionB.png", 0 , 0, 40 ,60 };
@@ -63,7 +83,7 @@ private:
 	Sprite MenuCoronarCaballo_N{ "recursos/menu/M_CoronacionCaballoN.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarTorre_N{ "recursos/menu/M_CoronacionTorreN.png", 0 , 0, 40 ,60 };
 
-	// coronaciones negras king//
+	// coronaciones negras king //
 	Sprite MenuCoronar_N2{ "recursos/menu/M_CoronacionN2.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarReina_N2{ "recursos/menu/M_CoronacionReinaN2.png", 0 , 0,40 ,60 };
 	Sprite MenuCoronarAlfil_N2{ "recursos/menu/M_CoronacionAlfilN2.png", 0 , 0, 40 ,60 };
@@ -87,7 +107,10 @@ public:
 	void setMenuInicio(int x);
 	void setMenuCoronacion(int x);
 	void setOpciones(int x);
+	void setMenuPausa(int x);
 	void setMenuAyuda(int x);
+	void setMenuMovs(int x);
+	void setMenuMovsEspeciales(int x);
 	// getters //
 	int getEstado();
 	int getModoJuego();
@@ -102,18 +125,25 @@ protected:
 	bool tipojuego; // queens(0)  kings(1)
 	/////////////////////////////
 
-	// variables menu help //
-	int help; //  help(0) resume(1) restart(2) backto(3) exit(4)
+	// variables menu pausa //
+	int pause; //  pausa(0) resume(1) restart(2) backto(3) exit(4)
 	///////////////////////
-
+	
+	// variables menu help //
+	int help; //  ayuda(0) mov(1) special rules(2) finpartida(3)
+	int movs; // movs(0) pawn(1) bish(2) knig(3) rook(4) quee(5) king(6)
+	int specialmovs; //specialmov(0) cast(1) pass(2) prom(3)
+	int finpar;
+	///////////////////////
+	
 	// variables Jaque //
-	int i = 0;
+	int i = 0; 
 	//////////////////////////
 
-	enum Estado { INICIO, OPCIONES , JUEGO, AYUDA, FIN}; //editar los estados
+	enum Estado { INICIO, OPCIONES , JUEGO,  FIN}; //editar los estados
 	Estado estado;
 
-	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, PAUSA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
+	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
 	EstadoJuego estadojuego;
 
 	enum Coronar{ C, REINA, TORRE, ALFIL, CABALLO};
@@ -122,13 +152,7 @@ protected:
     enum Inicio{I ,FREE_PLAY, STORY_MODE, OPTIONS};
 	Inicio menu_inicio;
 
-	enum Juego{ J , HELP, PAUSE,};
-	Juego menu_juego;
-
-	enum Ayuda { A, MOVEMENTS, SPECIAL_RULESS, END_GAME };
-	Ayuda menu_ayuda;
-
-	enum Movimientos{M , KING, QUEEN, ROOK, BISHOP, KNIGHT, PAWN};
-	Movimientos menu_movimientos;
+	enum HELPS{ H, MOVS, MOVSE, END};
+	HELPS menu_help;
 };
 
