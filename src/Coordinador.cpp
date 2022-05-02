@@ -15,6 +15,7 @@ Coordinador::Coordinador()
 	//////////////
 
 	musica(); // para que suene al inicio la música
+
 }
 
 Coordinador::~Coordinador()
@@ -157,20 +158,20 @@ void Coordinador::raton(int button, int state, int x, int y)
 				else if (x < 737 && x > 498 && y < 481 && y > 462) { tablero.eliminarTablero(); estado = INICIO; estadojuego = TURNO;/*back to*/ } 
 				else if (x < 524 && x > 498 && y < 539 && y > 507) { exit(0);/*exit*/ }
 			}
-		}
 
-	
-		if (tablero.getTurnoAcabado() == true)
-		{
-			if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque('B') == true)
-			{
-				estadojuego = JAQUE;
-				posicionx = 100;
+			if (estadojuego == TURNO) {
+				if (tablero.getTurnoAcabado() == true)
+				{
+					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque('B') == true)
+					{
+						estadojuego = JAQUE;
+					}
+				}
+
+				if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
+				else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
 			}
 		}
-
-		if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
-		else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
 	}
 
 	if (estado == PAUSA) {
@@ -223,6 +224,10 @@ void Coordinador::dibuja()
 				MenuOpciones2.draw();
 			}
 		}
+
+		// para la carga de sprite sequences //
+		Jaque.draw();
+		Jaque1.draw();
 	}
 
 	if (estado == OPCIONES) {
@@ -291,11 +296,14 @@ void Coordinador::dibuja()
 		}
 
 		if (estadojuego == JAQUE) {
-			Jaque.setPos(posicionx, 0);
-			Jaque.draw();
+			if (tipojuego == 0) {
+				Jaque.draw();
+			}
+			if (tipojuego == 1) {
+				Jaque1.draw();
+			}
 			tablero.dibuja();
 		}
-
 		
 		if (estadojuego == CORONAR_BLANCAS) {
 			if (tipojuego == 0) {
@@ -446,12 +454,30 @@ void Coordinador::musica()
 
 void Coordinador::mueve(float t)
 {
+
 	if (estadojuego == JAQUE)
 	{
-		posicionx = posicionx - 60 * t;	
+		if (tipojuego == 0) {
+			if (i < 34) {
+				Jaque.setState(i);
+				i++;
+			}
+			else if (i >= 34) {
+				i = 0;
+				estadojuego = TURNO;
+			}
+		}
 
-		if (posicionx < -100) estadojuego == TURNO;
-		//tablero.mueve(t);
+		if (tipojuego == 1) {
+			if (i < 34) {
+				Jaque1.setState(i);
+				i++;
+			}
+			else if (i >= 34) {
+				i = 0;
+				estadojuego = TURNO;
+			}
+		}
 	}
 }
 

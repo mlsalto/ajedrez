@@ -8,8 +8,10 @@ class Coordinador
 private:
 
 	// PRUEBAS //
-	Sprite Jaque{ "recursos/CHECK.png", 0, 0, 150, 90 };
-	////////////
+	// Sprite Jaque{ "recursos/CHECK.png", 0, 0, 150, 90 };
+	SpriteSequence Jaque{ "recursos/CHECK_FRAME1.png", 34, 1, 50, true,0, 0, 150, 90 , 0};
+	SpriteSequence Jaque1{ "recursos/CHECK_FRAME1_rojo.png", 34, 1, 50, true,0, 0, 150, 90 , 0 };
+	 ////////////
 	
 	// menu inicial gambito dama
 	Sprite MenuInicial{ "recursos/menu/Menu.png", 0, 0, 130, 80 };
@@ -93,10 +95,6 @@ public:
 
 protected:
 	Tablero tablero;
-	// variables animacion //
-	float posicionx = 100;
-	int parada;
-	//////////////////////////
 
 	/// variables menu opciones //
 	int opciones; // Q(0) K(1) Q+H(2) K+H(3) Q+E(4) K+E(5) Q+H+E(6) K+H+E(7)
@@ -107,6 +105,10 @@ protected:
 	// variables menu help //
 	int help; //  help(0) resume(1) restart(2) backto(3) exit(4)
 	///////////////////////
+
+	// variables Jaque //
+	int i = 0;
+	//////////////////////////
 
 	enum Estado { INICIO, OPCIONES , JUEGO, AYUDA, FIN}; //editar los estados
 	Estado estado;
