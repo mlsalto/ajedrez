@@ -188,6 +188,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 					if(Tablero::detectar_jaque_mate('N') == true || Tablero::detectar_jaque_mate('B') == true)
 					{
 						estadojuego = JAQUE_MATE;
+						if (Tablero::detectar_jaque_mate('N') == true) { ganador = 0; }
+						if (Tablero::detectar_jaque_mate('B') == true) { ganador = 1; }
 					}
 				}
 
@@ -554,8 +556,32 @@ void Coordinador::dibuja()
 	}
 
 	if (estado == FIN) {
-		// dibujar según si ganan las negras o blancas
-		// ( hay que ver como implementarlo )
+		if(ganador == 0)
+		{
+			switch (final)
+			{
+			case 0:
+				MenuGanadorB.draw();
+			case 1:
+				MenuGanadorReB.draw();
+			case 2:
+				MenuGanadorBaB.draw();
+		    }
+		}
+
+		if (ganador == 0)
+		{
+			switch (final)
+			{
+			case 0:
+				MenuGanadorN.draw();
+			case 1:
+				MenuGanadorReN.draw();
+			case 2:
+				MenuGanadorBaN.draw();
+			}
+		}
+		tablero.dibuja();
 	}
 }
 
@@ -622,7 +648,7 @@ void Coordinador::mueve(float t)
 			}
 			else if (i >= 47) {
 				i = 0;
-				estadojuego = TURNO;
+				estado = FIN;
 			}
 		}
 
@@ -633,7 +659,7 @@ void Coordinador::mueve(float t)
 			}
 			else if (i >= 47) {
 				i = 0;
-				estadojuego = TURNO;
+				estado = FIN;
 			}
 		}
 	}

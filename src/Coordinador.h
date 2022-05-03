@@ -125,6 +125,16 @@ private:
 	Sprite MenuCoronarCaballo_N2{ "recursos/menu/M_CoronacionCaballoN2.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarTorre_N2{ "recursos/menu/M_CoronacionTorreN2.png", 0 , 0, 40 ,60 };
 
+	// menu ganador blanco //
+	Sprite MenuGanadorB{ "recursos/menu/WHITE_WINS_NS.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorReB{ "recursos/menu/WHITE_WINS_REMATCH.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorBaB{ "recursos/menu/WHITE_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
+
+	// menu ganador negro //
+	Sprite MenuGanadorN{ "recursos/menu/BLACK_WINS_NS.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorReN{ "recursos/menu/BLACK_WINS_REMATCH.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorBaN{ "recursos/menu/BLACK_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
+
 public:
 	Coordinador();
 	virtual ~Coordinador();
@@ -172,8 +182,13 @@ protected:
 	int muchotexto; // pawn(0) bish(1) knig(2) rook(3) quee(4) king(5) end(6)
 	///////////////////////
 	
-	// variables Jaque //
+	// variables Jaque y Jaque Mate//
 	int i = 0; 
+	//////////////////////////
+
+	// variables Jaque y Jaque Mate//
+	int ganador; // blancas(0) negras (1)
+	int final;
 	//////////////////////////
 
 	enum Estado { INICIO, OPCIONES , JUEGO,  FIN}; //editar los estados
