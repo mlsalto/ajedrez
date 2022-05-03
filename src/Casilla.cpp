@@ -1,5 +1,6 @@
 #include "Casilla.h"
 #include "Pieza.h"
+#include "Tablero.h"
 
 Casilla::Casilla(int x ,int y)
 {
@@ -30,28 +31,49 @@ void Casilla::colocarPieza(Pieza* p)
 
 void Casilla::draw()
 {
-	if (tipocasilla == 0)
+	if (Tablero::getMovimientos() == true)
 	{
-		casilla_seleccionada.setPos(1000, 1000);
-		casilla_seleccionada.draw();
+		if (tipocasilla == 0)
+		{
+			casilla_seleccionada.setPos(1000, 1000);
+			casilla_seleccionada.draw();
+		}
+
+		if (tipocasilla == 1)
+		{
+			casilla_seleccionada.setPos(-28 + (columna * 8), -28 + (fila * 8));
+			casilla_seleccionada.draw();
+		}
+
+		if (tipocasilla == 2)
+		{
+			casilla_legal.setPos(-28 + (columna * 8), -28 + (fila * 8));
+			casilla_legal.draw();
+		}
+
+		if (tipocasilla == 3)
+		{
+			casilla_atacada.setPos(-28 + (columna * 8), -28 + (fila * 8));
+			casilla_atacada.draw();
+		}
 	}
 
-	if (tipocasilla == 1)
+	if (Tablero::getMovimientos() == false)
 	{
-		casilla_seleccionada.setPos(-28 + (columna* 8), -28 + (fila * 8));
-		casilla_seleccionada.draw();
-	}
+		if (tipocasilla == 0)
+		{
+			casilla_seleccionada.setPos(1000, 1000);
+			casilla_seleccionada.draw();
+		}
 
-	if (tipocasilla == 2)
-	{
-		casilla_legal.setPos(-28 + (columna * 8), -28 + (fila * 8));
-		casilla_legal.draw();
-	}
+		if (tipocasilla == 1)
+		{
+			casilla_seleccionada.setPos(-28 + (columna * 8), -28 + (fila * 8));
+			casilla_seleccionada.draw();
+		}
 
-	if (tipocasilla == 3)
-	{
-		casilla_atacada.setPos(-28 + (columna * 8), -28 + (fila * 8));
-		casilla_atacada.draw();
+		if (tipocasilla == 2)	{}
+		if (tipocasilla == 3){}
 	}
 }
 
