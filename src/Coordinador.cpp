@@ -245,10 +245,6 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 		}
 	}
-
-	if (estado == PAUSA) {
-
-	}
 }
 
 void Coordinador::dibuja()
@@ -334,51 +330,103 @@ void Coordinador::dibuja()
 
 		if (estadojuego == AYUDA) {
 			Flecha.draw();
-			if (menu_help == H) {
-				switch (help)
-				{
-				case 0:
-					HelpM.draw();
-				case 1:
-					HelpMov.draw();
-				case 2:
-					HelpSpeMov.draw();
-				case 3:
-					HelpEnd.draw();
+			if (tipojuego == 0) {
+				if (menu_help == H) {
+					switch (help)
+					{
+					case 0:
+						HelpM.draw();
+					case 1:
+						HelpMov.draw();
+					case 2:
+						HelpSpeMov.draw();
+					case 3:
+						HelpEnd.draw();
+					}
+				}
+
+				if (menu_help == MOVS) {
+					switch (movs)
+					{
+					case 0:
+						HelpMovM.draw();
+					case 1:
+						HelpMovP.draw();
+					case 2:
+						HelpMovB.draw();
+					case 3:
+						HelpMovKn.draw();
+					case 4:
+						HelpMovR.draw();
+					case 5:
+						HelpMovQ.draw();
+					case 6:
+						HelpMovK.draw();
+					}
+				}
+
+				if (menu_help == MOVSE) {
+					switch (specialmovs)
+					{
+					case 0:
+						HelpMovEspM.draw();
+					case 1:
+						HelpMovEspC.draw();
+					case 2:
+						HelpMovEspE.draw();
+					case 3:
+						HelpMovEspP.draw();
+					}
 				}
 			}
 
-			if (menu_help == MOVS) {
-				switch (movs)
-				{
-				case 0:
-					HelpMovM.draw();
-				case 1:
-					HelpMovP.draw();
-				case 2:
-					HelpMovB.draw();
-				case 3:
-					HelpMovKn.draw();
-				case 4:
-					HelpMovR.draw();
-				case 5:
-					HelpMovQ.draw();
-				case 6:
-					HelpMovK.draw();
+			if (tipojuego == 1) {
+				if (menu_help == H) {
+					switch (help)
+					{
+					case 0:
+						HelpM2.draw();
+					case 1:
+						HelpMov2.draw();
+					case 2:
+						HelpSpeMov2.draw();
+					case 3:
+						HelpEnd2.draw();
+					}
 				}
-			}
 
-			if (menu_help == MOVSE) {
-				switch (specialmovs)
-				{
-				case 0:
-					HelpMovEspM.draw();
-				case 1:
-					HelpMovEspC.draw();
-				case 2:
-					HelpMovEspE.draw();
-				case 3:
-					HelpMovEspP.draw();
+				if (menu_help == MOVS) {
+					switch (movs)
+					{
+					case 0:
+						HelpMovM2.draw();
+					case 1:
+						HelpMovP2.draw();
+					case 2:
+						HelpMovB2.draw();
+					case 3:
+						HelpMovKn2.draw();
+					case 4:
+						HelpMovR2.draw();
+					case 5:
+						HelpMovQ2.draw();
+					case 6:
+						HelpMovK2.draw();
+					}
+				}
+
+				if (menu_help == MOVSE) {
+					switch (specialmovs)
+					{
+					case 0:
+						HelpMovEspM2.draw();
+					case 1:
+						HelpMovEspC2.draw();
+					case 2:
+						HelpMovEspE2.draw();
+					case 3:
+						HelpMovEspP2.draw();
+					}
 				}
 			}
 

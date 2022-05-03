@@ -62,6 +62,27 @@ private:
 	Sprite HelpMovEspE{ "recursos/menu/help/HELP_SP_ENP.png", 0, 0, 110, 50 };
 	Sprite HelpMovEspP{ "recursos/menu/help/HELP_SP_PRO.png", 0, 0, 110, 50 };
 
+	// menu ayuda king //
+	Sprite HelpM2{ "recursos/menu/help/HELP_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMov2{ "recursos/menu/help/HELP_mov_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpSpeMov2{ "recursos/menu/help/HELP_SP_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpEnd2{ "recursos/menu/help/HELP_END.png", 0, 0, 110, 50 };
+
+	// menu ayuda movs king //
+	Sprite HelpMovM2{ "recursos/menu/help/HELP_MOV_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovP2{ "recursos/menu/help/HELP_MOV_PAWN_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovB2{ "recursos/menu/help/HELP_MOV_BISHOP_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovKn2{ "recursos/menu/help/HELP_MOV_KNIGHT_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovR2{ "recursos/menu/help/HELP_MOV_ROOK_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovQ2{ "recursos/menu/help/HELP_MOV_QUEEN_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovK2{ "recursos/menu/help/HELP_MOV_KING_rojo.png", 0, 0, 110, 50 };
+
+	// menu ayuda mov esp king //
+	Sprite HelpMovEspM2{ "recursos/menu/help/HELP_SP_NS.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspC2{ "recursos/menu/help/HELP_SP_CAS.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspE2{ "recursos/menu/help/HELP_SP_ENP.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspP2{ "recursos/menu/help/HELP_SP_PRO.png", 0, 0, 110, 50 };
+
 	// menu ayuda flecha //
 	Sprite Flecha{ "recursos/BACKNARROW.png", -45, 17, 8, 4};
 
