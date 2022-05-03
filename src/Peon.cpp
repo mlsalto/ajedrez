@@ -38,7 +38,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
 
-	int cont_B = 0;
+	int cont_B = 1;
 	int cont_N = 0;
 
 	// los peones blancos solo se mueven hacia arriba y diagonales de arriba derecha / izquierda en caso de haber una pieza negra
