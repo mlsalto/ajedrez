@@ -13,19 +13,31 @@ Peon::Peon(char colorEquipo)
 
 void Peon::draw()
 {
-	if (color == 'B') {
-		PeonB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
-		PeonB.draw();
+	if (Tablero::getTipoJuego() == true) {
+		if (color == 'B') {
+			PeonB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			PeonB.draw();
+		}
+		else if (color == 'N') {
+			PeonA.setPos(pos.x, pos.y);
+			PeonA.draw();
+		}
 	}
-	else if (color == 'N') {
-		PeonN.setPos(pos.x, pos.y);
-		PeonN.draw();
+	if (Tablero::getTipoJuego() == false) {
+		if (color == 'B') {
+			PeonR.setPos(pos.x, pos.y); 
+			PeonR.draw();
+		}
+		else if (color == 'N') {
+			PeonN.setPos(pos.x, pos.y);
+			PeonN.draw();
+		}
 	}
 }
 
 bool Peon::movimientoLegal(Casilla* fin)
 {
-	////// DEFINICI”N DE VARIABLES DE AYUDA //////
+	////// DEFINICI√ìN DE VARIABLES DE AYUDA //////
 	int i, j, row, coll;
 	bool obstaculo = false;
 	bool coronacion = false;
@@ -34,7 +46,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 	coll = (pos.x + 28) / 8;
 	row = (pos.y + 28) / 8;
 
-	////// ALMACENAMIENTO DATOS DE ENTRADA QUE INTRODUCE EL USUARIO POR RAT”N //////
+	////// ALMACENAMIENTO DATOS DE ENTRADA QUE INTRODUCE EL USUARIO POR RAT√ìN //////
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
 
@@ -43,7 +55,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 	// los peones blancos solo se mueven hacia arriba y diagonales de arriba derecha / izquierda en caso de haber una pieza negra
 	if (color == 'B')
 	{
-		////// MOVIMIENTO 1: m·ximo 2 casillas hacia delante //////
+		////// MOVIMIENTO 1: m√°ximo 2 casillas hacia delante //////
 		if (row == 1 && (y_fin == row + 1 || y_fin == row + 2) && x_fin == coll)
 		{
 			for (i = row + 1; i <= y_fin && !obstaculo; i++)
@@ -62,13 +74,13 @@ bool Peon::movimientoLegal(Casilla* fin)
 				return false;
 			else
 			{
-				if (y_fin == 0)
+				if (y_fin == 7)
 					coronacion = true;
 				return true;
 			}
 		}
 
-		////// COMER PIEZAS NEGRAS: en diagonal 1 ˙nico desplazamiento //////
+		////// COMER PIEZAS NEGRAS: en diagonal 1 √∫nico desplazamiento //////
 		if (y_fin == row + 1 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color)
 		{
 			return true;
@@ -77,12 +89,13 @@ bool Peon::movimientoLegal(Casilla* fin)
 		////// PASSANT /////
 		// 1 peon N solo puede comer 1 peon B si el peon negro se posiciona al lado de 1 peon B dando 2 pasos -NO 1 SOLO!!-
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
+
 		if (y_fin == 5 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, 2) == false && Tablero::getCasillaOcupada(x_fin, 3) == true && Tablero::getCasillaT(x_fin, 3)->getPieza()->getColorPieza() != color && cont == 1)
+
 		{
 			std::cout << 'uwu' << endl;
 			return true;
 		}
-
 
 		else return false;  // No se cumple ninguno de los movimientos legalesde los peones y por tanto, NO es un movimiento legal - la pieza no se	mueve -
 	}
@@ -90,10 +103,10 @@ bool Peon::movimientoLegal(Casilla* fin)
 	//Los peones negros solo se mueven hacia abajo y diagonales de abaj derecha / izquierda
 	else if (color == 'N')
 	{
-		////// MOVIMIENTO 1: m·ximo 2 casillas hacia delante //////
+		////// MOVIMIENTO 1: m√°ximo 2 casillas hacia delante //////
 		if (row == 6 && (y_fin == row - 1 || y_fin == row - 2) && x_fin == coll)
 		{
-			//bucle para comprobar que el peÛn no se salta ninguna pieza - cuando se mueve 2 casillas hacia delante
+			//bucle para comprobar que el pe√≥n no se salta ninguna pieza - cuando se mueve 2 casillas hacia delante
 			for (i = row - 1; i >= y_fin && !obstaculo; i--)
 			{
 				if (Tablero::getCasillaOcupada(x_fin, i) == true)
@@ -116,7 +129,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 			}
 		}
 
-		////// COMER PIEZAS NEGRAS: en diagonal 1 ˙nico desplazamiento //////
+		////// COMER PIEZAS NEGRAS: en diagonal 1 √∫nico desplazamiento //////
 		if (y_fin == row - 1 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color)
 		{
 			return true;

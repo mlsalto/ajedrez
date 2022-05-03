@@ -11,13 +11,25 @@ Torre::Torre(char colorEquipo)
 
 void Torre::draw()
 {
-	if (color == 'B') {
-		TorreB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
-		TorreB.draw();
+	if (Tablero::getTipoJuego() == true) {
+		if (color == 'B') {
+			TorreB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			TorreB.draw();
+		}
+		else if (color == 'N') {
+			TorreA.setPos(pos.x, pos.y);
+			TorreA.draw();
+		}
 	}
-	else if (color == 'N'){
-		TorreN.setPos(pos.x, pos.y);
-		TorreN.draw();
+	if (Tablero::getTipoJuego() == false) {
+		if (color == 'B') {
+			TorreR.setPos(pos.x, pos.y);
+			TorreR.draw();
+		}
+		else if (color == 'N') {
+			TorreN.setPos(pos.x, pos.y);
+			TorreN.draw();
+		}
 	}
 }
 

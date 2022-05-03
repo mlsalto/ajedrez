@@ -64,7 +64,7 @@ void OnDraw(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	gluLookAt(0, 0, 110, // posicion del ojo
+	gluLookAt(0, 0, 120, // posicion del ojo
 		0, 0, 0, // hacia que punto mira (0,0,0)
 		0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
 
@@ -86,10 +86,18 @@ void OnMouseClick(int button, int state, int x, int y) //arreglar el defaulta ya
 
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
+	coordinador.tecla(key);
+	glutPostRedisplay();
 	//poner aqui el código de teclado	
 }
 
 void OnTimer(int value)
 {
 	//poner aqui el código de animacion
+	//poner aqui el código de animacion
+	coordinador.mueve(0);
+
+	//no borrar estas lineas
+	glutTimerFunc(100, OnTimer, 0);
+	glutPostRedisplay();
 }

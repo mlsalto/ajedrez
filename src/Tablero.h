@@ -26,16 +26,24 @@ private:
 	int i, j;
 
 	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////;
-	bool turno = TRUE; // blancas(1)   negras(0)
+	bool turno; // blancas(1)   negras(0)
+	bool turnoterminado;
+	bool finturno;
 
+	
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
 	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
+	Sprite tableroAjedrez2{ "recursos/tablero2.png", 0, 0, 64, 64 };
+	Sprite marcoTablero2{ "recursos/Marco2.png", 0, 0, 72, 72 };
+	Sprite letrasTablero{ "recursos/numeros_y_letras.png", 0, 0, 90, 90 };
 
 	///// JUGADORES ////
 	Jugador* jugador1;
 	Jugador* jugador2;
 
+	///// MODO JUEGO ////
+	static bool tipojuego; // queens(false)  kings(true)
 
 public:
 	Tablero();
@@ -46,17 +54,28 @@ public:
 	void ratonTablero(int button, int state, int x, int y);
 
 	static void eliminarPiezaT(int x, int y);
-
+	static void eliminarPieza(Pieza* pieza);
+	static void eliminarTablero();
 	//////// PRUEBAS /////////
 	void setJugador1(Jugador* j );
 	void setJugador2(Jugador* j);
 	//////////////////////////
+	void mueve(float t);
 
 	// getters //
 	static Pieza* getPiezasT(int x, int y);
 	static int getTipoPiezasT(int x, int y);
 	static Casilla* getCasillaT(int x, int y);
 	static bool getCasillaOcupada(int x, int y);
-	bool detectar_jaque(char color);
+	static bool getTipoJuego();
+	bool getTurnoAcabado();
+
+	static bool detectar_jaque(char color);
+	bool detectar_jaque_mate(char color);
+
+	bool getCoronacion(char color);
+	void setCoronacion(int tipoficha);
+
+	void setTipoJuego(bool x);
 };
 

@@ -34,6 +34,9 @@ Jugador::Jugador(char colorJugador)
 
 */
 
+void Jugador::draw(int x){}
+
+
 int Jugador::getPuntos(char colorJugador, Casilla * c)
 {
 	int i, j;

@@ -4,6 +4,7 @@ using namespace ETSIDI;
 
 class Rey : public Pieza
 {
+
 public:
 	Rey();
 	Rey(char colorEquipo);
@@ -11,5 +12,6 @@ public:
 
 	void draw();
 	bool movimientoLegal(Casilla* fin);
+
 };
 
