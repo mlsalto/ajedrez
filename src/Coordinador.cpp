@@ -207,32 +207,40 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (estadojuego == AYUDA) {
+
 				if (menu_help == H) {
-					if (x > 742 || x < 509 || y < 345 || y > 540) {  /*no hay modo ayuda*/ }
+					if (x < 323 && x > 255 && y < 250 && y > 218) { estadojuego = TURNO; }
+					else if (x > 742 || x < 509 || y < 345 || y > 540) {  /*no hay modo ayuda*/ }
 					else if (x < 742 && x > 509 && y < 374 && y > 345) { menu_help = MOVS; /*movimientos*/ }
 					else if (x < 716 && x > 509 && y < 463 && y > 423) { menu_help = MOVSE; /*movimientos especiales*/ }
 					else if (x < 665 && x > 509 && y < 540 && y > 514) { menu_help = END; /*fin juego*/ }
 				}
 
 				if (menu_help == MOVS) {
-					if (x > 628 || x < 537 || y < 300 || y > 568) { ; /*no hay modo movs*/ }
-					else if (x < 628 && x > 537 && y < 332 && y > 300) { ; /*pawn*/ }
-					else if (x < 628 && x > 537 && y < 382 && y > 332) { ; /*bishop*/ }
-					else if (x < 628 && x > 537 && y < 424 && y > 382) { ; /*knight*/ }
-					else if (x < 628 && x > 537 && y < 474 && y > 424) { ; /*rook*/ }
-					else if (x < 628 && x > 537 && y < 522 && y > 474) { ; /*queen*/ }
-					else if (x < 628 && x > 537 && y < 568 && y > 522) { ; /*king*/ }
+					if (x < 323 && x > 255 && y < 250 && y > 218) { setMenuAyuda(0); menu_help = H; }
+					else if (x > 628 || x < 537 || y < 300 || y > 568) { ; /*no hay modo movs*/ }
+					else if (x < 628 && x > 537 && y < 332 && y > 300) { setMenuMuchoTexto(0); menu_help = TEXT; /*pawn*/ }
+					else if (x < 628 && x > 537 && y < 382 && y > 332) { setMenuMuchoTexto(1); menu_help = TEXT; /*bishop*/ }
+					else if (x < 628 && x > 537 && y < 424 && y > 382) { setMenuMuchoTexto(2); menu_help = TEXT; /*knight*/ }
+					else if (x < 628 && x > 537 && y < 474 && y > 424) { setMenuMuchoTexto(3); menu_help = TEXT; /*rook*/ }
+					else if (x < 628 && x > 537 && y < 522 && y > 474) { setMenuMuchoTexto(4); menu_help = TEXT; /*queen*/ }
+					else if (x < 628 && x > 537 && y < 568 && y > 522) { setMenuMuchoTexto(5); menu_help = TEXT; /*king*/ }
 				}
 
 				if (menu_help == MOVSE) {
-					if (x > 688 || x < 505 || y < 347 || y > 506) { ; /*no hay modo ayuda*/ }
-					else if (x < 643 && x > 505 && y < 383 && y > 347) { ; /*movimientos*/ }
-					else if (x < 688 && x > 505 && y < 441 && y > 414) { ; /*movimientos especiales*/ }
-					else if (x < 670 && x > 505 && y < 506 && y > 471) { ; /*fin juego*/ }
+					if (x < 323 && x > 255 && y < 250 && y > 218) { setMenuAyuda(0); menu_help = H; }
+					else if (x > 688 || x < 505 || y < 347 || y > 506) { ; /*no hay modo movse*/ }
+					else if (x < 643 && x > 505 && y < 383 && y > 347) { ; /*castling*/ }
+					else if (x < 688 && x > 505 && y < 441 && y > 414) { ; /*passant*/ }
+					else if (x < 670 && x > 505 && y < 506 && y > 471) { ; /*promotion*/ }
 				}
 
 				if (menu_help == END) {
+					if (x < 323 && x > 255 && y < 250 && y > 218) { setMenuAyuda(0); menu_help = H; }
+				}
 
+				if (menu_help == TEXT) {
+					if (x < 323 && x > 255 && y < 250 && y > 218) { setMenuMovs(0); menu_help = MOVS; }
 				}
 			}
 		}
@@ -325,6 +333,7 @@ void Coordinador::dibuja()
 		}
 
 		if (estadojuego == AYUDA) {
+			Flecha.draw();
 			if (menu_help == H) {
 				switch (help)
 				{
@@ -376,6 +385,25 @@ void Coordinador::dibuja()
 			if (menu_help == END) {
 
 			}
+
+			if (menu_help == TEXT) {
+				switch (muchotexto)
+				{
+				case 0:
+					HelpPawn.draw();
+				case 1:
+					HelpBish.draw();
+				case 2:
+					HelpKnig.draw();
+				case 3:
+					HelpRook.draw();
+				case 4:
+					HelpQuee.draw();
+				case 5:
+					HelpKing.draw();
+				}
+			}
+
 		}
 
 		if (estadojuego == JAQUE) {
@@ -570,6 +598,11 @@ void Coordinador::setMenuMovs(int x)
 void Coordinador::setMenuMovsEspeciales(int x)
 {
 	specialmovs = x;
+}
+
+void Coordinador::setMenuMuchoTexto(int x)
+{
+	muchotexto = x;
 }
 
 int Coordinador::getEstado()
