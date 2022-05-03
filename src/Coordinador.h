@@ -157,6 +157,7 @@ public:
 	void setMenuMovs(int x);
 	void setMenuMovsEspeciales(int x);
 	void setMenuMuchoTexto(int x);
+	void setMenuFinal(int x);
 	// getters //
 	int getEstado();
 	int getModoJuego();
@@ -188,7 +189,7 @@ protected:
 
 	// variables Jaque y Jaque Mate//
 	int ganador; // blancas(0) negras (1)
-	int final;
+	int final; // final (0) rematch (1) back to(2)
 	//////////////////////////
 
 	enum Estado { INICIO, OPCIONES , JUEGO,  FIN}; //editar los estados

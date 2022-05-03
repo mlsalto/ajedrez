@@ -54,50 +54,59 @@ void Coordinador::mouse(int x, int y)
 		}
 	}
 
-	if (estadojuego == PAUSA) {
-		if (x > 737 || x < 498 || y < 329 || y > 539) { setMenuPausa(0); /*no hay modo pausa*/ }
-		else if (x < 643 && x > 498 && y < 370 && y > 329) { setMenuPausa(1); /*resume*/ }
-		else if (x < 643 && x > 498 && y < 452 && y > 380) { setMenuPausa(2); /*restart*/ }
-		else if (x < 737 && x > 498 && y < 481 && y > 462) { setMenuPausa(3); /*back to*/ }
-		else if (x < 524 && x > 498 && y < 539 && y > 507) { setMenuPausa(4); /*exit*/ }
+	if (estado == JUEGO) {
+
+		if (estadojuego == PAUSA) {
+			if (x > 737 || x < 498 || y < 329 || y > 539) { setMenuPausa(0); /*no hay modo pausa*/ }
+			else if (x < 643 && x > 498 && y < 370 && y > 329) { setMenuPausa(1); /*resume*/ }
+			else if (x < 643 && x > 498 && y < 452 && y > 380) { setMenuPausa(2); /*restart*/ }
+			else if (x < 737 && x > 498 && y < 481 && y > 462) { setMenuPausa(3); /*back to*/ }
+			else if (x < 524 && x > 498 && y < 539 && y > 507) { setMenuPausa(4); /*exit*/ }
+		}
+
+		if (estadojuego == AYUDA) {
+			if (menu_help == H) {
+				if (x > 742 || x < 509 || y < 345 || y > 540) { setMenuAyuda(0); /*no hay modo ayuda*/ }
+				else if (x < 742 && x > 509 && y < 374 && y > 345) { setMenuAyuda(1); /*movimientos*/ }
+				else if (x < 716 && x > 509 && y < 463 && y > 423) { setMenuAyuda(2); /*movimientos especiales*/ }
+				else if (x < 665 && x > 509 && y < 540 && y > 514) { setMenuAyuda(3); /*fin juego*/ }
+			}
+
+			if (menu_help == MOVS) {
+				if (x > 628 || x < 537 || y < 300 || y > 568) { setMenuMovs(0); /*no hay modo movs*/ }
+				else if (x < 628 && x > 537 && y < 332 && y > 300) { setMenuMovs(1); /*pawn*/ }
+				else if (x < 628 && x > 537 && y < 382 && y > 332) { setMenuMovs(2); /*bishop*/ }
+				else if (x < 628 && x > 537 && y < 424 && y > 382) { setMenuMovs(3); /*knight*/ }
+				else if (x < 628 && x > 537 && y < 474 && y > 424) { setMenuMovs(4); /*rook*/ }
+				else if (x < 628 && x > 537 && y < 522 && y > 474) { setMenuMovs(5); /*queen*/ }
+				else if (x < 628 && x > 537 && y < 568 && y > 522) { setMenuMovs(6); /*king*/ }
+			}
+
+			if (menu_help == MOVSE) {
+				if (x > 688 || x < 505 || y < 347 || y > 506) { setMenuMovsEspeciales(0); /*no hay modo ayuda*/ }
+				else if (x < 643 && x > 505 && y < 383 && y > 347) { setMenuMovsEspeciales(1); /*movimientos*/ }
+				else if (x < 688 && x > 505 && y < 441 && y > 414) { setMenuMovsEspeciales(2); /*movimientos especiales*/ }
+				else if (x < 670 && x > 505 && y < 506 && y > 471) { setMenuMovsEspeciales(3); /*fin juego*/ }
+			}
+
+			if (menu_help == END) {
+
+			}
+		}
+
+		if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
+			if (x > 760 || x < 600 || y < 254 || y > 593) { setMenuCoronacion(0); /*no hay modo coronar*/ }
+			else if (x < 760 && x > 600 && y < 289 && y > 254) { setMenuCoronacion(3); /*ALFIL*/ }
+			else if (x < 760 && x > 600 && y < 391 && y > 353) { setMenuCoronacion(4); /*CABALLO*/ }
+			else if (x < 760 && x > 600 && y < 494 && y > 455) { setMenuCoronacion(2); /*TORRE*/ }
+			else if (x < 760 && x > 600 && y < 593 && y > 553) { setMenuCoronacion(1); /*REINA*/ }
+		}
 	}
 
-	if (estadojuego == AYUDA) {
-		if (menu_help == H) {
-			if (x > 742 || x < 509 || y < 345 || y > 540) { setMenuAyuda(0); /*no hay modo ayuda*/ }
-			else if (x < 742 && x > 509 && y < 374 && y > 345) { setMenuAyuda(1); /*movimientos*/ }
-			else if (x < 716 && x > 509 && y < 463 && y > 423) { setMenuAyuda(2); /*movimientos especiales*/ }
-			else if (x < 665 && x > 509 && y < 540 && y > 514) { setMenuAyuda(3); /*fin juego*/ }
-		}
-
-		if (menu_help == MOVS) {
-			if (x > 628 || x < 537 || y < 300 || y > 568) { setMenuMovs(0); /*no hay modo movs*/ }
-			else if (x < 628 && x > 537 && y < 332 && y > 300) { setMenuMovs(1); /*pawn*/ }
-			else if (x < 628 && x > 537 && y < 382 && y > 332) { setMenuMovs(2); /*bishop*/ }
-			else if (x < 628 && x > 537 && y < 424 && y > 382) { setMenuMovs(3); /*knight*/ }
-			else if (x < 628 && x > 537 && y < 474 && y > 424) { setMenuMovs(4); /*rook*/ }
-			else if (x < 628 && x > 537 && y < 522 && y > 474) { setMenuMovs(5); /*queen*/ }
-			else if (x < 628 && x > 537 && y < 568 && y > 522) { setMenuMovs(6); /*king*/ }
-		}
-
-		if (menu_help == MOVSE) {
-			if (x > 688 || x < 505 || y < 347 || y > 506) { setMenuMovsEspeciales(0); /*no hay modo ayuda*/ }
-			else if (x < 643 && x > 505 && y < 383 && y > 347) { setMenuMovsEspeciales(1); /*movimientos*/ }
-			else if (x < 688 && x > 505 && y < 441 && y > 414) { setMenuMovsEspeciales(2); /*movimientos especiales*/ }
-			else if (x < 670 && x > 505 && y < 506 && y > 471) { setMenuMovsEspeciales(3); /*fin juego*/ }
-		}
-
-		if (menu_help == END) {
-
-		}
-	}
-
-	if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
-		if (x > 760 || x < 600 || y < 254 || y > 593) { setMenuCoronacion(0); /*no hay modo coronar*/ }
-		else if (x < 760 && x > 600 && y < 289 && y > 254) { setMenuCoronacion(3); /*ALFIL*/ }
-		else if (x < 760 && x > 600 && y < 391 && y > 353) { setMenuCoronacion(4); /*CABALLO*/ }
-		else if (x < 760 && x > 600 && y < 494 && y > 455) { setMenuCoronacion(2); /*TORRE*/ }
-		else if (x < 760 && x > 600 && y < 593 && y > 553) { setMenuCoronacion(1); /*REINA*/ }
+	if (estado == FIN) {
+		if (x > 708 || x < 470 || y < 423 || y > 521) { setMenuFinal(0); /*no hay final*/ }
+		else if (x < 624 && x > 470 && y < 462 && y > 423) { setMenuFinal(1); /*rematch*/ }
+		else if (x < 708 && x > 470 && y < 521 && y > 496) { setMenuFinal(2); /*back to*/ }
 	}
 }
 
@@ -252,6 +261,15 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 		}
 	}
+
+	if (estado == FIN) {
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+			if (x > 708 || x < 470 || y < 423 || y > 521) { ; /*no hay final*/ }
+			else if (x < 624 && x > 470 && y < 462 && y > 423) { tablero.eliminarTablero(); tablero.nuevoTablero(); estado = JUEGO;  estadojuego = TURNO;/*rematch*/ }
+			else if (x < 708 && x > 470 && y < 521 && y > 496) { tablero.eliminarTablero(); estado = INICIO;  estadojuego = TURNO;/*back to*/ }
+		}
+	}
+
 }
 
 void Coordinador::dibuja()
@@ -286,9 +304,13 @@ void Coordinador::dibuja()
 			}
 		}
 		// para la carga de sprite sequences //
+		Jaque.setPos(1000, 1000);
 		Jaque.draw();
+		Jaque1.setPos(1000, 1000);
 		Jaque1.draw();
+		JaqueMate.setPos(1000, 1000);
 		JaqueMate.draw();
+		JaqueMate1.setPos(1000, 1000);
 		JaqueMate1.draw();
 	}
 
@@ -465,9 +487,11 @@ void Coordinador::dibuja()
 
 		if (estadojuego == JAQUE) {
 			if (tipojuego == 0) {
+				Jaque.setPos(0, 0);
 				Jaque.draw();
 			}
 			if (tipojuego == 1) {
+				Jaque1.setPos(0, 0);
 				Jaque1.draw();
 			}
 			tablero.dibuja();
@@ -475,9 +499,11 @@ void Coordinador::dibuja()
 
 		if (estadojuego == JAQUE_MATE) {
 			if (tipojuego == 0) {
+				JaqueMate.setPos(0, 0);
 				JaqueMate.draw();
 			}
 			if (tipojuego == 1) {
+				JaqueMate1.setPos(0, 0);
 				JaqueMate1.draw();
 			}
 			tablero.dibuja();
@@ -719,6 +745,11 @@ void Coordinador::setMenuMovsEspeciales(int x)
 void Coordinador::setMenuMuchoTexto(int x)
 {
 	muchotexto = x;
+}
+
+void Coordinador::setMenuFinal(int x)
+{
+	final = x;
 }
 
 int Coordinador::getEstado()
