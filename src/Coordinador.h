@@ -62,6 +62,17 @@ private:
 	Sprite HelpMovEspE{ "recursos/menu/help/HELP_SP_ENP.png", 0, 0, 110, 50 };
 	Sprite HelpMovEspP{ "recursos/menu/help/HELP_SP_PRO.png", 0, 0, 110, 50 };
 
+	// menu ayuda flecha //
+	Sprite Flecha{ "recursos/BACKNARROW.png", -45, 17, 8, 4};
+
+	// menu ayuda mucho texto //
+	Sprite HelpBish{ "recursos/BISHOP_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpPawn{ "recursos/PAWN_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpRook{ "recursos/ROOK_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpKnig{ "recursos/HORSE_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpKing{ "recursos/KING_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpQuee{ "recursos/QUEEN_TEXT.png", 0, 0, 110, 50 };
+
 	// coronaciones blancas queen //
 	Sprite MenuCoronar_B{"recursos/menu/M_CoronacionB.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarReina_B{ "recursos/menu/M_CoronacionReinaB.png", 0 , 0,40 ,60 };
@@ -111,6 +122,7 @@ public:
 	void setMenuAyuda(int x);
 	void setMenuMovs(int x);
 	void setMenuMovsEspeciales(int x);
+	void setMenuMuchoTexto(int x);
 	// getters //
 	int getEstado();
 	int getModoJuego();
@@ -133,7 +145,7 @@ protected:
 	int help; //  ayuda(0) mov(1) special rules(2) finpartida(3)
 	int movs; // movs(0) pawn(1) bish(2) knig(3) rook(4) quee(5) king(6)
 	int specialmovs; //specialmov(0) cast(1) pass(2) prom(3)
-	int finpar;
+	int muchotexto; // pawn(0) bish(1) knig(2) rook(3) quee(4) king(5) end(6)
 	///////////////////////
 	
 	// variables Jaque //
@@ -152,7 +164,7 @@ protected:
     enum Inicio{I ,FREE_PLAY, STORY_MODE, OPTIONS};
 	Inicio menu_inicio;
 
-	enum HELPS{ H, MOVS, MOVSE, END};
+	enum HELPS{ H, MOVS, MOVSE, END, TEXT};
 	HELPS menu_help;
 };
 
