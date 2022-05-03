@@ -46,7 +46,7 @@ private:
 
 	///// MODO JUEGO ////
 	static bool tipojuego; // queens(false)  kings(true)
-
+	static bool movimientos; // encendidos(true) apagados(false)
 public:
 	Tablero();
 
@@ -70,6 +70,8 @@ public:
 	static Casilla* getCasillaT(int x, int y);
 	static bool getCasillaOcupada(int x, int y);
 	static bool getTipoJuego();
+	static bool getMovimientos();
+
 	bool getTurnoAcabado();
 
 	static bool detectar_jaque(char color);
@@ -79,5 +81,6 @@ public:
 	void setCoronacion(int tipoficha);
 
 	void setTipoJuego(bool x);
+	void setMovimientos(bool x);
 };
 

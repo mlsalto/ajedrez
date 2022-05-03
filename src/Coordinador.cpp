@@ -712,14 +712,14 @@ void Coordinador::setOpciones(int x)
 {
 	opciones = x;
 
-	if (x == 0) { tipojuego = 0; tablero.setTipoJuego(true); }
-	if (x == 1) { tipojuego = 1; tablero.setTipoJuego(false); }
-	if (x == 2) { tipojuego = 0; tablero.setTipoJuego(true); }
-	if (x == 3) { tipojuego = 1; tablero.setTipoJuego(false); }
-	if (x == 4) { tipojuego = 0; tablero.setTipoJuego(true); }
-	if (x == 5) { tipojuego = 1; tablero.setTipoJuego(false); }
-	if (x == 6) { tipojuego = 0; tablero.setTipoJuego(true); }
-	if (x == 7) { tipojuego = 1; tablero.setTipoJuego(false); }
+	if (x == 0) { tipojuego = 0; tablero.setTipoJuego(true); tablero.setMovimientos(false);}
+	if (x == 1) { tipojuego = 1; tablero.setTipoJuego(false); tablero.setMovimientos(false);}
+	if (x == 2) { tipojuego = 0; tablero.setTipoJuego(true); tablero.setMovimientos(true);}
+	if (x == 3) { tipojuego = 1; tablero.setTipoJuego(false); tablero.setMovimientos(true);}
+	if (x == 4) { tipojuego = 0; tablero.setTipoJuego(true); tablero.setMovimientos(false);}
+	if (x == 5) { tipojuego = 1; tablero.setTipoJuego(false); tablero.setMovimientos(false);}
+	if (x == 6) { tipojuego = 0; tablero.setTipoJuego(true); tablero.setMovimientos(true);}
+	if (x == 7) { tipojuego = 1; tablero.setTipoJuego(false); tablero.setMovimientos(true);}
 }
 
 void Coordinador::setMenuPausa(int x)

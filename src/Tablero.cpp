@@ -4,6 +4,7 @@
 Casilla* Tablero::casillas[8][8];
 ListaPiezas Tablero::piezas;
 bool Tablero::tipojuego;
+bool Tablero::movimientos;
 
 Tablero::Tablero(){}
 
@@ -168,7 +169,8 @@ void Tablero::dibuja()
 
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
-	        casillas[i][j]->draw();
+			casillas[i][j]->draw();
+	
 
 	if (tipojuego == true) {
 		tableroAjedrez.draw();
@@ -396,6 +398,11 @@ bool Tablero::getTipoJuego()
 	return tipojuego;
 }
 
+bool Tablero::getMovimientos()
+{
+	return movimientos;
+}
+
 bool Tablero::getTurnoAcabado()
 {
 	return finturno;
@@ -404,6 +411,11 @@ bool Tablero::getTurnoAcabado()
 void Tablero::setTipoJuego(bool x)
 {
 	 tipojuego = x;
+}
+
+void Tablero::setMovimientos(bool x)
+{
+	movimientos = x;
 }
 
 bool Tablero::getCoronacion(char color)
