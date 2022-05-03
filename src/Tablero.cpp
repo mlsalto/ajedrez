@@ -211,6 +211,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 
 //En tu turno, compruebas si puedes hacer jaque al contrincante
 bool Tablero::detectar_jaque(char color) {
+	// este jaque solo depende del color
 	int i, j;
 	int pos_rey_x, pos_rey_y;
 	//bucle anidado para recorrer el tablero y comprobar si alguna pieza puede hacer jaque a la posición actual del rey
@@ -244,42 +245,292 @@ bool Tablero::detectar_jaque(char color) {
 	return false;
 }
 
-bool Tablero::detectar_jaque_mate(char color) {
 
-	int i, j, pos_rey_x, pos_rey_y, posiciones = 0;
+bool Tablero::detectar_jaque_casillas(char color, Casilla* casillas) {
+	// este jaque funciona haciendo input de las casillas ( o el tablero )
+	int i, j;
+	int pos_rey_x, pos_rey_y;
+	Casilla* casilla_rey = 0;
+	//bucle anidado para recorrer el tablero y comprobar si alguna pieza puede hacer jaque a la posición actual del rey
 	bool rey = false;
 
+	if (casillas->getTipoPieza() == 6 && casillas->getPieza()->getColorPieza() == color && rey == false)
+	{
+		casilla_rey = casillas;
+		rey = true;
+	}
+
+
+	if (rey == true && casillas->getOcupada() == true && casillas->getPieza()->movimientoLegal(casilla_rey) == true)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool Tablero::detectar_jaque_mate(char color) {
+
+	int i, j;
+	int pos_rey_x, pos_rey_y;
+	int a, b;
+	int x, y;
+	int m, n;
+	int u, v;
+	int c, d;
+	bool rey = false;
+	Casilla* copia_tablero[8][8];
+
+	// variables de ayuda para realizar los movimientos virtuales //
+	Pieza* piezaini = 0;
+	int piezaini_ini_x, piezaini_ini_y;
+	int piezaini_fin_x, piezaini_fin_y;
+	Pieza* piezafin = 0;
+	int piezafin_ini_x, piezafin_ini_y;
+	int piezafin_fin_x, piezafin_fin_y;
+	Pieza* piezacomida1;
+	Pieza* piezacomida2;
+
+	// si no hay jaque no puede haber jaque mate //
+	if (detectar_jaque(color) == false) return false;
+
+	// copia tablero //
+	for (i = 0; i < 8; i++)
+		for (j = 0; j < 8; j++)
+			copia_tablero[i][j] = casillas[i][j];
+
+	// encontrar rey //
 	for (i = 0; i < 8 && rey == false; i++)
 	{
 		for (j = 0; j < 8; j++)
 		{
-			if (casillas[i][j]->getTipoPieza() == 6 && casillas[i][j]->getPieza()->getColorPieza() == color)
+			if (copia_tablero[i][j]->getTipoPieza() == 6 && copia_tablero[i][j]->getPieza()->getColorPieza() == color)
 			{
-				pos_rey_x = casillas[i][j]->getColumna();
-				pos_rey_y = casillas[i][j]->getFila();
+				pos_rey_x = copia_tablero[i][j]->getColumna();
+				pos_rey_y = copia_tablero[i][j]->getFila();
 				rey = true;
 			}
 		}
 	}
-
-
+	
+	// comprobar para todos los movimientos de todas las piezas jaque == true //
 	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++) {
 
-			if (casillas[pos_rey_x][pos_rey_y]->getPieza()->movimientoLegal(casillas[i][j]) == true) {
-				posiciones++;
-				//if (detectar_jaque(i, j) == true)
-				//	posiciones--;
-			}
+			// encontrar pieza contrario
+			if (copia_tablero[i][j]->getTipoPieza() != 0 && copia_tablero[i][j]->getPieza()->getColorPieza() != color)
+			{
+				piezaini = copia_tablero[i][j]->getPieza(); // guardar dato pieza
+				piezaini_ini_x = i; piezaini_ini_y = j; // guardar dato posicion inicial
 
+				for (a = 0; a < 8; a++) 
+				{
+					for (b = 0; b < 8; b++)
+					{
+						// realizar mov legal de la pieza contraria
+						if (piezaini->movimientoLegal(copia_tablero[a][b]) == true) { 
+
+							// si no come ninguna pieza 
+							if (copia_tablero[a][b]->getTipoPieza()  == 0) {
+								copia_tablero[a][b]->colocarPieza(piezaini);
+								copia_tablero[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+								piezaini_fin_x = a; piezaini_fin_y = b; // guardar dato posicion final
+
+								// comprobamos si hay jaque con la nueva disposición
+								for (x = 0; x < 8; x++)
+								{
+									for (y = 0; y < 8; y++)
+									{
+										// detectar si hay jaque o no
+										if (detectar_jaque_casillas(color, copia_tablero[x][y]) == true)
+										{
+											for (m = 0; m < 8; m++)
+											{
+												for (n = 0; n < 8; n++)
+												{
+													// encontrar pieza del mismo color que el rey
+													if (copia_tablero[m][n]->getTipoPieza() != 0 && copia_tablero[m][n]->getPieza()->getColorPieza() == color)
+													{
+														piezafin = copia_tablero[m][n]->getPieza(); // guardar dato pieza fin
+														piezafin_ini_x = m; piezafin_ini_y = n; // guardar posicion inicial
+
+														// realizar movimiento para intentar deshacer jaque
+														for (u = 0; u < 8; u++)
+														{
+															for (v = 0; v < 8; v++)
+															{
+																if (piezafin->movimientoLegal(copia_tablero[u][v]) == true)
+																{
+																	// si mueve a una casilla vacía //
+																	if (copia_tablero[u][v]->getTipoPieza() == 0)
+																	{
+																		copia_tablero[u][v]->colocarPieza(piezafin);
+																		copia_tablero[piezafin_ini_x][piezafin_ini_x]->colocarPieza(0);
+																		piezafin_fin_x = u; piezafin_fin_y = v; // guardar posicion final
+																		//comprobar si el jaque se deshace
+																		for (c = 0; c < 8; c++)
+																		{
+																			for (d = 0; d < 8; d++)
+																			{
+																				// si se deshace no hay jaque mate
+																				if (detectar_jaque_casillas(color, copia_tablero[c][d]) == false) { return false; }
+
+																				// si no se deshace hay que deshacer los cambios y seguir revisando las demás piezas
+																				if (d == c == 7 && detectar_jaque_casillas(color, copia_tablero[c][d]) == true)
+																				{
+																					copia_tablero[piezaini_fin_x][piezaini_fin_y]->colocarPieza(0);
+																					copia_tablero[piezafin_fin_x][piezafin_fin_y]->colocarPieza(0);
+
+																					copia_tablero[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+																					copia_tablero[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezafin);
+																				}
+																			}
+																		}
+
+																		// si mueve a una casilla ocupada //
+																		if (copia_tablero[u][v]->getTipoPieza() != 0)
+																		{
+																			piezacomida2 = copia_tablero[u][v]->getPieza();
+																			copia_tablero[u][v]->colocarPieza(piezafin);
+																			copia_tablero[piezafin_ini_x][piezafin_ini_x]->colocarPieza(0);
+																			piezafin_fin_x = u; piezafin_fin_y = v; // guardar posicion final
+																			//comprobar si el jaque se deshace
+																			for (c = 0; c < 8; c++)
+																			{
+																				for (d = 0; d < 8; d++)
+																				{
+																					// si se deshace no hay jaque mate
+																					if (detectar_jaque_casillas(color, copia_tablero[c][d]) == false) { return false; }
+
+																					// si no se deshace hay que deshacer los cambios y seguir revisando las demás piezas
+																					if (d == c == 7 && detectar_jaque_casillas(color, copia_tablero[c][d]) == true)
+																					{
+																						copia_tablero[piezaini_fin_x][piezaini_fin_y]->colocarPieza(0);
+																						copia_tablero[piezafin_fin_x][piezafin_fin_y]->colocarPieza(piezacomida2);
+
+																						copia_tablero[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+																						copia_tablero[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezafin);
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+
+							// si se come alguna pieza
+							if (copia_tablero[a][b]->getTipoPieza() != 0) {
+								piezacomida1 = copia_tablero[a][b]->getPieza(); // copia de la pieza comida
+								copia_tablero[a][b]->colocarPieza(piezaini); // hacer copia pieza movida
+
+								copia_tablero[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+								piezaini_fin_x = a; piezaini_fin_y = b; // guardar dato posicion final
+
+								for (x = 0; x < 8; x++)
+								{
+									for (y = 0; y < 8; y++)
+									{
+										// detectar si hay jaque o no
+										if (detectar_jaque_casillas(color, copia_tablero[x][y]) == true)
+										{
+											for (m = 0; m < 8; m++)
+											{
+												for (n = 0; n < 8; n++)
+												{
+													// encontrar pieza del mismo color que el rey
+													if (copia_tablero[m][n]->getTipoPieza() != 0 && copia_tablero[m][n]->getPieza()->getColorPieza() == color)
+													{
+														piezafin = copia_tablero[m][n]->getPieza(); // guardar dato pieza fin
+														piezafin_ini_x = m; piezafin_ini_y = n; // guardar posicion inicial
+
+														// realizar movimiento para intentar deshacer jaque
+														for (u = 0; u < 8; u++)
+														{
+															for (v = 0; v < 8; v++)
+															{
+																if (piezafin->movimientoLegal(copia_tablero[u][v]) == true)
+																{
+																	// si mueve a una casilla vacia //
+																	if (copia_tablero[u][v]->getTipoPieza() == 0)
+																	{
+																		copia_tablero[u][v]->colocarPieza(piezafin);
+																		copia_tablero[piezafin_ini_x][piezafin_ini_x]->colocarPieza(0);
+																		piezafin_fin_x = u; piezafin_fin_y = v; // guardar posicion final
+																		//comprobar si el jaque se deshace
+																		for (c = 0; c < 8; c++)
+																		{
+																			for (d = 0; d < 8; d++)
+																			{
+																				// si se deshace no hay jaque mate
+																				if (detectar_jaque_casillas(color, copia_tablero[c][d]) == false) { return false; }
+
+																				// si no se deshace hay que deshacer los cambios y seguir revisando las demás piezas
+																				if (d == c == 7 && detectar_jaque_casillas(color, copia_tablero[c][d]) == true)
+																				{
+																					copia_tablero[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezacomida1);
+																					copia_tablero[piezafin_fin_x][piezafin_fin_y]->colocarPieza(0);
+
+																					copia_tablero[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+																					copia_tablero[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezafin);
+																				}
+																			}
+																		}
+																	}
+
+																	// si mueve a una casilla ocupada //
+																	if (copia_tablero[u][v]->getTipoPieza() != 0)
+																	{
+																		piezacomida2 = copia_tablero[u][v]->getPieza();
+																		copia_tablero[u][v]->colocarPieza(piezafin);
+																		copia_tablero[piezafin_ini_x][piezafin_ini_x]->colocarPieza(0);
+																		piezafin_fin_x = u; piezafin_fin_y = v; // guardar posicion final
+																		//comprobar si el jaque se deshace
+																		for (c = 0; c < 8; c++)
+																		{
+																			for (d = 0; d < 8; d++)
+																			{
+																				// si se deshace no hay jaque mate
+																				if (detectar_jaque_casillas(color, copia_tablero[c][d]) == false) { return false; }
+
+																				// si no se deshace hay que deshacer los cambios y seguir revisando las demás piezas
+																				if (d == c == 7 && detectar_jaque_casillas(color, copia_tablero[c][d]) == true)
+																				{
+																					copia_tablero[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezacomida1);
+																					copia_tablero[piezafin_fin_x][piezafin_fin_y]->colocarPieza(piezacomida2);
+
+																					copia_tablero[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+																					copia_tablero[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezafin);
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
-	if (posiciones == 0) return true;
-
-
-	else return false;
+	return true;
 }
 
 void Tablero::mueve(float t)

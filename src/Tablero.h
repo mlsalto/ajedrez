@@ -71,6 +71,7 @@ public:
 	bool getTurnoAcabado();
 
 	static bool detectar_jaque(char color);
+	static bool detectar_jaque_casillas(char color, Casilla* casillas);
 	bool detectar_jaque_mate(char color);
 
 	bool getCoronacion(char color);
