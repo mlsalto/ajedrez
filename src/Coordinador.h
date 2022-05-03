@@ -7,10 +7,13 @@ class Coordinador
 {
 private:
 
-	// PRUEBAS //
+	// jaque //
 	SpriteSequence Jaque{ "recursos/CHECK_FRAME1.png", 34, 1, 50, true,0, 0, 150, 90 , 0};
 	SpriteSequence Jaque1{ "recursos/CHECK_FRAME1_rojo.png", 34, 1, 50, true,0, 0, 150, 90 , 0 };
-	////////////
+	
+	// jaque mate //
+	SpriteSequence JaqueMate{ "recursos/CHECKMATE__animation.png", 47, 1, 50, true,0, 0, 150, 90 , 0 };
+	SpriteSequence JaqueMate1{ "recursos/CHECKMATE__animation_rojo.png", 47, 1, 50, true,0, 0, 150, 90 , 0 };
 	
 	// menu inicial gambito dama //
 	Sprite MenuInicial{ "recursos/menu/Menu.png", 0, 0, 130, 80 };
@@ -122,6 +125,16 @@ private:
 	Sprite MenuCoronarCaballo_N2{ "recursos/menu/M_CoronacionCaballoN2.png", 0 , 0, 40 ,60 };
 	Sprite MenuCoronarTorre_N2{ "recursos/menu/M_CoronacionTorreN2.png", 0 , 0, 40 ,60 };
 
+	// menu ganador blanco //
+	Sprite MenuGanadorB{ "recursos/menu/WHITE_WINS_NS.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorReB{ "recursos/menu/WHITE_WINS_REMATCH.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorBaB{ "recursos/menu/WHITE_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
+
+	// menu ganador negro //
+	Sprite MenuGanadorN{ "recursos/menu/BLACK_WINS_NS.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorReN{ "recursos/menu/BLACK_WINS_REMATCH.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorBaN{ "recursos/menu/BLACK_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
+
 public:
 	Coordinador();
 	virtual ~Coordinador();
@@ -169,14 +182,19 @@ protected:
 	int muchotexto; // pawn(0) bish(1) knig(2) rook(3) quee(4) king(5) end(6)
 	///////////////////////
 	
-	// variables Jaque //
+	// variables Jaque y Jaque Mate//
 	int i = 0; 
+	//////////////////////////
+
+	// variables Jaque y Jaque Mate//
+	int ganador; // blancas(0) negras (1)
+	int final;
 	//////////////////////////
 
 	enum Estado { INICIO, OPCIONES , JUEGO,  FIN}; //editar los estados
 	Estado estado;
 
-	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
+	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, JAQUE_MATE, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
 	EstadoJuego estadojuego;
 
 	enum Coronar{ C, REINA, TORRE, ALFIL, CABALLO};

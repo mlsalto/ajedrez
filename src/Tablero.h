@@ -30,7 +30,9 @@ private:
 	bool turnoterminado;
 	bool finturno;
 
-	
+	////// ELEMENTOS DE AYUDA PARA GESTIONAR EL JAQUE MATE ///////////
+
+
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
 	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
@@ -71,7 +73,7 @@ public:
 	bool getTurnoAcabado();
 
 	static bool detectar_jaque(char color);
-	bool detectar_jaque_mate(char color);
+	static bool detectar_jaque_mate(char color);
 
 	bool getCoronacion(char color);
 	void setCoronacion(int tipoficha);

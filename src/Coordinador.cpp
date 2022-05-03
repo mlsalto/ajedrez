@@ -184,6 +184,13 @@ void Coordinador::raton(int button, int state, int x, int y)
 					{
 						estadojuego = JAQUE;
 					}
+
+					if(Tablero::detectar_jaque_mate('N') == true || Tablero::detectar_jaque_mate('B') == true)
+					{
+						estadojuego = JAQUE_MATE;
+						if (Tablero::detectar_jaque_mate('N') == true) { ganador = 0; }
+						if (Tablero::detectar_jaque_mate('B') == true) { ganador = 1; }
+					}
 				}
 
 				if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
@@ -281,6 +288,8 @@ void Coordinador::dibuja()
 		// para la carga de sprite sequences //
 		Jaque.draw();
 		Jaque1.draw();
+		JaqueMate.draw();
+		JaqueMate1.draw();
 	}
 
 	if (estado == OPCIONES) {
@@ -463,6 +472,16 @@ void Coordinador::dibuja()
 			}
 			tablero.dibuja();
 		}
+
+		if (estadojuego == JAQUE_MATE) {
+			if (tipojuego == 0) {
+				JaqueMate.draw();
+			}
+			if (tipojuego == 1) {
+				JaqueMate1.draw();
+			}
+			tablero.dibuja();
+		}
 		
 		if (estadojuego == CORONAR_BLANCAS) {
 			if (tipojuego == 0) {
@@ -537,8 +556,32 @@ void Coordinador::dibuja()
 	}
 
 	if (estado == FIN) {
-		// dibujar según si ganan las negras o blancas
-		// ( hay que ver como implementarlo )
+		if(ganador == 0)
+		{
+			switch (final)
+			{
+			case 0:
+				MenuGanadorB.draw();
+			case 1:
+				MenuGanadorReB.draw();
+			case 2:
+				MenuGanadorBaB.draw();
+		    }
+		}
+
+		if (ganador == 0)
+		{
+			switch (final)
+			{
+			case 0:
+				MenuGanadorN.draw();
+			case 1:
+				MenuGanadorReN.draw();
+			case 2:
+				MenuGanadorBaN.draw();
+			}
+		}
+		tablero.dibuja();
 	}
 }
 
@@ -592,6 +635,31 @@ void Coordinador::mueve(float t)
 			else if (i >= 34) {
 				i = 0;
 				estadojuego = TURNO;
+			}
+		}
+	}
+
+	if (estadojuego == JAQUE_MATE)
+	{
+		if (tipojuego == 0) {
+			if (i < 47) {
+				JaqueMate.setState(i);
+				i++;
+			}
+			else if (i >= 47) {
+				i = 0;
+				estado = FIN;
+			}
+		}
+
+		if (tipojuego == 1) {
+			if (i < 47) {
+				JaqueMate1.setState(i);
+				i++;
+			}
+			else if (i >= 47) {
+				i = 0;
+				estado = FIN;
 			}
 		}
 	}

@@ -211,6 +211,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 
 //En tu turno, compruebas si puedes hacer jaque al contrincante
 bool Tablero::detectar_jaque(char color) {
+	// este jaque solo depende del color
 	int i, j;
 	int pos_rey_x, pos_rey_y;
 	//bucle anidado para recorrer el tablero y comprobar si alguna pieza puede hacer jaque a la posición actual del rey
@@ -246,40 +247,95 @@ bool Tablero::detectar_jaque(char color) {
 
 bool Tablero::detectar_jaque_mate(char color) {
 
-	int i, j, pos_rey_x, pos_rey_y, posiciones = 0;
-	bool rey = false;
+	int i, j;
+	int a, b;
 
-	for (i = 0; i < 8 && rey == false; i++)
-	{
-		for (j = 0; j < 8; j++)
-		{
-			if (casillas[i][j]->getTipoPieza() == 6 && casillas[i][j]->getPieza()->getColorPieza() == color)
-			{
-				pos_rey_x = casillas[i][j]->getColumna();
-				pos_rey_y = casillas[i][j]->getFila();
-				rey = true;
-			}
-		}
-	}
+	// variables de ayuda para realizar los movimientos virtuales //
+	Pieza* piezaini = 0;
+	int piezaini_ini_x, piezaini_ini_y;
+	int piezaini_fin_x, piezaini_fin_y;
+
+	Pieza* piezacomida;
 
 
+	// si no hay jaque no puede haber jaque mate //
+	if (detectar_jaque(color) == false) return false;
+
+	
+	// comprobar para todos los movimientos de todas las piezas jaque == true //
 	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++) {
+			// encontrar pieza 
+			if (casillas[i][j]->getTipoPieza() != 0 && casillas[i][j]->getPieza()->getColorPieza() == color)
+			{
+				piezaini = casillas[i][j]->getPieza(); // guardar dato pieza
+				piezaini_ini_x = i; piezaini_ini_y = j; // guardar dato posicion inicial
 
-			if (casillas[pos_rey_x][pos_rey_y]->getPieza()->movimientoLegal(casillas[i][j]) == true) {
-				posiciones++;
-				//if (detectar_jaque(i, j) == true)
-				//	posiciones--;
+				for (a = 0; a < 8; a++)
+				{
+					for (b = 0; b < 8; b++)
+					{
+						// realizar mov legal de la pieza 
+						if (piezaini->movimientoLegal(casillas[a][b]) == true) {
+
+							// si no come ninguna pieza 
+							if (casillas[a][b]->getTipoPieza() == 0) 
+							{
+								casillas[a][b]->colocarPieza(piezaini);
+								casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+								piezaini_fin_x = a; piezaini_fin_y = b; // guardar dato posicion final
+
+								// comprobamos si hay jaque con la nueva disposición
+								// no hay jaque
+								if (detectar_jaque(color) == false) 
+								{
+									casillas[piezaini_fin_x][piezaini_fin_y]->colocarPieza(0);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+
+									return false;
+								}
+
+								// hay jaque
+								if (detectar_jaque(color) == true)
+								{
+									casillas[piezaini_fin_x][piezaini_fin_y]->colocarPieza(0);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+								}
+							}
+
+							// si se come ninguna pieza 
+							if (casillas[a][b]->getTipoPieza() == 0)
+							{
+								piezacomida = casillas[a][b]->getPieza();
+								casillas[a][b]->colocarPieza(piezaini);
+								casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+								piezaini_fin_x = a; piezaini_fin_y = b; // guardar dato posicion final
+
+								// comprobamos si hay jaque con la nueva disposición
+								// no hay jaque
+								if (detectar_jaque(color) == false)
+								{
+									casillas[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezacomida);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+
+									return false;
+								}
+
+								// hay jaque
+								if (detectar_jaque(color) == true)
+								{
+									casillas[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezacomida);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+								}
+							}
+						}
+					}
+				}
 			}
-
 		}
 	}
-
-	if (posiciones == 0) return true;
-
-
-	else return false;
+	return true;
 }
 
 void Tablero::mueve(float t)
