@@ -7,10 +7,13 @@ class Coordinador
 {
 private:
 
-	// PRUEBAS //
+	// jaque //
 	SpriteSequence Jaque{ "recursos/CHECK_FRAME1.png", 34, 1, 50, true,0, 0, 150, 90 , 0};
 	SpriteSequence Jaque1{ "recursos/CHECK_FRAME1_rojo.png", 34, 1, 50, true,0, 0, 150, 90 , 0 };
-	////////////
+	
+	// jaque mate //
+	SpriteSequence JaqueMate{ "recursos/CHECKMATE__animation.png", 47, 1, 50, true,0, 0, 150, 90 , 0 };
+	SpriteSequence JaqueMate1{ "recursos/CHECKMATE__animation_rojo.png", 47, 1, 50, true,0, 0, 150, 90 , 0 };
 	
 	// menu inicial gambito dama //
 	Sprite MenuInicial{ "recursos/menu/Menu.png", 0, 0, 130, 80 };
@@ -176,7 +179,7 @@ protected:
 	enum Estado { INICIO, OPCIONES , JUEGO,  FIN}; //editar los estados
 	Estado estado;
 
-	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
+	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, JAQUE_MATE, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
 	EstadoJuego estadojuego;
 
 	enum Coronar{ C, REINA, TORRE, ALFIL, CABALLO};

@@ -184,6 +184,11 @@ void Coordinador::raton(int button, int state, int x, int y)
 					{
 						estadojuego = JAQUE;
 					}
+
+					if(Tablero::detectar_jaque_mate('N') == true || Tablero::detectar_jaque_mate('B') == true)
+					{
+						estadojuego = JAQUE_MATE;
+					}
 				}
 
 				if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
@@ -281,6 +286,8 @@ void Coordinador::dibuja()
 		// para la carga de sprite sequences //
 		Jaque.draw();
 		Jaque1.draw();
+		JaqueMate.draw();
+		JaqueMate1.draw();
 	}
 
 	if (estado == OPCIONES) {
@@ -463,6 +470,16 @@ void Coordinador::dibuja()
 			}
 			tablero.dibuja();
 		}
+
+		if (estadojuego == JAQUE_MATE) {
+			if (tipojuego == 0) {
+				JaqueMate.draw();
+			}
+			if (tipojuego == 1) {
+				JaqueMate1.draw();
+			}
+			tablero.dibuja();
+		}
 		
 		if (estadojuego == CORONAR_BLANCAS) {
 			if (tipojuego == 0) {
@@ -590,6 +607,31 @@ void Coordinador::mueve(float t)
 				i++;
 			}
 			else if (i >= 34) {
+				i = 0;
+				estadojuego = TURNO;
+			}
+		}
+	}
+
+	if (estadojuego == JAQUE_MATE)
+	{
+		if (tipojuego == 0) {
+			if (i < 47) {
+				JaqueMate.setState(i);
+				i++;
+			}
+			else if (i >= 47) {
+				i = 0;
+				estadojuego = TURNO;
+			}
+		}
+
+		if (tipojuego == 1) {
+			if (i < 47) {
+				JaqueMate1.setState(i);
+				i++;
+			}
+			else if (i >= 47) {
 				i = 0;
 				estadojuego = TURNO;
 			}
