@@ -162,8 +162,8 @@ void Tablero::dibuja()
 {
 	//el tablero tiene que dibujarse el último para dibujarse detrás y que no
 	//tape a las figuras
-	jugador1->draw(2); // blancas
-	jugador2->draw(3); // negras
+	jugador1->draw(personaje1); // blancas
+	jugador2->draw(personaje2); // negras
 
 	piezas.draw();
 
@@ -371,6 +371,16 @@ void Tablero::setJugador1(Jugador* j)
 void Tablero::setJugador2(Jugador* j)
 {
 	jugador2 = j;
+}
+
+void Tablero::setPersonaje1(int x)
+{
+	personaje1 = x;
+}
+
+void Tablero::setPersonaje2(int x)
+{
+	personaje2 = x;
 }
 
 Pieza* Tablero::getPiezasT(int x, int y)

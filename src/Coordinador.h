@@ -86,8 +86,9 @@ private:
 	Sprite HelpMovEspE2{ "recursos/menu/help/HELP_SP_ENP.png", 0, 0, 110, 50 };
 	Sprite HelpMovEspP2{ "recursos/menu/help/HELP_SP_PRO.png", 0, 0, 110, 50 };
 
-	// menu ayuda flecha //
+	// menu flecha //
 	Sprite Flecha{ "recursos/BACKNARROW.png", -45, 17, 8, 4};
+	Sprite Flecha1{ "recursos/BACKNARROW1.png", -45, 17, 8, 4 };
 
 	// menu ayuda mucho texto //
 	Sprite HelpBish{ "recursos/BISHOP_TEXT.png", 0, 0, 110, 50 };
@@ -96,6 +97,10 @@ private:
 	Sprite HelpKnig{ "recursos/HORSE_TEXT.png", 0, 0, 110, 50 };
 	Sprite HelpKing{ "recursos/KING_TEXT.png", 0, 0, 110, 50 };
 	Sprite HelpQuee{ "recursos/QUEEN_TEXT.png", 0, 0, 110, 50 };
+
+	// menu botones help y pause //
+	Sprite BotonHP_azul{ "recursos/help_pause_azul.png", 60 , 30 , 8 , 4};
+	Sprite BotonHP_rojo{ "recursos/help_pause_rojo.png", 60 , 30 , 8 , 4 };
 
 	// coronaciones blancas queen //
 	Sprite MenuCoronar_B{"recursos/menu/M_CoronacionB.png", 0 , 0, 40 ,60 };

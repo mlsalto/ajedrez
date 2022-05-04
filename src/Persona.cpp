@@ -11,22 +11,82 @@ Persona::Persona(char colorJugador)
 
 void Persona::draw(int x)
 {
-	if (x == 1) {
-		if(color == 'B') player1.setPos(60, 0); 
-		if(color == 'N') player1.setPos(-60, 0);
-		player1.draw();
-	}
-	
-	if (x == 2) {
-		if (color == 'B')player2.setPos(60, 0); 
-		if (color == 'N')player2.setPos(-60, 0); 
-		player2.draw();
+	if (Tablero::getTipoJuego() == TRUE)
+	{
+		if (x == 1) {
+			if (color == 'B') player1.setPos(60, 0);
+			if (color == 'N') player1.setPos(-60, 0);
+			player1.draw();
+		}
+
+		if (x == 2) {
+			if (color == 'B')player2.setPos(60, 0);
+			if (color == 'N')player2.setPos(-60, 0);
+			player2.draw();
+		}
+
+		if (x == 3) {
+			if (color == 'B')player3.setPos(60, 0);
+			if (color == 'N')player3.setPos(-60, 0);
+			player3.draw();
+		}
 	}
 
-	if (x == 3) {
-		if (color == 'B')player3.setPos(60, 0);
-		if (color == 'N')player3.setPos(-60, 0);
-		player3.draw();
+	if (Tablero::getTipoJuego() == FALSE)
+	{
+		if (x == 1) {
+			if (color == 'B') TB.setPos(60, 0);
+			if (color == 'N') TB.setPos(-60, 0);
+			TB.draw();
+		}
+
+		if (x == 2) {
+			if (color == 'B') TC.setPos(60, 0);
+			if (color == 'N') TC.setPos(-60, 0);
+			TC.draw();
+		}
+
+		if (x == 3) {
+			if (color == 'B') TH.setPos(60, 0);
+			if (color == 'N') TH.setPos(-60, 0);
+			TH.draw();
+		}
+
+		if (x == 4) {
+			if (color == 'B') TJ.setPos(60, 0);
+			if (color == 'N') TJ.setPos(-60, 0);
+			TJ.draw();
+		}
+
+		if (x == 5) {
+			if (color == 'B') TM.setPos(60, 0);
+			if (color == 'N') TM.setPos(-60, 0);
+			TM.draw();
+		}
+
+		if (x == 6) {
+			if (color == 'B') TO.setPos(60, 0);
+			if (color == 'N') TO.setPos(-60, 0);
+			TO.draw();
+		}
+
+		if (x == 7) {
+			if (color == 'B') TP.setPos(60, 0);
+			if (color == 'N') TP.setPos(-60, 0);
+			TP.draw();
+		}
+
+		if (x == 8) {
+			if (color == 'B') TR.setPos(60, 0);
+			if (color == 'N') TR.setPos(-60, 0);
+			TR.draw();
+		}
+
+		if (x == 9) {
+			if (color == 'B') TS.setPos(60, 0);
+			if (color == 'N') TS.setPos(-60, 0);
+			TS.draw();
+		}
 	}
 }
 
