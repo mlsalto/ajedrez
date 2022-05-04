@@ -133,7 +133,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 				tablero.setJugador1(Jugador1);
 				tablero.setJugador2(Jugador2);
 
-				estado = JUEGO;
+				estado = S_PER_BLANCO;
 
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
 				musica(); // para actualziar musica
@@ -147,6 +147,27 @@ void Coordinador::raton(int button, int state, int x, int y)
 				estado = OPCIONES;
 			}
 		}
+	}
+
+	if (estado == S_PER_BLANCO)
+	{
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+			if (x > 713 || x < 264 || y < 229 || y > 654) { ; /*no hay personaje seleecionado*/ }
+			else if (x < 493 && x > 264 && y < 258 && y > 229) { setPersonajeB(1); }
+			else if (x < 568 && x > 264 && y < 307 && y > 278) { setPersonajeB(2); }
+			else if (x < 493 && x > 264 && y < 360 && y > 332) { setPersonajeB(3); }
+			else if (x < 713 && x > 264 && y < 408 && y > 377) { setPersonajeB(4); }
+			else if (x < 568 && x > 264 && y < 455 && y > 424) { setPersonajeB(5); }
+			else if (x < 586 && x > 264 && y < 504 && y > 478) { setPersonajeB(6); }
+			else if (x < 493 && x > 264 && y < 555 && y > 526) { setPersonajeB(7); }
+			else if (x < 619 && x > 264 && y < 605 && y > 575) { setPersonajeB(8); }
+			else if (x < 493 && x > 264 && y < 654 && y > 628) { setPersonajeB(9); }
+		}
+	}
+
+	if (estado == S_PER_NEGRO)
+	{
+
 	}
 
 	if (estado == OPCIONES) {
@@ -312,6 +333,58 @@ void Coordinador::dibuja()
 		JaqueMate.draw();
 		JaqueMate1.setPos(1000, 1000);
 		JaqueMate1.draw();
+	}
+
+	if (estado == S_PER_BLANCO)
+	{
+		switch(personajeB){
+		case 0:
+			PerBK.draw();
+		case 1:
+			PerBK_TB.draw();
+		case 2:
+			PerBK_TC.draw();
+		case 3:
+			PerBK_TH.draw();
+		case 4:
+			PerBK_TJ.draw();
+		case 5:
+			PerBK_TM.draw();
+		case 6:
+			PerBK_TO.draw();
+		case 7:
+			PerBK_TP.draw();
+		case 8:
+			PerBK_TR.draw();
+		case 9:
+			PerBK_TS.draw();
+		}
+	}
+
+	if (estado == S_PER_NEGRO)
+	{
+		switch (personajeN) {
+		case 0:
+			PerNK.draw();
+		case 1:
+			PerNK_TB.draw();
+		case 2:
+			PerNK_TC.draw();
+		case 3:
+			PerNK_TH.draw();
+		case 4:
+			PerNK_TJ.draw();
+		case 5:
+			PerNK_TM.draw();
+		case 6:
+			PerNK_TO.draw();
+		case 7:
+			PerNK_TP.draw();
+		case 8:
+			PerNK_TR.draw();
+		case 9:
+			PerNK_TS.draw();
+		}
 	}
 
 	if (estado == OPCIONES) {
@@ -750,6 +823,16 @@ void Coordinador::setMenuMuchoTexto(int x)
 void Coordinador::setMenuFinal(int x)
 {
 	final = x;
+}
+
+void Coordinador::setPersonajeB(int x)
+{
+	personajeB = x;
+}
+
+void Coordinador::setPersonajeN(int x)
+{
+	personajeN = x;
 }
 
 int Coordinador::getEstado()

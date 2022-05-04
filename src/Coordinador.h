@@ -135,6 +135,30 @@ private:
 	Sprite MenuGanadorReN{ "recursos/menu/BLACK_WINS_REMATCH.png", 0, 0, 110, 50 };
 	Sprite MenuGanadorBaN{ "recursos/menu/BLACK_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
 
+	// menu personaje blanco kings //
+	Sprite PerBK{ "recursos/menu/personajes/PLAYER1_VACIO_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TB{ "recursos/menu/personajes/PLAYER1_TB_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TC{ "recursos/menu/personajes/PLAYER1_TC_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TH{ "recursos/menu/personajes/PLAYER1_TH_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TJ{ "recursos/menu/personajes/PLAYER1_TJC_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TM{ "recursos/menu/personajes/PLAYER1_TM_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TO{ "recursos/menu/personajes/PLAYER1_TOJ_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TP{ "recursos/menu/personajes/PLAYER1_TP_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TR{ "recursos/menu/personajes/PLAYER1_TR_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerBK_TS{ "recursos/menu/personajes/PLAYER1_TS_ROJO.png", 0, 0, 130, 80 };
+
+	// menu personaje negro kings //
+	Sprite PerNK{ "recursos/menu/personajes/PLAYER2_VACIO_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TB{ "recursos/menu/personajes/PLAYER2_TB_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TC{ "recursos/menu/personajes/PLAYER2_TC_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TH{ "recursos/menu/personajes/PLAYER2_TH_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TJ{ "recursos/menu/personajes/PLAYER2_TJC_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TM{ "recursos/menu/personajes/PLAYER2_TM_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TO{ "recursos/menu/personajes/PLAYER2_TOJ_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TP{ "recursos/menu/personajes/PLAYER2_TP_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TR{ "recursos/menu/personajes/PLAYER2_TR_ROJO.png", 0, 0, 130, 80 };
+	Sprite PerNK_TS{ "recursos/menu/personajes/PLAYER2_TS_ROJO.png", 0, 0, 130, 80 };
+
 public:
 	Coordinador();
 	virtual ~Coordinador();
@@ -158,6 +182,9 @@ public:
 	void setMenuMovsEspeciales(int x);
 	void setMenuMuchoTexto(int x);
 	void setMenuFinal(int x);
+	void setPersonajeB(int x);
+	void setPersonajeN(int x);
+
 	// getters //
 	int getEstado();
 	int getModoJuego();
@@ -192,7 +219,12 @@ protected:
 	int final; // final (0) rematch (1) back to(2)
 	//////////////////////////
 
-	enum Estado { INICIO, OPCIONES , JUEGO,  FIN}; //editar los estados
+	// variables menu personajes //
+	int personajeB;
+	int personajeN;
+	//////////////////////////////
+
+	enum Estado { INICIO, OPCIONES , S_PER_BLANCO, S_PER_NEGRO, JUEGO,  FIN}; //editar los estados
 	Estado estado;
 
 	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, JAQUE_MATE, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
