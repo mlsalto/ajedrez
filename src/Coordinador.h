@@ -99,8 +99,8 @@ private:
 	Sprite HelpQuee{ "recursos/QUEEN_TEXT.png", 0, 0, 110, 50 };
 
 	// menu botones help y pause //
-	Sprite BotonHP_azul{ "recursos/help_pause_azul.png", 60 , 30 , 8 , 4};
-	Sprite BotonHP_rojo{ "recursos/help_pause_rojo.png", 60 , 30 , 8 , 4 };
+	Sprite BotonHP_azul{ "recursos/help_pause_azul.png", 60 , -35 , 16 , 8};
+	Sprite BotonHP_rojo{ "recursos/help_pause_rojo.png", 60 , -35 , 16 , 8};
 
 	// coronaciones blancas queen //
 	Sprite MenuCoronar_B{"recursos/menu/M_CoronacionB.png", 0 , 0, 40 ,60 };
