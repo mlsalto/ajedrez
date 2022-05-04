@@ -261,8 +261,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 				if (menu_help == H) {
 					if (x < 323 && x > 255 && y < 250 && y > 218) { estadojuego = TURNO; }
 					else if (x > 742 || x < 509 || y < 345 || y > 540) {  /*no hay modo ayuda*/ }
-					else if (x < 742 && x > 509 && y < 374 && y > 345) { menu_help = MOVS; /*movimientos*/ }
-					else if (x < 716 && x > 509 && y < 463 && y > 423) { menu_help = MOVSE; /*movimientos especiales*/ }
+					else if (x < 742 && x > 509 && y < 374 && y > 345) { menu_help = MOVS; setMenuMuchoTexto(7); /*movimientos*/ }
+					else if (x < 716 && x > 509 && y < 463 && y > 423) { menu_help = MOVSE;  setMenuMuchoTexto(7);/*movimientos especiales*/ }
 					else if (x < 665 && x > 509 && y < 540 && y > 514) { menu_help = END; /*fin juego*/ }
 				}
 
