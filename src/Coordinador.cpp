@@ -152,22 +152,35 @@ void Coordinador::raton(int button, int state, int x, int y)
 	if (estado == S_PER_BLANCO)
 	{
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-			if (x > 713 || x < 264 || y < 229 || y > 654) { ; /*no hay personaje seleecionado*/ }
-			else if (x < 493 && x > 264 && y < 258 && y > 229) { setPersonajeB(1); }
-			else if (x < 568 && x > 264 && y < 307 && y > 278) { setPersonajeB(2); }
-			else if (x < 493 && x > 264 && y < 360 && y > 332) { setPersonajeB(3); }
-			else if (x < 713 && x > 264 && y < 408 && y > 377) { setPersonajeB(4); }
-			else if (x < 568 && x > 264 && y < 455 && y > 424) { setPersonajeB(5); }
-			else if (x < 586 && x > 264 && y < 504 && y > 478) { setPersonajeB(6); }
-			else if (x < 493 && x > 264 && y < 555 && y > 526) { setPersonajeB(7); }
-			else if (x < 619 && x > 264 && y < 605 && y > 575) { setPersonajeB(8); }
-			else if (x < 493 && x > 264 && y < 654 && y > 628) { setPersonajeB(9); }
+			if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeB != 0) { estado = S_PER_NEGRO; }
+			else if (x > 713 || x < 264 || y < 229 || y > 654) { setPersonajeB(0);; /*no hay personaje seleecionado*/ }
+			else if (x < 493 && x > 264 && y < 258 && y > 229) { setPersonajeB(1); tablero.setPersonaje1(1); }
+			else if (x < 568 && x > 264 && y < 307 && y > 278) { setPersonajeB(2); tablero.setPersonaje1(2);}
+			else if (x < 493 && x > 264 && y < 360 && y > 332) { setPersonajeB(3); tablero.setPersonaje1(3);}
+			else if (x < 713 && x > 264 && y < 408 && y > 377) { setPersonajeB(4); tablero.setPersonaje1(4);}
+			else if (x < 568 && x > 264 && y < 455 && y > 424) { setPersonajeB(5); tablero.setPersonaje1(5);}
+			else if (x < 586 && x > 264 && y < 504 && y > 478) { setPersonajeB(6); tablero.setPersonaje1(6);}
+			else if (x < 493 && x > 264 && y < 555 && y > 526) { setPersonajeB(7); tablero.setPersonaje1(7);}
+			else if (x < 619 && x > 264 && y < 605 && y > 575) { setPersonajeB(8); tablero.setPersonaje1(8);}
+			else if (x < 493 && x > 264 && y < 654 && y > 628) { setPersonajeB(9); tablero.setPersonaje1(9);}
 		}
 	}
 
 	if (estado == S_PER_NEGRO)
 	{
-
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+			if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeN != 0) { estado = JUEGO; }
+			else if (x > 713 || x < 264 || y < 229 || y > 654) { setPersonajeN(0);; /*no hay personaje seleecionado*/ }
+			else if (x < 493 && x > 264 && y < 258 && y > 229) { setPersonajeN(1); tablero.setPersonaje2(1); }
+			else if (x < 568 && x > 264 && y < 307 && y > 278) { setPersonajeN(2); tablero.setPersonaje2(2); }
+			else if (x < 493 && x > 264 && y < 360 && y > 332) { setPersonajeN(3); tablero.setPersonaje2(3); }
+			else if (x < 713 && x > 264 && y < 408 && y > 377) { setPersonajeN(4); tablero.setPersonaje2(4); }
+			else if (x < 568 && x > 264 && y < 455 && y > 424) { setPersonajeN(5); tablero.setPersonaje2(5); }
+			else if (x < 586 && x > 264 && y < 504 && y > 478) { setPersonajeN(6); tablero.setPersonaje2(6); }
+			else if (x < 493 && x > 264 && y < 555 && y > 526) { setPersonajeN(7); tablero.setPersonaje2(7); }
+			else if (x < 619 && x > 264 && y < 605 && y > 575) { setPersonajeN(8); tablero.setPersonaje2(8); }
+			else if (x < 493 && x > 264 && y < 654 && y > 628) { setPersonajeN(9); tablero.setPersonaje2(9); }
+		}
 	}
 
 	if (estado == OPCIONES) {
@@ -337,6 +350,9 @@ void Coordinador::dibuja()
 
 	if (estado == S_PER_BLANCO)
 	{
+		Flecha1.setPos(50, 30);
+		Flecha1.draw();
+
 		switch(personajeB){
 		case 0:
 			PerBK.draw();
@@ -363,6 +379,9 @@ void Coordinador::dibuja()
 
 	if (estado == S_PER_NEGRO)
 	{
+		Flecha1.setPos(50, 30);
+		Flecha1.draw();
+
 		switch (personajeN) {
 		case 0:
 			PerNK.draw();
@@ -412,6 +431,8 @@ void Coordinador::dibuja()
 	if (estado == JUEGO) {
 
 		if (estadojuego == TURNO)  { 
+			if (tipojuego == 0) { BotonHP_azul.draw();}
+			if (tipojuego == 1) { BotonHP_rojo.draw(); }
 			tablero.dibuja();
 		}
 
@@ -433,7 +454,9 @@ void Coordinador::dibuja()
 		}
 
 		if (estadojuego == AYUDA) {
+			Flecha.setPos(-45, 17);
 			Flecha.draw();
+
 			if (tipojuego == 0) {
 				if (menu_help == H) {
 					switch (help)

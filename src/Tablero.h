@@ -43,6 +43,8 @@ private:
 	///// JUGADORES ////
 	Jugador* jugador1;
 	Jugador* jugador2;
+	int personaje1; // indica el personaje
+	int personaje2;
 
 	///// MODO JUEGO ////
 	static bool tipojuego; // queens(false)  kings(true)
@@ -61,6 +63,10 @@ public:
 	//////// PRUEBAS /////////
 	void setJugador1(Jugador* j );
 	void setJugador2(Jugador* j);
+
+	void setPersonaje1(int x);
+	void setPersonaje2(int x);
+	
 	//////////////////////////
 	void mueve(float t);
 
