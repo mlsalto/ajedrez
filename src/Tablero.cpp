@@ -340,10 +340,6 @@ bool Tablero::detectar_jaque_mate(char color) {
 	return true;
 }
 
-void Tablero::mueve(float t)
-{
-}
-
 void Tablero::eliminarPiezaT(int x, int y)
 {
 	piezas.eliminar(casillas[x][y]->getPieza());

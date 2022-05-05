@@ -10,10 +10,11 @@ Torre::Torre(char colorEquipo)
 }
 
 void Torre::draw()
-{
+{ 
+	// El modo de juego es queens gambit
 	if (Tablero::getTipoJuego() == true) {
 		if (color == 'B') {
-			TorreB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			TorreB.setPos(pos.x, pos.y); 
 			TorreB.draw();
 		}
 		else if (color == 'N') {
@@ -21,6 +22,8 @@ void Torre::draw()
 			TorreA.draw();
 		}
 	}
+	 
+	// El modo de juego es kings gambit
 	if (Tablero::getTipoJuego() == false) {
 		if (color == 'B') {
 			TorreR.setPos(pos.x, pos.y);
@@ -45,7 +48,6 @@ bool Torre::movimientoLegal(Casilla* fin)
 	////// ALMACENAMIENTO DATOS DE ENTRADA //////
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
-
 
 	///////////       MOVIMIENTO DERECHA      ///////////
 	if (coll < x_fin && row == y_fin)

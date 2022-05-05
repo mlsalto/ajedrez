@@ -9,8 +9,6 @@
 #include "Caballo.h"
 #include "Alfil.h"
 #include "ListaPiezas.h"
- 
-////// pruebas //////
 #include "Jugador.h"
 #include "Persona.h"
 
@@ -30,9 +28,7 @@ private:
 	bool turnoterminado;
 	bool finturno;
 
-	////// ELEMENTOS DE AYUDA PARA GESTIONAR EL JAQUE MATE ///////////
-
-
+	
 	///////// ELEMENTOS DE DIBUJO //////////
 	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
 	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
@@ -49,26 +45,28 @@ private:
 	///// MODO JUEGO ////
 	static bool tipojuego; // queens(false)  kings(true)
 	static bool movimientos; // encendidos(true) apagados(false)
+
 public:
 	Tablero();
 
 	void dibuja();
-	void nuevoTablero(); //similar a un inicializa???
+	void nuevoTablero(); //similar a un inicializa
 
 	void ratonTablero(int button, int state, int x, int y);
 
 	static void eliminarPiezaT(int x, int y);
 	static void eliminarPieza(Pieza* pieza);
 	static void eliminarTablero();
-	//////// PRUEBAS /////////
+	
+	// setters
 	void setJugador1(Jugador* j );
 	void setJugador2(Jugador* j);
 
 	void setPersonaje1(int x);
 	void setPersonaje2(int x);
-	
-	//////////////////////////
-	void mueve(float t);
+
+	void setTipoJuego(bool x);
+	void setMovimientos(bool x);
 
 	// getters //
 	static Pieza* getPiezasT(int x, int y);
@@ -77,16 +75,14 @@ public:
 	static bool getCasillaOcupada(int x, int y);
 	static bool getTipoJuego();
 	static bool getMovimientos();
-
 	bool getTurnoAcabado();
 
+	// jaque y jaque mate //
 	static bool detectar_jaque(char color);
 	static bool detectar_jaque_mate(char color);
 
+	// coronacion //
 	bool getCoronacion(char color);
 	void setCoronacion(int tipoficha);
-
-	void setTipoJuego(bool x);
-	void setMovimientos(bool x);
 };
 
