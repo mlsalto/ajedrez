@@ -12,37 +12,37 @@ private:
 	SpriteSequence Jaque1{ "recursos/CHECK_FRAME1_rojo.png", 34, 1, 50, true,0, 0, 150, 90 , 0 };
 	
 	// jaque mate //
-	SpriteSequence JaqueMate{ "recursos/CHECKMATE__animation.png", 47, 1, 50, true,0, 0, 150, 90 , 0 };
-	SpriteSequence JaqueMate1{ "recursos/CHECKMATE__animation_rojo.png", 47, 1, 50, true,0, 0, 150, 90 , 0 };
+	SpriteSequence JaqueMate{ "recursos/CHECKMATE_ANIMATION.png", 34, 1, 50, true,0, 0, 150, 90 , 0 };
+	SpriteSequence JaqueMate1{ "recursos/CHECKMATE_ANIMATION_rojo.png", 34, 1, 50, true,0, 0, 150, 90 , 0 };
 	
 	// menu inicial gambito dama //
-	Sprite MenuInicial{ "recursos/menu/Menu.png", 0, 0, 130, 80 };
-	Sprite MenuStoryMode{ "recursos/menu/M_StoryMode.png", 0, 0, 130, 80 };
-	Sprite MenuFreePlay{ "recursos/menu/M_FreePlay.png", 0, 0, 130, 80 };
-	Sprite MenuOpciones{ "recursos/menu/M_Options.png", 0, 0, 130, 80 };
+	Sprite MenuInicial{ "recursos/menu/inicio/Menu.png", 0, 0, 130, 80 };
+	Sprite MenuStoryMode{ "recursos/menu/inicio/M_StoryMode.png", 0, 0, 130, 80 };
+	Sprite MenuFreePlay{ "recursos/menu/inicio/M_FreePlay.png", 0, 0, 130, 80 };
+	Sprite MenuOpciones{ "recursos/menu/inicio/M_Options.png", 0, 0, 130, 80 };
 
 	// menu inicial gambito rey //
-	Sprite MenuInicial2{ "recursos/menu/Menu2.png", 0, 0, 130, 80 };
-	Sprite MenuStoryMode2{ "recursos/menu/M_StoryMode2.png", 0, 0, 130, 80 };
-	Sprite MenuFreePlay2{ "recursos/menu/M_FreePlay2.png", 0, 0, 130, 80 };
-	Sprite MenuOpciones2{ "recursos/menu/M_Options2.png", 0, 0, 130, 80 };
+	Sprite MenuInicial2{ "recursos/menu/inicio/Menu2.png", 0, 0, 130, 80 };
+	Sprite MenuStoryMode2{ "recursos/menu/inicio/M_StoryMode2.png", 0, 0, 130, 80 };
+	Sprite MenuFreePlay2{ "recursos/menu/inicio/M_FreePlay2.png", 0, 0, 130, 80 };
+	Sprite MenuOpciones2{ "recursos/menu/inicio/M_Options2.png", 0, 0, 130, 80 };
 
 	// menu opciones //
-	Sprite QueenGam{ "recursos/menu/M_OpcionesQ.png", 0, 0, 130, 80 };
-	Sprite QueenGamH{ "recursos/menu/M_OpcionesQH.png", 0, 0, 130, 80 };
-	Sprite QueenGamE{ "recursos/menu/M_OpcionesQE.png", 0, 0, 130, 80 };
-	Sprite QueenGamHE{ "recursos/menu/M_OpcionesQHE.png", 0, 0, 130, 80 };
-	Sprite KingGam{ "recursos/menu/M_OpcionesK.png", 0, 0, 130, 80 };
-	Sprite KingGamH{ "recursos/menu/M_OpcionesKH.png", 0, 0, 130, 80 };
-	Sprite KingGamE{ "recursos/menu/M_OpcionesKE.png", 0, 0, 130, 80 };
-	Sprite KingGamHE{ "recursos/menu/M_OpcionesKHE.png", 0, 0, 130, 80 };
+	Sprite QueenGam{ "recursos/menu/opciones/M_OpcionesQ.png", 0, 0, 130, 80 };
+	Sprite QueenGamH{ "recursos/menu/opciones/M_OpcionesQH.png", 0, 0, 130, 80 };
+	Sprite QueenGamE{ "recursos/menu/opciones/M_OpcionesQE.png", 0, 0, 130, 80 };
+	Sprite QueenGamHE{ "recursos/menu/opciones/M_OpcionesQHE.png", 0, 0, 130, 80 };
+	Sprite KingGam{ "recursos/menu/opciones/M_OpcionesK.png", 0, 0, 130, 80 };
+	Sprite KingGamH{ "recursos/menu/opciones/M_OpcionesKH.png", 0, 0, 130, 80 };
+	Sprite KingGamE{ "recursos/menu/opciones/M_OpcionesKE.png", 0, 0, 130, 80 };
+	Sprite KingGamHE{ "recursos/menuopciones//M_OpcionesKHE.png", 0, 0, 130, 80 };
 
-    // menu Pausa // 
-	Sprite PausaM{ "recursos/menu/PAUSE_NS.png", 0, 0, 110, 50 };
-	Sprite PausaResume{ "recursos/menu/PAUSE_RESUME.png", 0, 0,110, 50 };
-	Sprite PausaRestart{ "recursos/menu/PAUSE_RESTAR.png", 0, 0, 110, 50 };
-	Sprite PausaBack{ "recursos/menu/PAUSE_BACKTO.png", 0, 0, 110, 50 };
-	Sprite PausaExit{ "recursos/menu/PAUSE_EXIR.png", 0, 0, 110, 50 };
+    // menu Pausa queen // 
+	Sprite PausaM{ "recursos/menu/pausa/PAUSE_NS.png", 0, 0, 110, 50 };
+	Sprite PausaResume{ "recursos/menu/pausa/PAUSE_RESUME.png", 0, 0,110, 50 };
+	Sprite PausaRestart{ "recursos/menu/pausa/PAUSE_RESTAR.png", 0, 0, 110, 50 };
+	Sprite PausaBack{ "recursos/menu/pausa/PAUSE_BACKTO.png", 0, 0, 110, 50 };
+	Sprite PausaExit{ "recursos/menu/pausa/PAUSE_EXIR.png", 0, 0, 110, 50 };
 
 	// menu ayuda queen //
 	Sprite HelpM{ "recursos/menu/help/HELP_NS.png", 0, 0, 110, 50 };
@@ -103,42 +103,52 @@ private:
 	Sprite BotonHP_rojo{ "recursos/help_pause_rojo.png", 60 , -35 , 16 , 8};
 
 	// coronaciones blancas queen //
-	Sprite MenuCoronar_B{"recursos/menu/M_CoronacionB.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarReina_B{ "recursos/menu/M_CoronacionReinaB.png", 0 , 0,40 ,60 };
-	Sprite MenuCoronarAlfil_B{ "recursos/menu/M_CoronacionAlfilB.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarCaballo_B{ "recursos/menu/M_CoronacionCaballoB.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarTorre_B{ "recursos/menu/M_CoronacionTorreB.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronar_B{"recursos/menu/coronacion/M_CoronacionB.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarReina_B{ "recursos/menu/coronacion/M_CoronacionReinaB.png", 0 , 0,40 ,60 };
+	Sprite MenuCoronarAlfil_B{ "recursos/menu/coronacion/M_CoronacionAlfilB.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarCaballo_B{ "recursos/menu/coronacion/M_CoronacionCaballoB.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarTorre_B{ "recursos/menu/coronacion/M_CoronacionTorreB.png", 0 , 0, 40 ,60 };
 
 	// coronaciones blancas king //
-	Sprite MenuCoronar_B2{ "recursos/menu/M_CoronacionB2.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarReina_B2{ "recursos/menu/M_CoronacionReinaB2.png", 0 , 0,40 ,60 };
-	Sprite MenuCoronarAlfil_B2{ "recursos/menu/M_CoronacionAlfilB2.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarCaballo_B2{ "recursos/menu/M_CoronacionCaballoB2.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarTorre_B2{ "recursos/menu/M_CoronacionTorreB2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronar_B2{ "recursos/menu/coronacion/M_CoronacionB2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarReina_B2{ "recursos/menu/coronacion/M_CoronacionReinaB2.png", 0 , 0,40 ,60 };
+	Sprite MenuCoronarAlfil_B2{ "recursos/menu/coronacion/M_CoronacionAlfilB2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarCaballo_B2{ "recursos/menu/coronacion/M_CoronacionCaballoB2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarTorre_B2{ "recursos/menu/coronacion/M_CoronacionTorreB2.png", 0 , 0, 40 ,60 };
 
 	// coronaciones negras queen //
-	Sprite MenuCoronar_N{ "recursos/menu/M_CoronacionN.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarReina_N{ "recursos/menu/M_CoronacionReinaN.png", 0 , 0,40 ,60 };
-	Sprite MenuCoronarAlfil_N{ "recursos/menu/M_CoronacionAlfilN.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarCaballo_N{ "recursos/menu/M_CoronacionCaballoN.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarTorre_N{ "recursos/menu/M_CoronacionTorreN.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronar_N{ "recursos/menu/coronacion/M_CoronacionN.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarReina_N{ "recursos/menu/coronacion/M_CoronacionReinaN.png", 0 , 0,40 ,60 };
+	Sprite MenuCoronarAlfil_N{ "recursos/menu/coronacion/M_CoronacionAlfilN.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarCaballo_N{ "recursos/menu/coronacion/M_CoronacionCaballoN.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarTorre_N{ "recursos/menu/coronacion/M_CoronacionTorreN.png", 0 , 0, 40 ,60 };
 
 	// coronaciones negras king //
-	Sprite MenuCoronar_N2{ "recursos/menu/M_CoronacionN2.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarReina_N2{ "recursos/menu/M_CoronacionReinaN2.png", 0 , 0,40 ,60 };
-	Sprite MenuCoronarAlfil_N2{ "recursos/menu/M_CoronacionAlfilN2.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarCaballo_N2{ "recursos/menu/M_CoronacionCaballoN2.png", 0 , 0, 40 ,60 };
-	Sprite MenuCoronarTorre_N2{ "recursos/menu/M_CoronacionTorreN2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronar_N2{ "recursos/menu/coronacion/M_CoronacionN2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarReina_N2{ "recursos/menu/coronacion/M_CoronacionReinaN2.png", 0 , 0,40 ,60 };
+	Sprite MenuCoronarAlfil_N2{ "recursos/menu/coronacion/M_CoronacionAlfilN2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarCaballo_N2{ "recursos/menu/coronacion/M_CoronacionCaballoN2.png", 0 , 0, 40 ,60 };
+	Sprite MenuCoronarTorre_N2{ "recursos/menu/coronacion/M_CoronacionTorreN2.png", 0 , 0, 40 ,60 };
 
-	// menu ganador blanco //
-	Sprite MenuGanadorB{ "recursos/menu/WHITE_WINS_NS.png", 0, 0, 110, 50 };
-	Sprite MenuGanadorReB{ "recursos/menu/WHITE_WINS_REMATCH.png", 0, 0, 110, 50 };
-	Sprite MenuGanadorBaB{ "recursos/menu/WHITE_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
+	// menu ganador blanco queen //
+	Sprite MenuGanadorB{ "recursos/menu/ganador/WHITE_WINS_NS.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorReB{ "recursos/menu/ganador/WHITE_WINS_REMATCH.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorBaB{ "recursos/menu/ganador/WHITE_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
 
-	// menu ganador negro //
-	Sprite MenuGanadorN{ "recursos/menu/BLACK_WINS_NS.png", 0, 0, 110, 50 };
-	Sprite MenuGanadorReN{ "recursos/menu/BLACK_WINS_REMATCH.png", 0, 0, 110, 50 };
-	Sprite MenuGanadorBaN{ "recursos/menu/BLACK_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
+	// menu ganador negro queen//
+	Sprite MenuGanadorN{ "recursos/menu/ganador/BLACK_WINS_NS.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorReN{ "recursos/menu/ganador/BLACK_WINS_REMATCH.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorBaN{ "recursos/menu/ganador/BLACK_WINS_BACKTOMENU.png", 0, 0, 110, 50 };
+
+	// menu ganador blanco king //
+	Sprite MenuGanadorB2{ "recursos/menu/ganador/WHITE_WINS_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorReB2{ "recursos/menu/ganador/WHITE_WINS_REMATCH_rojo.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorBaB2{ "recursos/menu/ganador/WHITE_WINS_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+
+	// menu ganador negro king //
+	Sprite MenuGanadorN2{ "recursos/menu/ganador/BLACK_WINS_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorReN2{ "recursos/menu/ganador/BLACK_WINS_REMATCH_rojo.png", 0, 0, 110, 50 };
+	Sprite MenuGanadorBaN2{ "recursos/menu/ganador/BLACK_WINS_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
 	// menu personaje blanco kings //
 	Sprite PerBK{ "recursos/menu/personajes/PLAYER1_VACIO_ROJO.png", 0, 0, 130, 80 };
