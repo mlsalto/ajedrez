@@ -97,33 +97,39 @@ void Persona::moverPieza(int button, int state, int x, int y)
 	int i, j;
 	int x_cell, y_cell;
 	int x_tablero, y_tablero;
-	x_cell = x / 76;
-	y_cell = y / 77;
+	int coorx, coory;
+	coorx = x - 402;
+	coory = y - 103;
+
+	if (coorx < 0 || coory < 0) return; // tienen que ser coords pos
+
+	x_cell = coorx / 70;
+	y_cell = coory / 70;
 
 	switch (y_cell)
 	{
-	case 1:
+	case 0:
 		y_tablero = 7;
 		break;
-	case 2:
+	case 1:
 		y_tablero = 6;
 		break;
-	case 3:
+	case 2:
 		y_tablero = 5;
 		break;
-	case 4:
+	case 3:
 		y_tablero = 4;
 		break;
-	case 5:
+	case 4:
 		y_tablero = 3;
 		break;
-	case 6:
+	case 5:
 		y_tablero = 2;
 		break;
-	case 7:
+	case 6:
 		y_tablero = 1;
 		break;
-	case 8:
+	case 7:
 		y_tablero = 0;
 		break;
 	default:
@@ -133,28 +139,28 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 	switch (x_cell)
 	{
-	case 5:
+	case 0:
 		x_tablero = 0;
 		break;
-	case 6:
+	case 1:
 		x_tablero = 1;
 		break;
-	case 7:
+	case 2:
 		x_tablero = 2;
 		break;
-	case 8:
+	case 3:
 		x_tablero = 3;
 		break;
-	case 9:
+	case 4:
 		x_tablero = 4;
 		break;
-	case 10:
+	case 5:
 		x_tablero = 5;
 		break;
-	case 11:
+	case 6:
 		x_tablero = 6;
 		break;
-	case 12:
+	case 7:
 		x_tablero = 7;
 		break;
 	default:

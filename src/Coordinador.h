@@ -35,7 +35,7 @@ private:
 	Sprite KingGam{ "recursos/menu/opciones/M_OpcionesK.png", 0, 0, 130, 80 };
 	Sprite KingGamH{ "recursos/menu/opciones/M_OpcionesKH.png", 0, 0, 130, 80 };
 	Sprite KingGamE{ "recursos/menu/opciones/M_OpcionesKE.png", 0, 0, 130, 80 };
-	Sprite KingGamHE{ "recursos/menuopciones//M_OpcionesKHE.png", 0, 0, 130, 80 };
+	Sprite KingGamHE{ "recursos/menu/opciones/M_OpcionesKHE.png", 0, 0, 130, 80 };
 
     // menu Pausa queen // 
 	Sprite PausaM{ "recursos/menu/pausa/PAUSE_NS.png", 0, 0, 110, 50 };
@@ -69,7 +69,7 @@ private:
 	Sprite HelpM2{ "recursos/menu/help/HELP_NS_rojo.png", 0, 0, 110, 50 };
 	Sprite HelpMov2{ "recursos/menu/help/HELP_mov_rojo.png", 0, 0, 110, 50 };
 	Sprite HelpSpeMov2{ "recursos/menu/help/HELP_SP_rojo.png", 0, 0, 110, 50 };
-	Sprite HelpEnd2{ "recursos/menu/help/HELP_END.png", 0, 0, 110, 50 };
+	Sprite HelpEnd2{ "recursos/menu/help/HELP_END_rojo.png", 0, 0, 110, 50 };
 
 	// menu ayuda movs king //
 	Sprite HelpMovM2{ "recursos/menu/help/HELP_MOV_NS_rojo.png", 0, 0, 110, 50 };
@@ -81,10 +81,10 @@ private:
 	Sprite HelpMovK2{ "recursos/menu/help/HELP_MOV_KING_rojo.png", 0, 0, 110, 50 };
 
 	// menu ayuda mov esp king //
-	Sprite HelpMovEspM2{ "recursos/menu/help/HELP_SP_NS.png", 0, 0, 110, 50 };
-	Sprite HelpMovEspC2{ "recursos/menu/help/HELP_SP_CAS.png", 0, 0, 110, 50 };
-	Sprite HelpMovEspE2{ "recursos/menu/help/HELP_SP_ENP.png", 0, 0, 110, 50 };
-	Sprite HelpMovEspP2{ "recursos/menu/help/HELP_SP_PRO.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspM2{ "recursos/menu/help/HELP_SP_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspC2{ "recursos/menu/help/HELP_SP_CAS_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspE2{ "recursos/menu/help/HELP_SP_ENP_rojo.png", 0, 0, 110, 50 };
+	Sprite HelpMovEspP2{ "recursos/menu/help/HELP_SP_PRO_rojo.png", 0, 0, 110, 50 };
 
 	// menu flecha //
 	Sprite Flecha{ "recursos/BACKNARROW.png", -45, 17, 8, 4};
@@ -97,6 +97,10 @@ private:
 	Sprite HelpKnig{ "recursos/menu/muchotexto/HORSE_TEXT.png", 0, 0, 110, 50 };
 	Sprite HelpKing{ "recursos/menu/muchotexto/KING_TEXT.png", 0, 0, 110, 50 };
 	Sprite HelpQuee{ "recursos/menu/muchotexto/QUEEN_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpCast{ "recursos/menu/muchotexto/CASTLINH_MUCHO_TEXTO.png", 0, 0, 110, 50 };
+	Sprite HelpPass{ "recursos/menu/muchotexto/ENPASSANT_MUCHOTEXTO.png", 0, 0, 110, 50 };
+	Sprite HelpProm{ "recursos/menu/muchotexto/promotion_MUCHOTEXTOAAA.png", 0, 0, 110, 50 };
+	Sprite HelpEndg{ "recursos/menu/muchotexto/ENDGAME_MUCHOTEXTO.png", 0, 0, 110, 50 };
 
 	// menu botones help y pause //
 	Sprite BotonHP_azul{ "recursos/help_pause_azul.png", 60 , -35 , 16 , 8};
@@ -190,14 +194,6 @@ public:
 	void setMenuInicio(int x);
 	void setMenuCoronacion(int x);
 	void setOpciones(int x);
-	void setMenuPausa(int x);
-	void setMenuAyuda(int x);
-	void setMenuMovs(int x);
-	void setMenuMovsEspeciales(int x);
-	void setMenuMuchoTexto(int x);
-	void setMenuFinal(int x);
-	void setPersonajeB(int x);
-	void setPersonajeN(int x);
 
 	// getters //
 	int getEstado();
