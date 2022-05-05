@@ -4,6 +4,7 @@
 
 Coordinador::Coordinador()
 {
+	// HAY QUE INICIALIZAR TODAS LAS VARIABLES BIEN, QUE SINO DESPUES HAY PROBLEMAS //
 	estado = INICIO; 
 	estadojuego == JAQUE;
 	menu_inicio = I;
