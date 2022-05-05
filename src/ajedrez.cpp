@@ -11,7 +11,6 @@ void OnTimer(int value);
 void OnKeyboardDown(unsigned char key, int x, int y);
 void OnMouseClick(int button, int state, int x, int y);
 void Mouse(int x, int y);
-void onSpecialKeyboardDown(int key, int x, int y);
 
 int main(int argc, char* argv[])
 {
@@ -72,7 +71,6 @@ void OnDraw(void)
     //aqui es donde hay que poner el código de dibujo
 
 	coordinador.dibuja();
-	//coordinador.PassiveMouse(x, y);
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }
@@ -93,7 +91,6 @@ void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 
 void OnTimer(int value)
 {
-	//poner aqui el código de animacion
 	//poner aqui el código de animacion
 	coordinador.mueve(0);
 

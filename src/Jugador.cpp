@@ -127,10 +127,7 @@ int Jugador::getPuntos(char colorJugador, Casilla * c)
 	return puntos_totales;
 }
 
-void Jugador::moverPieza(int button, int state, int x, int y)
-{
-
-}
+void Jugador::moverPieza(int button, int state, int x, int y){}
 
 bool Jugador::turnoTerminado()
 {

@@ -5,6 +5,7 @@
 class Persona :public Jugador
 {
 private:
+	// variables ayuda de seleccion de piezas por teclado //
 	bool seleccionpieza = FALSE;
 	Pieza* piezaini;
 	Pieza* piezafin;
@@ -15,10 +16,6 @@ public:
 	Persona(char colorJugador);
 
 	void draw(int x);
-	// mas cositas
 	void moverPieza(int button, int state, int x, int y);
-
-
-	void funciondejaqueturno();
 };
 

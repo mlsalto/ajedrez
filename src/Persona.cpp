@@ -6,11 +6,11 @@ Persona::Persona() {}
 Persona::Persona(char colorJugador)
 {
 	color = colorJugador;
-	//tipoJugador = 0;
 }
 
 void Persona::draw(int x)
 {
+	// El modo de juego es queens gambit //
 	if (Tablero::getTipoJuego() == TRUE)
 	{
 		if (x == 1) {
@@ -32,6 +32,7 @@ void Persona::draw(int x)
 		}
 	}
 
+	// El modo de juego es kings gambit //
 	if (Tablero::getTipoJuego() == FALSE)
 	{
 		if (x == 1) {
@@ -158,7 +159,6 @@ void Persona::moverPieza(int button, int state, int x, int y)
 		break;
 	default:
 		x_tablero = 8;
-		//y_tablero = 0;
 		break;
 	}
 
