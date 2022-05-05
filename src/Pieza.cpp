@@ -1,21 +1,15 @@
 #include "Pieza.h"
 
-Pieza::Pieza() {
-	//tipoPieza = 0;
-}
+Pieza::Pieza() {}
 
 Pieza::Pieza(char colorJugador)
 {
 	color = colorJugador;
 }
 
-Pieza::~Pieza() {
+Pieza::~Pieza() {}
 
-}
-
-void Pieza::draw() {
-
-}
+void Pieza::draw() {}
 
 bool Pieza::movimientoLegal( Casilla* y)
 {

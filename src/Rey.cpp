@@ -11,6 +11,8 @@ Rey::Rey(char colorEquipo)
 }
 
 void Rey::draw() {
+
+	// El modo de juego es queens gambit
 	if (Tablero::getTipoJuego() == true) {
 		if (color == 'B')
 		{
@@ -23,6 +25,8 @@ void Rey::draw() {
 			ReyA.draw();
 		}
 	}
+
+	// El modo de juego es kings gambit
 	if (Tablero::getTipoJuego() == false) {
 		if (color == 'B')
 		{
@@ -40,7 +44,6 @@ void Rey::draw() {
 bool Rey::movimientoLegal(Casilla* fin) {
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
 	int i, j, row, coll;
-	bool obstaculo = false;
 
 	////// FILA Y COLUMNA ACTUAL PIEZA //////
 	coll = (pos.x + 28) / 8;
@@ -67,7 +70,6 @@ bool Rey::movimientoLegal(Casilla* fin) {
 	{
 		return true;
 	}
-
 
 	///////////       MOVIMIENTO ABAJO      ///////////
 	if (coll == x_fin && y_fin == row - 1 && (Tablero::getCasillaOcupada(x_fin, y_fin) == false || Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color))
@@ -144,9 +146,7 @@ bool Rey::movimientoLegal(Casilla* fin) {
 	     }
      }
 
-	else {
-		return false;
-	}
+	else return false;
 }
  
 

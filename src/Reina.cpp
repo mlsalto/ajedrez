@@ -12,10 +12,11 @@ Reina::Reina(char colorEquipo)
 
 void Reina::draw()
 {
+	// El modo de juego es queens gambit
 	if (Tablero::getTipoJuego() == true) {
 		if (color == 'B')
 		{
-			ReinaB.setPos(pos.x, pos.y); //se debe poner siempre para que dibuje el sprite
+			ReinaB.setPos(pos.x, pos.y); 
 			ReinaB.draw();
 		}
 		else if (color == 'N')
@@ -24,6 +25,8 @@ void Reina::draw()
 			ReinaA.draw();
 		}
 	}
+
+	// El modo de juego es kings gambit
 	if (Tablero::getTipoJuego() == false) {
 		if (color == 'B')
 		{
@@ -42,7 +45,6 @@ bool Reina::movimientoLegal(Casilla* fin)
 {
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
 	int i, j, row, coll;
-	bool obstaculo = false;
 
 	////// FILA Y COLUMNA ACTUAL PIEZA //////
 	coll = (pos.x + 28) / 8;
@@ -58,7 +60,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	///////////       MOVIMIENTO DERECHA      ///////////
 	if (coll < x_fin && row == y_fin)
 	{
-		for (i = coll + 1; i <= x_fin && !obstaculo; i++)
+		for (i = coll + 1; i <= x_fin; i++)
 		{
 			if (Tablero::getCasillaOcupada(i, y_fin) == true) {
 				if (i == x_fin) 
@@ -75,7 +77,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	///////////       MOVIMIENTO IZQUIERDA    ///////////
 	if (coll > x_fin && row == y_fin)
 	{
-		for (i = coll - 1; i >= x_fin && !obstaculo; i--)
+		for (i = coll - 1; i >= x_fin ; i--)
 		{
 			if (Tablero::getCasillaOcupada(i, y_fin) == true) 
 			{
@@ -92,7 +94,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	///////////       MOVIMIENTO ARRIBA    ///////////
 	if (coll == x_fin && row < y_fin)
 	{
-		for (i = row + 1; i <= y_fin && !obstaculo; i++)
+		for (i = row + 1; i <= y_fin ; i++)
 		{
 			if (Tablero::getCasillaOcupada(x_fin, i) == true) {
 				if (i == y_fin) 
@@ -109,7 +111,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	/////////////       MOVIMIENTO ABAJO      ///////////
 	if (coll == x_fin && row > y_fin)
 	{
-		for (i = row - 1; i >= y_fin && !obstaculo; i--)
+		for (i = row - 1; i >= y_fin ; i--)
 		{
 			if (Tablero::getCasillaOcupada(x_fin, i) == true) {
 				if (i == y_fin) {
@@ -129,7 +131,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	///////////       MOVIMIENTO DERECHA/ARRIBA     ///////////
 	if (coll < x_fin && row < y_fin)
 	{
-		for (i = coll + 1, j = row + 1; i <= x_fin && j <= y_fin && !obstaculo; i++, j++)
+		for (i = coll + 1, j = row + 1; i <= x_fin && j <= y_fin ; i++, j++)
 		{
 			if (Tablero::getCasillaOcupada(i, j) == true) 
 			{
@@ -146,7 +148,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	///////////       MOVIMIENTO IZQUIERDA/ARRIBA       ///////////
 	if (coll > x_fin && row < y_fin)
 	{
-		for (i = coll - 1, j = row + 1; i >= x_fin && j <= y_fin && !obstaculo; i--, j++)
+		for (i = coll - 1, j = row + 1; i >= x_fin && j <= y_fin ; i--, j++)
 		{
 			if (Tablero::getCasillaOcupada(i, j) == true) 
 			{
@@ -163,7 +165,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	///////////       MOVIMIENTO DERECHA/ABAJO       ///////////
 	if (coll < x_fin && row > y_fin)
 	{
-		for (i = coll + 1, j = row - 1; i <= x_fin && j >= y_fin && !obstaculo; i++, j--)
+		for (i = coll + 1, j = row - 1; i <= x_fin && j >= y_fin ; i++, j--)
 		{
 			if (Tablero::getCasillaOcupada(i, j) == true) 
 			{
@@ -180,7 +182,7 @@ bool Reina::movimientoLegal(Casilla* fin)
 	///////////       MOVIMIENTO IZQUIERDA/ABAJO      ///////////
 	if (coll > x_fin && row > y_fin)
 	{
-		for (i = coll - 1, j = row - 1; i >= x_fin && j >= y_fin && !obstaculo; i--, j--)
+		for (i = coll - 1, j = row - 1; i >= x_fin && j >= y_fin ; i--, j--)
 		{
 			if (Tablero::getCasillaOcupada(i, j) == true) 
 			{
@@ -193,5 +195,6 @@ bool Reina::movimientoLegal(Casilla* fin)
 		}
 		return true;
 	}
+
 	else return false;
 }

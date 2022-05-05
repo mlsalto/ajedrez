@@ -1,6 +1,5 @@
 #pragma once
 #include "Pieza.h"
-using namespace ETSIDI;
 
 class Reina : public Pieza
 {

@@ -1,10 +1,7 @@
 #include "Caballo.h"
 #include "Tablero.h"
 
-Caballo::Caballo()
-{
-
-}
+Caballo::Caballo(){}
 
 Caballo::Caballo(char colorEquipo)
 {
@@ -14,10 +11,11 @@ Caballo::Caballo(char colorEquipo)
 
 void Caballo::draw()
 {
+	// El modo de juego es queens gambit
 	if (Tablero::getTipoJuego() == true) {
 
 		if (color == 'B') {
-			CaballoB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			CaballoB.setPos(pos.x, pos.y); 
 			CaballoB.draw();
 		}
 		else if (color == 'N') {
@@ -26,10 +24,11 @@ void Caballo::draw()
 		}
 	}
 
+	// El modo de juego es kings gambit
 	else if (Tablero::getTipoJuego() == false) {
 
 		if (color == 'B') {
-			CaballoR.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			CaballoR.setPos(pos.x, pos.y); 
 			CaballoR.draw();
 		}
 		else if (color == 'N') {
@@ -42,7 +41,7 @@ void Caballo::draw()
 bool Caballo::movimientoLegal(Casilla* fin)
 {
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
-	int i, j, row, coll;
+	int row, coll;
 
 	////// FILA Y COLUMNA //////
 	coll = (pos.x + 28) / 8;

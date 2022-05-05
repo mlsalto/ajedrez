@@ -2,22 +2,20 @@
 #include "Tablero.h"
 #include <math.h>
 
-Alfil::Alfil() {
+Alfil::Alfil() {}
 
-}
-
-Alfil::Alfil(char colorEquipo) {
-
+Alfil::Alfil(char colorEquipo) 
+{
 	color = colorEquipo;
 	tipoPieza = 3;
-	//draw();
 }
 
 void Alfil::draw()
 {
+	// El modo de juego es queens gambit
 	if (Tablero::getTipoJuego() == true) {
 		if (color == 'B') {
-			AlfilB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			AlfilB.setPos(pos.x, pos.y); 
 			AlfilB.draw();
 		}
 		else if (color == 'N') {
@@ -25,6 +23,8 @@ void Alfil::draw()
 			AlfilA.draw();
 		}
 	}
+
+	// El modo de juego es kings gambit
 	if (Tablero::getTipoJuego() == false) {
 		if (color == 'B') {
 			AlfilR.setPos(pos.x, pos.y); 
@@ -41,7 +41,6 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
 	int i, j, row, coll;
-	bool obstaculo = false;
 
 	////// FILA Y COLUMNA //////
 	coll = (pos.x + 28) / 8;
@@ -51,6 +50,7 @@ bool Alfil::movimientoLegal(Casilla* fin) {
 	int x_fin = fin->getColumna();
 	int y_fin = fin->getFila();
 
+	////// SI NO ESTÁ EN LA DIAGONAL //////
 	if (fabs(x_fin - coll) != fabs(y_fin - row)) return false;
 
 	///////////       MOVIMIENTO DERECHA/ARRIBA     ///////////

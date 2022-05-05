@@ -1,9 +1,7 @@
 #include "Peon.h"
 #include "Tablero.h"
 
-Peon::Peon()
-{
-}
+Peon::Peon(){}
 
 Peon::Peon(char colorEquipo)
 {

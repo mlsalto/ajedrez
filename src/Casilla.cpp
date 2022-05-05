@@ -1,5 +1,4 @@
 #include "Casilla.h"
-#include "Pieza.h"
 #include "Tablero.h"
 
 Casilla::Casilla(int x ,int y)
@@ -15,7 +14,7 @@ void Casilla::colocarPieza(Pieza* p)
 {
 	if (p != NULL) {
 		p->setPos(-28 + (8 * columna), -28 + (8 * fila));
-		p->setCasilla(this);//esto tengo que mirar a ver que es
+		p->setCasilla(this);
 		tipoPieza = p->getTipoPieza();
 		pieza = p;
 		ocupada = true;
@@ -31,6 +30,7 @@ void Casilla::colocarPieza(Pieza* p)
 
 void Casilla::draw()
 {
+	// Si el modo de juego es CON AYUDA
 	if (Tablero::getMovimientos() == true)
 	{
 		if (tipocasilla == 0)
@@ -58,6 +58,7 @@ void Casilla::draw()
 		}
 	}
 
+	// si el modo de juego es SIN AYUDA
 	if (Tablero::getMovimientos() == false)
 	{
 		if (tipocasilla == 0)
@@ -72,7 +73,7 @@ void Casilla::draw()
 			casilla_seleccionada.draw();
 		}
 
-		if (tipocasilla == 2)	{}
+		if (tipocasilla == 2){}
 		if (tipocasilla == 3){}
 	}
 }
