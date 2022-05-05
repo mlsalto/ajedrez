@@ -37,7 +37,6 @@ int main(int argc, char* argv[])
 	glutMouseFunc(OnMouseClick);
 
 	// codigo
-	coordinador.inicializa();
 
 	glutMainLoop();
 

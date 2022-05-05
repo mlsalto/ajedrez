@@ -168,7 +168,6 @@ public:
 	Coordinador();
 	virtual ~Coordinador();
 
-	void inicializa();
 	void mouse(int x, int y);
 	void tecla(unsigned char key);
 	void raton(int button, int state, int x, int y);
