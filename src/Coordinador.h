@@ -91,12 +91,12 @@ private:
 	Sprite Flecha1{ "recursos/BACKNARROW1.png", -45, 17, 8, 4 };
 
 	// menu ayuda mucho texto //
-	Sprite HelpBish{ "recursos/BISHOP_TEXT.png", 0, 0, 110, 50 };
-	Sprite HelpPawn{ "recursos/PAWN_TEXT.png", 0, 0, 110, 50 };
-	Sprite HelpRook{ "recursos/ROOK_TEXT.png", 0, 0, 110, 50 };
-	Sprite HelpKnig{ "recursos/HORSE_TEXT.png", 0, 0, 110, 50 };
-	Sprite HelpKing{ "recursos/KING_TEXT.png", 0, 0, 110, 50 };
-	Sprite HelpQuee{ "recursos/QUEEN_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpBish{ "recursos/menu/muchotexto/BISHOP_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpPawn{ "recursos/menu/muchotexto/PAWN_MUCHOTEXTO.png", 0, 0, 110, 50 };
+	Sprite HelpRook{ "recursos/menu/muchotexto/ROOK_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpKnig{ "recursos/menu/muchotexto/HORSE_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpKing{ "recursos/menu/muchotexto/KING_TEXT.png", 0, 0, 110, 50 };
+	Sprite HelpQuee{ "recursos/menu/muchotexto/QUEEN_TEXT.png", 0, 0, 110, 50 };
 
 	// menu botones help y pause //
 	Sprite BotonHP_azul{ "recursos/help_pause_azul.png", 60 , -35 , 16 , 8};
