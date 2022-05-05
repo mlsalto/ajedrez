@@ -25,10 +25,6 @@ Coordinador::~Coordinador()
 
 }
 
-void Coordinador::inicializa() //esta funcion en realidad no hace falta
-{
-//	tablero.nuevoTablero();
-}
 
 void Coordinador::mouse(int x, int y)
 {
