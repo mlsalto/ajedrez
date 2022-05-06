@@ -44,6 +44,13 @@ private:
 	Sprite PausaBack{ "recursos/menu/pausa/PAUSE_BACKTO.png", 0, 0, 110, 50 };
 	Sprite PausaExit{ "recursos/menu/pausa/PAUSE_EXIR.png", 0, 0, 110, 50 };
 
+	// menu Pausa king // 
+	Sprite PausaM2{ "recursos/menu/pausa/PAUSA_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite PausaResume2{ "recursos/menu/pausa/PAUSE_RESUME_rojo.png", 0, 0,110, 50 };
+	Sprite PausaRestart2{ "recursos/menu/pausa/PAUSE_RESTART_rojo.png", 0, 0, 110, 50 };
+	Sprite PausaBack2{ "recursos/menu/pausa/PAUSE_BACKTO_rojo.png", 0, 0, 110, 50 };
+	Sprite PausaExit2{ "recursos/menu/pausa/PAUSE_EXIT_rojo.png", 0, 0, 110, 50 };
+
 	// menu ayuda queen //
 	Sprite HelpM{ "recursos/menu/help/HELP_NS.png", 0, 0, 110, 50 };
 	Sprite HelpMov{ "recursos/menu/help/HELP_mov.png", 0, 0, 110, 50 };
