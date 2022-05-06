@@ -456,18 +456,38 @@ void Coordinador::dibuja()
 
 		// pausa //
 		if (estadojuego == PAUSA) {
-			switch (pause) 
+			if (tipojuego == 0)
 			{
-			case 0:
-				PausaM.draw();
-			case 1:
-				PausaResume.draw();
-			case 2:
-				PausaRestart.draw();
-			case 3:
-				PausaBack.draw();
-			case 4:
-				PausaExit.draw();
+				switch (pause)
+				{
+				case 0:
+					PausaM.draw();
+				case 1:
+					PausaResume.draw();
+				case 2:
+					PausaRestart.draw();
+				case 3:
+					PausaBack.draw();
+				case 4:
+					PausaExit.draw();
+				}
+			}
+
+			if (tipojuego == 1)
+			{
+				switch (pause)
+				{
+				case 0:
+					PausaM2.draw();
+				case 1:
+					PausaResume2.draw();
+				case 2:
+					PausaRestart2.draw();
+				case 3:
+					PausaBack2.draw();
+				case 4:
+					PausaExit2.draw();
+				}
 			}
 			tablero.dibuja();
 		}
