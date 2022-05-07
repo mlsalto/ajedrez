@@ -140,7 +140,15 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			else if (x < 557 && x > 246 && y < 490 && y > 448) {
-				// no hace nada de mometo, debería iniciar juego modo IA
+				Persona* Jugador1 = new Persona('B');
+				IA* Jugador2 = new IA('N');
+
+				tablero.setJugador1(Jugador1);
+				tablero.setJugador2(Jugador2);
+
+				estado = JUEGO;
+				tablero.nuevoTablero(); // inicializamos nuevo tablero
+
 			}
 
 			else if (x < 557 && x > 246 && y < 610 && y > 570){

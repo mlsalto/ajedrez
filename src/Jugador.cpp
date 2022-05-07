@@ -40,6 +40,7 @@ void Jugador::draw(int x){}
 int Jugador::getPuntos(char colorJugador)
 {
 	int i, j;
+	int a, b;
 	int puntos_totales = 0;
 	int tipoPieza = 0; // según el tipo de pieza que sea
 	char colorPieza;
@@ -89,7 +90,6 @@ int Jugador::getPuntos(char colorJugador)
 						puntos_totales = puntos_totales + 500;
 
 						// por cada casilla a la que se pueda mover + 1 puntos
-						int a, b;
 						for (a = 0; a < 8; a++)
 							for (b = 0; b < 8; b++)
 								if (Tablero::getCasillaT(i, j)->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b)) == true) {
@@ -102,7 +102,6 @@ int Jugador::getPuntos(char colorJugador)
 						puntos_totales = puntos_totales + 330;
 
 						// por cada casilla a la que se pueda mover + 1 puntos
-						//int a, b;
 						for (a = 0; a < 8; a++)
 							for (b = 0; b < 8; b++)
 								if (Tablero::getCasillaT(i, j)->getPieza()->movimientoLegal(Tablero::getCasillaT(a, b)) == true) {

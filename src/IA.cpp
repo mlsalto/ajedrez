@@ -11,83 +11,97 @@ IA::IA(char colorJugador)
 
 void IA::moverPieza(int button, int state, int x, int y)
 {
-	int i, j;
 	int x_ini, x_fin, y_ini, y_fin;
-	int a, b;
-	int puntos;
-	Pieza* piezaini; // pieza que movemos
-	Pieza* piezafin; // pieza que comemos
+	int puntos = 0;
 	int posfinx, posfiny;
 	int posinix, posiniy;
 	int maximo = 0;
 
-
 	//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	for (x_ini = 0; x_ini < 8; x_ini++)
-			for (y_ini = 0; y_ini < 8; y_ini++) {
+	{
+		for (y_ini = 0; y_ini < 8; y_ini++) 
+		{
 
-				// encontrar pieza para mover
-				if (Tablero::getCasillaT(x_ini, y_ini)->getPieza()->getColorPieza() == color) { //color de la pieza es igual que la nuestra
-					posinix = x_ini;
-					posiniy = y_ini;
-					piezaini = Tablero::getCasillaT(x_ini, y_ini)->getPieza();
+			if (Tablero::getCasillaT(x_ini, y_ini)->getTipoPieza() != 0 && Tablero::getCasillaT(x_ini, y_ini)->getPieza()->getColorPieza() == color)
+			{
+				pieza = Tablero::getCasillaT(x_ini, y_ini)->getPieza();
 
-					// mover la pieza encontrada
-					for (x_fin = 0; x_fin < 8; x_fin++) 
-						for (y_fin = 0; y_fin < 8; y_fin++) {
-							
-							// se puede realizar el movimiento
-							if (piezaini->movimientoLegal(Tablero::getCasillaT(x_fin, y_fin)) == TRUE) {
+				// mover la pieza encontrada
+				for (x_fin = 0; x_fin < 8; x_fin++)
+				{
+					for (y_fin = 0; y_fin < 8; y_fin++) {
 
-								// si no come ninguna pieza
-								if (Tablero::getTipoPiezasT(x_fin, y_fin) != 0)
-								{
-									// copia del tablero y realizar el movimiento si se mueve a una casilla vacía
-									Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(piezaini);
-									Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+						// se puede realizar el movimiento
+						if (pieza->movimientoLegal(Tablero::getCasillaT(x_fin, y_fin)) == TRUE) {
 
-									// puntos obtenidos
-									for (a = 0; a < 8; a++)
-										for (b = 0; b < 8; b++) {
-											puntos = getPuntos(color);
+							// si no come ninguna pieza
+							if (Tablero::getTipoPiezasT(x_fin, y_fin) == 0)
+							{
+								// copia del tablero y realizar el movimiento si se mueve a una casilla vacía
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
 
-											if (puntos > maximo) {
-												piezafin = piezaini; //guardamos valor pieza
-												posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
-												posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
-												maximo = puntos;
-											}
-										}
+								// puntos obtenidos
+								puntos = getPuntos(color);
 
-									// deshacemos el movimiento
-									Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
-									Tablero::getCasillaT(posinix, posiniy)->colocarPieza(piezaini);
+								if (puntos > maximo) {
+									piezaini = pieza; //guardamos valor pieza
+									posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+									posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+									maximo = puntos;
 								}
 
-								// si se come alguna pieza
-								if (Tablero::getTipoPiezasT(x_fin, y_fin) == 0)
-								{
-									// copia del tablero y realizar el movimiento si se mueve a una casilla vacía
-									Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(piezaini);
-									Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+								// deshacemos el movimiento
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
+							}
 
-									// puntos obtenidos
+							// si se come alguna pieza
+							if (Tablero::getTipoPiezasT(x_fin, y_fin) != 0)
+							{
+								piezacomida = Tablero::getPiezasT(x_fin, y_fin);
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
 
-									for (a = 0; a < 8; a++)
-										for (b = 0; b < 8; b++) {
-											puntos = getPuntos(color);
+								puntos = getPuntos(color);
 
-											if (puntos > maximo) {
-												piezafin = piezaini; //guardamos valor pieza
-												 // guardar valor posicion inicio pieza
-												 // guardar valor posicion final pieza
-												maximo = puntos;
-											}
-										}
-									// deshacemos el movimiento
+								if (puntos > maximo) {
+									piezaini = pieza; //guardamos valor pieza
+									piezafin = piezacomida;
+									posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+									posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+									maximo = puntos;
 								}
+
+								// deshacemos el movimiento
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(piezacomida);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
 							}
 						}
+					}
 				}
 			}
+		}
+	}
+
+
+	// ****************   REALIZACIÓN DEL MOVIMIENTO DESPUÉS DE DECIDIR QUE ES LO QUE QUIERE HACER   *****************//
+   
+	// si mueve a una casilla vacia
+	if (Tablero::getCasillaT(posfinx, posfiny)->getTipoPieza() == 0)
+	{
+		Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
+		Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+	}
+
+	// si mueve a una casilla ocupada
+	if (Tablero::getCasillaT(posfinx, posfiny)->getTipoPieza() != 0)
+	{
+		Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
+		Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+		Tablero::eliminarPieza(piezafin); //elimina pieza
+	}
+
+	turnoterminado = TRUE;
 }

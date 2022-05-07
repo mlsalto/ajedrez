@@ -3,6 +3,11 @@
 
 class IA : public Jugador
 {
+private:
+	Pieza* piezaini; // pieza que movemos
+	Pieza* pieza; // pieza que movemos
+	Pieza* piezacomida; // pieza que comemos
+	Pieza* piezafin;
 public:
 	IA();
 	IA(char colorJugador);
