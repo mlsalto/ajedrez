@@ -307,7 +307,7 @@ bool Tablero::detectar_jaque_mate(char color) {
 							}
 
 							// si se come ninguna pieza 
-							if (casillas[a][b]->getTipoPieza() == 0)
+							if (casillas[a][b]->getTipoPieza() != 0)
 							{
 								piezacomida = casillas[a][b]->getPieza();
 								casillas[a][b]->colocarPieza(piezaini);

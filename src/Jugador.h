@@ -31,7 +31,7 @@ public:
 
 	virtual void draw(int x);
 
-	int getPuntos(char colorJugador, Casilla* c);
+	int getPuntos(char colorJugador);
 	virtual void moverPieza(int button, int state, int x, int y); 
     bool turnoTerminado();
 };
