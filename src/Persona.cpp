@@ -20,15 +20,21 @@ void Persona::draw(int x)
 		}
 
 		if (x == 2) {
+			if (color == 'B')player3.setPos(60, 0);
+			if (color == 'N')player3.setPos(-60, 0);
+			player3.draw();
+		}
+
+		if (x == 3) {
 			if (color == 'B')player2.setPos(60, 0);
 			if (color == 'N')player2.setPos(-60, 0);
 			player2.draw();
 		}
 
-		if (x == 3) {
-			if (color == 'B')player3.setPos(60, 0);
-			if (color == 'N')player3.setPos(-60, 0);
-			player3.draw();
+		if (x == 4) {
+			if (color == 'B')player4.setPos(60, 0);
+			if (color == 'N')player4.setPos(-60, 0);
+			player4.draw();
 		}
 	}
 
