@@ -161,34 +161,56 @@ void Coordinador::raton(int button, int state, int x, int y)
 	if (estado == S_PER_BLANCO)
 	{
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-			if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; return;}
-			else if (x > 713 || x < 264 || y < 229 || y > 654) { personajeB = 0; tablero.setPersonaje1(0); return;/*no hay personaje seleecionado*/ }
-			else if (x < 493 && x > 264 && y < 258 && y > 229) { personajeB = 1; tablero.setPersonaje1(1); return;}
-			else if (x < 568 && x > 264 && y < 307 && y > 278) { personajeB = 2; tablero.setPersonaje1(2); return;}
-			else if (x < 493 && x > 264 && y < 360 && y > 332) { personajeB = 3; tablero.setPersonaje1(3); return;}
-			else if (x < 713 && x > 264 && y < 408 && y > 377) { personajeB = 4; tablero.setPersonaje1(4); return;}
-			else if (x < 568 && x > 264 && y < 455 && y > 424) { personajeB = 5; tablero.setPersonaje1(5); return;}
-			else if (x < 586 && x > 264 && y < 504 && y > 478) { personajeB = 6; tablero.setPersonaje1(6); return;}
-			else if (x < 493 && x > 264 && y < 555 && y > 526) { personajeB = 7; tablero.setPersonaje1(7); return;}
-			else if (x < 619 && x > 264 && y < 605 && y > 575) { personajeB = 8; tablero.setPersonaje1(8); return;}
-			else if (x < 493 && x > 264 && y < 654 && y > 628) { personajeB = 9; tablero.setPersonaje1(9); return;}
+			if (tipojuego == 0) {
+				if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; return; }
+				else if (x > 682 || x < 275 || y < 292 || y > 471) { personajeB = 0; tablero.setPersonaje2(0); return;/*no hay personaje seleecionado*/ }
+				else if (x < 556 && x > 275 && y < 324 && y > 292) { personajeB = 1; tablero.setPersonaje2(1); return; }
+				else if (x < 513 && x > 275 && y < 370 && y > 344) { personajeB = 2; tablero.setPersonaje2(2); return; }
+				else if (x < 556 && x > 275 && y < 423 && y > 392) { personajeB = 3; tablero.setPersonaje2(3); return; }
+				else if (x < 682 && x > 275 && y < 471 && y > 441) { personajeB = 4; tablero.setPersonaje2(4); return; }
+			}
+
+			if (tipojuego == 1) {
+				if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; return; }
+				else if (x > 713 || x < 264 || y < 229 || y > 654) { personajeB = 0; tablero.setPersonaje1(0); return;/*no hay personaje seleecionado*/ }
+				else if (x < 493 && x > 264 && y < 258 && y > 229) { personajeB = 1; tablero.setPersonaje1(1); return; }
+				else if (x < 568 && x > 264 && y < 307 && y > 278) { personajeB = 2; tablero.setPersonaje1(2); return; }
+				else if (x < 493 && x > 264 && y < 360 && y > 332) { personajeB = 3; tablero.setPersonaje1(3); return; }
+				else if (x < 713 && x > 264 && y < 408 && y > 377) { personajeB = 4; tablero.setPersonaje1(4); return; }
+				else if (x < 568 && x > 264 && y < 455 && y > 424) { personajeB = 5; tablero.setPersonaje1(5); return; }
+				else if (x < 586 && x > 264 && y < 504 && y > 478) { personajeB = 6; tablero.setPersonaje1(6); return; }
+				else if (x < 493 && x > 264 && y < 555 && y > 526) { personajeB = 7; tablero.setPersonaje1(7); return; }
+				else if (x < 619 && x > 264 && y < 605 && y > 575) { personajeB = 8; tablero.setPersonaje1(8); return; }
+				else if (x < 493 && x > 264 && y < 654 && y > 628) { personajeB = 9; tablero.setPersonaje1(9); return; }
+			}
 		}
 	}
 
 	if (estado == S_PER_NEGRO)
 	{
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-			if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeN != 0) { estado = JUEGO; return;}
-			else if (x > 713 || x < 264 || y < 229 || y > 654) { personajeN = 0; tablero.setPersonaje2(0); return;/*no hay personaje seleecionado*/ }
-			else if (x < 493 && x > 264 && y < 258 && y > 229) { personajeN = 1; tablero.setPersonaje2(1); return;}
-			else if (x < 568 && x > 264 && y < 307 && y > 278) { personajeN = 2; tablero.setPersonaje2(2); return;}
-			else if (x < 493 && x > 264 && y < 360 && y > 332) { personajeN = 3; tablero.setPersonaje2(3); return;}
-			else if (x < 713 && x > 264 && y < 408 && y > 377) { personajeN = 4; tablero.setPersonaje2(4); return;}
-			else if (x < 568 && x > 264 && y < 455 && y > 424) { personajeN = 5; tablero.setPersonaje2(5); return;}
-			else if (x < 586 && x > 264 && y < 504 && y > 478) { personajeN = 6; tablero.setPersonaje2(6); return;}
-			else if (x < 493 && x > 264 && y < 555 && y > 526) { personajeN = 7; tablero.setPersonaje2(7); return;}
-			else if (x < 619 && x > 264 && y < 605 && y > 575) { personajeN = 8; tablero.setPersonaje2(8); return;}
-			else if (x < 493 && x > 264 && y < 654 && y > 628) { personajeN = 9; tablero.setPersonaje2(9); return;}
+			if (tipojuego == 0) {
+				if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeN != 0) { estado = JUEGO; return; }
+				else if (x > 682 || x < 275 || y < 292 || y > 471) { personajeN = 0; tablero.setPersonaje2(0); return;/*no hay personaje seleecionado*/ }
+				else if (x < 556 && x > 275 && y < 324 && y > 292) { personajeN = 1; tablero.setPersonaje2(1); return; }
+				else if (x < 513 && x > 275 && y < 370 && y > 344) { personajeN = 2; tablero.setPersonaje2(2); return; }
+				else if (x < 556 && x > 275 && y < 423 && y > 392) { personajeN = 3; tablero.setPersonaje2(3); return; }
+				else if (x < 682 && x > 275 && y < 471 && y > 441) { personajeN = 4; tablero.setPersonaje2(4); return; }
+			}
+
+			if (tipojuego == 1) {
+				if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeN != 0) { estado = JUEGO; return; }
+				else if (x > 713 || x < 264 || y < 229 || y > 654) { personajeN = 0; tablero.setPersonaje2(0); return;/*no hay personaje seleecionado*/ }
+				else if (x < 493 && x > 264 && y < 258 && y > 229) { personajeN = 1; tablero.setPersonaje2(1); return; }
+				else if (x < 568 && x > 264 && y < 307 && y > 278) { personajeN = 2; tablero.setPersonaje2(2); return; }
+				else if (x < 493 && x > 264 && y < 360 && y > 332) { personajeN = 3; tablero.setPersonaje2(3); return; }
+				else if (x < 713 && x > 264 && y < 408 && y > 377) { personajeN = 4; tablero.setPersonaje2(4); return; }
+				else if (x < 568 && x > 264 && y < 455 && y > 424) { personajeN = 5; tablero.setPersonaje2(5); return; }
+				else if (x < 586 && x > 264 && y < 504 && y > 478) { personajeN = 6; tablero.setPersonaje2(6); return; }
+				else if (x < 493 && x > 264 && y < 555 && y > 526) { personajeN = 7; tablero.setPersonaje2(7); return; }
+				else if (x < 619 && x > 264 && y < 605 && y > 575) { personajeN = 8; tablero.setPersonaje2(8); return; }
+				else if (x < 493 && x > 264 && y < 654 && y > 628) { personajeN = 9; tablero.setPersonaje2(9); return; }
+			}
 		}
 	}
 
@@ -376,27 +398,44 @@ void Coordinador::dibuja()
 		Flecha1.setPos(50, 30);
 		Flecha1.draw();
 
-		switch(personajeB){
-		case 0:
-			PerBK.draw();
-		case 1:
-			PerBK_TB.draw();
-		case 2:
-			PerBK_TC.draw();
-		case 3:
-			PerBK_TH.draw();
-		case 4:
-			PerBK_TJ.draw();
-		case 5:
-			PerBK_TM.draw();
-		case 6:
-			PerBK_TO.draw();
-		case 7:
-			PerBK_TP.draw();
-		case 8:
-			PerBK_TR.draw();
-		case 9:
-			PerBK_TS.draw();
+		if (tipojuego == 0) {
+			switch (personajeB) {
+			case 0:
+				PerBQ.draw();
+			case 1:
+				PerBQ_BT.draw();
+			case 2:
+				PerBQ_MS.draw();
+			case 3:
+				PerBQ_BE.draw();
+			case 4:
+				PerBQ_BB.draw();
+			}
+		}
+
+		if (tipojuego == 1) {
+			switch (personajeB) {
+			case 0:
+				PerBK.draw();
+			case 1:
+				PerBK_TB.draw();
+			case 2:
+				PerBK_TC.draw();
+			case 3:
+				PerBK_TH.draw();
+			case 4:
+				PerBK_TJ.draw();
+			case 5:
+				PerBK_TM.draw();
+			case 6:
+				PerBK_TO.draw();
+			case 7:
+				PerBK_TP.draw();
+			case 8:
+				PerBK_TR.draw();
+			case 9:
+				PerBK_TS.draw();
+			}
 		}
 	}
 
@@ -406,27 +445,44 @@ void Coordinador::dibuja()
 		Flecha1.setPos(50, 30);
 		Flecha1.draw();
 
-		switch (personajeN) {
-		case 0:
-			PerNK.draw();
-		case 1:
-			PerNK_TB.draw();
-		case 2:
-			PerNK_TC.draw();
-		case 3:
-			PerNK_TH.draw();
-		case 4:
-			PerNK_TJ.draw();
-		case 5:
-			PerNK_TM.draw();
-		case 6:
-			PerNK_TO.draw();
-		case 7:
-			PerNK_TP.draw();
-		case 8:
-			PerNK_TR.draw();
-		case 9:
-			PerNK_TS.draw();
+		if (tipojuego == 0) {
+			switch (personajeN) {
+			case 0:
+				PerNQ.draw();
+			case 1:
+				PerNQ_BT.draw();
+			case 2:
+				PerNQ_MS.draw();
+			case 3:
+				PerNQ_BE.draw();
+			case 4:
+				PerNQ_BB.draw();
+			}
+		}
+
+		if (tipojuego == 1) {
+			switch (personajeN) {
+			case 0:
+				PerNK.draw();
+			case 1:
+				PerNK_TB.draw();
+			case 2:
+				PerNK_TC.draw();
+			case 3:
+				PerNK_TH.draw();
+			case 4:
+				PerNK_TJ.draw();
+			case 5:
+				PerNK_TM.draw();
+			case 6:
+				PerNK_TO.draw();
+			case 7:
+				PerNK_TP.draw();
+			case 8:
+				PerNK_TR.draw();
+			case 9:
+				PerNK_TS.draw();
+			}
 		}
 	}
 

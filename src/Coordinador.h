@@ -162,6 +162,20 @@ private:
 	Sprite MenuGanadorReN2{ "recursos/menu/ganador/BLACK_WINS_REMATCH_rojo.png", 0, 0, 110, 50 };
 	Sprite MenuGanadorBaN2{ "recursos/menu/ganador/BLACK_WINS_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
+	// menu personaje blanco queens //
+	Sprite PerBQ{ "recursos/menu/personajes/PLAYER1_VACIO_AZUL.png", 0, 0, 130, 80 };
+	Sprite PerBQ_BT{ "recursos/menu/personajes/PLAYER1_BETH_AZUL.png", 0, 0, 130, 80 };
+	Sprite PerBQ_MS{ "recursos/menu/personajes/PLAYER1_MRSHEIBEL_AZUL.png", 0, 0, 130, 80 };
+	Sprite PerBQ_BE{ "recursos/menu/personajes/PLAYER1_BENNY_AZUL.png", 0, 0, 130, 80 };
+	Sprite PerBQ_BB{ "recursos/menu/personajes/PLAYER1_BABYBETH_AZUL.png", 0, 0, 130, 80 };
+	
+	// menu personaje negro queens //
+	Sprite PerNQ{ "recursos/menu/personajes/PLAYER2_VACIO_AZUL.png", 0, 0, 130, 80 };
+	Sprite PerNQ_BT{ "recursos/menu/personajes/PLAYER2_BETH_AZUL.png", 0, 0, 130, 80 };
+	Sprite PerNQ_MS{ "recursos/menu/personajes/PLAYER2_MRSHEIBEL_AZUL.png", 0, 0, 130, 80 };
+	Sprite PerNQ_BE{ "recursos/menu/personajes/PLAYER2_BENNY_AZUL.png", 0, 0, 130, 80 };
+	Sprite PerNQ_BB{ "recursos/menu/personajes/PLAYER2_BABYBETH_AZUL.png", 0, 0, 130, 80 };
+
 	// menu personaje blanco kings //
 	Sprite PerBK{ "recursos/menu/personajes/PLAYER1_VACIO_ROJO.png", 0, 0, 130, 80 };
 	Sprite PerBK_TB{ "recursos/menu/personajes/PLAYER1_TB_ROJO.png", 0, 0, 130, 80 };
