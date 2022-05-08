@@ -15,6 +15,7 @@ protected:
 	int tipoPieza; //  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
 
 	bool enroque = false;
+	bool passant = false;
 
 	// Sprites de los peones //
 	Sprite PeonN{ "recursos/piezas/peonN.png", pos.x, pos.y, 8, 8 };
@@ -65,11 +66,13 @@ public:
 	void setPos(int x, int y);
 	void setCasilla(Casilla* c);
 	void setEnroque(bool x);
+	void setPassant(bool x);
 	
 	// getters //
 	int getTipoPieza();
 	char getColorPieza(); //devuelve el color blanco o negro
 	Casilla* getCasilla();
 	bool getEnroque();
+	bool getPassant();
 };
 
