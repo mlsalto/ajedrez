@@ -181,8 +181,6 @@ void Persona::moverPieza(int button, int state, int x, int y)
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 
 		if (turnoterminado == FALSE) {
-			// deshacer EnPassant
-			//EnPassant->setPassant(false);
 			
 			//AUN NO HAY PIEZA SELECCIONADA
 			if (seleccionpieza == FALSE) {
@@ -209,6 +207,13 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 			//HAY PIEZA SELECCIONADA
 			else if (seleccionpieza == TRUE) {
+				// deshacer EnPassant
+				//EnPassant->setPassant(false);
+				if (posibilidad_passant == true)
+				{
+					EnPassant->setPassant(false);
+					posibilidad_passant = false;
+				}
 
 				////////    SELECCIÓN NUEVA PIEZA BLANCA   ////////
 				if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() != 0 && Tablero::getCasillaT(x_tablero, y_tablero)->getPieza()->getColorPieza() == color)
@@ -343,11 +348,13 @@ void Persona::moverPieza(int button, int state, int x, int y)
 								if (Tablero::getPiezasT(x_tablero, y_tablero)->getColorPieza() == 'B' && posiniy == 1 && y_tablero == 3)
 								{
 									EnPassant = piezaini;
+									posibilidad_passant = true;
 									Tablero::getPiezasT(x_tablero, y_tablero)->setPassant(true);
 								}
 								if (Tablero::getPiezasT(x_tablero, y_tablero)->getColorPieza() == 'N' && posiniy == 6 && y_tablero == 4)
 								{
 									EnPassant = piezaini;
+									posibilidad_passant = true;
 									Tablero::getPiezasT(x_tablero, y_tablero)->setPassant(true);
 								}
 							}

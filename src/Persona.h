@@ -10,6 +10,7 @@ private:
 	Pieza* piezaini;
 	Pieza* piezafin;
 	Pieza* EnPassant;
+	bool posibilidad_passant = false;
 	int posinix, posiniy;
 
 public:
