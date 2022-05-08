@@ -10,7 +10,7 @@ public:
 	Peon(char colorEquipo);
 
 	void draw();
-	bool movimientoLegal(Casilla* fin);
 	bool getPass();
+	bool movimientoLegal(Casilla* fin);
 };
 
