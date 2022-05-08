@@ -39,6 +39,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 	int i, j, row, coll;
 	bool obstaculo = false;
 	bool coronacion = false;
+	bool pass = false;
 
 	////// FILA Y COLUMNA ACTUAL DE LA PIEZA //////
 	coll = (pos.x + 28) / 8;
@@ -86,6 +87,8 @@ bool Peon::movimientoLegal(Casilla* fin)
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
 		if (y_fin == row + 1 && y_fin == 5 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, 5) == false && Tablero::getCasillaT(x_fin, 4)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, 4)->getPieza()->getColorPieza() != color && Tablero::getPiezasT(x_fin, 4)->getPassant() == true)
 		{
+			pass = true;
+			Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(0);
 			return true;
 		}
 
@@ -131,9 +134,18 @@ bool Peon::movimientoLegal(Casilla* fin)
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
 		if (y_fin == row - 1 && y_fin == 2 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, 2) == false && Tablero::getCasillaT(x_fin, 3)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, 3)->getPieza()->getColorPieza() != color && Tablero::getPiezasT(x_fin, 3)->getPassant() == true)
 		{
+
+			pass = true;
+			Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(0);
 			return true;
 		}
 
 		else return false;  // No se cumple ninguno de los movimientos legales de los peones y por tanto, NO es un movimiento legal
 	}
 }
+
+bool Peon::getPass()
+{
+	return pass;
+}
+
