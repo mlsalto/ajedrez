@@ -138,7 +138,6 @@ bool Peon::movimientoLegal(Casilla* fin)
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
 		if (y_fin == 2 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, 2) == false && Tablero::getCasillaOcupada(x_fin, 3) == true && Tablero::getCasillaT(x_fin, 3)->getPieza()->getColorPieza() != color && cont == 1)
 		{
-			std::cout << 'uwu' << endl;
 			return true;
 		}
 
