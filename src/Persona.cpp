@@ -334,6 +334,20 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 						else if (Tablero::detectar_jaque(color) == false)
 						{
+							//EnPassant
+							if (Tablero::getTipoPiezasT(x_tablero, y_tablero) == 1)
+							{
+								if (Tablero::getPiezasT(x_tablero, y_tablero)->getColorPieza() == 'B' && posiniy == 1 && y_tablero == 3)
+								{
+									EnPassant = piezaini;
+									Tablero::getPiezasT(x_tablero, y_tablero)->setPassant(true);
+								}
+								if (Tablero::getPiezasT(x_tablero, y_tablero)->getColorPieza() == 'N' && posiniy == 6 && y_tablero == 4)
+								{
+									EnPassant = piezaini;
+									Tablero::getPiezasT(x_tablero, y_tablero)->setPassant(true);
+								}
+							}
 							// dibujar casillas legales
 							for (i = 0; i < 8; i++)
 								for (j = 0; j < 8; j++) {
