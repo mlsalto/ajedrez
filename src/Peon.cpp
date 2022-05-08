@@ -81,8 +81,6 @@ bool Peon::movimientoLegal(Casilla* fin)
 			return true;
 		}
 
-
-		// && Tablero::getCasillaT(x_fin,4)->getPieza()->getCont() == 1
 		////// PASSANT /////
 		// 1 peon N solo puede comer 1 peon B si el peon negro se posiciona al lado de 1 peon B dando 2 pasos -NO 1 SOLO!!-
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
@@ -123,7 +121,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 		}
 
 		////// COMER PIEZAS NEGRAS: en diagonal 1 único desplazamiento //////
-		if (y_fin == row - 1 && y_fin == 2 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, 2) == false && Tablero::getCasillaOcupada(x_fin, 3) == true && Tablero::getCasillaT(x_fin, 3)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, 3)->getPieza()->getColorPieza() != color)
+		if (y_fin == row - 1 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == true && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color)
 		{
 			return true;
 		}
