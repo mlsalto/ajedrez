@@ -38,6 +38,11 @@ void Pieza::setEnroque(bool x)
 	enroque = true;
 }
 
+void Pieza::setPassant(bool x)
+{
+	passant = x;
+}
+
 int Pieza::getTipoPieza()
 {
 	return tipoPieza;
@@ -56,4 +61,9 @@ Casilla* Pieza::getCasilla()
 bool Pieza::getEnroque()
 {
 	return enroque;
+}
+
+bool Pieza::getPassant()
+{
+	return passant;
 }

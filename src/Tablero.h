@@ -70,11 +70,11 @@ public:
 	static bool getTipoJuego();
 	bool getTurnoAcabado();
 
+	void setCoronacion(int tipoficha);
+	bool getCoronacion(char color);
+
 	static bool detectar_jaque(char color);
 	bool detectar_jaque_mate(char color);
-
-	bool getCoronacion(char color);
-	void setCoronacion(int tipoficha);
 
 	void setTipoJuego(bool x);
 };

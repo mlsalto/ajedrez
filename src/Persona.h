@@ -8,6 +8,7 @@ private:
 	bool seleccionpieza = FALSE;
 	Pieza* piezaini;
 	Pieza* piezafin;
+	Pieza* EnPassant;
 	int posinix, posiniy;
 
 public:
