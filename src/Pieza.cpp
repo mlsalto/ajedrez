@@ -37,6 +37,11 @@ void Pieza::setPassant(bool x)
 	passant = x;
 }
 
+void Pieza::setPrimerMovimiento(bool x)
+{
+	primermovimiento = x;
+}
+
 int Pieza::getTipoPieza()
 {
 	return tipoPieza;
@@ -60,4 +65,9 @@ bool Pieza::getEnroque()
 bool Pieza::getPassant()
 {
 	return passant;
+}
+
+bool Pieza::getPrimerMovimiento()
+{
+	return primermovimiento;
 }

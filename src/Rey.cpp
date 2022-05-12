@@ -104,10 +104,10 @@ bool Rey::movimientoLegal(Casilla* fin) {
 
 	//ENROQUES
 	////////// Enroques rey/torre negros ///////
-	 if(color == 'N' && enroque == false)
+	 if(color == 'N' && enroque == false && primermovimiento == false)
 	 {
 	    //enroque corto (a la derecha)
-	    if (row == 7 && coll == 4 && x_fin == 6 && y_fin == 7 && Tablero::getTipoPiezasT(7, 7) == 2 && Tablero::getCasillaT(7, 7)->getPieza()->getColorPieza() == color)
+	    if (row == 7 && coll == 4 && x_fin == 6 && y_fin == 7 && Tablero::getTipoPiezasT(7, 7) == 2 && Tablero::getCasillaT(7, 7)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(7, 7)->getPrimerMovimiento() == false)
 	    {
 		    for (i = coll + 1; i <= x_fin; i++){
 			      if(Tablero::getCasillaOcupada(i, y_fin) == true )	return false;
@@ -116,7 +116,7 @@ bool Rey::movimientoLegal(Casilla* fin) {
 	    }
 	
 	    //enroque largo (a la izquierda)
-	   if (row == 7 && coll == 4 && x_fin == 2 && y_fin == 7 && Tablero::getTipoPiezasT(0, 7) == 2 && Tablero::getCasillaT(0, 7)->getPieza()->getColorPieza() == color)
+	   if (row == 7 && coll == 4 && x_fin == 2 && y_fin == 7 && Tablero::getTipoPiezasT(0, 7) == 2 && Tablero::getCasillaT(0, 7)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(0, 7)->getPrimerMovimiento() == false)
 	   {
 		    for (i = coll - 1; i >= x_fin ; i--){
 			      if(Tablero::getCasillaOcupada(i, y_fin) == true )return false;
@@ -126,9 +126,9 @@ bool Rey::movimientoLegal(Casilla* fin) {
 	 }
 	 
 	//////////// Enroques rey/torre blancos ///////
-	 if(color == 'B' && enroque == false) {
+	 if(color == 'B' && enroque == false && primermovimiento == false ) {
 	     //enroque corto
-		 if (row == 0 && coll == 4 && x_fin == 6 && y_fin == 0 && Tablero::getTipoPiezasT(7, 0) == 2 && Tablero::getCasillaT(7, 0)->getPieza()->getColorPieza() == color)
+		 if (row == 0 && coll == 4 && x_fin == 6 && y_fin == 0 && Tablero::getTipoPiezasT(7, 0) == 2 && Tablero::getCasillaT(7, 0)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(7, 0)->getPrimerMovimiento() == false)
 		 {
 			 for (i = coll + 1; i < 7; i++) {
 				 if (Tablero::getCasillaOcupada(i, y_fin) == true)	return false;
@@ -137,7 +137,7 @@ bool Rey::movimientoLegal(Casilla* fin) {
 		 }
 	 
 	     //enroque largo (a la izquierda)
-	     if (row == 0 && coll == 4 && x_fin == 2 && y_fin == 0 && Tablero::getTipoPiezasT(0, 0) == 2 && Tablero::getCasillaT(0, 0)->getPieza()->getColorPieza() == color)
+	     if (row == 0 && coll == 4 && x_fin == 2 && y_fin == 0 && Tablero::getTipoPiezasT(0, 0) == 2 && Tablero::getCasillaT(0, 0)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(0, 0)->getPrimerMovimiento() == false)
 		 {
 		    for (i = coll - 1; i > 0 ; i--){
 			    if(Tablero::getCasillaOcupada(i, y_fin) == true )return false;
@@ -146,7 +146,7 @@ bool Rey::movimientoLegal(Casilla* fin) {
 	     }
      }
 
-	else return false;
+	return false;
 }
  
 

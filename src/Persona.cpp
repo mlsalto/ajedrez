@@ -259,6 +259,12 @@ void Persona::moverPieza(int button, int state, int x, int y)
 					{
 						Tablero::eliminarPieza(piezafin); //elimina pieza
 
+						// mira si es el primer movimiento de la torre o rey
+						if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
+						{
+							piezaini->setPrimerMovimiento(true);
+						}
+
 						// dibujar casillas legales
 						for (i = 0; i < 8; i++)
 							for (j = 0; j < 8; j++) {
@@ -271,13 +277,13 @@ void Persona::moverPieza(int button, int state, int x, int y)
 				}
 
 				//////// HACER ENROQUE ///
-                else if (Tablero::getTipoPiezasT(posinix, posiniy) == 6 && (x_tablero == 6 || x_tablero == 2) && piezaini->getEnroque() == false && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
-{
+                else if (Tablero::getTipoPiezasT(posinix, posiniy) == 6 && (x_tablero == 6 || x_tablero == 2) && piezaini->getPrimerMovimiento() == false && Tablero::getTipoPiezasT(x_tablero, posiniy) == 2 && Tablero::getCasillaT(x_tablero, posiniy)->getPieza()->getPrimerMovimiento() == false && piezaini->getEnroque() == false && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
+				{
 	                     if (color == 'N')
 	                     {
 		                     if (x_tablero == 6) // derecha
 		                     {
-			                     piezafin = Tablero::getCasillaT(7, 7)->getPieza(); // torre
+			                    piezafin = Tablero::getCasillaT(7, 7)->getPieza(); // torre
 		                 	    Tablero::getCasillaT(7, 7)->colocarPieza(0);
 			                    Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 		                    	Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
@@ -324,7 +330,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 						seleccionpieza = FALSE;
 						turnoterminado = TRUE;
-				}
+			    }
 
 				//////// MOVER A CASILLA VACÍA ///////
 				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() == 0 && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
@@ -358,6 +364,14 @@ void Persona::moverPieza(int button, int state, int x, int y)
 									Tablero::getPiezasT(x_tablero, y_tablero)->setPassant(true);
 								}
 							}
+
+
+							// mira si es el primer movimiento de la torre o rey
+							if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
+							{
+								piezaini->setPrimerMovimiento(true);
+							}
+
 							// dibujar casillas legales
 							for (i = 0; i < 8; i++)
 								for (j = 0; j < 8; j++) {
