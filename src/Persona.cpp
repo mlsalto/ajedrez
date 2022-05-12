@@ -14,14 +14,14 @@ void Persona::draw(int x)
 	if (Tablero::getTipoJuego() == TRUE)
 	{
 		if (x == 1) {
-			if (color == 'B') player1.setPos(60, 0);
-			if (color == 'N') player1.setPos(-60, 0);
+			if (color == 'B') player1.setPos(60, 15);
+			if (color == 'N') player1.setPos(-60, 15);
 			player1.draw();
 		}
 
 		if (x == 2) {
-			if (color == 'B')player2.setPos(60, 0);
-			if (color == 'N')player2.setPos(-60, 0);
+			if (color == 'B')player2.setPos(60, 15);
+			if (color == 'N')player2.setPos(-60, 15);
 			player2.draw();
 		}
 
