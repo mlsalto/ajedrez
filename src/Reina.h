@@ -4,7 +4,6 @@
 class Reina : public Pieza
 {
 public:
-	Reina();
 	Reina(char colorEquipo);
 
 	void draw();
