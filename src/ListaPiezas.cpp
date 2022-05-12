@@ -57,7 +57,7 @@ void ListaPiezas::eliminar(Pieza* p)
 			eliminada = p->getTipoPieza();
 
 			// que numero de pieza eliminada es ( según si es blanca o negra )
-			if (eliminada != 1 || (eliminada == 1 && ((p->getCasilla()->getFila() != 1 && p->getColorPieza() == 'B') || (p->getCasilla()->getFila() != 6 && p->getColorPieza() == 'N'))))
+			if (eliminada != 1 || (eliminada == 1 && ((p->getColorPieza() == 'B' && p->getCasilla()->getFila() != 7) || (p->getCasilla()->getFila() != 0 && p->getColorPieza() == 'N'))))
 			{
 				if (p->getColorPieza() == 'N') {
 					numeroeliminadasN = numeroeliminadasN + 1;
@@ -68,11 +68,7 @@ void ListaPiezas::eliminar(Pieza* p)
 					numeroeliminadasB = numeroeliminadasB + 1;
 					coloreliminada = 'B';
 				}
-
-				drawEliminadas();
 			}
-
-			//drawEliminadas();
 
 			eliminar(i);
 			return;
@@ -119,42 +115,42 @@ void ListaPiezas::drawEliminadas()
 		if (numeroeliminadasB == 15) eliminadaB15 = eliminada;
 	}
 
-		dibujarPiezas(eliminadaN1, 1, 1);
-		dibujarPiezas(eliminadaN2, 2, 1);
-		dibujarPiezas(eliminadaN3, 3, 1);
-		dibujarPiezas(eliminadaN4, 4, 1);
-		dibujarPiezas(eliminadaN5, 5, 1);
-		dibujarPiezas(eliminadaN6, 1, 2);
-		dibujarPiezas(eliminadaN7, 2, 2);
-		dibujarPiezas(eliminadaN8, 3, 2);
-		dibujarPiezas(eliminadaN9, 4, 2);
-		dibujarPiezas(eliminadaN10, 5, 2);
-		dibujarPiezas(eliminadaN11, 1, 3);
-		dibujarPiezas(eliminadaN12, 2, 3);
-		dibujarPiezas(eliminadaN13, 3, 3);
-		dibujarPiezas(eliminadaN14, 4, 3);
-		dibujarPiezas(eliminadaN15, 5, 3);
+		dibujarPiezas(eliminadaN1, 1, 1, 'N');
+		dibujarPiezas(eliminadaN2, 2, 1, 'N');
+		dibujarPiezas(eliminadaN3, 3, 1, 'N');
+		dibujarPiezas(eliminadaN4, 4, 1, 'N');
+		dibujarPiezas(eliminadaN5, 5, 1, 'N');
+		dibujarPiezas(eliminadaN6, 1, 2, 'N');
+		dibujarPiezas(eliminadaN7, 2, 2, 'N');
+		dibujarPiezas(eliminadaN8, 3, 2, 'N');
+		dibujarPiezas(eliminadaN9, 4, 2, 'N');
+		dibujarPiezas(eliminadaN10, 5, 2, 'N');
+		dibujarPiezas(eliminadaN11, 1, 3, 'N');
+		dibujarPiezas(eliminadaN12, 2, 3, 'N');
+		dibujarPiezas(eliminadaN13, 3, 3, 'N');
+		dibujarPiezas(eliminadaN14, 4, 3, 'N');
+		dibujarPiezas(eliminadaN15, 5, 3, 'N');
 	
-		dibujarPiezas(eliminadaB1, 1, 1);
-		dibujarPiezas(eliminadaB2, 2, 1);
-		dibujarPiezas(eliminadaB3, 3, 1);
-		dibujarPiezas(eliminadaB4, 4, 1);
-		dibujarPiezas(eliminadaB5, 5, 1);
-		dibujarPiezas(eliminadaB6, 1, 2);
-		dibujarPiezas(eliminadaB7, 2, 2);
-		dibujarPiezas(eliminadaB8, 3, 2);
-		dibujarPiezas(eliminadaB9, 4, 2);
-		dibujarPiezas(eliminadaB10, 5, 2);
-		dibujarPiezas(eliminadaB11, 1, 3);
-		dibujarPiezas(eliminadaB12, 2, 3);
-		dibujarPiezas(eliminadaB13, 3, 3);
-		dibujarPiezas(eliminadaB14, 4, 3);
-		dibujarPiezas(eliminadaB15, 5, 3);
+		dibujarPiezas(eliminadaB1, 1, 1, 'B');
+		dibujarPiezas(eliminadaB2, 2, 1, 'B');
+		dibujarPiezas(eliminadaB3, 3, 1, 'B');
+		dibujarPiezas(eliminadaB4, 4, 1, 'B');
+		dibujarPiezas(eliminadaB5, 5, 1, 'B');
+		dibujarPiezas(eliminadaB6, 1, 2, 'B');
+		dibujarPiezas(eliminadaB7, 2, 2, 'B');
+		dibujarPiezas(eliminadaB8, 3, 2, 'B');
+		dibujarPiezas(eliminadaB9, 4, 2, 'B');
+		dibujarPiezas(eliminadaB10, 5, 2, 'B');
+		dibujarPiezas(eliminadaB11, 1, 3, 'B');
+		dibujarPiezas(eliminadaB12, 2, 3, 'B');
+		dibujarPiezas(eliminadaB13, 3, 3, 'B');
+		dibujarPiezas(eliminadaB14, 4, 3, 'B');
+		dibujarPiezas(eliminadaB15, 5, 3, 'B');
 }
 
-void ListaPiezas::dibujarPiezas(int x, int y , int z)
+void ListaPiezas::dibujarPiezas(int x, int y , int z, char a)
 {
-	if (coloreliminada == 'N')
+	if (a == 'N')
 	{
 		if (Tablero::getTipoJuego() == TRUE)
 		{
@@ -175,7 +171,7 @@ void ListaPiezas::dibujarPiezas(int x, int y , int z)
 		}
 	}
 
-	if (coloreliminada == 'B')
+	if (a == 'B')
 	{
 		if (Tablero::getTipoJuego() == TRUE)
 		{

@@ -59,6 +59,6 @@ public:
 	void eliminar(int index);
 	void eliminar(Pieza* p);
 
-	void dibujarPiezas(int x, int y, int z);
+	void dibujarPiezas(int x, int y, int z, char a);
 };
 
