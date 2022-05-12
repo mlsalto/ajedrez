@@ -18,9 +18,9 @@ ListaPiezas::ListaPiezas()
 bool ListaPiezas::agregar(Pieza* p)
 {
 	if (numero < MAX_PIEZAS)
-		lista[numero++] = p; // último puesto sin rellenar
+		lista[numero++] = p; // Ãºltimo puesto sin rellenar
 	else
-		return false; // capacidad máxima alcanzada
+		return false; // capacidad mÃ¡xima alcanzada
 	return true;
 }
 
@@ -32,7 +32,7 @@ void ListaPiezas::draw()
 
 void ListaPiezas::destruirContenido()
 {
-	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas
+	for (int i = 0; i < numero; i++) // destrucciÃ³n de esferas contenidas
 		delete lista[i];
 	numero = 0; // inicializa lista
 }
@@ -53,10 +53,10 @@ void ListaPiezas::eliminar(Pieza* p)
 	for (int i = 0; i < numero; i++)
 		if (lista[i] == p)
 		{
-			// que tipo de pieza está siendo eliminada //
+			// que tipo de pieza estÃ¡ siendo eliminada //
 			eliminada = p->getTipoPieza();
 
-			// que numero de pieza eliminada es ( según si es blanca o negra )
+			// que numero de pieza eliminada es ( segÃºn si es blanca o negra )
 			if (eliminada != 1 || (eliminada == 1 && ((p->getColorPieza() == 'B' && p->getCasilla()->getFila() != 7) || (p->getCasilla()->getFila() != 0 && p->getColorPieza() == 'N'))))
 			{
 				if (p->getColorPieza() == 'N') {

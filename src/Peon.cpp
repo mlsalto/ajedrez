@@ -31,6 +31,11 @@ void Peon::draw()
 	}
 }
 
+bool Peon::getPass()
+{
+	return pass;
+}
+
 bool Peon::movimientoLegal(Casilla* fin)
 {
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
@@ -83,7 +88,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 		////// PASSANT /////
 		// 1 peon N solo puede comer 1 peon B si el peon negro se posiciona al lado de 1 peon B dando 2 pasos -NO 1 SOLO!!-
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
-		if (y_fin == row + 1 && y_fin == 5 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, 5) == false && Tablero::getCasillaT(x_fin, 4)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, 4)->getPieza()->getColorPieza() != color && Tablero::getPiezasT(x_fin, 4)->getPassant() == true)
+		if (y_fin == row + 1 && y_fin == 5 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == false && Tablero::getCasillaT(x_fin, y_fin - 1)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza()->getColorPieza() != color && Tablero::getPiezasT(x_fin, y_fin - 1)->getPassant() == true)
 		{
 			pass = true;
 			Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(0);
@@ -130,7 +135,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 		////// PASSANT /////
 		// 1 peon N solo puede comer 1 peon B si el peon negro se posiciona al lado de 1 peon B dando 2 pasos -NO 1 SOLO!!-
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
-		if (y_fin == row - 1 && y_fin == 2 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, 2) == false && Tablero::getCasillaT(x_fin, 3)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, 3)->getPieza()->getColorPieza() != color && Tablero::getPiezasT(x_fin, 3)->getPassant() == true)
+		if (y_fin == row - 1 && y_fin == 2 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == false && Tablero::getCasillaT(x_fin, y_fin + 1)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza()->getColorPieza() != color && Tablero::getPiezasT(x_fin, y_fin + 1)->getPassant() == true)
 		{
 
 			pass = true;
@@ -141,9 +146,3 @@ bool Peon::movimientoLegal(Casilla* fin)
 		else return false;  // No se cumple ninguno de los movimientos legales de los peones y por tanto, NO es un movimiento legal
 	}
 }
-
-bool Peon::getPass()
-{
-	return pass;
-}
-
