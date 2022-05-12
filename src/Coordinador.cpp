@@ -149,6 +149,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 				estado = JUEGO;
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
 
+				return;
 			}
 
 			else if (x < 557 && x > 246 && y < 610 && y > 570){
