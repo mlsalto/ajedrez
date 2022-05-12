@@ -52,8 +52,7 @@ public:
 
 	bool agregar(Pieza* p);
 	void draw();
-	void drawEliminadasN();
-	void drawEliminadasB();
+	void drawEliminadas();
 
 	void destruirContenido();
 

@@ -10,6 +10,9 @@ ListaPiezas::ListaPiezas()
 
 	for (int i = 0; i < MAX_PIEZAS; i++)
 		lista[i] = 0;
+
+	eliminadaN1 = 0; eliminadaN2 = 0; eliminadaN3 = 0; eliminadaN4 = 0; eliminadaN5 = 0; eliminadaN6 = 0; eliminadaN7 = 0; eliminadaN8 = 0; eliminadaN9 = 0; eliminadaN10 = 0; eliminadaN11 = 0; eliminadaN12 = 0; eliminadaN13 = 0; eliminadaN14 = 0; eliminadaN15 = 0;
+	eliminadaB1 = 0; eliminadaB2 = 0; eliminadaB3 = 0; eliminadaB4 = 0; eliminadaB5 = 0; eliminadaB6 = 0; eliminadaB7 = 0; eliminadaB8 = 0; eliminadaB9 = 0; eliminadaB10 = 0; eliminadaB11 = 0; eliminadaB12 = 0; eliminadaB13 = 0; eliminadaB14 = 0; eliminadaB15 = 0;
 }
 
 bool ListaPiezas::agregar(Pieza* p)
@@ -54,28 +57,29 @@ void ListaPiezas::eliminar(Pieza* p)
 			eliminada = p->getTipoPieza();
 
 			// que numero de pieza eliminada es ( según si es blanca o negra )
-			if (eliminada != 1 && ((p->getCasilla()->getFila() != 1 && p->getColorPieza() != 'N') || (p->getCasilla()->getFila() != 6 && p->getColorPieza() != 'B')))
+			if (eliminada != 1 || (eliminada == 1 && ((p->getCasilla()->getFila() != 1 && p->getColorPieza() == 'B') || (p->getCasilla()->getFila() != 6 && p->getColorPieza() == 'N'))))
 			{
 				if (p->getColorPieza() == 'N') {
-					numeroeliminadasN++;
+					numeroeliminadasN = numeroeliminadasN + 1;
 					coloreliminada = 'N';
 				}
 
-				if (p->getColorPieza() == 'B') {
-					numeroeliminadasB++;
+				else if (p->getColorPieza() == 'B') {
+					numeroeliminadasB = numeroeliminadasB + 1;
 					coloreliminada = 'B';
 				}
+
+				drawEliminadas();
 			}
 
-			drawEliminadasN();
-			drawEliminadasB();
+			//drawEliminadas();
 
 			eliminar(i);
 			return;
 		}
 }
 
-void ListaPiezas::drawEliminadasN()
+void ListaPiezas::drawEliminadas()
 {
 	if (coloreliminada == 'N')
 	{
@@ -95,26 +99,7 @@ void ListaPiezas::drawEliminadasN()
 		if (numeroeliminadasN == 14) eliminadaN14 = eliminada;
 		if (numeroeliminadasN == 15) eliminadaN15 = eliminada;
 	}
-		dibujarPiezas(eliminadaN1, 1, 1);
-		dibujarPiezas(eliminadaN2, 2, 1);
-		dibujarPiezas(eliminadaN3, 3, 1);
-		dibujarPiezas(eliminadaN4, 4, 1);
-		dibujarPiezas(eliminadaN5, 5, 1);
-		dibujarPiezas(eliminadaN6, 1, 2);
-		dibujarPiezas(eliminadaN7, 2, 2);
-		dibujarPiezas(eliminadaN8, 3, 2);
-		dibujarPiezas(eliminadaN9, 4, 2);
-		dibujarPiezas(eliminadaN10, 5, 2);
-		dibujarPiezas(eliminadaN11, 1, 3);
-		dibujarPiezas(eliminadaN12, 2, 3);
-		dibujarPiezas(eliminadaN13, 3, 3);
-		dibujarPiezas(eliminadaN14, 4, 3);
-		dibujarPiezas(eliminadaN15, 5, 3);
-	
-}
 
-void ListaPiezas::drawEliminadasB()
-{
 	if (coloreliminada == 'B')
 	{
 		if (numeroeliminadasB == 1) eliminadaB1 = eliminada;
@@ -134,21 +119,37 @@ void ListaPiezas::drawEliminadasB()
 		if (numeroeliminadasB == 15) eliminadaB15 = eliminada;
 	}
 
-	dibujarPiezas(eliminadaB1, 1, 1);
-	dibujarPiezas(eliminadaB2, 2, 1);
-	dibujarPiezas(eliminadaB3, 3, 1);
-	dibujarPiezas(eliminadaB4, 4, 1);
-	dibujarPiezas(eliminadaB5, 5, 1);
-	dibujarPiezas(eliminadaB6, 1, 2);
-	dibujarPiezas(eliminadaB7, 2, 2);
-	dibujarPiezas(eliminadaB8, 3, 2);
-	dibujarPiezas(eliminadaB9, 4, 2);
-	dibujarPiezas(eliminadaB10, 5, 2);
-	dibujarPiezas(eliminadaB11, 1, 3);
-	dibujarPiezas(eliminadaB12, 2, 3);
-	dibujarPiezas(eliminadaB13, 3, 3);
-	dibujarPiezas(eliminadaB14, 4, 3);
-	dibujarPiezas(eliminadaB15, 5, 3);
+		dibujarPiezas(eliminadaN1, 1, 1);
+		dibujarPiezas(eliminadaN2, 2, 1);
+		dibujarPiezas(eliminadaN3, 3, 1);
+		dibujarPiezas(eliminadaN4, 4, 1);
+		dibujarPiezas(eliminadaN5, 5, 1);
+		dibujarPiezas(eliminadaN6, 1, 2);
+		dibujarPiezas(eliminadaN7, 2, 2);
+		dibujarPiezas(eliminadaN8, 3, 2);
+		dibujarPiezas(eliminadaN9, 4, 2);
+		dibujarPiezas(eliminadaN10, 5, 2);
+		dibujarPiezas(eliminadaN11, 1, 3);
+		dibujarPiezas(eliminadaN12, 2, 3);
+		dibujarPiezas(eliminadaN13, 3, 3);
+		dibujarPiezas(eliminadaN14, 4, 3);
+		dibujarPiezas(eliminadaN15, 5, 3);
+	
+		dibujarPiezas(eliminadaB1, 1, 1);
+		dibujarPiezas(eliminadaB2, 2, 1);
+		dibujarPiezas(eliminadaB3, 3, 1);
+		dibujarPiezas(eliminadaB4, 4, 1);
+		dibujarPiezas(eliminadaB5, 5, 1);
+		dibujarPiezas(eliminadaB6, 1, 2);
+		dibujarPiezas(eliminadaB7, 2, 2);
+		dibujarPiezas(eliminadaB8, 3, 2);
+		dibujarPiezas(eliminadaB9, 4, 2);
+		dibujarPiezas(eliminadaB10, 5, 2);
+		dibujarPiezas(eliminadaB11, 1, 3);
+		dibujarPiezas(eliminadaB12, 2, 3);
+		dibujarPiezas(eliminadaB13, 3, 3);
+		dibujarPiezas(eliminadaB14, 4, 3);
+		dibujarPiezas(eliminadaB15, 5, 3);
 }
 
 void ListaPiezas::dibujarPiezas(int x, int y , int z)
@@ -158,10 +159,10 @@ void ListaPiezas::dibujarPiezas(int x, int y , int z)
 		if (Tablero::getTipoJuego() == TRUE)
 		{
 			if (x == 1) { PeonA.setPos(45 + 5 * y, -3 - 7 * z); PeonA.draw(); }
-			if (x == 2) { TorreA.setPos(45 + 5 * y, -3 - 7 * z); TorreA.draw(); }
-			if (x == 3) { AlfilA.setPos(45 + 5 * y, -3 - 7 * z); AlfilA.draw(); }
-			if (x == 4) { CaballoA.setPos(45 + 5 * y, -3 - 7 * z); CaballoA.draw(); }
-			if (x == 5) { ReinaA.setPos(45 + 5 * y, -3 - 7 * z); ReinaA.draw(); }
+			else if (x == 2) { TorreA.setPos(45 + 5 * y, -3 - 7 * z); TorreA.draw(); }
+			else if (x == 3) { AlfilA.setPos(45 + 5 * y, -3 - 7 * z); AlfilA.draw(); }
+			else if (x == 4) { CaballoA.setPos(45 + 5 * y, -3 - 7 * z); CaballoA.draw(); }
+			else if (x == 5) { ReinaA.setPos(45 + 5 * y, -3 - 7 * z); ReinaA.draw(); }
 		}
 
 		if (Tablero::getTipoJuego() == FALSE)
@@ -179,10 +180,10 @@ void ListaPiezas::dibujarPiezas(int x, int y , int z)
 		if (Tablero::getTipoJuego() == TRUE)
 		{
 			if (x == 1) { PeonB.setPos(-75 + 5 * y, -3 - 7 * z); PeonB.draw(); }
-			if (x == 2) { TorreB.setPos(-75 + 5 * y, -3 - 7 * z); TorreB.draw(); }
-			if (x == 3) { AlfilB.setPos(-75 + 5 * y, -3 - 7 * z); AlfilB.draw(); }
-			if (x == 4) { CaballoB.setPos(-75 + 5 * y, -3 - 7 * z); CaballoB.draw(); }
-			if (x == 5) { ReinaB.setPos(-75 + 5 * y, -3 - 7 * z); ReinaB.draw(); }
+			else if (x == 2) { TorreB.setPos(-75 + 5 * y, -3 - 7 * z); TorreB.draw(); }
+			else if (x == 3) { AlfilB.setPos(-75 + 5 * y, -3 - 7 * z); AlfilB.draw(); }
+			else if (x == 4) { CaballoB.setPos(-75 + 5 * y, -3 - 7 * z); CaballoB.draw(); }
+			else if (x == 5) { ReinaB.setPos(-75 + 5 * y, -3 - 7 * z); ReinaB.draw(); }
 		}
 
 		if (Tablero::getTipoJuego() == FALSE)
