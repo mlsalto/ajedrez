@@ -26,14 +26,14 @@ void Persona::draw(int x)
 		}
 
 		if (x == 3) {
-			if (color == 'B')player3.setPos(60, 0);
-			if (color == 'N')player3.setPos(-60, 0);
+			if (color == 'B')player3.setPos(60, 15);
+			if (color == 'N')player3.setPos(-60, 15);
 			player3.draw();
 		}
 
 		if (x == 4) {
-			if (color == 'B')player4.setPos(60, 0);
-			if (color == 'N')player4.setPos(-60, 0);
+			if (color == 'B')player4.setPos(60, 15);
+			if (color == 'N')player4.setPos(-60, 15);
 			player4.draw();
 		}
 	}
@@ -42,56 +42,56 @@ void Persona::draw(int x)
 	if (Tablero::getTipoJuego() == FALSE)
 	{
 		if (x == 1) {
-			if (color == 'B') TB.setPos(60, 0);
-			if (color == 'N') TB.setPos(-60, 0);
+			if (color == 'B') TB.setPos(60, 15);
+			if (color == 'N') TB.setPos(-60, 15);
 			TB.draw();
 		}
 
 		if (x == 2) {
-			if (color == 'B') TC.setPos(60, 0);
-			if (color == 'N') TC.setPos(-60, 0);
+			if (color == 'B') TC.setPos(60, 15);
+			if (color == 'N') TC.setPos(-60, 15);
 			TC.draw();
 		}
 
 		if (x == 3) {
-			if (color == 'B') TH.setPos(60, 0);
-			if (color == 'N') TH.setPos(-60, 0);
+			if (color == 'B') TH.setPos(60, 15);
+			if (color == 'N') TH.setPos(-60, 15);
 			TH.draw();
 		}
 
 		if (x == 4) {
-			if (color == 'B') TJ.setPos(60, 0);
-			if (color == 'N') TJ.setPos(-60, 0);
+			if (color == 'B') TJ.setPos(60, 15);
+			if (color == 'N') TJ.setPos(-60, 15);
 			TJ.draw();
 		}
 
 		if (x == 5) {
-			if (color == 'B') TM.setPos(60, 0);
-			if (color == 'N') TM.setPos(-60, 0);
+			if (color == 'B') TM.setPos(60, 15);
+			if (color == 'N') TM.setPos(-60, 15);
 			TM.draw();
 		}
 
 		if (x == 6) {
-			if (color == 'B') TO.setPos(60, 0);
-			if (color == 'N') TO.setPos(-60, 0);
+			if (color == 'B') TO.setPos(60, 15);
+			if (color == 'N') TO.setPos(-60, 15);
 			TO.draw();
 		}
 
 		if (x == 7) {
-			if (color == 'B') TP.setPos(60, 0);
-			if (color == 'N') TP.setPos(-60, 0);
+			if (color == 'B') TP.setPos(60, 15);
+			if (color == 'N') TP.setPos(-60, 15);
 			TP.draw();
 		}
 
 		if (x == 8) {
-			if (color == 'B') TR.setPos(60, 0);
-			if (color == 'N') TR.setPos(-60, 0);
+			if (color == 'B') TR.setPos(60, 15);
+			if (color == 'N') TR.setPos(-60, 15);
 			TR.draw();
 		}
 
 		if (x == 9) {
-			if (color == 'B') TS.setPos(60, 0);
-			if (color == 'N') TS.setPos(-60, 0);
+			if (color == 'B') TS.setPos(60, 15);
+			if (color == 'N') TS.setPos(-60, 15);
 			TS.draw();
 		}
 	}
