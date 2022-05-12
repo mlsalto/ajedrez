@@ -164,10 +164,9 @@ void Tablero::dibuja()
 	//tape a las figuras
 	jugador1->draw(personaje1); // blancas
 	jugador2->draw(personaje2); // negras
+	piezas.drawEliminadas();
 
 	piezas.draw();
-	piezas.drawEliminadasN();
-	piezas.drawEliminadasB();
 
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++)
