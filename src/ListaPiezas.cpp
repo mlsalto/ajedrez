@@ -54,7 +54,7 @@ void ListaPiezas::eliminar(Pieza* p)
 			eliminada = p->getTipoPieza();
 
 			// que numero de pieza eliminada es ( según si es blanca o negra )
-			if (eliminada != 1 && ((p->getCasilla()->getFila() != 1 && p->getColorPieza() != 'N') || (p->getCasilla()->getFila() != 6 && p->getColorPieza() != 'B')))
+			if ((eliminada != 1) || (eliminada == 1 && ((p->getCasilla()->getFila() != 1 && p->getColorPieza() != 'N') || (p->getCasilla()->getFila() != 6 && p->getColorPieza() != 'B'))))
 			{
 				if (p->getColorPieza() == 'N') {
 					numeroeliminadasN++;
