@@ -2,8 +2,6 @@
 #include "Tablero.h"
 #include <math.h>
 
-Rey::Rey(){}
-
 Rey::Rey(char colorEquipo) 
 {
 	color = colorEquipo;

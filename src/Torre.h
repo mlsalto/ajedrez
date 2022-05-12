@@ -4,7 +4,6 @@
 class Torre : public Pieza
 {
 public:
-	Torre();
 	Torre(char colorEquipo);
 
 	void draw();

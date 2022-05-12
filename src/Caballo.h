@@ -4,7 +4,6 @@
 class Caballo: public Pieza
 {
 public:
-	Caballo();
 	Caballo(char colorEquipo);
 
 	void draw();

@@ -2,8 +2,6 @@
 #include "Tablero.h"
 #include <math.h>
 
-Alfil::Alfil() {}
-
 Alfil::Alfil(char colorEquipo) 
 {
 	color = colorEquipo;

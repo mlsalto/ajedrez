@@ -6,7 +6,6 @@ class Peon: public Pieza
 private:
 	bool pass = false;
 public:
-	Peon();
 	Peon(char colorEquipo);
 
 	void draw();

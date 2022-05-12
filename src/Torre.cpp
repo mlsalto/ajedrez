@@ -1,8 +1,6 @@
 #include "Torre.h"
 #include "Tablero.h"
 
-Torre::Torre(){}
-
 Torre::Torre(char colorEquipo)
 {
 	color = colorEquipo;

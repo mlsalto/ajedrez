@@ -1,8 +1,6 @@
 #include "Caballo.h"
 #include "Tablero.h"
 
-Caballo::Caballo(){}
-
 Caballo::Caballo(char colorEquipo)
 {
 	color = colorEquipo;

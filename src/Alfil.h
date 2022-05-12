@@ -4,7 +4,6 @@
 class Alfil: public Pieza
 {
 public:
-	Alfil();
 	Alfil(char colorEquipo);
 
 	void draw();
