@@ -16,6 +16,7 @@ protected:
 
 	bool enroque = false;
 	bool passant = false;
+	bool primermovimiento = false;
 
 	// Sprites de los peones //
 	Sprite PeonN{ "recursos/piezas/peonN.png", pos.x, pos.y, 8, 8 };
@@ -67,6 +68,7 @@ public:
 	void setCasilla(Casilla* c);
 	void setEnroque(bool x);
 	void setPassant(bool x);
+	void setPrimerMovimiento(bool x);
 	
 	// getters //
 	int getTipoPieza();
@@ -74,5 +76,6 @@ public:
 	Casilla* getCasilla();
 	bool getEnroque();
 	bool getPassant();
+	bool getPrimerMovimiento();
 };
 
