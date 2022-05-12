@@ -8,7 +8,6 @@ class ListaPiezas
 private:
 	Pieza* lista[MAX_PIEZAS];
 	int numero;
-
 	int eliminada;
 
 	int numeroeliminadasN;
@@ -61,7 +60,6 @@ public:
 	void eliminar(int index);
 	void eliminar(Pieza* p);
 
-	//virtual ~ListaPiezas();
 	void dibujarPiezas(int x, int y, int z);
 };
 

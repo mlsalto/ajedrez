@@ -27,7 +27,6 @@ void ListaPiezas::draw()
 		lista[i]->draw();
 }
 
-
 void ListaPiezas::destruirContenido()
 {
 	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas
@@ -78,7 +77,7 @@ void ListaPiezas::eliminar(Pieza* p)
 
 void ListaPiezas::drawEliminadasN()
 {
-	if (coloreliminada = 'N')
+	if (coloreliminada == 'N')
 	{
 		if (numeroeliminadasN == 1) eliminadaN1 = eliminada;
 		if (numeroeliminadasN == 2) eliminadaN2 = eliminada;
@@ -116,7 +115,7 @@ void ListaPiezas::drawEliminadasN()
 
 void ListaPiezas::drawEliminadasB()
 {
-	if (coloreliminada = 'B')
+	if (coloreliminada == 'B')
 	{
 		if (numeroeliminadasB == 1) eliminadaB1 = eliminada;
 		if (numeroeliminadasB == 2) eliminadaB2 = eliminada;
@@ -151,7 +150,6 @@ void ListaPiezas::drawEliminadasB()
 	dibujarPiezas(eliminadaB14, 4, 3);
 	dibujarPiezas(eliminadaB15, 5, 3);
 }
-
 
 void ListaPiezas::dibujarPiezas(int x, int y , int z)
 {
