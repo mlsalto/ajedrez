@@ -270,31 +270,53 @@ void Coordinador::raton(int button, int state, int x, int y)
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 
 			if (estadojuego == TURNO) {
-
-
 				tablero.ratonTablero(button, state, x, y);
-				if (tablero.getTurnoAcabado() == true)
+
+				// si termina el turno de las negras
+				if (tablero.getTurnoAcabadoN() == true)
 				{
 					musicajaque = false;
 					musica();
 
-
-					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque('B') == true)
+					if (Tablero::detectar_jaque('B') == true )
 					{
 						musicajaque = true;
 						estadojuego = JAQUE;
 						musica();
-
 					}
 
-					if (Tablero::detectar_jaque_mate('N') == true || Tablero::detectar_jaque_mate('B') == true)
+					if (Tablero::detectar_jaque('N')== true || Tablero::detectar_jaque_mate('N') == true || Tablero::detectar_jaque_mate('B') == true)
 					{
 						musicajaque = false;
 						estadojuego = JAQUE_MATE;
 						musica();
 
-						if (Tablero::detectar_jaque_mate('N') == true) { ganador = 0; }
+						if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque_mate('N') == true) { ganador = 0; }
 						if (Tablero::detectar_jaque_mate('B') == true) { ganador = 1; }
+					}
+				}
+
+				// si termina el turno de las blancas
+				if (tablero.getTurnoAcabadoB() == true)
+				{
+					musicajaque = false;
+					musica();
+
+					if (Tablero::detectar_jaque('N') == true)
+					{
+						musicajaque = true;
+						estadojuego = JAQUE;
+						musica();
+					}
+
+					if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('N') == true || Tablero::detectar_jaque_mate('B') == true)
+					{
+						musicajaque = false;
+						estadojuego = JAQUE_MATE;
+						musica();
+
+						if ( Tablero::detectar_jaque_mate('N') == true) { ganador = 0; }
+						if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('B') == true) { ganador = 1; }
 					}
 				}
 
@@ -901,7 +923,7 @@ bool Coordinador::tiempo(char color)
 
 void Coordinador::musica()
 {
-	if (estado == INICIO || estado == OPCIONES) playMusica("recursos/menu.mp3");
+	/*if (estado == INICIO || estado == OPCIONES) playMusica("recursos/menu.mp3");
 	if (estado == JUEGO) {
 		if (musicajaque == false)
 			playMusica("recursos/juego.mp3", true);
@@ -909,7 +931,7 @@ void Coordinador::musica()
 		else if (musicajaque == true)
 			playMusica("recursos/JaqueTheme.mp3");
 	}
-	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");
+	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");*/
 }
 
 
