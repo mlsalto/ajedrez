@@ -256,6 +256,10 @@ protected:
 	int personajeN;
 	//////////////////////////////
 
+	//variable de musica//
+	bool musicajaque;
+	//////////////////////////////
+
 	enum Estado { INICIO, OPCIONES , S_PER_BLANCO, S_PER_NEGRO, JUEGO,  FIN}; //editar los estados
 	Estado estado;
 
