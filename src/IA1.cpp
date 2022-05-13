@@ -1,4 +1,4 @@
-#include "IA.h"
+#include "IA1.h"
 #include "Tablero.h"
 
 IA::IA() {}

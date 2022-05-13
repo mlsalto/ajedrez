@@ -10,7 +10,7 @@
 #include "Alfil.h"
 #include "ListaPiezas.h"
 #include "Jugador.h"
-#include "IA.h"
+#include "IA1.h"
 #include "Persona.h"
 
 using namespace ETSIDI;

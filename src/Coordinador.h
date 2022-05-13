@@ -2,7 +2,7 @@
 #include "Tablero.h"
 #include "Persona.h"
 #include "Jugador.h"
-#include "IA.h"
+#include "IA1.h"
 
 class Coordinador
 {
