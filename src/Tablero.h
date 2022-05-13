@@ -47,6 +47,9 @@ private:
 	static bool tipojuego; // queens(false)  kings(true)
 	static bool movimientos; // encendidos(true) apagados(false)
 
+	// pruebas //
+	//int pos_rey_x, pos_rey_y;
+
 public:
 	Tablero();
 
