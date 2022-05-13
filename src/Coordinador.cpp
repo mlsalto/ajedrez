@@ -393,8 +393,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 			if (x > 708 || x < 470 || y < 423 || y > 521) { ; /*no hay final*/ }
-			else if (x < 624 && x > 470 && y < 462 && y > 423) { tablero.eliminarTablero(); tablero.nuevoTablero(); estado = JUEGO;  estadojuego = TURNO; musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
-			else if (x < 708 && x > 470 && y < 521 && y > 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+			else if (x < 624 && x > 470 && y < 462 && y > 423) { tablero.eliminarTablero(); tablero.nuevoTablero(); estado = JUEGO;  estadojuego = TURNO; i = 0; musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
+			else if (x < 708 && x > 470 && y < 521 && y > 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
 		}
 	}
 
@@ -932,8 +932,6 @@ void Coordinador::musica()
 	}
 	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");*/
 }
-
-
 
 void Coordinador::mueve(float t)
 {
