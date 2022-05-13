@@ -1,7 +1,7 @@
 #pragma once
 #include "Jugador.h"
 
-class IA : public Jugador
+class IA1 : public Jugador
 {
 private:
 	Pieza* piezaini; // pieza que movemos
@@ -9,8 +9,8 @@ private:
 	Pieza* piezacomida; // pieza que comemos
 	Pieza* piezafin;
 public:
-	IA();
-	IA(char colorJugador);
+	IA1();
+	IA1(char colorJugador);
 
 	void moverPieza(int button, int state, int x, int y);
 };

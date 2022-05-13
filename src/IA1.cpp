@@ -1,15 +1,15 @@
 #include "IA1.h"
 #include "Tablero.h"
 
-IA::IA() {}
+IA1::IA1() {}
 
-IA::IA(char colorJugador)
+IA1::IA1(char colorJugador)
 {
 	color = colorJugador;
 }
 
 
-void IA::moverPieza(int button, int state, int x, int y)
+void IA1::moverPieza(int button, int state, int x, int y)
 {
 	turnoterminado = FALSE;
 	int x_ini = 0, x_fin = 0, y_ini = 0, y_fin = 0;
