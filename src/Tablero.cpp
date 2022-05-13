@@ -216,7 +216,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 bool Tablero::detectar_jaque(char color) {
 	// este jaque solo depende del color
 	int i, j;
-	int pos_rey_x, pos_rey_y;
+	int pos_rey_x = 0, pos_rey_y = 0;
 	//bucle anidado para recorrer el tablero y comprobar si alguna pieza puede hacer jaque a la posición actual del rey
 	bool rey = false;
 
@@ -238,7 +238,7 @@ bool Tablero::detectar_jaque(char color) {
 	{
 		for (j = 0; j < 8; j++)
 		{
-			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_x][pos_rey_y]) == true)
+			if (casillas[i][j]->getOcupada() == true && casillas[i][j]->getPieza()->getColorPieza() != color && casillas[i][j]->getPieza()->movimientoLegal(casillas[pos_rey_x][pos_rey_y]) == true)
 			{
 				return true;
 			}
