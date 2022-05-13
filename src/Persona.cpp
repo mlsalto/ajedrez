@@ -207,13 +207,6 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 			//HAY PIEZA SELECCIONADA
 			else if (seleccionpieza == TRUE) {
-				// deshacer EnPassant
-				//EnPassant->setPassant(false);
-				if (posibilidad_passant == true)
-				{
-					EnPassant->setPassant(false);
-					posibilidad_passant = false;
-				}
 
 				////////    SELECCIÓN NUEVA PIEZA BLANCA   ////////
 				if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() != 0 && Tablero::getCasillaT(x_tablero, y_tablero)->getPieza()->getColorPieza() == color)
@@ -264,6 +257,12 @@ void Persona::moverPieza(int button, int state, int x, int y)
 						{
 							piezaini->setPrimerMovimiento(true);
 						}
+
+						if (piezaini->getTipoPieza() == 1)
+						{
+							piezaini->setPassant(false);
+						}
+							
 
 						// dibujar casillas legales
 						for (i = 0; i < 8; i++)
@@ -332,6 +331,42 @@ void Persona::moverPieza(int button, int state, int x, int y)
 						turnoterminado = TRUE;
 			    }
 
+				//////// HACER PASsANT ////////
+				else if (color == 'B' && Tablero::getTipoPiezasT(posinix, posiniy) == 1 && Tablero::getTipoPiezasT(x_tablero, y_tablero) == 0 && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE && (y_tablero == posiniy + 1 && y_tablero == 5 && (x_tablero == posinix + 1 || x_tablero == posinix - 1) && Tablero::getTipoPiezasT(x_tablero, y_tablero - 1) == 1 && Tablero::getCasillaT(x_tablero, y_tablero - 1)->getPieza()->getColorPieza() != color && Tablero::getCasillaT(x_tablero, y_tablero - 1)->getPieza()->getPassant() == true))
+				{
+
+							Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+							Tablero::eliminarPieza(Tablero::getCasillaT(x_tablero, y_tablero - 1)->getPieza());
+							Tablero::getCasillaT(x_tablero, y_tablero - 1)->colocarPieza(0);
+
+							// dibujar casillas legales
+							for (i = 0; i < 8; i++)
+								for (j = 0; j < 8; j++) {
+									Tablero::getCasillaT(i, j)->setTipoCasilla(0);
+								}
+
+							seleccionpieza = FALSE;
+							turnoterminado = TRUE;
+			
+				}
+
+				else if (color == 'N' && Tablero::getTipoPiezasT(posinix, posiniy) == 1 && Tablero::getTipoPiezasT(x_tablero, y_tablero) == 0 && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE && (y_tablero == posiniy - 1 && y_tablero == 2 && (x_tablero == posinix + 1 || x_tablero == posinix - 1) && Tablero::getTipoPiezasT(x_tablero, y_tablero + 1) == 1 && Tablero::getCasillaT(x_tablero, y_tablero + 1)->getPieza()->getColorPieza() != color && Tablero::getCasillaT(x_tablero, y_tablero + 1)->getPieza()->getPassant() == true))
+				{
+			
+							Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+							Tablero::eliminarPieza(Tablero::getCasillaT(x_tablero, y_tablero + 1)->getPieza());
+							Tablero::getCasillaT(x_tablero, y_tablero + 1)->colocarPieza(0);
+					
+							// dibujar casillas legales
+							for (i = 0; i < 8; i++)
+								for (j = 0; j < 8; j++) {
+									Tablero::getCasillaT(i, j)->setTipoCasilla(0);
+								}
+
+							seleccionpieza = FALSE;
+							turnoterminado = TRUE;
+                }
+
 				//////// MOVER A CASILLA VACÍA ///////
 				else if (Tablero::getCasillaT(x_tablero, y_tablero)->getTipoPieza() == 0 && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
 				{
@@ -370,6 +405,21 @@ void Persona::moverPieza(int button, int state, int x, int y)
 							if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
 							{
 								piezaini->setPrimerMovimiento(true);
+							}
+
+							// mira si es el primer movimiento del peón
+							if ((piezaini->getTipoPieza() == 1))
+							{
+								if (color == 'N')
+								{
+									if (y_tablero == 4 && posiniy== 6) piezaini->setPassant(true);
+									else piezaini->setPassant(false);
+								}
+								if (color == 'B')
+								{
+									if (y_tablero == 3 && posiniy==1) piezaini->setPassant(true);
+									else piezaini->setPassant(false);
+								}
 							}
 
 							// dibujar casillas legales
