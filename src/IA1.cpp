@@ -42,6 +42,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 						// si en passant negro //
 						// si coronacion //
 						// si haces enroque //
+						// quizas hacer int que sea TIPOMOVIMIENTO, así despues se pone un if al final y es más facil
 						
 						// se puede realizar el movimiento
 						if (pieza->movimientoLegal(Tablero::getCasillaT(x_fin, y_fin)) == TRUE) {
