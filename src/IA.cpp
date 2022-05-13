@@ -24,12 +24,12 @@ void IA::moverPieza(int button, int state, int x, int y)
 	{
 		for (y_ini = 0; y_ini < 8; y_ini++)
 		{
-
+			// buscar una pieza para mover ( similar a seleccionar de persona )
 			if (Tablero::getCasillaT(x_ini, y_ini)->getOcupada() == TRUE && Tablero::getCasillaT(x_ini, y_ini)->getPieza()->getColorPieza() == color)
 			{
 				pieza = Tablero::getCasillaT(x_ini, y_ini)->getPieza();
 
-				// mover la pieza encontrada
+				// mover la pieza encontrada (similar a la pieza ya seleccionada de pieza)
 				for (x_fin = 0; x_fin < 8; x_fin++)
 				{
 					for (y_fin = 0; y_fin < 8; y_fin++) {
