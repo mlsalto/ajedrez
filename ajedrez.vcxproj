@@ -152,7 +152,7 @@
     <ClCompile Include="src\Caballo.cpp" />
     <ClCompile Include="src\Casilla.cpp" />
     <ClCompile Include="src\Coordinador.cpp" />
-    <ClCompile Include="src\IA.cpp" />
+    <ClCompile Include="src\IA1.cpp" />
     <ClCompile Include="src\IA2.cpp" />
     <ClCompile Include="src\IA3.cpp" />
     <ClCompile Include="src\Jugador.cpp" />
@@ -170,7 +170,7 @@
     <ClInclude Include="src\Caballo.h" />
     <ClInclude Include="src\Casilla.h" />
     <ClInclude Include="src\Coordinador.h" />
-    <ClInclude Include="src\IA.h" />
+    <ClInclude Include="src\IA1.h" />
     <ClInclude Include="src\IA2.h" />
     <ClInclude Include="src\IA3.h" />
     <ClInclude Include="src\Jugador.h" />
