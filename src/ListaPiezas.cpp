@@ -3,9 +3,13 @@
 
 ListaPiezas::ListaPiezas()
 {
+}
+
+void ListaPiezas::inicializa()
+{
 	numero = 0;
 	eliminada = 0;
-    numeroeliminadasN = 0;
+	numeroeliminadasN = 0;
 	numeroeliminadasB = 0;
 
 	for (int i = 0; i < MAX_PIEZAS; i++)

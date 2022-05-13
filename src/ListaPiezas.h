@@ -50,6 +50,8 @@ private:
 public:
 	ListaPiezas();
 
+	void inicializa();
+
 	bool agregar(Pieza* p);
 	void draw();
 	void drawEliminadas();
