@@ -34,9 +34,18 @@ void IA1::moverPieza(int button, int state, int x, int y)
 				{
 					for (y_fin = 0; y_fin < 8; y_fin++) {
 
+						/// HAY QUE HACER VARIAS COSAS ///
+
+						// si no come ninguna pieza //
+						// si come alguna pieza //
+						// si en passant blanco //
+						// si en passant negro //
+						// si coronacion //
+						// si haces enroque //
+						
 						// se puede realizar el movimiento
 						if (pieza->movimientoLegal(Tablero::getCasillaT(x_fin, y_fin)) == TRUE) {
-
+							
 							// si no come ninguna pieza
 							if (Tablero::getTipoPiezasT(x_fin, y_fin) == 0)
 							{
