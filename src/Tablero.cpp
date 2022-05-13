@@ -16,7 +16,8 @@ void Tablero::nuevoTablero()
 	// inicializacion valores //
 	turno = TRUE; // blancas(1)   negras(0)
 	turnoterminado = FALSE;
-	finturno = false;
+	finturnon = false;
+	finturnob = false;
 
 	// lista piezas
 	piezas.inicializa();
@@ -191,14 +192,15 @@ void Tablero::dibuja()
 
 void Tablero::ratonTablero(int button, int state, int x, int y)
 {
-	finturno = false;
+	finturnob = false;
+	finturnon = false;
 
 	if (turno == TRUE)
 	{
 		jugador1->moverPieza(button, state, x, y);
 		if (jugador1->turnoTerminado() == TRUE)
 		{
-			finturno = true;
+			finturnob = true;
 			turno = FALSE;
 		}
 	}
@@ -209,7 +211,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		jugador2->moverPieza(button, state, x, y);
 		if (jugador2->turnoTerminado() == TRUE)
 		{
-			finturno = true;
+			finturnon = true;
 			turno = TRUE;
 		}
 	}
@@ -413,9 +415,14 @@ bool Tablero::getMovimientos()
 	return movimientos;
 }
 
-bool Tablero::getTurnoAcabado()
+bool Tablero::getTurnoAcabadoN()
 {
-	return finturno;
+	return finturnon;
+}
+
+bool Tablero::getTurnoAcabadoB()
+{
+	return finturnob;
 }
 
 void Tablero::setTipoJuego(bool x)

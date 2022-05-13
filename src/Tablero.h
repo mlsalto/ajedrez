@@ -27,7 +27,8 @@ private:
 	/////// ELEMENTOS DE AYUDA PARA GESTIONAR  RATON CON EL TURNO ////////;
 	bool turno; // blancas(1)   negras(0)
 	bool turnoterminado;
-	bool finturno;
+	bool finturnob;
+	bool finturnon;
 
 	
 	///////// ELEMENTOS DE DIBUJO //////////
@@ -77,7 +78,8 @@ public:
 	static bool getCasillaOcupada(int x, int y);
 	static bool getTipoJuego();
 	static bool getMovimientos();
-	bool getTurnoAcabado();
+	bool getTurnoAcabadoN();
+	bool getTurnoAcabadoB();
 
 	// jaque y jaque mate //
 	static bool detectar_jaque(char color);
