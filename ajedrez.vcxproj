@@ -153,6 +153,8 @@
     <ClCompile Include="src\Casilla.cpp" />
     <ClCompile Include="src\Coordinador.cpp" />
     <ClCompile Include="src\IA.cpp" />
+    <ClCompile Include="src\IA2.cpp" />
+    <ClCompile Include="src\IA3.cpp" />
     <ClCompile Include="src\Jugador.cpp" />
     <ClCompile Include="src\ListaPiezas.cpp" />
     <ClCompile Include="src\Peon.cpp" />
@@ -169,6 +171,8 @@
     <ClInclude Include="src\Casilla.h" />
     <ClInclude Include="src\Coordinador.h" />
     <ClInclude Include="src\IA.h" />
+    <ClInclude Include="src\IA2.h" />
+    <ClInclude Include="src\IA3.h" />
     <ClInclude Include="src\Jugador.h" />
     <ClInclude Include="src\ListaPiezas.h" />
     <ClInclude Include="src\Peon.h" />
