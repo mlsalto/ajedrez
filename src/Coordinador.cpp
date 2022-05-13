@@ -162,7 +162,6 @@ void Coordinador::raton(int button, int state, int x, int y)
 				estado = JUEGO;
 				musica();
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
-
 			}
 
 			else if (x < 557 && x > 246 && y < 610 && y > 570) {
@@ -278,21 +277,21 @@ void Coordinador::raton(int button, int state, int x, int y)
 					musicajaque = false;
 					musica();
 
-					if (Tablero::detectar_jaque('B') == true )
+					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque_mate('B') == true)
+					{
+						musicajaque = false;
+						if (Tablero::detectar_jaque('N') == true) { ganador = 1; }
+						else if (Tablero::detectar_jaque_mate('B') == true) { ganador = 0; }
+
+						estadojuego = JAQUE_MATE;
+						musica();
+					}
+
+					else if (Tablero::detectar_jaque('B') == true )
 					{
 						musicajaque = true;
 						estadojuego = JAQUE;
 						musica();
-					}
-
-					if (Tablero::detectar_jaque('N')== true || Tablero::detectar_jaque_mate('N') == true || Tablero::detectar_jaque_mate('B') == true)
-					{
-						musicajaque = false;
-						estadojuego = JAQUE_MATE;
-						musica();
-
-						if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque_mate('N') == true) { ganador = 0; }
-						if (Tablero::detectar_jaque_mate('B') == true) { ganador = 1; }
 					}
 				}
 
@@ -302,21 +301,21 @@ void Coordinador::raton(int button, int state, int x, int y)
 					musicajaque = false;
 					musica();
 
-					if (Tablero::detectar_jaque('N') == true)
+					if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('N') == true)
+					{
+						musicajaque = false;
+						if (Tablero::detectar_jaque_mate('N') == true) { ganador = 1; }
+						else if (Tablero::detectar_jaque('B') == true ) { ganador = 0; }
+
+						estadojuego = JAQUE_MATE;
+						musica();
+					}
+
+					else if (Tablero::detectar_jaque('N') == true)
 					{
 						musicajaque = true;
 						estadojuego = JAQUE;
 						musica();
-					}
-
-					if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('N') == true || Tablero::detectar_jaque_mate('B') == true)
-					{
-						musicajaque = false;
-						estadojuego = JAQUE_MATE;
-						musica();
-
-						if ( Tablero::detectar_jaque_mate('N') == true) { ganador = 0; }
-						if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('B') == true) { ganador = 1; }
 					}
 				}
 
@@ -842,7 +841,7 @@ void Coordinador::dibuja()
 	if (estado == FIN) {
 		if (tipojuego == 0)
 		{
-			if (ganador == 0)
+			if (ganador == 1)
 			{
 				switch (final)
 				{
@@ -871,7 +870,7 @@ void Coordinador::dibuja()
 
 		if (tipojuego == 1)
 		{
-			if (ganador == 0)
+			if (ganador == 1)
 			{
 				switch (final)
 				{
