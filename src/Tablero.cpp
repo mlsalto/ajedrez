@@ -260,10 +260,9 @@ bool Tablero::detectar_jaque_mate(char color) {
 	// variables de ayuda para realizar los movimientos virtuales //
 	Pieza* piezaini = 0;
 	int piezaini_ini_x, piezaini_ini_y;
-	int piezaini_fin_x, piezaini_fin_y;
 
 	Pieza* piezacomida;
-
+	Pieza* piezamovida = 0;
 
 	// si no hay jaque no puede haber jaque mate //
 	if (detectar_jaque(color) == false) return false;
@@ -286,44 +285,19 @@ bool Tablero::detectar_jaque_mate(char color) {
 						// realizar mov legal de la pieza 
 						if (piezaini->movimientoLegal(casillas[a][b]) == true) {
 
-							// si no come ninguna pieza 
-							if (casillas[a][b]->getTipoPieza() == 0) 
-							{
-								casillas[a][b]->colocarPieza(piezaini);
-								casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
-								piezaini_fin_x = a; piezaini_fin_y = b; // guardar dato posicion final
 
-								// comprobamos si hay jaque con la nueva disposición
-								// no hay jaque
-								if (detectar_jaque(color) == false) 
-								{
-									casillas[piezaini_fin_x][piezaini_fin_y]->colocarPieza(0);
-									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
-
-									return false;
-								}
-
-								// hay jaque
-								if (detectar_jaque(color) == true)
-								{
-									casillas[piezaini_fin_x][piezaini_fin_y]->colocarPieza(0);
-									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
-								}
-							}
-
-							// si se come ninguna pieza 
-							if (casillas[a][b]->getTipoPieza() != 0)
+							// si se come alguna pieza 
+							if (casillas[a][b]->getTipoPieza() != 0 && casillas[a][b]->getPieza()->getColorPieza() != color)
 							{
 								piezacomida = casillas[a][b]->getPieza();
 								casillas[a][b]->colocarPieza(piezaini);
 								casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
-								piezaini_fin_x = a; piezaini_fin_y = b; // guardar dato posicion final
 
 								// comprobamos si hay jaque con la nueva disposición
 								// no hay jaque
 								if (detectar_jaque(color) == false)
 								{
-									casillas[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezacomida);
+									casillas[a][b]->colocarPieza(piezacomida);
 									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
 
 									return false;
@@ -332,9 +306,221 @@ bool Tablero::detectar_jaque_mate(char color) {
 								// hay jaque
 								if (detectar_jaque(color) == true)
 								{
-									casillas[piezaini_fin_x][piezaini_fin_y]->colocarPieza(piezacomida);
+									casillas[a][b]->colocarPieza(piezacomida);
 									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
 								}
+							}
+
+
+							// si se hace enroque
+							else if (casillas[piezaini_ini_x][piezaini_ini_y]->getTipoPieza() == 6 && (a == 6 || a == 2) && piezaini->getPrimerMovimiento() == false && (casillas[7][piezaini_ini_y]->getTipoPieza() == 2 || casillas[0][piezaini_ini_y]->getTipoPieza() == 2) && (casillas[7][piezaini_ini_y]->getPieza()->getPrimerMovimiento() == false || casillas[0][piezaini_ini_y]->getPieza()->getPrimerMovimiento() == false) && piezaini->getEnroque() == false)
+							{
+								// hacer enroque
+								if (color == 'N')
+								{
+									if (a == 6) // derecha
+									{
+										piezamovida = casillas[7][7]->getPieza(); // torre
+										casillas[7][7]->colocarPieza(0);
+										casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+										casillas[a][b]->colocarPieza(piezaini);
+										casillas[5][7]->colocarPieza(piezamovida);
+									}
+
+									if (a == 2) // izquierda
+									{
+										piezamovida = casillas[0][7]->getPieza(); // torre
+										casillas[0][7]->colocarPieza(0);
+										casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+										casillas[a][b]->colocarPieza(piezaini);
+										casillas[3][7]->colocarPieza(piezamovida);
+									}
+								}
+
+								if (color == 'B')
+								{
+									if (a == 6) // derecha
+									{
+										piezamovida = casillas[7][0]->getPieza(); // torre
+										casillas[7][0]->colocarPieza(0);
+										casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+										casillas[a][b]->colocarPieza(piezaini);
+										casillas[5][0]->colocarPieza(piezamovida);
+									}
+
+									if (a == 2) // izquierda
+									{
+										piezamovida = casillas[0][0]->getPieza(); // torre
+										casillas[0][0]->colocarPieza(0);
+										casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+										casillas[a][b]->colocarPieza(piezaini);
+										casillas[3][0]->colocarPieza(piezamovida);
+									}
+								}
+
+
+								// si no hay jaque
+								if (detectar_jaque(color) == false)
+								{
+									// deshacer enroque
+									if (color == 'N')
+									{
+										if (a == 6) // derecha
+										{
+											casillas[7][7]->colocarPieza(piezamovida);
+											casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+											casillas[a][b]->colocarPieza(0);
+											casillas[5][7]->colocarPieza(0);
+										}
+
+										if (a == 2) // izquierda
+										{
+											casillas[0][7]->colocarPieza(piezamovida);
+											casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+											casillas[a][b]->colocarPieza(0);
+											casillas[3][7]->colocarPieza(0);
+										}
+									}
+									if (color == 'B')
+									{
+										if (a == 6) // derecha
+										{
+											casillas[7][0]->colocarPieza(piezamovida);
+											casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+											casillas[a][b]->colocarPieza(0);
+											casillas[5][0]->colocarPieza(0);
+										}
+
+										if (a == 2) // izquierda
+										{
+											casillas[0][0]->colocarPieza(piezamovida);
+											casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+											casillas[a][b]->colocarPieza(0);
+											casillas[3][0]->colocarPieza(0);
+										}
+									}
+									return false;
+								}
+
+								// si hay jaque
+								if (detectar_jaque(color) == true)
+								{
+									// deshacer enroque
+									if (color == 'N')
+									{
+										if (a == 6) // derecha
+										{
+											casillas[7][7]->colocarPieza(piezamovida);
+											casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+											casillas[a][b]->colocarPieza(0);
+											casillas[5][7]->colocarPieza(0);
+										}
+
+										if (a == 2) // izquierda
+										{
+											casillas[0][7]->colocarPieza(piezamovida);
+											casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+											casillas[a][b]->colocarPieza(0);
+											casillas[3][7]->colocarPieza(0);
+										}
+									}
+
+									if (color == 'B')
+									{
+										if (a == 6) // derecha
+										{
+											casillas[7][0]->colocarPieza(piezamovida);
+											casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+											casillas[a][b]->colocarPieza(0);
+											casillas[5][0]->colocarPieza(0);
+										}
+
+										if (a == 2) // izquierda
+										{
+											casillas[0][0]->colocarPieza(piezamovida);
+											casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+											casillas[a][b]->colocarPieza(0);
+											casillas[3][0]->colocarPieza(0);
+										}
+									}
+								}
+							}
+
+
+							// si hace en passant
+							else if (color == 'B' && casillas[piezaini_ini_x][piezaini_ini_y]->getTipoPieza() == 1 && casillas[a][b]->getTipoPieza() == 0 && b == piezaini_ini_y + 1 && b == 5 && (a == piezaini_ini_x + 1 || a == piezaini_ini_x - 1) && casillas[a][b - 1]->getTipoPieza() == 1 && casillas[a][b - 1]->getPieza()->getColorPieza() != color && casillas[a][b - 1]->getPieza()->getPassant() == true)
+							{
+								// hace en passant
+								casillas[a][b]->colocarPieza(piezaini);
+								piezacomida = casillas[a][b - 1]->getPieza();
+								casillas[a][b - 1]->colocarPieza(0);
+
+								if (detectar_jaque(color) == false)
+								{
+									// deshacer en passant
+									casillas[a][b - 1]->colocarPieza(piezacomida);
+									casillas[piezaini_ini_x][piezaini_ini_y ]->colocarPieza(piezaini);
+
+									return false;
+								}
+
+								if (detectar_jaque(color) == true)
+								{
+									// deshacer en passant
+									casillas[a][b - 1]->colocarPieza(piezacomida);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+								}
+
+							}
+
+							else if (color == 'N' && casillas[piezaini_ini_x][piezaini_ini_y]->getTipoPieza() == 1 && casillas[a][b]->getTipoPieza() == 0 && b == piezaini_ini_y - 1 && b == 5 && (a == piezaini_ini_x + 1 || a == piezaini_ini_x + 1) && casillas[a][b + 1]->getTipoPieza() == 1 && casillas[a][b + 1]->getPieza()->getColorPieza() != color && casillas[a][b + 1]->getPieza()->getPassant() == true)
+							{
+								// hace en passant
+								casillas[a][b]->colocarPieza(piezaini);
+								piezacomida = casillas[a][b + 1]->getPieza();
+								casillas[a][b - 1]->colocarPieza(0);
+
+								if (detectar_jaque(color) == false)
+								{
+									// deshacer en passant
+									casillas[a][b + 1]->colocarPieza(piezacomida);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+
+									return false;
+								}
+
+								if (detectar_jaque(color) == true)
+								{
+									// deshacer en passant
+									casillas[a][b + 1]->colocarPieza(piezacomida);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+								}
+							}
+
+
+							// si no come ninguna pieza 
+							else if (casillas[a][b]->getTipoPieza() == 0)
+							{
+								casillas[a][b]->colocarPieza(piezaini);
+								casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(0);
+
+								// comprobamos si hay jaque con la nueva disposición
+								// no hay jaque
+								if (detectar_jaque(color) == false)
+								{
+									casillas[a][b]->colocarPieza(0);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+
+									return false;
+								}
+
+								// hay jaque
+								if (detectar_jaque(color) == true)
+								{
+									casillas[a][b]->colocarPieza(0);
+									casillas[piezaini_ini_x][piezaini_ini_y]->colocarPieza(piezaini);
+								}
+
 							}
 						}
 					}
