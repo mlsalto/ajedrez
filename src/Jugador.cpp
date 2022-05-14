@@ -18,7 +18,7 @@ Jugador::Jugador(char colorJugador)
 
  caballo.
    - Por cada caballo +315 puntos
-   - Si está cerca o lejos del centro del tablero +-0-15 puntos
+   - Si está cerca o lejos del centro del tablero +-0-20 puntos
 
  alfil.
    - Por cada alfil +330 puntos
@@ -112,10 +112,22 @@ int Jugador::getPuntos(char colorJugador)
 
 					case 4: //caballo
 						puntos_totales = puntos_totales + 315;
+
+						// por cada caballo que esté mas lejos/cerca del centro -20/+20 puntos
+						if (i == 0 || i == 7 || j == 0 || j == 7) puntos_totales = puntos_totales - 20; // anillo exterior
+						else if( i == 1 || i == 6 || j == 1 || j == 6) puntos_totales = puntos_totales - 10; // anillo anterior al exterior
+						else if (i == 2 || i == 5 || j == 2 || j == 5) puntos_totales = puntos_totales ; // anillo psterior al interior
+						else if (i == 3 || i == 4 || j == 3 || j == 4) puntos_totales = puntos_totales + 10; // anillo interior
 						break;
 
 					case 5: //reina
 						puntos_totales = puntos_totales + 940;
+
+						// si la reina está mas lejos/cerca del centro -10/+10 puntos
+						if (i == 0 || i == 7 || j == 0 || j == 7) puntos_totales = puntos_totales - 10; // anillo exterior
+						else if (i == 1 || i == 6 || j == 1 || j == 6) puntos_totales = puntos_totales - 5; // anillo anterior al exterior
+						else if (i == 2 || i == 5 || j == 2 || j == 5) puntos_totales = puntos_totales; // anillo posterior al interior
+						else if (i == 3 || i == 4 || j == 3 || j == 4) puntos_totales = puntos_totales + 10; // anillo interior
 						break;
 
 					case 6: //rey
