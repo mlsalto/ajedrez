@@ -132,7 +132,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								{
 									if (x_fin == 6) // derecha
 									{
-										Tablero::getCasillaT(7, 7)->colocarPieza(piezacomida);
+										Tablero::getCasillaT(7, 7)->colocarPieza(piezamovida);
 										Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
 										Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
 										Tablero::getCasillaT(5, 7)->colocarPieza(0);
@@ -140,7 +140,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 
 									if (x_fin == 2) // izquierda
 									{
-										Tablero::getCasillaT(0, 7)->colocarPieza(piezacomida);
+										Tablero::getCasillaT(0, 7)->colocarPieza(piezamovida);
 										Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
 										Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
 										Tablero::getCasillaT(3, 7)->colocarPieza(0);
