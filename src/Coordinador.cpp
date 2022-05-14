@@ -285,6 +285,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 						estadojuego = JAQUE_MATE;
 						musica();
+						return;
 					}
 
 					else if (Tablero::detectar_jaque('B') == true )
@@ -292,6 +293,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 						musicajaque = true;
 						estadojuego = JAQUE;
 						musica();
+						return;
 					}
 				}
 
@@ -309,6 +311,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 						estadojuego = JAQUE_MATE;
 						musica();
+						return;
 					}
 
 					else if (Tablero::detectar_jaque('N') == true)
@@ -316,6 +319,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 						musicajaque = true;
 						estadojuego = JAQUE;
 						musica();
+						return;
 					}
 				}
 
