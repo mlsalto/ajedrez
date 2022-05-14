@@ -3,13 +3,10 @@
 
 class Peon: public Pieza
 {
-private:
-	bool pass = false;
 public:
 	Peon(char colorEquipo);
 
 	void draw();
-	bool getPass();
 	bool movimientoLegal(Casilla* fin);
 };
 

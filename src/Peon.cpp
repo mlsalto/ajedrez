@@ -9,9 +9,10 @@ Peon::Peon(char colorEquipo)
 
 void Peon::draw()
 {
+	// El modo de juego es queens gambit
 	if (Tablero::getTipoJuego() == true) {
 		if (color == 'B') {
-			PeonB.setPos(pos.x, pos.y); //este set pos hay que ponerlo siempre para que dibuje el sprite
+			PeonB.setPos(pos.x, pos.y); 
 			PeonB.draw();
 		}
 		else if (color == 'N') {
@@ -19,6 +20,8 @@ void Peon::draw()
 			PeonA.draw();
 		}
 	}
+
+	// El modo de juego es kings gambit
 	if (Tablero::getTipoJuego() == false) {
 		if (color == 'B') {
 			PeonR.setPos(pos.x, pos.y); 
@@ -31,18 +34,11 @@ void Peon::draw()
 	}
 }
 
-bool Peon::getPass()
-{
-	return pass;
-}
-
 bool Peon::movimientoLegal(Casilla* fin)
 {
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
 	int i, j, row, coll;
-	bool obstaculo = false;
 	bool coronacion = false;
-	bool pass = false;
 
 	////// FILA Y COLUMNA ACTUAL DE LA PIEZA //////
 	coll = (pos.x + 28) / 8;
@@ -58,7 +54,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 		////// MOVIMIENTO 1: máximo 2 casillas hacia delante //////
 		if (row == 1 && (y_fin == row + 1 || y_fin == row + 2) && x_fin == coll)
 		{
-			for (i = row + 1; i <= y_fin && !obstaculo; i++)
+			for (i = row + 1; i <= y_fin ; i++)
 			{
 				if (Tablero::getCasillaOcupada(x_fin, i) == true)
 					return false;
@@ -90,10 +86,6 @@ bool Peon::movimientoLegal(Casilla* fin)
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
 		if (y_fin == row + 1 && y_fin == 5 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == false && Tablero::getCasillaT(x_fin, y_fin - 1)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza()->getColorPieza() != color && Tablero::getPiezasT(x_fin, y_fin - 1)->getPassant() == true)
 		{
-			/*
-			pass = true;
-			Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(0);
-			*/
 			return true;
 		}
 
@@ -107,7 +99,7 @@ bool Peon::movimientoLegal(Casilla* fin)
 		if (row == 6 && (y_fin == row - 1 || y_fin == row - 2) && x_fin == coll)
 		{
 			//bucle para comprobar que el peón no se salta ninguna pieza - cuando se mueve 2 casillas hacia delante
-			for (i = row - 1; i >= y_fin && !obstaculo; i--)
+			for (i = row - 1; i >= y_fin ; i--)
 			{
 				if (Tablero::getCasillaOcupada(x_fin, i) == true)
 					return false;
@@ -139,10 +131,6 @@ bool Peon::movimientoLegal(Casilla* fin)
 		// Solo puede comerse el peon B si es el movimiento siguiente al movimiento del peon B
 		if (y_fin == row - 1 && y_fin == 2 && (x_fin == coll + 1 || x_fin == coll - 1) && Tablero::getCasillaOcupada(x_fin, y_fin) == false && Tablero::getCasillaT(x_fin, y_fin + 1)->getTipoPieza() == 1 && Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza()->getColorPieza() != color && Tablero::getPiezasT(x_fin, y_fin + 1)->getPassant() == true)
 		{
-			/*
-			pass = true;
-			Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(0);
-			*/
 			return true;
 		}
 

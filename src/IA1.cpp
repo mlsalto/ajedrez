@@ -171,7 +171,6 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								// hace en passant
 								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
 								piezacomida = Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza();
-								//Tablero::eliminarPieza(Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza());
 								Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(0);
 
 								// calcular puntos
@@ -200,7 +199,6 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								// hace en passant
 								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
 								piezacomida = Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza();
-								//Tablero::eliminarPieza(Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza());
 								Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(0);
 
 								// calcular puntos
