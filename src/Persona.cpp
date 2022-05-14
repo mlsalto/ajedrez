@@ -383,24 +383,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 						else if (Tablero::detectar_jaque(color) == false)
 						{
-							//EnPassant
-							if (Tablero::getTipoPiezasT(x_tablero, y_tablero) == 1)
-							{
-								if (Tablero::getPiezasT(x_tablero, y_tablero)->getColorPieza() == 'B' && posiniy == 1 && y_tablero == 3)
-								{
-									EnPassant = piezaini;
-									posibilidad_passant = true;
-									Tablero::getPiezasT(x_tablero, y_tablero)->setPassant(true);
-								}
-								if (Tablero::getPiezasT(x_tablero, y_tablero)->getColorPieza() == 'N' && posiniy == 6 && y_tablero == 4)
-								{
-									EnPassant = piezaini;
-									posibilidad_passant = true;
-									Tablero::getPiezasT(x_tablero, y_tablero)->setPassant(true);
-								}
-							}
-
-
+							
 							// mira si es el primer movimiento de la torre o rey
 							if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
 							{
