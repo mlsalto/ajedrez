@@ -154,7 +154,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 				playMusica("recursos/Gamemode Select");
 
 				Persona* Jugador1 = new Persona('B');
-				IA1* Jugador2 = new IA1('N');
+				IA2* Jugador2 = new IA2('N');
 
 				tablero.setJugador1(Jugador1);
 				tablero.setJugador2(Jugador2);

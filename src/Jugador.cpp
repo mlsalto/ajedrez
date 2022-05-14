@@ -50,14 +50,12 @@ int Jugador::getPuntos(char colorJugador)
 	//************************* LECTURA DE PUNTOS SOBRE EL TABLERO  *********************//
 	for (i = 0; i < 8; i++)
 		for (j = 0; j < 8; j++) {
-			if (Tablero::getCasillaOcupada(i, j) == true) // si encuentra pieza
+			if (Tablero::getCasillaOcupada(i, j) == true && Tablero::getCasillaT(i, j)->getPieza()->getColorPieza() == colorJugador) // si encuentra pieza
 			{
 				tipoPieza = Tablero::getCasillaT(i, j)->getTipoPieza(); // hay que hacer la funcion con get tipo
 				colorPieza = Tablero::getCasillaT(i, j)->getPieza()->getColorPieza();
 
 				//  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
-
-				if (color = colorJugador) {
 
 					switch (tipoPieza)
 					{
@@ -133,7 +131,7 @@ int Jugador::getPuntos(char colorJugador)
 					case 6: //rey
 						break;
 					}
-				}
+				
 			}
 		}
 

@@ -3,6 +3,7 @@
 #include "Persona.h"
 #include "Jugador.h"
 #include "IA1.h"
+#include "IA2.h"
 
 class Coordinador
 {

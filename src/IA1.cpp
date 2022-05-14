@@ -49,6 +49,8 @@ void IA1::moverPieza(int button, int state, int x, int y)
 
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
+									puntos = getPuntos(color);
+
 									if (puntos > maximo) {
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;

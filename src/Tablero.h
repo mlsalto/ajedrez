@@ -11,6 +11,7 @@
 #include "ListaPiezas.h"
 #include "Jugador.h"
 #include "IA1.h"
+#include "IA2.h"
 #include "Persona.h"
 
 using namespace ETSIDI;
