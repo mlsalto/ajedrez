@@ -64,7 +64,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 							}
 
 							// si hace enroque
-							else if (Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2) && pieza->getPrimerMovimiento() == false && Tablero::getTipoPiezasT(x_fin, y_ini) == 2 && Tablero::getCasillaT(x_fin, y_ini)->getPieza()->getPrimerMovimiento() == false && piezaini->getEnroque() == false)
+							else if (Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2) && pieza->getPrimerMovimiento() == false && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && (Tablero::getCasillaT(7, y_ini)->getPieza()->getPrimerMovimiento() == false || Tablero::getCasillaT(0, y_ini)->getPieza()->getPrimerMovimiento() == false) && piezaini->getEnroque() == false)
 							{
 								// hacer enroque
 								if (color == 'N')
