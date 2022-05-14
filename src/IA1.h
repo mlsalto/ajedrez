@@ -10,6 +10,7 @@ private:
 	Pieza* piezafin;
 	Pieza* piezamovida;
 
+	bool movimientoposible;
 	int tipomovimiento; // comer pieza (0), enroque (1), passant (2), mover a casilla vacia (3)
 public:
 	IA1();
