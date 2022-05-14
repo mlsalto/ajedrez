@@ -18,7 +18,9 @@ void IA1::moverPieza(int button, int state, int x, int y)
 	int posfinx = 0, posfiny = 0;
 	int posinix = 0, posiniy = 0;
 	int maximo = 0;
+	//int i;
 
+	//for (i = 0 ; i < 20000000 ; i++){}
 	
 		//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	for (x_ini = 0; x_ini < 8; x_ini++)
@@ -169,8 +171,9 @@ void IA1::moverPieza(int button, int state, int x, int y)
 							else if (color == 'B' && Tablero::getTipoPiezasT(x_ini, y_ini) == 1 && Tablero::getTipoPiezasT(x_fin, y_fin) == 0 && y_fin == y_ini + 1 && y_fin == 5 && (x_fin == x_ini + 1 || x_fin == x_ini - 1) && Tablero::getTipoPiezasT(x_fin, y_fin - 1) == 1 && Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza()->getColorPieza() != color && Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza()->getPassant() == true)
 							{
 								// hace en passant
-								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
 								piezacomida = Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza();
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
+								Tablero::getCasillaT(x_ini, y_ini)-> colocarPieza(0);
 								Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(0);
 
 								// calcular puntos
@@ -190,6 +193,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								}
 
 								// deshacer en passant
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
 								Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(piezacomida);
 								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
 							}
@@ -197,8 +201,9 @@ void IA1::moverPieza(int button, int state, int x, int y)
 							else if (color == 'N' && Tablero::getTipoPiezasT(x_ini, y_ini) == 1 && Tablero::getTipoPiezasT(x_fin, y_fin) == 0  && y_fin == y_ini - 1 && y_fin == 2 && (x_fin == x_ini + 1 || x_fin== x_ini - 1) && Tablero::getTipoPiezasT(x_fin, y_fin + 1) == 1 && Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza()->getColorPieza() != color && Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza()->getPassant() == true)
 							{
 								// hace en passant
-								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
 								piezacomida = Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza();
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
 								Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(0);
 
 								// calcular puntos
@@ -218,6 +223,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								}
 
 								// deshacer en passant
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
 								Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(piezacomida);
 								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
 							}

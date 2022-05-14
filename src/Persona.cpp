@@ -337,12 +337,14 @@ void Persona::moverPieza(int button, int state, int x, int y)
 				{
 				            piezafin = Tablero::getCasillaT(x_tablero, y_tablero - 1)->getPieza();
 							Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+							Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 							Tablero::getCasillaT(x_tablero, y_tablero - 1)->colocarPieza(0);
 
 							if (Tablero::detectar_jaque(color) == true)// si jaque es cierto
 							{
 								Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(0);
-								Tablero::getCasillaT(x_tablero, y_tablero - 1)->colocarPieza(piezaini);
+								Tablero::getCasillaT(posinix, posiniy)->colocarPieza(piezaini);
+								Tablero::getCasillaT(x_tablero, y_tablero - 1)->colocarPieza(piezafin);
 							}
 
 							else if (Tablero::detectar_jaque(color) == false)
@@ -366,12 +368,14 @@ void Persona::moverPieza(int button, int state, int x, int y)
 				{
 							piezafin = Tablero::getCasillaT(x_tablero, y_tablero + 1)->getPieza();
 							Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(piezaini);
+							Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 							Tablero::getCasillaT(x_tablero, y_tablero + 1)->colocarPieza(0);
 					
 							if (Tablero::detectar_jaque(color) == true)// si jaque es cierto
 							{
 								Tablero::getCasillaT(x_tablero, y_tablero)->colocarPieza(0);
-								Tablero::getCasillaT(x_tablero, y_tablero + 1)->colocarPieza(piezaini);
+								Tablero::getCasillaT(posinix, posiniy)->colocarPieza(piezaini);
+								Tablero::getCasillaT(x_tablero, y_tablero + 1)->colocarPieza(piezafin);
 							}
 
 							else if (Tablero::detectar_jaque(color) == false)
