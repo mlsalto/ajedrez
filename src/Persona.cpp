@@ -276,7 +276,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 				}
 
 				//////// HACER ENROQUE ///
-                else if (Tablero::getTipoPiezasT(posinix, posiniy) == 6 && (x_tablero == 6 || x_tablero == 2) && piezaini->getPrimerMovimiento() == false && Tablero::getTipoPiezasT(x_tablero, posiniy) == 2 && Tablero::getCasillaT(x_tablero, posiniy)->getPieza()->getPrimerMovimiento() == false && piezaini->getEnroque() == false && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
+                else if (Tablero::getTipoPiezasT(posinix, posiniy) == 6 && (x_tablero == 6 || x_tablero == 2) && piezaini->getPrimerMovimiento() == false && ( Tablero::getTipoPiezasT(7, posiniy) == 2 || Tablero::getTipoPiezasT(0, posiniy) == 2) && (Tablero::getCasillaT(7, posiniy)->getPieza()->getPrimerMovimiento() == false || Tablero::getCasillaT(0, posiniy)->getPieza()->getPrimerMovimiento() == false )&& piezaini->getEnroque() == false && piezaini->movimientoLegal(Tablero::getCasillaT(x_tablero, y_tablero)) == TRUE)
 				{
 	                     if (color == 'N')
 	                     {
@@ -289,7 +289,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 			                    Tablero::getCasillaT(5, 7)->colocarPieza(piezafin);
 		                     }
 
-		                     if (x_tablero == 2) // izquierda
+		                     else if (x_tablero == 2) // izquierda
 		                     {
 			                    piezafin = Tablero::getCasillaT(0, 7)->getPieza(); // torre
 			                    Tablero::getCasillaT(0, 7)->colocarPieza(0);
@@ -299,7 +299,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 		                     }
 	                     }
 
-	                     if (color == 'B')
+	                     else if (color == 'B')
 	                     {
 		                     if (x_tablero == 6) // derecha
 		                     {
@@ -310,7 +310,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 								Tablero::getCasillaT(5, 0)->colocarPieza(piezafin);
 		                     }
 
-		                     if (x_tablero == 2) // izquierda
+		                     else if (x_tablero == 2) // izquierda
 		                     {
 			                    piezafin = Tablero::getCasillaT(0, 0)->getPieza(); // torre
 			                    Tablero::getCasillaT(0, 0)->colocarPieza(0);
