@@ -192,16 +192,15 @@ void Tablero::dibuja()
 
 void Tablero::ratonTablero(int button, int state, int x, int y)
 {
-	finturnob = false;
-	finturnon = false;
-
 	if (turno == TRUE)
 	{
 		jugador1->moverPieza(button, state, x, y);
 		if (jugador1->turnoTerminado() == TRUE)
 		{
 			finturnob = true;
+			finturnon = false;
 			turno = FALSE;
+			return;
 		}
 	}
 
@@ -211,7 +210,9 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 		if (jugador2->turnoTerminado() == TRUE)
 		{
 			finturnon = true;
+			finturnob = false;
 			turno = TRUE;
+			return;
 		}
 	}
 }

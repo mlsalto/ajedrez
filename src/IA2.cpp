@@ -1,5 +1,7 @@
 #include "IA2.h"
 #include "Tablero.h"
+#include <ctime>
+#include <time.h>
 
 IA2::IA2() {}
 
@@ -18,15 +20,22 @@ void IA2::moverPieza(int button, int state, int x, int y)
 	int posfinx = 0, posfiny = 0;
 	int posinix = 0, posiniy = 0;
 	int maximo = -9999;
-	//int i;
+	
+	unsigned tiempo_ini, tiempo_fin;
+	double tiempopasado = 0;
+	tiempo_ini = clock();
 
-	//for (i = 0 ; i < 20000000 ; i++){}
+	do
+	{
+		tiempo_fin = clock();
+		tiempopasado = (double(tiempo_fin - tiempo_ini)/ CLOCKS_PER_SEC);
+	} while (tiempopasado < 3);
 
 		//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	for (x_ini = 0; x_ini < 8; x_ini++)
 	{
 		for (y_ini = 0; y_ini < 8; y_ini++)
-		{
+		{	
 			// buscar una pieza para mover ( similar a seleccionar de persona )
 			if (Tablero::getCasillaT(x_ini, y_ini)->getOcupada() == TRUE && Tablero::getCasillaT(x_ini, y_ini)->getPieza()->getColorPieza() == color)
 			{
@@ -408,7 +417,6 @@ void IA2::moverPieza(int button, int state, int x, int y)
 			}
 		}
 	}
-
 	turnoterminado = TRUE;
 }
 
