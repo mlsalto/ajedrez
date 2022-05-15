@@ -177,24 +177,24 @@ void Coordinador::raton(int button, int state, int x, int y)
 			if (tipojuego == 0) {
 				if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; return; }
 				else if (x > 682 || x < 275 || y < 292 || y > 471) { personajeB = 0; tablero.setPersonaje1(0); return;/*no hay personaje seleecionado*/ }
-				else if (x < 556 && x > 275 && y < 324 && y > 292) { personajeB = 1; tablero.setPersonaje1(1); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 513 && x > 275 && y < 370 && y > 344) { personajeB = 2; tablero.setPersonaje1(2); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 556 && x > 275 && y < 423 && y > 392) { personajeB = 3; tablero.setPersonaje1(3); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 682 && x > 275 && y < 471 && y > 441) { personajeB = 4; tablero.setPersonaje1(4); playMusica("bin/recursos/Characterselection.mp3"); return; }
+				else if (x < 556 && x > 275 && y < 324 && y > 292) { personajeB = 1; tablero.setPersonaje1(1); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 513 && x > 275 && y < 370 && y > 344) { personajeB = 2; tablero.setPersonaje1(2); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 556 && x > 275 && y < 423 && y > 392) { personajeB = 3; tablero.setPersonaje1(3); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 682 && x > 275 && y < 471 && y > 441) { personajeB = 4; tablero.setPersonaje1(4); playMusica("recursos/Characterselection.mp3"); return; }
 			}
 
 			if (tipojuego == 1) {
 				if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; return; }
 				else if (x > 713 || x < 264 || y < 229 || y > 654) { personajeB = 0; tablero.setPersonaje1(0); return; /*no hay personaje seleecionado*/ }
-				else if (x < 493 && x > 264 && y < 258 && y > 229) { personajeB = 1; tablero.setPersonaje1(1); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 568 && x > 264 && y < 307 && y > 278) { personajeB = 2; tablero.setPersonaje1(2); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 493 && x > 264 && y < 360 && y > 332) { personajeB = 3; tablero.setPersonaje1(3); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 713 && x > 264 && y < 408 && y > 377) { personajeB = 4; tablero.setPersonaje1(4); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 568 && x > 264 && y < 455 && y > 424) { personajeB = 5; tablero.setPersonaje1(5); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 586 && x > 264 && y < 504 && y > 478) { personajeB = 6; tablero.setPersonaje1(6); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 493 && x > 264 && y < 555 && y > 526) { personajeB = 7; tablero.setPersonaje1(7); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 619 && x > 264 && y < 605 && y > 575) { personajeB = 8; tablero.setPersonaje1(8); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 493 && x > 264 && y < 654 && y > 628) { personajeB = 9; tablero.setPersonaje1(9); playMusica("bin/recursos/Characterselection.mp3"); return; }
+				else if (x < 493 && x > 264 && y < 258 && y > 229) { personajeB = 1; tablero.setPersonaje1(1); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 568 && x > 264 && y < 307 && y > 278) { personajeB = 2; tablero.setPersonaje1(2); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 493 && x > 264 && y < 360 && y > 332) { personajeB = 3; tablero.setPersonaje1(3); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 713 && x > 264 && y < 408 && y > 377) { personajeB = 4; tablero.setPersonaje1(4); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 568 && x > 264 && y < 455 && y > 424) { personajeB = 5; tablero.setPersonaje1(5); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 586 && x > 264 && y < 504 && y > 478) { personajeB = 6; tablero.setPersonaje1(6); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 493 && x > 264 && y < 555 && y > 526) { personajeB = 7; tablero.setPersonaje1(7); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 619 && x > 264 && y < 605 && y > 575) { personajeB = 8; tablero.setPersonaje1(8); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 493 && x > 264 && y < 654 && y > 628) { personajeB = 9; tablero.setPersonaje1(9); playMusica("recursos/Characterselection.mp3"); return; }
 			}
 		}
 	}
@@ -205,24 +205,24 @@ void Coordinador::raton(int button, int state, int x, int y)
 			if (tipojuego == 0) {
 				if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeN != 0) { estado = JUEGO; estadojuego = TURNO; musica(); return; }
 				else if (x > 682 || x < 275 || y < 292 || y > 471) { personajeN = 0; tablero.setPersonaje2(0);  return;/*no hay personaje seleecionado*/ }
-				else if (x < 556 && x > 275 && y < 324 && y > 292) { personajeN = 1; tablero.setPersonaje2(1); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 513 && x > 275 && y < 370 && y > 344) { personajeN = 2; tablero.setPersonaje2(2); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 556 && x > 275 && y < 423 && y > 392) { personajeN = 3; tablero.setPersonaje2(3); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 682 && x > 275 && y < 471 && y > 441) { personajeN = 4; tablero.setPersonaje2(4); playMusica("bin/recursos/Characterselection.mp3"); return; }
+				else if (x < 556 && x > 275 && y < 324 && y > 292) { personajeN = 1; tablero.setPersonaje2(1); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 513 && x > 275 && y < 370 && y > 344) { personajeN = 2; tablero.setPersonaje2(2); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 556 && x > 275 && y < 423 && y > 392) { personajeN = 3; tablero.setPersonaje2(3); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 682 && x > 275 && y < 471 && y > 441) { personajeN = 4; tablero.setPersonaje2(4); playMusica("recursos/Characterselection.mp3"); return; }
 			}
 
 			if (tipojuego == 1) {
 				if (x < 1158 && x > 1086 && y < 135 && y > 102 && personajeN != 0) { estado = JUEGO; estadojuego = TURNO; musica(); return; }
 				else if (x > 713 || x < 264 || y < 229 || y > 654) { personajeN = 0; tablero.setPersonaje2(0);  return;/*no hay personaje seleecionado*/ }
-				else if (x < 493 && x > 264 && y < 258 && y > 229) { personajeN = 1; tablero.setPersonaje2(1); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 568 && x > 264 && y < 307 && y > 278) { personajeN = 2; tablero.setPersonaje2(2); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 493 && x > 264 && y < 360 && y > 332) { personajeN = 3; tablero.setPersonaje2(3); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 713 && x > 264 && y < 408 && y > 377) { personajeN = 4; tablero.setPersonaje2(4); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 568 && x > 264 && y < 455 && y > 424) { personajeN = 5; tablero.setPersonaje2(5); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 586 && x > 264 && y < 504 && y > 478) { personajeN = 6; tablero.setPersonaje2(6); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 493 && x > 264 && y < 555 && y > 526) { personajeN = 7; tablero.setPersonaje2(7); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 619 && x > 264 && y < 605 && y > 575) { personajeN = 8; tablero.setPersonaje2(8); playMusica("bin/recursos/Characterselection.mp3"); return; }
-				else if (x < 493 && x > 264 && y < 654 && y > 628) { personajeN = 9; tablero.setPersonaje2(9); playMusica("bin/recursos/Characterselection.mp3"); return; }
+				else if (x < 493 && x > 264 && y < 258 && y > 229) { personajeN = 1; tablero.setPersonaje2(1); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 568 && x > 264 && y < 307 && y > 278) { personajeN = 2; tablero.setPersonaje2(2); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 493 && x > 264 && y < 360 && y > 332) { personajeN = 3; tablero.setPersonaje2(3); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 713 && x > 264 && y < 408 && y > 377) { personajeN = 4; tablero.setPersonaje2(4); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 568 && x > 264 && y < 455 && y > 424) { personajeN = 5; tablero.setPersonaje2(5); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 586 && x > 264 && y < 504 && y > 478) { personajeN = 6; tablero.setPersonaje2(6); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 493 && x > 264 && y < 555 && y > 526) { personajeN = 7; tablero.setPersonaje2(7); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 619 && x > 264 && y < 605 && y > 575) { personajeN = 8; tablero.setPersonaje2(8); playMusica("recursos/Characterselection.mp3"); return; }
+				else if (x < 493 && x > 264 && y < 654 && y > 628) { personajeN = 9; tablero.setPersonaje2(9); playMusica("recursos/Characterselection.mp3"); return; }
 			}
 		}
 	}
