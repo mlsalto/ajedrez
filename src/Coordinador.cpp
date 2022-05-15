@@ -114,9 +114,9 @@ void Coordinador::tecla(unsigned char key)
 {
 	if (estado == JUEGO) {
 		if (estadojuego == TURNO) {
-			if (key == 'p' || key == 'P') { estadojuego = PAUSA; stopMusica(); playMusica("bin/recursos/Characterselection.mp3"); }
+			if (key == 'p' || key == 'P') { estadojuego = PAUSA; stopMusica(); playMusica("recursos/Characterselection.mp3"); }
 			if (key == 'h' || key == 'H') {
-				estadojuego = AYUDA;  menu_help == H; stopMusica(); playMusica("bin/recursos/Characterselection.mp3");
+				estadojuego = AYUDA;  menu_help == H; stopMusica(); playMusica("recursos/Characterselection.mp3");
 			}
 		}
 	}
@@ -132,7 +132,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 				stopMusica();
 
-				playMusica("bin/recursos/Gamemodeselect.mp3");
+				playMusica("recursos/Gamemodeselect.mp3");
 
 				Persona* Jugador1 = new Persona('B');
 				Persona* Jugador2 = new Persona('N');
@@ -151,7 +151,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 				stopMusica();
 
-				playMusica("bin/recursos/Gamemode Select");
+				playMusica("recursos/Gamemode Select");
 
 				Persona* Jugador1 = new Persona('B');
 				IA2* Jugador2 = new IA2('N');
@@ -339,8 +339,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 			if (estadojuego == PAUSA) {
 
 				if (x > 737 || x < 498 || y < 329 || y > 539) { return; /*no hay modo pausa*/ }
-				else if (x < 643 && x > 498 && y < 370 && y > 329) { estadojuego = TURNO; playMusica("bin/recursos/Pokeselect.mp3"); musica(); return;/*resume*/ }
-				else if (x < 643 && x > 498 && y < 452 && y > 380) { tablero.eliminarTablero(); tablero.nuevoTablero(); estadojuego = TURNO; playMusica("bin/recursos/Pokeselect.mp3"); musica(); return;/*restart*/ }
+				else if (x < 643 && x > 498 && y < 370 && y > 329) { estadojuego = TURNO; playMusica("recursos/Pokeselect.mp3"); musica(); return;/*resume*/ }
+				else if (x < 643 && x > 498 && y < 452 && y > 380) { tablero.eliminarTablero(); tablero.nuevoTablero(); estadojuego = TURNO; playMusica("recursos/Pokeselect.mp3"); musica(); return;/*restart*/ }
 				else if (x < 737 && x > 498 && y < 481 && y > 462) { tablero.eliminarTablero(); estado = INICIO; musica(); estadojuego = TURNO; return;/*back to*/ }
 				else if (x < 524 && x > 498 && y < 539 && y > 507) { exit(0);/*exit*/ }
 			}
@@ -350,43 +350,43 @@ void Coordinador::raton(int button, int state, int x, int y)
 				if (menu_help == H) {
 					if (x < 319 && x > 252 && y < 233 && y > 200) { estadojuego = TURNO; musica(); return; }
 					else if (x > 742 || x < 509 || y < 345 || y > 540) { return; /*no hay modo ayuda*/ }
-					else if (x < 742 && x > 509 && y < 374 && y > 345) { menu_help = MOVS; playMusica("bin/recursos/Pokeselect.mp3"); return; /*movimientos*/ }
-					else if (x < 716 && x > 509 && y < 463 && y > 423) { menu_help = MOVSE; playMusica("bin/recursos/Pokeselect.mp3"); return; /*movimientos especiales*/ }
-					else if (x < 665 && x > 509 && y < 540 && y > 514) { menu_help = END; playMusica("bin/recursos/Pokeselect.mp3"); return;/*fin juego*/ }
+					else if (x < 742 && x > 509 && y < 374 && y > 345) { menu_help = MOVS; playMusica("recursos/Pokeselect.mp3"); return; /*movimientos*/ }
+					else if (x < 716 && x > 509 && y < 463 && y > 423) { menu_help = MOVSE; playMusica("recursos/Pokeselect.mp3"); return; /*movimientos especiales*/ }
+					else if (x < 665 && x > 509 && y < 540 && y > 514) { menu_help = END; playMusica("recursos/Pokeselect.mp3"); return;/*fin juego*/ }
 				}
 
 				if (menu_help == MOVS) {
 					if (x < 319 && x > 252 && y < 233 && y > 200) { help = 0; menu_help = H; return; }
 					else if (x > 628 || x < 537 || y < 300 || y > 568) { return; /*no hay modo movs*/ }
-					else if (x < 628 && x > 537 && y < 332 && y > 300) { muchotexto = 0; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*pawn*/ }
-					else if (x < 628 && x > 537 && y < 382 && y > 332) { muchotexto = 1; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*bishop*/ }
-					else if (x < 628 && x > 537 && y < 424 && y > 382) { muchotexto = 2; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*knight*/ }
-					else if (x < 628 && x > 537 && y < 474 && y > 424) { muchotexto = 3; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*rook*/ }
-					else if (x < 628 && x > 537 && y < 522 && y > 474) { muchotexto = 4; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*queen*/ }
-					else if (x < 628 && x > 537 && y < 568 && y > 522) { muchotexto = 5; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*king*/ }
+					else if (x < 628 && x > 537 && y < 332 && y > 300) { muchotexto = 0; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*pawn*/ }
+					else if (x < 628 && x > 537 && y < 382 && y > 332) { muchotexto = 1; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*bishop*/ }
+					else if (x < 628 && x > 537 && y < 424 && y > 382) { muchotexto = 2; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*knight*/ }
+					else if (x < 628 && x > 537 && y < 474 && y > 424) { muchotexto = 3; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*rook*/ }
+					else if (x < 628 && x > 537 && y < 522 && y > 474) { muchotexto = 4; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*queen*/ }
+					else if (x < 628 && x > 537 && y < 568 && y > 522) { muchotexto = 5; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*king*/ }
 				}
 
 				if (menu_help == MOVSE) {
-					if (x < 319 && x > 252 && y < 233 && y > 200) { help = 0; menu_help = H; playMusica("bin/recursos/Pokeselect.mp3"); return; }
+					if (x < 319 && x > 252 && y < 233 && y > 200) { help = 0; menu_help = H; playMusica("recursos/Pokeselect.mp3"); return; }
 					else if (x > 688 || x < 505 || y < 347 || y > 506) { return; /*no hay modo movse*/ }
-					else if (x < 643 && x > 505 && y < 383 && y > 347) { muchotexto = 6; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*castling*/ }
-					else if (x < 688 && x > 505 && y < 441 && y > 414) { muchotexto = 7; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*passant*/ }
-					else if (x < 670 && x > 505 && y < 506 && y > 471) { muchotexto = 8; menu_help = TEXT; playMusica("bin/recursos/Pokeselect.mp3"); return; /*promotion*/ }
+					else if (x < 643 && x > 505 && y < 383 && y > 347) { muchotexto = 6; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*castling*/ }
+					else if (x < 688 && x > 505 && y < 441 && y > 414) { muchotexto = 7; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*passant*/ }
+					else if (x < 670 && x > 505 && y < 506 && y > 471) { muchotexto = 8; menu_help = TEXT; playMusica("recursos/Pokeselect.mp3"); return; /*promotion*/ }
 				}
 
 				if (menu_help == END) {
-					if (x < 319 && x > 252 && y < 233 && y > 200) { help = 0; menu_help = H; playMusica("bin/recursos/Pokeselect.mp3"); return; }
+					if (x < 319 && x > 252 && y < 233 && y > 200) { help = 0; menu_help = H; playMusica("recursos/Pokeselect.mp3"); return; }
 				}
 
 				if (menu_help == TEXT) {
 					if (x < 319 && x > 252 && y < 233 && y > 200 && (muchotexto == 0 || muchotexto == 1 || muchotexto == 2 || muchotexto == 3 || muchotexto == 4 || muchotexto == 5))
 					{
-						movs = 0; menu_help = MOVS; playMusica("bin/recursos/Pokeselect.mp3"); return;
+						movs = 0; menu_help = MOVS; playMusica("recursos/Pokeselect.mp3"); return;
 					}
 
 					if (x < 319 && x > 252 && y < 233 && y > 200 && (muchotexto == 6 || muchotexto == 7 || muchotexto == 8))
 					{
-						specialmovs = 0; menu_help = MOVSE; playMusica("bin/recursos/Pokeselect.mp3"); return;
+						specialmovs = 0; menu_help = MOVSE; playMusica("recursos/Pokeselect.mp3"); return;
 					}
 				}
 			}
@@ -397,8 +397,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 			if (x > 708 || x < 470 || y < 423 || y > 521) { ; /*no hay final*/ }
-			else if (x < 624 && x > 470 && y < 462 && y > 423) { tablero.eliminarTablero(); tablero.nuevoTablero(); estado = JUEGO;  estadojuego = TURNO; i = 0; musica(); playMusica("bin/recursos/Pokeselect.mp3");/*rematch*/ }
-			else if (x < 708 && x > 470 && y < 521 && y > 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("bin/recursos/Pokeselect.mp3"); /*back to*/ }
+			else if (x < 624 && x > 470 && y < 462 && y > 423) { tablero.eliminarTablero(); tablero.nuevoTablero(); estado = JUEGO;  estadojuego = TURNO; i = 0; musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
+			else if (x < 708 && x > 470 && y < 521 && y > 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
 		}
 	}
 
@@ -926,15 +926,15 @@ bool Coordinador::tiempo(char color)
 
 void Coordinador::musica()
 {
-	/*if (estado == INICIO || estado == OPCIONES) playMusica("bin/recursos/menu.mp3");
+	/*if (estado == INICIO || estado == OPCIONES) playMusica("recursos/menu.mp3");
 	if (estado == JUEGO) {
 		if (musicajaque == false)
-			playMusica("bin/recursos/juego.mp3", true);
+			playMusica("recursos/juego.mp3", true);
 
 		else if (musicajaque == true)
-			playMusica("bin/recursos/JaqueTheme.mp3");
+			playMusica("recursos/JaqueTheme.mp3");
 	}
-	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("bin/recursos/VictoryTheme.mp3");*/
+	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");*/
 }
 
 void Coordinador::mueve(float t)
