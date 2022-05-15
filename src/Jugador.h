@@ -26,6 +26,11 @@ protected:
 	Sprite TR{ "recursos/jugadores/kings/theringmaster.png", 0, 0, 28,40 };
 	Sprite TS{ "recursos/jugadores/kings/theshrike.png", 0, 0, 28,40 };
 
+	// Sprite blanco/ negro
+
+	Sprite Black{ "recursos/BLACK.png", 0, 0, 28, 15};
+	Sprite White{ "recursos/WHITE.png", 0, 0, 28, 15};
+
 public:
 	Jugador();
 	Jugador(char colorJugador);
