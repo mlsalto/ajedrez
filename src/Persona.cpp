@@ -104,13 +104,18 @@ void Persona::moverPieza(int button, int state, int x, int y)
 	int x_cell, y_cell;
 	int x_tablero, y_tablero;
 	int coorx, coory;
-	coorx = x - 402;
-	coory = y - 103;
+	/*coorx = x - 402;
+	coory = y - 103;*/
+	
+	coorx = ( x - 402 );
+	coory = ( y - 103 );
+	
+	cout << coorx << ',' << coory << endl;
 
 	if (coorx < 0 || coory < 0) return; // tienen que ser coords pos
 
-	x_cell = coorx / 70;
-	y_cell = coory / 70;
+	x_cell = coorx / (70 );
+	y_cell = coory / (70 );
 
 	switch (y_cell)
 	{

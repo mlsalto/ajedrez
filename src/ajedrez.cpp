@@ -11,13 +11,14 @@ void OnTimer(int value);
 void OnKeyboardDown(unsigned char key, int x, int y);
 void OnMouseClick(int button, int state, int x, int y);
 void Mouse(int x, int y);
+void reshape(int w, int h);
 
 int main(int argc, char* argv[])
 {
 	//Inicializar el gestor de ventanas GLUT
 	//y crear la ventana
 	glutInit(&argc, argv);
-	glutInitWindowSize(1366, 768);
+	glutInitWindowSize(1366, 768); //original
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutCreateWindow("Mi_Juego");
 
@@ -35,6 +36,7 @@ int main(int argc, char* argv[])
 	glutTimerFunc(25, OnTimer, 0);//le decimos que dentro de 25ms llame 1 vez a la funcion OnTimer()
 	glutKeyboardFunc(OnKeyboardDown);
 	glutMouseFunc(OnMouseClick);
+	glutReshapeFunc(reshape);
 
 	// codigo
 
@@ -96,4 +98,28 @@ void OnTimer(int value)
 	//no borrar estas lineas
 	glutTimerFunc(100, OnTimer, 0);
 	glutPostRedisplay();
+}
+
+void reshape(int w, int h)
+{
+	coordinador.setReshape( w * 1.0 / 1366, h * 1.0 / 768);
+
+	// Prevent a divide by zero, when window is too short
+     // (you cant make a window of zero width).
+	float ratio = w * 1.0 / h;
+
+	// Use the Projection Matrix
+	glMatrixMode(GL_PROJECTION);
+
+	// Reset Matrix
+	glLoadIdentity();
+
+	// Set the viewport to be the entire window
+	glViewport(0, 0, w, h);
+
+	// Set the correct perspective.
+	gluPerspective(40.0, ratio, 0.1, 150);
+
+	// Get Back to the Modelview
+	glMatrixMode(GL_MODELVIEW);
 }
