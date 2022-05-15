@@ -33,11 +33,11 @@ private:
 
 	
 	///////// ELEMENTOS DE DIBUJO //////////
-	Sprite tableroAjedrez{ "bin/recursos/tablero.png", 0, 0, 64, 64 };
-	Sprite marcoTablero{ "bin/recursos/Marco.png", 0, 0, 72, 72 };
-	Sprite tableroAjedrez2{ "bin/recursos/tablero2.png", 0, 0, 64, 64 };
-	Sprite marcoTablero2{ "bin/recursos/Marco2.png", 0, 0, 72, 72 };
-	Sprite letrasTablero{ "bin/recursos/numeros_y_letras.png", 0, 0, 90, 90 };
+	Sprite tableroAjedrez{ "recursos/tablero.png", 0, 0, 64, 64 };
+	Sprite marcoTablero{ "recursos/Marco.png", 0, 0, 72, 72 };
+	Sprite tableroAjedrez2{ "recursos/tablero2.png", 0, 0, 64, 64 };
+	Sprite marcoTablero2{ "recursos/Marco2.png", 0, 0, 72, 72 };
+	Sprite letrasTablero{ "recursos/numeros_y_letras.png", 0, 0, 90, 90 };
 
 	///// JUGADORES ////
 	Jugador* jugador1;
