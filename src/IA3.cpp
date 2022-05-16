@@ -362,9 +362,9 @@ void IA3::movimientocontrario()
 		for (y_ini2 = 0; y_ini2 < 8; y_ini2++)
 		{
 			// buscar una pieza para mover ( similar a seleccionar de persona )
-			if (tablero2[x_ini2][y_ini2]->getOcupada() == TRUE && tablero2[x_ini2][y_ini2]->getPieza()->getColorPieza() != color)
+			if (Tablero::getCasillaT(x_ini2, y_ini2)->getOcupada() == TRUE && Tablero::getCasillaT(x_ini, y_ini)->getPieza()->getColorPieza() != color)
 			{
-				pieza2 = tablero2[x_ini2][y_ini2]->getPieza();
+				pieza2 = Tablero::getCasillaT(x_ini2, y_ini2)->getPieza();
 
 				// mover la pieza en copia tablero3
 				for (x_fin2 = 0; x_fin2 < 8; x_fin2++)
@@ -372,24 +372,20 @@ void IA3::movimientocontrario()
 					for (y_fin2 = 0; y_fin2 < 8; y_fin2++) {
 
 						// se puede realizar el movimiento
-						if (pieza2->movimientoLegal(tablero3[x_fin2][y_fin2]) == TRUE) {
+						if (pieza2->movimientoLegal(Tablero::getCasillaT(x_fin2, y_fin2)) == TRUE) {
 
 							// realizamos el movimiento
 							// si se come alguna pieza
-							if (tablero3[x_fin2][y_fin2]->getTipoPieza() != 0 && tablero3[x_fin2][y_fin2]->getPieza()->getColorPieza() == color)
+							if (Tablero::getTipoPiezasT(x_fin2, y_fin2) != 0 && Tablero::getCasillaT(x_fin2, y_fin2)->getPieza()->getColorPieza() != color)
 							{
-								piezacomida = tablero3[x_fin2][y_fin2]->getPieza();
-								tablero3[x_fin2][y_fin2]->colocarPieza(pieza);
-								tablero3[x_ini2][y_ini2]->colocarPieza(0);
+								piezacomida2 = Tablero::getPiezasT(x_fin2, y_fin2);
+								Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
+								Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
 
-								// mirar puntos 
-								/*puntosn = 0;
-								puntosb = 0;*/
-								//
 								for (i = 0; i < 8; i++){
 									for (j = 0; j < 8; j++){
- 										puntosn = getPuntos('N', tablero3[i][j]) + puntosn;
-										puntosb = getPuntos('B', tablero3[i][j]) + puntosb;
+ 										puntosn = getPuntos('N') + puntosn;
+										puntosb = getPuntos('B') + puntosb;
 									}
 								}
 								// mirar puntos negros y blancos
@@ -410,6 +406,11 @@ void IA3::movimientocontrario()
 										tipomovf = tipomovimiento;
 									}
 								}
+
+								// DESHACEMOS CAMBIOS
+								// deshacemos el movimiento
+								Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(piezacomida2);
+								Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
 							}
 
 							// si hace enroque

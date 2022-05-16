@@ -8,6 +8,7 @@ private:
 	Pieza* pieza; // pieza que movemos
 	Pieza* pieza2; // pieza que mueve contrario
 	Pieza* piezacomida; // pieza que comemos
+	Pieza* piezacomida2; //pieza uqe se come el contrario
 	Pieza* piezamovida;
 	Pieza* piezafin;
 
