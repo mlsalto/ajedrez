@@ -40,7 +40,5 @@ public:
 	int getPuntos(char colorJugador);
 	virtual void moverPieza(int button, int state, int x, int y); 
     bool turnoTerminado();
-
-	int getPuntos(char colorJugador, Casilla* c);
 };
 

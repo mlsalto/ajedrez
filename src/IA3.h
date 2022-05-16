@@ -20,16 +20,13 @@ private:
 
 	int posinix, posiniy, posfinx, posfiny;
 
-	static int x_ini;
-	static int x_fin;
-	static int y_ini;
-	static int y_fin;
+	int x_ini;
+	int x_fin;
+	int y_ini;
+	int y_fin;
 	
 	int tipomovf;
 	int puntosn, puntosb;
-
-	static Casilla* tablero2[8][8];
-	static Casilla* tablero3[8][8];
 
 public:
 	IA3();
