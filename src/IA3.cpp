@@ -4,6 +4,11 @@
 Casilla* IA3::tablero2[8][8];
 Casilla* IA3::tablero3[8][8];
 
+int IA3::x_ini;
+int IA3::x_fin;
+int IA3::y_ini;
+int IA3::y_fin;
+
 IA3::IA3() {}
 
 IA3::IA3(char colorJugador)
@@ -14,11 +19,12 @@ IA3::IA3(char colorJugador)
 void IA3::moverPieza(int button, int state, int x, int y)
 {
 	turnoterminado = FALSE;
-	x_ini = 0, x_fin = 0, y_ini = 0, y_fin = 0;
-
+	puntosn = 0;
+	puntosb = 0;
 	int puntos = 0;
-	int posfinx = 0, posfiny = 0;
-	int posinix = 0, posiniy = 0;
+	/*int posfinx = 0, posfiny = 0;
+	int posinix = 0, posiniy = 0;*/
+
 	int i, j;
 	minimo = -9999;
 	maximo = -9999;
@@ -67,7 +73,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 							}
 
 							// si hace enroque
-							else if (tablero2[x_ini][y_ini]->getTipoPieza() == 6 && (x_fin == 6 || x_fin == 2) && pieza->getPrimerMovimiento() == false && (tablero2[7][y_ini]->getTipoPieza() == 2 || tablero2[0][y_ini]->getTipoPieza() == 2) && (tablero2[7][y_ini]->getPieza()->getPrimerMovimiento() == false || tablero2[0][y_ini]->getPieza()->getPrimerMovimiento() == false) && piezaini->getEnroque() == false)
+							else if (tablero2[x_ini][y_ini]->getTipoPieza() == 6 && (x_fin == 6 || x_fin == 2) && pieza->getPrimerMovimiento() == false && (tablero2[7][y_ini]->getTipoPieza() == 2 || tablero2[0][y_ini]->getTipoPieza() == 2) && (tablero2[7][y_ini]->getPieza()->getPrimerMovimiento() == false || tablero2[0][y_ini]->getPieza()->getPrimerMovimiento() == false) && pieza->getEnroque() == false)
 							{
 								// hacer enroque
 								if (color == 'N')
@@ -182,6 +188,8 @@ void IA3::moverPieza(int button, int state, int x, int y)
 			{
 				piezaini->setPassant(false);
 			}
+			turnoterminado = TRUE;
+			return;
 		}
 
 		// si hace enroque
@@ -232,6 +240,8 @@ void IA3::moverPieza(int button, int state, int x, int y)
 			}
 
 			piezaini->setEnroque(true);
+			turnoterminado = TRUE;
+			return;
 		}
 
 		// si hace en passant
@@ -256,6 +266,8 @@ void IA3::moverPieza(int button, int state, int x, int y)
 				Tablero::getCasillaT(posfinx, posfiny - 1)->colocarPieza(0);
 				Tablero::eliminarPieza(piezafin); //elimina pieza
 			}
+			turnoterminado = TRUE;
+			return;
 		}
 
 		// si mueve a una casilla vacia
@@ -285,10 +297,9 @@ void IA3::moverPieza(int button, int state, int x, int y)
 					else piezaini->setPassant(false);
 				}
 			}
+			turnoterminado = TRUE;
+			return;
 		}
-	
-	turnoterminado = TRUE;
-
 }
 
 void IA3::movimientocontrario()
@@ -306,7 +317,7 @@ void IA3::movimientocontrario()
 			// buscar una pieza para mover ( similar a seleccionar de persona )
 			if (tablero2[x_ini2][y_ini2]->getOcupada() == TRUE && tablero2[x_ini2][y_ini2]->getPieza()->getColorPieza() != color)
 			{
-				pieza = tablero2[x_ini2][y_ini2]->getPieza();
+				pieza2 = tablero2[x_ini2][y_ini2]->getPieza();
 
 				// hacer copia del tablero2 sobre tablero3
 				for (i = 0; i < 8; i++)
@@ -323,7 +334,7 @@ void IA3::movimientocontrario()
 					for (y_fin2 = 0; y_fin2 < 8; y_fin2++) {
 
 						// se puede realizar el movimiento
-						if (pieza->movimientoLegal(tablero3[x_fin2][y_fin2]) == TRUE) {
+						if (pieza2->movimientoLegal(tablero3[x_fin2][y_fin2]) == TRUE) {
 
 							// realizamos el movimiento
 							// si se come alguna pieza
@@ -334,27 +345,23 @@ void IA3::movimientocontrario()
 								tablero3[x_ini2][y_ini2]->colocarPieza(0);
 
 								// mirar puntos 
-								puntosn = 0;
-								puntosb = 0;
+								/*puntosn = 0;
+								puntosb = 0;*/
 								//
 								for (i = 0; i < 8; i++){
 									for (j = 0; j < 8; j++){
-										puntosn = getPuntos('N', tablero3[i][j]) + puntosn;
+ 										puntosn = getPuntos('N', tablero3[i][j]) + puntosn;
 										puntosb = getPuntos('B', tablero3[i][j]) + puntosb;
 									}
 								}
 								// mirar puntos negros y blancos
-								if (color == 'B') puntoscontrario = puntosn - puntosb;
-								if (color == 'N') puntoscontrario = puntosb - puntosn;
+								if (color == 'B') puntoscontrario = puntosn - puntosb; puntospropios = puntosb - puntosn;
+								if (color == 'N') puntoscontrario = puntosb - puntosn; puntospropios = puntosn - puntosb;
 
 								// mirar si es mejor el movimiento o no
 								if (puntoscontrario >= minimo) {
 									// hemos encontrado el mejor movimiento
 									minimo = puntoscontrario;
-
-									// vemos como es la situación de nuestras piezas
-									if (color == 'N') puntospropios = puntosn - puntosb;
-									if (color == 'B') puntospropios = puntosb - puntosn;
 
 									// comprobamos si el movimiento es mejor o no
 									if (puntospropios >= maximo) {
@@ -368,7 +375,7 @@ void IA3::movimientocontrario()
 							}
 
 							// si hace enroque
-							else if (tablero3[x_ini2][y_ini2]->getTipoPieza() == 6 && (x_fin2 == 6 || x_fin2 == 2) && pieza->getPrimerMovimiento() == false && (tablero3[7][y_ini2]->getTipoPieza() == 2 || tablero3[0][y_ini2]->getTipoPieza() == 2) && (tablero3[7][y_ini2]->getPieza()->getPrimerMovimiento() == false || tablero3[0][y_ini2]->getPieza()->getPrimerMovimiento() == false) && piezaini->getEnroque() == false)
+							else if (tablero3[x_ini2][y_ini2]->getTipoPieza() == 6 && (x_fin2 == 6 || x_fin2 == 2) && pieza2->getPrimerMovimiento() == false && (tablero3[7][y_ini2]->getTipoPieza() == 2 || tablero3[0][y_ini2]->getTipoPieza() == 2) && (tablero3[7][y_ini2]->getPieza()->getPrimerMovimiento() == false || tablero3[0][y_ini2]->getPieza()->getPrimerMovimiento() == false) && pieza2->getEnroque() == false)
 							{
 								// hacer enroque
 								if (!color == 'N')
@@ -378,7 +385,7 @@ void IA3::movimientocontrario()
 										piezamovida = tablero3[7][7]->getPieza(); // torre
 										tablero3[7][7]->colocarPieza(0);
 										tablero3[x_ini2][y_ini2]->colocarPieza(0);
-										tablero3[x_fin2][y_fin2]->colocarPieza(pieza);
+										tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
 										tablero3[5][7]->colocarPieza(piezamovida);
 									}
 
@@ -387,7 +394,7 @@ void IA3::movimientocontrario()
 										piezamovida = tablero3[0][7]->getPieza(); // torre
 										tablero3[0][7]->colocarPieza(0);
 										tablero3[x_ini2][y_ini2]->colocarPieza(0);
-										tablero3[x_fin2][y_fin2]->colocarPieza(pieza);
+										tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
 										tablero3[3][7]->colocarPieza(piezamovida);
 									}
 								}
@@ -399,7 +406,7 @@ void IA3::movimientocontrario()
 										piezamovida = tablero3[7][0]->getPieza(); // torre
 										tablero3[7][0]->colocarPieza(0);
 										tablero3[x_ini2][y_ini2]->colocarPieza(0);
-										tablero3[x_fin2][y_fin2]->colocarPieza(pieza);
+										tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
 										tablero3[5][0]->colocarPieza(piezamovida);
 									}
 
@@ -408,14 +415,14 @@ void IA3::movimientocontrario()
 										piezamovida = tablero3[0][0]->getPieza(); // torre
 										tablero3[0][0]->colocarPieza(0);
 										tablero3[x_ini2][y_ini2]->colocarPieza(0);
-										tablero3[x_fin2][y_fin2]->colocarPieza(pieza);
+										tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
 										tablero3[3][0]->colocarPieza(piezamovida);
 									}
 								}
 
 								// mirar puntos 
-								puntosn = 0;
-								puntosb = 0;
+								/*puntosn = 0;
+								puntosb = 0;*/
 								//
 								for (i = 0; i < 8; i++) {
 									for (j = 0; j < 8; j++) {
@@ -452,13 +459,13 @@ void IA3::movimientocontrario()
 							{
 								// hace en passant
 								piezacomida = tablero3[x_fin2][y_fin2 - 1]->getPieza();
-								tablero3[x_fin2][y_fin2]->colocarPieza(pieza);
+								tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
 								tablero3[x_ini2][y_ini2]->colocarPieza(0);
 								tablero3[x_fin2][y_fin2 - 1]->colocarPieza(0);
 
 								// mirar puntos 
-								puntosn = 0;
-								puntosb = 0;
+								/*puntosn = 0;
+								puntosb = 0;*/
 								//
 								for (i = 0; i < 8; i++) {
 									for (j = 0; j < 8; j++) {
@@ -494,13 +501,13 @@ void IA3::movimientocontrario()
 							{
 								// hace en passant
 								piezacomida = tablero3[x_fin2][y_fin2 + 1]->getPieza();
-								tablero3[x_fin2][y_fin2]->colocarPieza(pieza);
+								tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
 								tablero3[x_ini2][y_ini2]->colocarPieza(0);
 								tablero3[x_fin2][y_fin2 + 1]->colocarPieza(0);
 
 								// mirar puntos 
-								puntosn = 0;
-								puntosb = 0;
+								/*puntosn = 0;
+								puntosb = 0;*/
 								//
 								for (i = 0; i < 8; i++) {
 									for (j = 0; j < 8; j++) {
@@ -540,8 +547,8 @@ void IA3::movimientocontrario()
 								tablero3[x_ini2][y_ini2]->colocarPieza(0);
 
 								// mirar puntos 
-								puntosn = 0;
-								puntosb = 0;
+								/*puntosn = 0;
+								puntosb = 0;*/
 								//
 								for (i = 0; i < 8; i++) {
 									for (j = 0; j < 8; j++) {

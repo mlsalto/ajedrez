@@ -6,6 +6,7 @@ class IA3 :public Jugador
 private:
 	Pieza* piezaini; // pieza que movemos
 	Pieza* pieza; // pieza que movemos
+	Pieza* pieza2; // pieza que mueve contrario
 	Pieza* piezacomida; // pieza que comemos
 	Pieza* piezamovida;
 	Pieza* piezafin;
@@ -16,7 +17,11 @@ private:
 	int minimo = -9999, maximo = -9999;
 
 	int posinix, posiniy, posfinx, posfiny;
-	int x_ini = 0, x_fin = 0, y_ini = 0, y_fin = 0;
+
+	static int x_ini;
+	static int x_fin;
+	static int y_ini;
+	static int y_fin;
 	
 	int tipomovf;
 	int puntosn, puntosb;

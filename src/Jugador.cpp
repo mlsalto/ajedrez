@@ -162,7 +162,8 @@ int Jugador::getPuntos(char colorJugador, Casilla * c)
 	{
 		tipoPieza = c->getTipoPieza(); // hay que hacer la funcion con get tipo
 		colorPieza = c->getPieza()->getColorPieza();
-
+		i = c->getColumna();
+		j = c->getFila();
 		//  VACIO(0) PEON(1) TORRE(2) ALFIL(3) CABALLO(4) REINA(5) REY(6)
 
 		switch (tipoPieza)
