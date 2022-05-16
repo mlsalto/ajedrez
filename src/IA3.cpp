@@ -414,61 +414,59 @@ void IA3::movimientocontrario()
 							}
 
 							// si hace enroque
-							else if (tablero3[x_ini2][y_ini2]->getTipoPieza() == 6 && (x_fin2 == 6 || x_fin2 == 2) && pieza2->getPrimerMovimiento() == false && (tablero3[7][y_ini2]->getTipoPieza() == 2 || tablero3[0][y_ini2]->getTipoPieza() == 2) && (tablero3[7][y_ini2]->getPieza()->getPrimerMovimiento() == false || tablero3[0][y_ini2]->getPieza()->getPrimerMovimiento() == false) && pieza2->getEnroque() == false)
+							else if (Tablero::getTipoPiezasT(x_ini2, y_ini2) == 6 && (x_fin2 == 6 || x_fin2 == 2) && pieza2->getPrimerMovimiento() == false && (Tablero::getTipoPiezasT(7, y_ini2) == 2 || Tablero::getTipoPiezasT(0, y_ini2) == 2) && (Tablero::getCasillaT(7, y_ini2)->getPieza()->getPrimerMovimiento() == false || Tablero::getCasillaT(0, y_ini2)->getPieza()->getPrimerMovimiento() == false) && pieza2->getEnroque() == false)
 							{
 								// hacer enroque
-								if (!color == 'N')
+								if (color == 'N')
 								{
 									if (x_fin2 == 6) // derecha
 									{
-										piezamovida = tablero3[7][7]->getPieza(); // torre
-										tablero3[7][7]->colocarPieza(0);
-										tablero3[x_ini2][y_ini2]->colocarPieza(0);
-										tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
-										tablero3[5][7]->colocarPieza(piezamovida);
+										piezamovida2 = Tablero::getCasillaT(7, 7)->getPieza(); // torre
+										Tablero::getCasillaT(7, 7)->colocarPieza(0);
+										Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
+										Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
+										Tablero::getCasillaT(5, 7)->colocarPieza(piezamovida2);
 									}
 
 									if (x_fin2 == 2) // izquierda
 									{
-										piezamovida = tablero3[0][7]->getPieza(); // torre
-										tablero3[0][7]->colocarPieza(0);
-										tablero3[x_ini2][y_ini2]->colocarPieza(0);
-										tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
-										tablero3[3][7]->colocarPieza(piezamovida);
+										piezamovida2 = Tablero::getCasillaT(0, 7)->getPieza(); // torre
+										Tablero::getCasillaT(0, 7)->colocarPieza(0);
+										Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
+										Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
+										Tablero::getCasillaT(3, 7)->colocarPieza(piezamovida2);
 									}
 								}
 
-								if (!color == 'B')
+								if (color == 'B')
 								{
 									if (x_fin2 == 6) // derecha
 									{
-										piezamovida = tablero3[7][0]->getPieza(); // torre
-										tablero3[7][0]->colocarPieza(0);
-										tablero3[x_ini2][y_ini2]->colocarPieza(0);
-										tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
-										tablero3[5][0]->colocarPieza(piezamovida);
+										piezamovida2 = Tablero::getCasillaT(7, 0)->getPieza(); // torre
+										Tablero::getCasillaT(7, 0)->colocarPieza(0);
+										Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
+										Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
+										Tablero::getCasillaT(5, 0)->colocarPieza(piezamovida2);
 									}
 
 									if (x_fin2 == 2) // izquierda
 									{
-										piezamovida = tablero3[0][0]->getPieza(); // torre
-										tablero3[0][0]->colocarPieza(0);
-										tablero3[x_ini2][y_ini2]->colocarPieza(0);
-										tablero3[x_fin2][y_fin2]->colocarPieza(pieza2);
-										tablero3[3][0]->colocarPieza(piezamovida);
+										piezamovida2 = Tablero::getCasillaT(0, 0)->getPieza(); // torre
+										Tablero::getCasillaT(0, 0)->colocarPieza(0);
+										Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
+										Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza2);
+										Tablero::getCasillaT(3, 0)->colocarPieza(piezamovida2);
 									}
 								}
 
-								// mirar puntos 
-								/*puntosn = 0;
-								puntosb = 0;*/
-								//
+								
 								for (i = 0; i < 8; i++) {
 									for (j = 0; j < 8; j++) {
-										puntosn = getPuntos('N', tablero3[i][j]) + puntosn;
-										puntosb = getPuntos('B', tablero3[i][j]) + puntosb;
+										puntosn = getPuntos('N') + puntosn;
+										puntosb = getPuntos('B') + puntosb;
 									}
 								}
+
 								// mirar puntos negros y blancos
 								if (color == 'B') puntoscontrario = puntosn - puntosb;
 								if (color == 'N') puntoscontrario = puntosb - puntosn;
@@ -489,6 +487,45 @@ void IA3::movimientocontrario()
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
 										tipomovf = tipomovimiento;
+									}
+
+									// deshacer enroque
+									if (color == 'N')
+									{
+										if (x_fin2 == 6) // derecha
+										{
+											Tablero::getCasillaT(7, 7)->colocarPieza(piezamovida2);
+											Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
+											Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
+											Tablero::getCasillaT(5, 7)->colocarPieza(0);
+										}
+
+										if (x_fin2 == 2) // izquierda
+										{
+											Tablero::getCasillaT(0, 7)->colocarPieza(piezamovida2);
+											Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
+											Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
+											Tablero::getCasillaT(3, 7)->colocarPieza(0);
+										}
+									}
+
+									if (color == 'B')
+									{
+										if (x_fin2 == 6) // derecha
+										{
+											Tablero::getCasillaT(7, 0)->colocarPieza(piezamovida2);
+											Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
+											Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
+											Tablero::getCasillaT(5, 0)->colocarPieza(0);
+										}
+
+										if (x_fin2 == 2) // izquierda
+										{
+											Tablero::getCasillaT(0, 0)->colocarPieza(piezamovida2);
+											Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
+											Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
+											Tablero::getCasillaT(3, 0)->colocarPieza(0);
+										}
 									}
 								}
 							}

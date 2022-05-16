@@ -10,6 +10,7 @@ private:
 	Pieza* piezacomida; // pieza que comemos
 	Pieza* piezacomida2; //pieza uqe se come el contrario
 	Pieza* piezamovida;
+	Pieza* piezamovida2;
 	Pieza* piezafin;
 
 	int tipomovimiento; // comer pieza (0), enroque (1), passant (2), mover a casilla vacia (3)
