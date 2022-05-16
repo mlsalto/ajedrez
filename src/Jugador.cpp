@@ -144,3 +144,5 @@ bool Jugador::turnoTerminado()
 {
 	return turnoterminado;
 }
+
+

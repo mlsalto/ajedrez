@@ -6,8 +6,11 @@ class IA3 :public Jugador
 private:
 	Pieza* piezaini; // pieza que movemos
 	Pieza* pieza; // pieza que movemos
+	Pieza* pieza2; // pieza que mueve contrario
 	Pieza* piezacomida; // pieza que comemos
+	Pieza* piezacomida2; //pieza uqe se come el contrario
 	Pieza* piezamovida;
+	Pieza* piezamovida2;
 	Pieza* piezafin;
 
 	int tipomovimiento; // comer pieza (0), enroque (1), passant (2), mover a casilla vacia (3)
@@ -15,8 +18,15 @@ private:
 	int puntospropios, puntoscontrario;
 	int minimo = -9999, maximo = -9999;
 
-	static Casilla* tablero2[8][8];
-	static Casilla* tablero3[8][8];
+	int posinix, posiniy, posfinx, posfiny;
+
+	int x_ini;
+	int x_fin;
+	int y_ini;
+	int y_fin;
+	
+	int tipomovf;
+	int puntosn, puntosb;
 
 public:
 	IA3();
