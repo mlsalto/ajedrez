@@ -26,6 +26,16 @@ Coordinador::Coordinador()
 
 	// musica //
 	musica(); // para que suene al inicio la música
+
+	// para la carga de sprite sequences //
+	Jaque.setPos(1000, 1000);
+	Jaque.draw();
+	Jaque1.setPos(1000, 1000);
+	Jaque1.draw();
+	JaqueMate.setPos(1000, 1000);
+	JaqueMate.draw();
+	JaqueMate1.setPos(1000, 1000);
+	JaqueMate1.draw();
 }
 
 Coordinador::~Coordinador() {}
@@ -436,15 +446,6 @@ void Coordinador::dibuja()
 				MenuOpciones2.draw();
 			}
 		}
-		// para la carga de sprite sequences //
-		Jaque.setPos(1000, 1000);
-		Jaque.draw();
-		Jaque1.setPos(1000, 1000);
-		Jaque1.draw();
-		JaqueMate.setPos(1000, 1000);
-		JaqueMate.draw();
-		JaqueMate1.setPos(1000, 1000);
-		JaqueMate1.draw();
 	}
 
 	/////////   SELECCION PERSONAJE WHITE  //////////
