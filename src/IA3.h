@@ -15,6 +15,12 @@ private:
 	int puntospropios, puntoscontrario;
 	int minimo = -9999, maximo = -9999;
 
+	int posinix, posiniy, posfinx, posfiny;
+	int x_ini = 0, x_fin = 0, y_ini = 0, y_fin = 0;
+	
+	int tipomovf;
+	int puntosn, puntosb;
+
 	static Casilla* tablero2[8][8];
 	static Casilla* tablero3[8][8];
 
