@@ -98,19 +98,9 @@ int Casilla::getFila()
 	return fila;
 }
 
-void Casilla::setFila(int x)
-{
-	fila = x;
-}
-
 int Casilla::getColumna()
 {
 	return columna;
-}
-
-void Casilla::setColumna(int x)
-{
-	columna = x;
 }
 
 void Casilla::setTipoCasilla(int x)

@@ -36,8 +36,6 @@ public:
 	int getColumna();
 
 	// setters //
-	void setFila(int x);
-	void setColumna(int x);
 	void setTipoCasilla(int x);
 };
 
