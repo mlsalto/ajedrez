@@ -25,7 +25,7 @@ Coordinador::Coordinador()
 	help = 0;
 
 	// musica //
-	//musica(); // para que suene al inicio la música
+	musica(); // para que suene al inicio la música
 }
 
 Coordinador::~Coordinador() {}
@@ -1211,8 +1211,8 @@ void Coordinador::musica()
 		if (estadojuego==TURNO)
 			playMusica("recursos/juego.mp3", true);
 
-		else if (estadojuego==JAQUE)
-			playMusica("recursos/JaqueTheme.mp3");
+		/*else if (estadojuego==JAQUE)
+			playMusica("recursos/JaqueTheme.mp3");*/
 	}
 	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");
 }
