@@ -166,8 +166,27 @@ void Tablero::dibuja()
 {
 	//el tablero tiene que dibujarse el último para dibujarse detrás y que no
 	//tape a las figuras
+	if (turno == TRUE) marcoTurno.setPos(60, 15);
+	else if (turno == FALSE) marcoTurno.setPos(-60, 15);
+	marcoTurno.draw();
+	
+	if (tipojuego == TRUE) {
+		blancasq.setPos(70 , 30);
+		blancasq.draw();
+		negrasq.setPos(-70, 30);
+		negrasq.draw();
+	}
+
+	else if (tipojuego == FALSE) {
+		blancask.setPos(70, 30);
+		blancask.draw();
+		negrask.setPos(-70, 30);
+		negrask.draw();
+	}
+
 	jugador1->draw(personaje1); // blancas
 	jugador2->draw(personaje2); // negras
+
 	piezas.drawEliminadas();
 
 	piezas.draw();
@@ -177,12 +196,12 @@ void Tablero::dibuja()
 			casillas[i][j]->draw();
 	
 
-	if (tipojuego == true) {
+	if (tipojuego == TRUE) {
 		tableroAjedrez.draw();
 		marcoTablero.draw();
 	}
 	
-	else if (tipojuego == false) {
+	else if (tipojuego == FALSE) {
 		tableroAjedrez2.draw();
 		marcoTablero2.draw();
 	}
@@ -192,6 +211,9 @@ void Tablero::dibuja()
 
 void Tablero::ratonTablero(int button, int state, int x, int y)
 {
+	finturnon = false;
+	finturnob = false;
+
 	if (turno == TRUE)
 	{
 		jugador1->moverPieza(button, state, x, y);

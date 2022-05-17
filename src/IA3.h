@@ -32,6 +32,7 @@ public:
 	IA3();
 	IA3(char colorJugador);
 
+	void draw(int x);
 	void moverPieza(int button, int state, int x, int y);
 	void movimientocontrario();
 };

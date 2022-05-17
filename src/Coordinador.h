@@ -202,6 +202,36 @@ private:
 	Sprite PerNK_TR{ "recursos/menu/personajes/PLAYER2_TR_ROJO.png", 0, 0, 130, 80 };
 	Sprite PerNK_TS{ "recursos/menu/personajes/PLAYER2_TS_ROJO.png", 0, 0, 130, 80 };
 
+	// menu IA nivel completado queens //
+	Sprite IaLC{ "recursos/LEVEL_COMPLETED.png", 0, 0, 110, 50 };
+	Sprite IaLCNx{ "recursos/LEVELCOMPLETED_NEXTLEVEL.png", 0, 0, 110, 50 };
+	Sprite IaLCBa{ "recursos/LEVELCOMPLETED_BACKTOMENU.png", 0, 0, 110, 50 };
+
+	// menu IA nivel completado kings //
+	Sprite IaLC2{ "recursos/LEVEL_COMPLETED_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLCNx2{ "recursos/LEVELCOMPLETED_NEXTLEVEL_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLCBa2{ "recursos/LEVELCOMPLETED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+
+	// menu IA nivel fallado queens //
+	Sprite IaLF{ "recursos/LEVELFAILED_NS.png", 0, 0, 110, 50 };
+	Sprite IaLFRe{ "recursos/LEVELFAILED_RETRY.png", 0, 0, 110, 50 };
+	Sprite IaLFBa{ "recursos/LEVELFAILED_BACKTOMENU.png", 0, 0, 110, 50 };
+
+	// menu IA nivel fallado kings //
+	Sprite IaLF2{ "recursos/LEVELFAILED_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLFRe2{ "recursos/LEVELFAILED_RETRY_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLFBa2{ "recursos/LEVELFAILED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+
+	// menu IA storymode completed queens //
+	Sprite IaSC{ "recursos/STORYMODECOMPLETED_NS.png", 0, 0, 110, 50 };
+	Sprite IaSCRe{ "recursos/STORYMODECOMPLETED_RESTART.png", 0, 0, 110, 50 };
+	Sprite IaSCBa{ "recursos/STORYMODECOMPLETED_BACKTOMENU.png", 0, 0, 110, 50 };
+
+	// menu IA storymode completed kings //
+	Sprite IaSC2{ "recursos/STORYMODECOMPLETED_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite IaSCRe2{ "recursos/STORYMODECOMPLETED_RESTART_rojo.png", 0, 0, 110, 50 };
+	Sprite IaSCBa2{ "recursos/STORYMODECOMPLETED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+
 public:
 	Coordinador();
 	virtual ~Coordinador();
@@ -222,11 +252,13 @@ public:
 
 	// getters //
 	int getEstado();
-	int getModoJuego();
 	int getEstadoJuego();
+	int getMenuJuego();
 
 protected:
 	Tablero tablero;
+
+	bool modojuego; // true(jugador vs jugador) false(jugador vs IA)
 
 	/// variables menu opciones //
 	int opciones; // Q(0) K(1) Q+H(2) K+H(3) Q+E(4) K+E(5) Q+H+E(6) K+H+E(7)
@@ -267,6 +299,12 @@ protected:
 	float reshx, reshy;
 	//////////////////////////////////
 	
+	// variables IA //
+	int nivel; // nivel(1) nivel(2) nivel(3)
+	bool ganar; // true(gana persona), false(pierde persona)
+	/////////////////////////////////////////
+
+
 	enum Estado { INICIO, OPCIONES , S_PER_BLANCO, S_PER_NEGRO, JUEGO,  FIN}; //editar los estados
 	Estado estado;
 
