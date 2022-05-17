@@ -9,6 +9,65 @@ IA3::IA3(char colorJugador)
 	color = colorJugador;
 }
 
+void IA3::draw(int x)
+{
+	// El modo de juego es queens gambit //
+	if (Tablero::getTipoJuego() == TRUE)
+	{
+		if (x == 1) {
+			if (color == 'B') player1.setPos(60, 15);
+			if (color == 'N') player1.setPos(-60, 15);
+			player1.draw();
+		}
+
+		if (x == 2) {
+			if (color == 'B')player2.setPos(60, 15);
+			if (color == 'N')player2.setPos(-60, 15);
+			player2.draw();
+		}
+
+		if (x == 3) {
+			if (color == 'B')player3.setPos(60, 15);
+			if (color == 'N')player3.setPos(-60, 15);
+			player3.draw();
+		}
+
+		if (x == 4) {
+			if (color == 'B')player4.setPos(60, 15);
+			if (color == 'N')player4.setPos(-60, 15);
+			player4.draw();
+		}
+	}
+
+	// El modo de juego es kings gambit //
+	if (Tablero::getTipoJuego() == FALSE)
+	{
+		if (x == 1) {
+			if (color == 'B') TB.setPos(60, 15);
+			if (color == 'N') TB.setPos(-60, 15);
+			TB.draw();
+		}
+
+		if (x == 2) {
+			if (color == 'B') TC.setPos(60, 15);
+			if (color == 'N') TC.setPos(-60, 15);
+			TC.draw();
+		}
+
+		if (x == 3) {
+			if (color == 'B') TH.setPos(60, 15);
+			if (color == 'N') TH.setPos(-60, 15);
+			TH.draw();
+		}
+
+		if (x == 4) {
+			if (color == 'B') TJ.setPos(60, 15);
+			if (color == 'N') TJ.setPos(-60, 15);
+			TJ.draw();
+		}
+	}
+}
+
 void IA3::moverPieza(int button, int state, int x, int y)
 {
 	turnoterminado = FALSE;

@@ -192,6 +192,9 @@ void Tablero::dibuja()
 
 void Tablero::ratonTablero(int button, int state, int x, int y)
 {
+	finturnon = false;
+	finturnob = false;
+
 	if (turno == TRUE)
 	{
 		jugador1->moverPieza(button, state, x, y);

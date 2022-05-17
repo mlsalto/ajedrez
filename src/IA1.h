@@ -16,6 +16,7 @@ public:
 	IA1();
 	IA1(char colorJugador);
 
+	void draw(int x);
 	void moverPieza(int button, int state, int x, int y);
 };
 

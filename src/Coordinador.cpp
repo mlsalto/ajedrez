@@ -26,16 +26,6 @@ Coordinador::Coordinador()
 
 	// musica //
 	musica(); // para que suene al inicio la música
-
-	// para la carga de sprite sequences //
-	Jaque.setPos(1000, 1000);
-	Jaque.draw();
-	Jaque1.setPos(1000, 1000);
-	Jaque1.draw();
-	JaqueMate.setPos(1000, 1000);
-	JaqueMate.draw();
-	JaqueMate1.setPos(1000, 1000);
-	JaqueMate1.draw();
 }
 
 Coordinador::~Coordinador() {}
@@ -151,6 +141,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 				tablero.setJugador2(Jugador2);
 
 				estado = S_PER_BLANCO;
+				modojuego = TRUE;
 				personajeB = 0;
 
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
@@ -164,11 +155,16 @@ void Coordinador::raton(int button, int state, int x, int y)
 				playMusica("recursos/Gamemode Select");
 
 				Persona* Jugador1 = new Persona('B');
-				IA3* Jugador2 = new IA3('N');
+				IA1* Jugador2 = new IA1('N');
 
 				tablero.setJugador1(Jugador1);
 				tablero.setJugador2(Jugador2);
 
+				tablero.setPersonaje1(4); // personaje de la persona
+				tablero.setPersonaje2(2); // personaje de la IA
+
+				nivel = 1;
+				modojuego = FALSE;
 				estado = JUEGO;
 				musica();
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
@@ -290,8 +286,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque_mate('B') == true)
 					{
 						musicajaque = false;
-						if (Tablero::detectar_jaque('N') == true) { ganador = 1; }
-						else if (Tablero::detectar_jaque_mate('B') == true) { ganador = 0; }
+						if (Tablero::detectar_jaque('N') == true) { ganador = 1; ganar = TRUE;}
+						else if (Tablero::detectar_jaque_mate('B') == true) { ganador = 0; ganar = FALSE;}
 
 						estadojuego = JAQUE_MATE;
 						musica();
@@ -305,6 +301,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 						musica();
 						return;
 					}
+
+					return;
 				}
 
 				// si termina el turno de las blancas
@@ -316,8 +314,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 					if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('N') == true)
 					{
 						musicajaque = false;
-						if (Tablero::detectar_jaque_mate('N') == true) { ganador = 1; }
-						else if (Tablero::detectar_jaque('B') == true ) { ganador = 0; }
+						if (Tablero::detectar_jaque_mate('N') == true) { ganador = 1; ganar = TRUE; }
+						else if (Tablero::detectar_jaque('B') == true) { ganador = 0; ganar = FALSE; }
 
 						estadojuego = JAQUE_MATE;
 						musica();
@@ -331,11 +329,22 @@ void Coordinador::raton(int button, int state, int x, int y)
 						musica();
 						return;
 					}
+
+					return;
 				}
 
-				if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
-				else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
+				if (modojuego == TRUE)
+				{
+					if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
+					else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
+				}
 
+				if (modojuego == FALSE)
+				{
+					// hay que meter cosas //
+					if (tablero.getCoronacion('B') == TRUE) { estadojuego = CORONAR_BLANCAS; }
+					else if (tablero.getCoronacion('N') == TRUE) { tablero.setCoronacion(5); }
+				}
 			}
 
 			if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
@@ -405,10 +414,131 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 	if (estado == FIN) {
 
-		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-			if (x > reshx * 708 || x < reshx * 470 || y < reshy * 423 || y > reshy * 521) { ; /*no hay final*/ }
-			else if (x < reshx * 624 && x > reshx * 470 && y < reshy * 462 && y > reshy * 423) { tablero.eliminarTablero(); tablero.nuevoTablero(); estado = JUEGO;  estadojuego = TURNO; i = 0; musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
-			else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+		if (modojuego == TRUE) {
+			if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+				if (x > reshx * 708 || x < reshx * 470 || y < reshy * 423 || y > reshy * 521) { ; /*no hay final*/ }
+				else if (x < reshx * 624 && x > reshx * 470 && y < reshy * 462 && y > reshy * 423) { tablero.eliminarTablero(); tablero.nuevoTablero(); estado = JUEGO;  estadojuego = TURNO; i = 0; musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
+				else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+			}
+		}
+
+		if (modojuego == FALSE)
+		{
+			// DEPENDIENDO DE SI SE GANA O SE PIERDE
+			
+			// si se gana //
+			if (ganar == TRUE) {
+				if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+					if (x > reshx * 708 || x < reshx * 470 || y < reshy * 423 || y > reshy * 521) { ; /*no hay final*/ }
+					else if (x < reshx * 624 && x > reshx * 470 && y < reshy * 462 && y > reshy * 423) 
+					{
+						nivel++;
+
+						tablero.eliminarTablero(); 
+
+						if (nivel == 2) {
+							Persona* Jugador1 = new Persona('B');
+							IA2* Jugador2 = new IA2('N');
+
+							tablero.setJugador1(Jugador1);
+							tablero.setJugador2(Jugador2);
+
+							tablero.setPersonaje1(1); // personaje de la persona
+							tablero.setPersonaje2(2); // personaje de la IA
+						}
+
+						if (nivel == 3) {
+							Persona* Jugador1 = new Persona('B');
+							IA3* Jugador2 = new IA3('N');
+
+							tablero.setJugador1(Jugador1);
+							tablero.setJugador2(Jugador2);
+
+							tablero.setPersonaje1(1); // personaje de la persona
+							tablero.setPersonaje2(3); // personaje de la IA
+						}
+
+						if (nivel > 3)
+						{
+							Persona* Jugador1 = new Persona('B');
+							IA1* Jugador2 = new IA1('N');
+
+							tablero.setJugador1(Jugador1);
+							tablero.setJugador2(Jugador2);
+
+							tablero.setPersonaje1(4); // personaje de la persona
+							tablero.setPersonaje2(2); // personaje de la IA
+
+							nivel = 1;
+						}
+
+						estado = JUEGO; 
+						estadojuego = TURNO; 
+						i = 0; musica(); 
+						playMusica("recursos/Pokeselect.mp3");
+						tablero.nuevoTablero();
+						return;
+						/*rematch*/ 
+					}
+
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+				}
+			}
+
+			// si se pierde //
+			if (ganar == FALSE) {
+				if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+					if (x > reshx * 708 || x < reshx * 470 || y < reshy * 423 || y > reshy * 521) { ; /*no hay final*/ }
+					else if (x < reshx * 624 && x > reshx * 470 && y < reshy * 462 && y > reshy * 423)
+					{
+						tablero.eliminarTablero();
+
+						if (nivel == 1) {
+							Persona* Jugador1 = new Persona('B');
+							IA1* Jugador2 = new IA1('N');
+
+							tablero.setJugador1(Jugador1);
+							tablero.setJugador2(Jugador2);
+
+							tablero.setPersonaje1(4); // personaje de la persona
+							tablero.setPersonaje2(2); // personaje de la IA
+						}
+
+						if (nivel == 2) {
+							Persona* Jugador1 = new Persona('B');
+							IA2* Jugador2 = new IA2('N');
+
+							tablero.setJugador1(Jugador1);
+							tablero.setJugador2(Jugador2);
+
+							tablero.setPersonaje1(1); // personaje de la persona
+							tablero.setPersonaje2(2); // personaje de la IA
+						}
+
+						if (nivel == 3)
+						{
+							Persona* Jugador1 = new Persona('B');
+							IA3* Jugador2 = new IA3('N');
+
+							tablero.setJugador1(Jugador1);
+							tablero.setJugador2(Jugador2);
+
+							tablero.setPersonaje1(1); // personaje de la persona
+							tablero.setPersonaje2(3); // personaje de la IA
+						}
+
+						estado = JUEGO;
+						estadojuego = TURNO;
+						i = 0; musica();
+						playMusica("recursos/Pokeselect.mp3");
+						tablero.nuevoTablero();
+						return;
+						/*rematch*/
+					}
+
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+				}
+			}
 		}
 	}
 
@@ -446,463 +576,548 @@ void Coordinador::dibuja()
 				MenuOpciones2.draw();
 			}
 		}
+
+		// para la carga de sprite sequences //
+		Jaque.setPos(1000, 1000);
+		Jaque.draw();
+		Jaque1.setPos(1000, 1000);
+		Jaque1.draw();
+		JaqueMate.setPos(1000, 1000);
+		JaqueMate.draw();
+		JaqueMate1.setPos(1000, 1000);
+		JaqueMate1.draw();
 	}
 
-	/////////   SELECCION PERSONAJE WHITE  //////////
-	if (estado == S_PER_BLANCO)
-	{
-		Flecha1.setPos(50, 30);
-		Flecha1.draw();
 
-		if (tipojuego == 0) {
-			switch (personajeB) {
-			case 0:
-				PerBQ.draw();
-			case 1:
-				PerBQ_BT.draw();
-			case 2:
-				PerBQ_MS.draw();
-			case 3:
-				PerBQ_BE.draw();
-			case 4:
-				PerBQ_BB.draw();
-			}
-		}
+		/////////   SELECCION PERSONAJE WHITE  //////////
+		if (estado == S_PER_BLANCO)
+		{
+			Flecha1.setPos(50, 30);
+			Flecha1.draw();
 
-		if (tipojuego == 1) {
-			switch (personajeB) {
-			case 0:
-				PerBK.draw();
-			case 1:
-				PerBK_TB.draw();
-			case 2:
-				PerBK_TC.draw();
-			case 3:
-				PerBK_TH.draw();
-			case 4:
-				PerBK_TJ.draw();
-			case 5:
-				PerBK_TM.draw();
-			case 6:
-				PerBK_TO.draw();
-			case 7:
-				PerBK_TP.draw();
-			case 8:
-				PerBK_TR.draw();
-			case 9:
-				PerBK_TS.draw();
-			}
-		}
-	}
-
-	/////////   SELECCION PERSONAJE BLACK   //////////
-	if (estado == S_PER_NEGRO)
-	{
-		Flecha1.setPos(50, 30);
-		Flecha1.draw();
-
-		if (tipojuego == 0) {
-			switch (personajeN) {
-			case 0:
-				PerNQ.draw();
-			case 1:
-				PerNQ_BT.draw();
-			case 2:
-				PerNQ_MS.draw();
-			case 3:
-				PerNQ_BE.draw();
-			case 4:
-				PerNQ_BB.draw();
-			}
-		}
-
-		if (tipojuego == 1) {
-			switch (personajeN) {
-			case 0:
-				PerNK.draw();
-			case 1:
-				PerNK_TB.draw();
-			case 2:
-				PerNK_TC.draw();
-			case 3:
-				PerNK_TH.draw();
-			case 4:
-				PerNK_TJ.draw();
-			case 5:
-				PerNK_TM.draw();
-			case 6:
-				PerNK_TO.draw();
-			case 7:
-				PerNK_TP.draw();
-			case 8:
-				PerNK_TR.draw();
-			case 9:
-				PerNK_TS.draw();
-			}
-		}
-	}
-
-	//////// OPCIONES /////////
-	if (estado == OPCIONES) {
-
-		switch (opciones) {
-		case 0:
-			QueenGam.draw();
-		case 1:
-			KingGam.draw();
-		case 2:
-			QueenGamH.draw();
-		case 3:
-			KingGamH.draw();
-		case 4:
-			QueenGamE.draw();
-		case 5:
-			KingGamE.draw();
-		case 6:
-			QueenGamHE.draw();
-		case 7:
-			KingGamHE.draw();
-		}
-	}
-
-	////////   JUEGO   /////////
-	if (estado == JUEGO) {
-
-		// turno //
-		if (estadojuego == TURNO) {
-			if (tipojuego == 0) { BotonHP_azul.draw(); }
-			if (tipojuego == 1) { BotonHP_rojo.draw(); }
-		}
-
-		// pausa //
-		if (estadojuego == PAUSA) {
-			if (tipojuego == 0)
-			{
-				switch (pause)
-				{
+			if (tipojuego == 0) {
+				switch (personajeB) {
 				case 0:
-					PausaM.draw();
+					PerBQ.draw();
 				case 1:
-					PausaResume.draw();
+					PerBQ_BT.draw();
 				case 2:
-					PausaRestart.draw();
+					PerBQ_MS.draw();
 				case 3:
-					PausaBack.draw();
+					PerBQ_BE.draw();
 				case 4:
-					PausaExit.draw();
+					PerBQ_BB.draw();
 				}
 			}
 
-			if (tipojuego == 1)
-			{
-				switch (pause)
-				{
+			if (tipojuego == 1) {
+				switch (personajeB) {
 				case 0:
-					PausaM2.draw();
+					PerBK.draw();
 				case 1:
-					PausaResume2.draw();
+					PerBK_TB.draw();
 				case 2:
-					PausaRestart2.draw();
+					PerBK_TC.draw();
 				case 3:
-					PausaBack2.draw();
+					PerBK_TH.draw();
 				case 4:
-					PausaExit2.draw();
+					PerBK_TJ.draw();
+				case 5:
+					PerBK_TM.draw();
+				case 6:
+					PerBK_TO.draw();
+				case 7:
+					PerBK_TP.draw();
+				case 8:
+					PerBK_TR.draw();
+				case 9:
+					PerBK_TS.draw();
+				}
+			}
+		}
+
+		/////////   SELECCION PERSONAJE BLACK   //////////
+		if (estado == S_PER_NEGRO)
+		{
+			Flecha1.setPos(50, 30);
+			Flecha1.draw();
+
+			if (tipojuego == 0) {
+				switch (personajeN) {
+				case 0:
+					PerNQ.draw();
+				case 1:
+					PerNQ_BT.draw();
+				case 2:
+					PerNQ_MS.draw();
+				case 3:
+					PerNQ_BE.draw();
+				case 4:
+					PerNQ_BB.draw();
+				}
+			}
+
+			if (tipojuego == 1) {
+				switch (personajeN) {
+				case 0:
+					PerNK.draw();
+				case 1:
+					PerNK_TB.draw();
+				case 2:
+					PerNK_TC.draw();
+				case 3:
+					PerNK_TH.draw();
+				case 4:
+					PerNK_TJ.draw();
+				case 5:
+					PerNK_TM.draw();
+				case 6:
+					PerNK_TO.draw();
+				case 7:
+					PerNK_TP.draw();
+				case 8:
+					PerNK_TR.draw();
+				case 9:
+					PerNK_TS.draw();
+				}
+			}
+		}
+
+		//////// OPCIONES /////////
+		if (estado == OPCIONES) {
+
+			switch (opciones) {
+			case 0:
+				QueenGam.draw();
+			case 1:
+				KingGam.draw();
+			case 2:
+				QueenGamH.draw();
+			case 3:
+				KingGamH.draw();
+			case 4:
+				QueenGamE.draw();
+			case 5:
+				KingGamE.draw();
+			case 6:
+				QueenGamHE.draw();
+			case 7:
+				KingGamHE.draw();
+			}
+		}
+
+		////////   JUEGO   /////////
+		if (estado == JUEGO) {
+
+			// turno //
+			if (estadojuego == TURNO) {
+				if (tipojuego == 0) { BotonHP_azul.draw(); }
+				if (tipojuego == 1) { BotonHP_rojo.draw(); }
+			}
+
+			// pausa //
+			if (estadojuego == PAUSA) {
+				if (tipojuego == 0)
+				{
+					switch (pause)
+					{
+					case 0:
+						PausaM.draw();
+					case 1:
+						PausaResume.draw();
+					case 2:
+						PausaRestart.draw();
+					case 3:
+						PausaBack.draw();
+					case 4:
+						PausaExit.draw();
+					}
+				}
+
+				if (tipojuego == 1)
+				{
+					switch (pause)
+					{
+					case 0:
+						PausaM2.draw();
+					case 1:
+						PausaResume2.draw();
+					case 2:
+						PausaRestart2.draw();
+					case 3:
+						PausaBack2.draw();
+					case 4:
+						PausaExit2.draw();
+					}
+				}
+				tablero.dibuja();
+			}
+
+			// ayuda //
+			if (estadojuego == AYUDA) {
+				Flecha.setPos(-45, 19);
+				Flecha.draw();
+
+				if (tipojuego == 0) {
+					if (menu_help == H) {
+						switch (help)
+						{
+						case 0:
+							HelpM.draw();
+						case 1:
+							HelpMov.draw();
+						case 2:
+							HelpSpeMov.draw();
+						case 3:
+							HelpEnd.draw();
+						}
+					}
+
+					if (menu_help == MOVS) {
+						switch (movs)
+						{
+						case 0:
+							HelpMovM.draw();
+						case 1:
+							HelpMovP.draw();
+						case 2:
+							HelpMovB.draw();
+						case 3:
+							HelpMovKn.draw();
+						case 4:
+							HelpMovR.draw();
+						case 5:
+							HelpMovQ.draw();
+						case 6:
+							HelpMovK.draw();
+						}
+					}
+
+					if (menu_help == MOVSE) {
+						switch (specialmovs)
+						{
+						case 0:
+							HelpMovEspM.draw();
+						case 1:
+							HelpMovEspC.draw();
+						case 2:
+							HelpMovEspE.draw();
+						case 3:
+							HelpMovEspP.draw();
+						}
+					}
+				}
+
+				if (tipojuego == 1) {
+					if (menu_help == H) {
+						switch (help)
+						{
+						case 0:
+							HelpM2.draw();
+						case 1:
+							HelpMov2.draw();
+						case 2:
+							HelpSpeMov2.draw();
+						case 3:
+							HelpEnd2.draw();
+						}
+					}
+
+					if (menu_help == MOVS) {
+						switch (movs)
+						{
+						case 0:
+							HelpMovM2.draw();
+						case 1:
+							HelpMovP2.draw();
+						case 2:
+							HelpMovB2.draw();
+						case 3:
+							HelpMovKn2.draw();
+						case 4:
+							HelpMovR2.draw();
+						case 5:
+							HelpMovQ2.draw();
+						case 6:
+							HelpMovK2.draw();
+						}
+					}
+
+					if (menu_help == MOVSE) {
+						switch (specialmovs)
+						{
+						case 0:
+							HelpMovEspM2.draw();
+						case 1:
+							HelpMovEspC2.draw();
+						case 2:
+							HelpMovEspE2.draw();
+						case 3:
+							HelpMovEspP2.draw();
+						}
+					}
+				}
+
+				if (menu_help == END) {
+					HelpEndg.draw();
+				}
+
+				if (menu_help == TEXT) {
+					switch (muchotexto)
+					{
+					case 0:
+						HelpPawn.draw();
+					case 1:
+						HelpBish.draw();
+					case 2:
+						HelpKnig.draw();
+					case 3:
+						HelpRook.draw();
+					case 4:
+						HelpQuee.draw();
+					case 5:
+						HelpKing.draw();
+					case 6:
+						HelpCast.draw();
+					case 7:
+						HelpPass.draw();
+					case 8:
+						HelpProm.draw();
+					}
+				}
+			}
+
+			// jaque //
+			if (estadojuego == JAQUE) {
+				if (tipojuego == 0) {
+					Jaque.setPos(0, 0);
+					Jaque.draw();
+				}
+				if (tipojuego == 1) {
+					Jaque1.setPos(0, 0);
+					Jaque1.draw();
+				}
+			}
+
+			// jaque mate //
+			if (estadojuego == JAQUE_MATE) {
+				if (tipojuego == 0) {
+					JaqueMate.setPos(0, 0);
+					JaqueMate.draw();
+				}
+				if (tipojuego == 1) {
+					JaqueMate1.setPos(0, 0);
+					JaqueMate1.draw();
+				}
+			}
+
+			// coronacion blancas //
+			if (estadojuego == CORONAR_BLANCAS) {
+				if (tipojuego == 0) {
+					switch (coronar)
+					{
+					case C:
+						MenuCoronar_B.draw();
+					case REINA:
+						MenuCoronarReina_B.draw();
+					case TORRE:
+						MenuCoronarTorre_B.draw();
+					case ALFIL:
+						MenuCoronarAlfil_B.draw();
+					case CABALLO:
+						MenuCoronarCaballo_B.draw();
+					}
+				}
+
+				if (tipojuego == 1) {
+					switch (coronar)
+					{
+					case C:
+						MenuCoronar_B2.draw();
+					case REINA:
+						MenuCoronarReina_B2.draw();
+					case TORRE:
+						MenuCoronarTorre_B2.draw();
+					case ALFIL:
+						MenuCoronarAlfil_B2.draw();
+					case CABALLO:
+						MenuCoronarCaballo_B2.draw();
+					}
+				}
+			}
+
+			// coronacion negra //
+			if (estadojuego == CORONAR_NEGRAS) {
+				if (tipojuego == 0) {
+					switch (coronar)
+					{
+					case C:
+						MenuCoronar_N.draw();
+					case REINA:
+						MenuCoronarReina_N.draw();
+					case TORRE:
+						MenuCoronarTorre_N.draw();
+					case ALFIL:
+						MenuCoronarAlfil_N.draw();
+					case CABALLO:
+						MenuCoronarCaballo_N.draw();
+					}
+				}
+
+				if (tipojuego == 1) {
+					switch (coronar)
+					{
+					case C:
+						MenuCoronar_N2.draw();
+					case REINA:
+						MenuCoronarReina_N2.draw();
+					case TORRE:
+						MenuCoronarTorre_N2.draw();
+					case ALFIL:
+						MenuCoronarAlfil_N2.draw();
+					case CABALLO:
+						MenuCoronarCaballo_N2.draw();
+					}
 				}
 			}
 			tablero.dibuja();
 		}
 
-		// ayuda //
-		if (estadojuego == AYUDA) {
-			Flecha.setPos(-45, 19);
-			Flecha.draw();
-
-			if (tipojuego == 0) {
-				if (menu_help == H) {
-					switch (help)
-					{
-					case 0:
-						HelpM.draw();
-					case 1:
-						HelpMov.draw();
-					case 2:
-						HelpSpeMov.draw();
-					case 3:
-						HelpEnd.draw();
-					}
-				}
-
-				if (menu_help == MOVS) {
-					switch (movs)
-					{
-					case 0:
-						HelpMovM.draw();
-					case 1:
-						HelpMovP.draw();
-					case 2:
-						HelpMovB.draw();
-					case 3:
-						HelpMovKn.draw();
-					case 4:
-						HelpMovR.draw();
-					case 5:
-						HelpMovQ.draw();
-					case 6:
-						HelpMovK.draw();
-					}
-				}
-
-				if (menu_help == MOVSE) {
-					switch (specialmovs)
-					{
-					case 0:
-						HelpMovEspM.draw();
-					case 1:
-						HelpMovEspC.draw();
-					case 2:
-						HelpMovEspE.draw();
-					case 3:
-						HelpMovEspP.draw();
-					}
-				}
-			}
-
-			if (tipojuego == 1) {
-				if (menu_help == H) {
-					switch (help)
-					{
-					case 0:
-						HelpM2.draw();
-					case 1:
-						HelpMov2.draw();
-					case 2:
-						HelpSpeMov2.draw();
-					case 3:
-						HelpEnd2.draw();
-					}
-				}
-
-				if (menu_help == MOVS) {
-					switch (movs)
-					{
-					case 0:
-						HelpMovM2.draw();
-					case 1:
-						HelpMovP2.draw();
-					case 2:
-						HelpMovB2.draw();
-					case 3:
-						HelpMovKn2.draw();
-					case 4:
-						HelpMovR2.draw();
-					case 5:
-						HelpMovQ2.draw();
-					case 6:
-						HelpMovK2.draw();
-					}
-				}
-
-				if (menu_help == MOVSE) {
-					switch (specialmovs)
-					{
-					case 0:
-						HelpMovEspM2.draw();
-					case 1:
-						HelpMovEspC2.draw();
-					case 2:
-						HelpMovEspE2.draw();
-					case 3:
-						HelpMovEspP2.draw();
-					}
-				}
-			}
-
-			if (menu_help == END) {
-				HelpEndg.draw();
-			}
-
-			if (menu_help == TEXT) {
-				switch (muchotexto)
-				{
-				case 0:
-					HelpPawn.draw();
-				case 1:
-					HelpBish.draw();
-				case 2:
-					HelpKnig.draw();
-				case 3:
-					HelpRook.draw();
-				case 4:
-					HelpQuee.draw();
-				case 5:
-					HelpKing.draw();
-				case 6:
-					HelpCast.draw();
-				case 7:
-					HelpPass.draw();
-				case 8:
-					HelpProm.draw();
-				}
-			}
-		}
-
-		// jaque //
-		if (estadojuego == JAQUE) {
-			if (tipojuego == 0) {
-				Jaque.setPos(0, 0);
-				Jaque.draw();
-			}
-			if (tipojuego == 1) {
-				Jaque1.setPos(0, 0);
-				Jaque1.draw();
-			}
-		}
-
-		// jaque mate //
-		if (estadojuego == JAQUE_MATE) {
-			if (tipojuego == 0) {
-				JaqueMate.setPos(0, 0);
-				JaqueMate.draw();
-			}
-			if (tipojuego == 1) {
-				JaqueMate1.setPos(0, 0);
-				JaqueMate1.draw();
-			}
-		}
-
-		// coronacion blancas //
-		if (estadojuego == CORONAR_BLANCAS) {
-			if (tipojuego == 0) {
-				switch (coronar)
-				{
-				case C:
-					MenuCoronar_B.draw();
-				case REINA:
-					MenuCoronarReina_B.draw();
-				case TORRE:
-					MenuCoronarTorre_B.draw();
-				case ALFIL:
-					MenuCoronarAlfil_B.draw();
-				case CABALLO:
-					MenuCoronarCaballo_B.draw();
-				}
-			}
-
-			if (tipojuego == 1) {
-				switch (coronar)
-				{
-				case C:
-					MenuCoronar_B2.draw();
-				case REINA:
-					MenuCoronarReina_B2.draw();
-				case TORRE:
-					MenuCoronarTorre_B2.draw();
-				case ALFIL:
-					MenuCoronarAlfil_B2.draw();
-				case CABALLO:
-					MenuCoronarCaballo_B2.draw();
-				}
-			}
-		}
-
-		// coronacion negra //
-		if (estadojuego == CORONAR_NEGRAS) {
-			if (tipojuego == 0) {
-				switch (coronar)
-				{
-				case C:
-					MenuCoronar_N.draw();
-				case REINA:
-					MenuCoronarReina_N.draw();
-				case TORRE:
-					MenuCoronarTorre_N.draw();
-				case ALFIL:
-					MenuCoronarAlfil_N.draw();
-				case CABALLO:
-					MenuCoronarCaballo_N.draw();
-				}
-			}
-
-			if (tipojuego == 1) {
-				switch (coronar)
-				{
-				case C:
-					MenuCoronar_N2.draw();
-				case REINA:
-					MenuCoronarReina_N2.draw();
-				case TORRE:
-					MenuCoronarTorre_N2.draw();
-				case ALFIL:
-					MenuCoronarAlfil_N2.draw();
-				case CABALLO:
-					MenuCoronarCaballo_N2.draw();
-				}
-			}
-		}
-		tablero.dibuja();
-	}
-
-	//////////   FIN DE JUEGO   ///////////
-	if (estado == FIN) {
-		if (tipojuego == 0)
-		{
-			if (ganador == 1)
+		//////////   FIN DE JUEGO   ///////////
+		if (estado == FIN) {
+			if (modojuego == TRUE)
 			{
-				switch (final)
+				if (tipojuego == 0)
 				{
-				case 0:
-					MenuGanadorB.draw();
-				case 1:
-					MenuGanadorReB.draw();
-				case 2:
-					MenuGanadorBaB.draw();
+
+					if (ganador == 1)
+					{
+						switch (final)
+						{
+						case 0:
+							MenuGanadorB.draw();
+						case 1:
+							MenuGanadorReB.draw();
+						case 2:
+							MenuGanadorBaB.draw();
+						}
+					}
+
+					if (ganador == 0)
+					{
+						switch (final)
+						{
+						case 0:
+							MenuGanadorN.draw();
+						case 1:
+							MenuGanadorReN.draw();
+						case 2:
+							MenuGanadorBaN.draw();
+						}
+					}
+				}
+
+				if (tipojuego == 1)
+				{
+					if (ganador == 1)
+					{
+						switch (final)
+						{
+						case 0:
+							MenuGanadorB2.draw();
+						case 1:
+							MenuGanadorReB2.draw();
+						case 2:
+							MenuGanadorBaB2.draw();
+						}
+					}
+
+					if (ganador == 0)
+					{
+						switch (final)
+						{
+						case 0:
+							MenuGanadorN2.draw();
+						case 1:
+							MenuGanadorReN2.draw();
+						case 2:
+							MenuGanadorBaN2.draw();
+						}
+					}
+				}
+
+				tablero.dibuja();
+			}
+
+			if (modojuego == FALSE)
+			{
+				if (nivel == 1 || nivel == 2) // si es de los dos primeros niveles
+				{
+					if (tipojuego == 0)
+					{
+						if (ganador == 1) // si gana blancos ( persona )
+						{
+							switch (final)
+							{
+							case 0:
+								IaLC.draw();
+							case 1:
+								IaLCNx.draw();
+							case 2:
+								IaLCBa.draw();
+							}
+						}
+
+						if (ganador == 0) // si gana negros (IA)
+						{
+							switch (final)
+							{
+							case 0:
+								IaLF.draw();
+							case 1:
+								IaLFRe.draw();
+							case 2:
+								IaLFBa.draw();
+							}
+						}
+					}
+
+					if (tipojuego == 1)
+					{
+						if (ganador == 1) // si gana blancos ( persona )
+						{
+							switch (final)
+							{
+							case 0:
+								IaLC2.draw();
+							case 1:
+								IaLCNx2.draw();
+							case 2:
+								IaLCBa2.draw();
+							}
+						}
+
+						if (ganador == 0)
+						{
+							switch (final) // si gana negros (IA)
+							{
+							case 0:
+								IaLF2.draw();
+							case 1:
+								IaLFRe2.draw();
+							case 2:
+								IaLFBa2.draw();
+							}
+						}
+					}
+
+					tablero.dibuja();
 				}
 			}
 
-			if (ganador == 0)
-			{
-				switch (final)
-				{
-				case 0:
-					MenuGanadorN.draw();
-				case 1:
-					MenuGanadorReN.draw();
-				case 2:
-					MenuGanadorBaN.draw();
-				}
-			}
 		}
 
-		if (tipojuego == 1)
-		{
-			if (ganador == 1)
-			{
-				switch (final)
-				{
-				case 0:
-					MenuGanadorB2.draw();
-				case 1:
-					MenuGanadorReB2.draw();
-				case 2:
-					MenuGanadorBaB2.draw();
-				}
-			}
-
-			if (ganador == 0)
-			{
-				switch (final)
-				{
-				case 0:
-					MenuGanadorN2.draw();
-				case 1:
-					MenuGanadorReN2.draw();
-				case 2:
-					MenuGanadorBaN2.draw();
-				}
-			}
-		}
-		tablero.dibuja();
-	}
+	
 
 }
 
@@ -1034,7 +1249,7 @@ int Coordinador::getEstado()
 	return estado;
 }
 
-int Coordinador::getModoJuego()
+int Coordinador::getMenuJuego()
 {
 	return menu_inicio;
 }
