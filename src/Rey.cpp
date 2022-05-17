@@ -102,7 +102,7 @@ bool Rey::movimientoLegal(Casilla* fin) {
 
 	//ENROQUES
 	////////// Enroques rey/torre negros ///////
-	 if(color == 'N' && enroque == false && primermovimiento == false)
+	 if(color == 'N' && enroque == FALSE && primermovimiento == FALSE)
 	 {
 	    //enroque corto (a la derecha)
 	    if (row == 7 && coll == 4 && x_fin == 6 && y_fin == 7 && Tablero::getTipoPiezasT(7, 7) == 2 && Tablero::getCasillaT(7, 7)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(7, 7)->getPrimerMovimiento() == false)
@@ -124,7 +124,7 @@ bool Rey::movimientoLegal(Casilla* fin) {
 	 }
 	 
 	//////////// Enroques rey/torre blancos ///////
-	 if(color == 'B' && enroque == false && primermovimiento == false ) {
+	 if(color == 'B' && enroque == FALSE && primermovimiento == FALSE ) {
 	     //enroque corto
 		 if (row == 0 && coll == 4 && x_fin == 6 && y_fin == 0 && Tablero::getTipoPiezasT(7, 0) == 2 && Tablero::getCasillaT(7, 0)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(7, 0)->getPrimerMovimiento() == false)
 		 {

@@ -76,10 +76,18 @@ void IA1::moverPieza(int button, int state, int x, int y)
 	int posfinx = 0, posfiny = 0;
 	int posinix = 0, posiniy = 0;
 	int maximo = 0;
-	//int i;
 
-	//for (i = 0 ; i < 20000000 ; i++){}
-	
+	// temporizador para que tarde un rato en hacer el movimiento
+	unsigned tiempo_ini, tiempo_fin;
+	double tiempopasado = 0;
+	tiempo_ini = clock();
+
+	do
+	{
+		tiempo_fin = clock();
+		tiempopasado = (double(tiempo_fin - tiempo_ini) / CLOCKS_PER_SEC);
+	} while (tiempopasado < 3);
+
 		//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	for (x_ini = 0; x_ini < 8; x_ini++)
 	{
