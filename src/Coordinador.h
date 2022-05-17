@@ -203,34 +203,34 @@ private:
 	Sprite PerNK_TS{ "recursos/menu/personajes/PLAYER2_TS_ROJO.png", 0, 0, 130, 80 };
 
 	// menu IA nivel completado queens //
-	Sprite IaLC{ "recursos/LEVEL_COMPLETED.png", 0, 0, 110, 50 };
-	Sprite IaLCNx{ "recursos/LEVELCOMPLETED_NEXTLEVEL.png", 0, 0, 110, 50 };
-	Sprite IaLCBa{ "recursos/LEVELCOMPLETED_BACKTOMENU.png", 0, 0, 110, 50 };
+	Sprite IaLC{ "recursos/menu/ia/LEVEL_COMPLETED.png", 0, 0, 110, 50 };
+	Sprite IaLCNx{ "recursos/menu/ia/LEVELCOMPLETED_NEXTLEVEL.png", 0, 0, 110, 50 };
+	Sprite IaLCBa{ "recursos/menu/ia/LEVELCOMPLETED_BACKTOMENU.png", 0, 0, 110, 50 };
 
 	// menu IA nivel completado kings //
-	Sprite IaLC2{ "recursos/LEVEL_COMPLETED_rojo.png", 0, 0, 110, 50 };
-	Sprite IaLCNx2{ "recursos/LEVELCOMPLETED_NEXTLEVEL_rojo.png", 0, 0, 110, 50 };
-	Sprite IaLCBa2{ "recursos/LEVELCOMPLETED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLC2{ "recursos/menu/ia/LEVEL_COMPLETED_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLCNx2{ "recursos/menu/ia/LEVELCOMPLETED_NEXTLEVEL_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLCBa2{ "recursos/menu/ia/LEVELCOMPLETED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
 	// menu IA nivel fallado queens //
-	Sprite IaLF{ "recursos/LEVELFAILED_NS.png", 0, 0, 110, 50 };
-	Sprite IaLFRe{ "recursos/LEVELFAILED_RETRY.png", 0, 0, 110, 50 };
-	Sprite IaLFBa{ "recursos/LEVELFAILED_BACKTOMENU.png", 0, 0, 110, 50 };
+	Sprite IaLF{ "recursos/menu/ia/LEVELFAILED_NS.png", 0, 0, 110, 50 };
+	Sprite IaLFRe{ "recursos/menu/ia/LEVELFAILED_RETRY.png", 0, 0, 110, 50 };
+	Sprite IaLFBa{ "recursos/menu/ia/LEVELFAILED_BACKTOMENU.png", 0, 0, 110, 50 };
 
 	// menu IA nivel fallado kings //
-	Sprite IaLF2{ "recursos/LEVELFAILED_NS_rojo.png", 0, 0, 110, 50 };
-	Sprite IaLFRe2{ "recursos/LEVELFAILED_RETRY_rojo.png", 0, 0, 110, 50 };
-	Sprite IaLFBa2{ "recursos/LEVELFAILED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLF2{ "recursos/menu/ia/LEVELFAILED_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLFRe2{ "recursos/menu/ia/LEVELFAILED_RETRY_rojo.png", 0, 0, 110, 50 };
+	Sprite IaLFBa2{ "recursos/menu/ia/LEVELFAILED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
 	// menu IA storymode completed queens //
-	Sprite IaSC{ "recursos/STORYMODECOMPLETED_NS.png", 0, 0, 110, 50 };
-	Sprite IaSCRe{ "recursos/STORYMODECOMPLETED_RESTART.png", 0, 0, 110, 50 };
-	Sprite IaSCBa{ "recursos/STORYMODECOMPLETED_BACKTOMENU.png", 0, 0, 110, 50 };
+	Sprite IaSC{ "recursos/menu/ia/STORYMODECOMPLETED_NS.png", 0, 0, 110, 50 };
+	Sprite IaSCRe{ "recursos/menu/ia/STORYMODECOMPLETED_RESTART.png", 0, 0, 110, 50 };
+	Sprite IaSCBa{ "recursos/menu/ia/STORYMODECOMPLETED_BACKTOMENU.png", 0, 0, 110, 50 };
 
 	// menu IA storymode completed kings //
-	Sprite IaSC2{ "recursos/STORYMODECOMPLETED_NS_rojo.png", 0, 0, 110, 50 };
-	Sprite IaSCRe2{ "recursos/STORYMODECOMPLETED_RESTART_rojo.png", 0, 0, 110, 50 };
-	Sprite IaSCBa2{ "recursos/STORYMODECOMPLETED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+	Sprite IaSC2{ "recursos/menu/ia/STORYMODECOMPLETED_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite IaSCRe2{ "recursos/menu/ia/STORYMODECOMPLETED_RESTART_rojo.png", 0, 0, 110, 50 };
+	Sprite IaSCBa2{ "recursos/menu/ia/STORYMODECOMPLETED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
 public:
 	Coordinador();

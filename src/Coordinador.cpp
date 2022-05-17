@@ -25,7 +25,7 @@ Coordinador::Coordinador()
 	help = 0;
 
 	// musica //
-	musica(); // para que suene al inicio la música
+	//musica(); // para que suene al inicio la música
 }
 
 Coordinador::~Coordinador() {}
@@ -294,15 +294,14 @@ void Coordinador::raton(int button, int state, int x, int y)
 						return;
 					}
 
-					else if (Tablero::detectar_jaque('B') == true )
+					else if (Tablero::detectar_jaque('B') == true)
 					{
 						musicajaque = true;
 						estadojuego = JAQUE;
 						musica();
 						return;
 					}
-
-					return;
+	
 				}
 
 				// si termina el turno de las blancas
@@ -329,14 +328,12 @@ void Coordinador::raton(int button, int state, int x, int y)
 						musica();
 						return;
 					}
-
-					return;
 				}
 
 				if (modojuego == TRUE)
 				{
-					if (tablero.getCoronacion('B') == TRUE) estadojuego = CORONAR_BLANCAS;
-					else if (tablero.getCoronacion('N') == TRUE) estadojuego = CORONAR_NEGRAS;
+					if (tablero.getCoronacion('B') == TRUE) { estadojuego = CORONAR_BLANCAS; }
+					else if (tablero.getCoronacion('N') == TRUE) { estadojuego = CORONAR_NEGRAS; }
 				}
 
 				if (modojuego == FALSE)
@@ -1051,6 +1048,69 @@ void Coordinador::dibuja()
 
 			if (modojuego == FALSE)
 			{
+				if (nivel == 3) // si es el último nivel
+				{
+					if (tipojuego == 0)
+					{
+						if (ganador == 1) // si gana blancos ( persona )
+						{
+							switch (final)
+							{
+							case 0:
+								IaSC.draw();
+							case 1:
+								IaSCRe.draw();
+							case 2:
+								IaSCBa.draw();
+							}
+						}
+
+						if (ganador == 0) // si gana negros (IA)
+						{
+							switch (final)
+							{
+							case 0:
+								IaLF.draw();
+							case 1:
+								IaLFRe.draw();
+							case 2:
+								IaLFBa.draw();
+							}
+						}
+					}
+
+					if (tipojuego == 1)
+					{
+						if (ganador == 1) // si gana blancos ( persona )
+						{
+							switch (final)
+							{
+							case 0:
+								IaSC2.draw();
+							case 1:
+								IaSCRe2.draw();
+							case 2:
+								IaSCBa2.draw();
+							}
+						}
+
+						if (ganador == 0)
+						{
+							switch (final) // si gana negros (IA)
+							{
+							case 0:
+								IaLF2.draw();
+							case 1:
+								IaLFRe2.draw();
+							case 2:
+								IaLFBa2.draw();
+							}
+						}
+					}
+
+					tablero.dibuja();
+				}
+
 				if (nivel == 1 || nivel == 2) // si es de los dos primeros niveles
 				{
 					if (tipojuego == 0)
