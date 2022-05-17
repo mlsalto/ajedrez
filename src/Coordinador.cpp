@@ -280,8 +280,10 @@ void Coordinador::raton(int button, int state, int x, int y)
 				// si termina el turno de las negras
 				if (tablero.getTurnoAcabadoN() == true)
 				{
-					musicajaque = false;
-					musica();
+					if(musicajaque==true){
+						musica();
+						musicajaque = false;
+					}
 
 					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque_mate('B') == true)
 					{
@@ -307,8 +309,10 @@ void Coordinador::raton(int button, int state, int x, int y)
 				// si termina el turno de las blancas
 				if (tablero.getTurnoAcabadoB() == true)
 				{
-					musicajaque = false;
-					musica();
+					if (musicajaque == true) {
+						musica();
+						musicajaque = false;
+					}
 
 					if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('N') == true)
 					{
@@ -1202,15 +1206,15 @@ bool Coordinador::tiempo(char color)
 
 void Coordinador::musica()
 {
-	/*if (estado == INICIO || estado == OPCIONES) playMusica("recursos/menu.mp3");
+	if (estado == INICIO || estado == OPCIONES) playMusica("recursos/menu.mp3");
 	if (estado == JUEGO) {
-		if (musicajaque == false)
+		if (estadojuego==TURNO)
 			playMusica("recursos/juego.mp3", true);
 
-		else if (musicajaque == true)
+		else if (estadojuego==JAQUE)
 			playMusica("recursos/JaqueTheme.mp3");
 	}
-	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");*/
+	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");
 }
 
 void Coordinador::mueve(float t)
