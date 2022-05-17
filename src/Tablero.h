@@ -39,6 +39,11 @@ private:
 	Sprite tableroAjedrez2{ "recursos/tablero2.png", 0, 0, 64, 64 };
 	Sprite marcoTablero2{ "recursos/Marco2.png", 0, 0, 72, 72 };
 	Sprite letrasTablero{ "recursos/numeros_y_letras.png", 0, 0, 90, 90 };
+	Sprite marcoTurno{ "recursos/turno.png", 0, 0, 28, 41 };
+	Sprite blancasq{ "recursos/piezas/peonB.png", 0, 0, 10, 10 };
+	Sprite negrasq{ "recursos/piezas/peonA.png", 0, 0, 10, 10 };
+	Sprite blancask{ "recursos/piezas/peonR.png", 0, 0, 10, 10 };
+	Sprite negrask{ "recursos/piezas/peonN.png", 0, 0, 10, 10};
 
 	///// JUGADORES ////
 	Jugador* jugador1;
