@@ -92,6 +92,9 @@ public:
 	static bool detectar_jaque(char color);
 	static bool detectar_jaque_mate(char color);
 
+	// tablas //
+	static bool detectar_tablas(char color);
+
 	// coronacion //
 	bool getCoronacion(char color);
 	void setCoronacion(int tipoficha);

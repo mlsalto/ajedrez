@@ -554,6 +554,102 @@ bool Tablero::detectar_jaque_mate(char color) {
 	return true;
 }
 
+bool Tablero::detectar_tablas(char color)
+{
+	int i, j;
+	int a, b;
+	int x, y;
+
+	Pieza* piezaini = 0;
+	int piezaini_ini_x, piezaini_ini_y;
+
+	Pieza* piezacomida;
+	Pieza* piezamovida = 0;
+
+	int pos_rey_x = 0, pos_rey_y = 0;
+	//bucle anidado para recorrer el tablero y comprobar si alguna pieza puede hacer jaque a la posición actual del rey
+	bool rey = false;
+
+	for (i = 0; i < 8 && rey == false; i++)
+	{
+		for (j = 0; j < 8; j++)
+		{
+			if (casillas[i][j]->getTipoPieza() == 6 && casillas[i][j]->getPieza()->getColorPieza() == color)
+			{
+				pos_rey_x = casillas[i][j]->getColumna();
+				pos_rey_y = casillas[i][j]->getFila();
+				rey = true;
+			}
+		}
+	}
+
+
+	// AHOGADO. no existen movimientos legales de ninguna pieza, y el rey solo puede moverse a una casilla atacada
+	for (i = 0; i < 8; i++)
+	{
+		for (j = 0; j < 8; j++) {
+			// encontrar pieza 
+			if (casillas[i][j]->getTipoPieza() != 0 && casillas[i][j]->getPieza()->getColorPieza() == color)
+			{
+				piezaini = casillas[i][j]->getPieza(); // guardar dato pieza
+				piezaini_ini_x = i; piezaini_ini_y = j; // guardar dato posicion inicial
+
+				for (a = 0; a < 8; a++)
+				{
+					for (b = 0; b < 8; b++)
+					{
+						// realizar mov legal de la pieza 
+						if (piezaini->movimientoLegal(casillas[a][b]) == true) {
+							if (piezaini->getTipoPieza() == 6) {
+								// revisar que si alguna pieza contraria puede comersela
+								 // buscamos pieza contraria
+								for (x = 0; x < 8; x++)
+								{
+									for (y = 0; y < 8; y++)
+									{
+										if (casillas[x][y]->getTipoPieza() != 0 && casillas[x][y]->getPieza()->getColorPieza() != color)
+										{
+											//realizamos el movimiento
+											if (casillas[x][y]->getPieza()->movimientoLegal(casillas[a][b]) == FALSE)
+											{
+												// si no está atacada, es false TABLAS
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// TABLAS MUERTAS ( por insuficiencia de piezas)
+	// rey vs rey
+	// rey + alfil vs rey
+	// rey + caballo vs rey
+	// rey + alfil vs rey + alfil (ambos alfiles mismo color)
+	//ALFIL(3) CABALLO(4)
+	// 
+	//for (i = 0; i < 8; i++)
+	//{
+	//	for (j = 0; j < 8; j++) {
+	//		if (casillas[i][j]->getTipoPieza() != 0 && casillas[i][j]->getTipoPieza() != 3 && casillas[i][j]->getTipoPieza() != 4 && casillas[i][j]->getTipoPieza() != 6 )
+	//		{
+	//        return false;
+	//		}
+	//      if(casillas[i][j]->getTipoPieza() != 3 && casillas[i][j]->getTipoPieza() != 4 && casillas[i][j]->getTipoPieza() != 6)
+	//      {
+	// 
+	//      }
+	//	}
+	//}
+
+	
+	return false;
+}
+
 void Tablero::eliminarPiezaT(int x, int y)
 {
 	piezas.eliminar(casillas[x][y]->getPieza());
