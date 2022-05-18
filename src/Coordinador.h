@@ -313,6 +313,12 @@ protected:
 	bool ganar; // true(gana persona), false(pierde persona)
 	/////////////////////////////////////////
 
+	// variables de tiempo //
+	int j = 0;
+	int timeBlack;
+	int timeWhite;
+	int turnotime; // blacno(1) negro(0) ninguno(2)
+	//////////////////////////////////
 
 	enum Estado { INICIO, OPCIONES , S_PER_BLANCO, S_PER_NEGRO, JUEGO,  FIN}; //editar los estados
 	Estado estado;

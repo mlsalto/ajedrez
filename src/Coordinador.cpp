@@ -114,9 +114,9 @@ void Coordinador::tecla(unsigned char key)
 {
 	if (estado == JUEGO) {
 		if (estadojuego == TURNO) {
-			if (key == 'p' || key == 'P') { estadojuego = PAUSA; stopMusica(); playMusica("recursos/Characterselection.mp3"); }
+			if (key == 'p' || key == 'P') { turnotime = 2;  estadojuego = PAUSA; stopMusica(); playMusica("recursos/Characterselection.mp3"); }
 			if (key == 'h' || key == 'H') {
-				estadojuego = AYUDA;  menu_help == H; stopMusica(); playMusica("recursos/Characterselection.mp3");
+				turnotime = 2; estadojuego = AYUDA;  menu_help == H; stopMusica(); playMusica("recursos/Characterselection.mp3");
 			}
 		}
 	}
@@ -143,6 +143,9 @@ void Coordinador::raton(int button, int state, int x, int y)
 				estado = S_PER_BLANCO;
 				modojuego = TRUE;
 				personajeB = 0;
+
+				timeBlack = 90;
+				timeWhite = 90;
 
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
 				return;
@@ -277,6 +280,10 @@ void Coordinador::raton(int button, int state, int x, int y)
 			if (estadojuego == TURNO) {
 				tablero.ratonTablero(button, state, x, y);
 
+				// si sigue alguno en turno
+				if (tablero.getTurnoAcabadoB() == false) turnotime = 1;
+				if (tablero.getTurnoAcabadoN() == false) turnotime = 0;
+
 				// si termina el turno de las negras
 				if (tablero.getTurnoAcabadoN() == true)
 				{
@@ -362,6 +369,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
+				turnotime = 2;
 				if (x > reshx * 760 || x < reshx * 600 || y < reshy * 254 || y > reshy * 593) { return; /*no hay modo coronar*/ }
 				else if (x < reshx * 760 && x > reshx * 600 && y < reshy * 289 && y > reshy * 254) { tablero.setCoronacion(3); estadojuego = TURNO; return;/*ALFIL*/ }
 				else if (x < reshx * 760 && x > reshx * 600 && y < reshy * 391 && y > reshy * 353) { tablero.setCoronacion(4); estadojuego = TURNO; return; /*CABALLO*/ }
@@ -370,7 +378,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (estadojuego == PAUSA) {
-
+				turnotime = 2;
 				if (x > reshx * 737 || x < reshx * 498 || y < reshy * 329 || y > reshy * 539) { return; /*no hay modo pausa*/ }
 				else if (x < reshx * 643 && x > reshx * 498 && y < reshy * 370 && y > reshy * 329) { estadojuego = TURNO; playMusica("recursos/Pokeselect.mp3"); musica(); return;/*resume*/ }
 				else if (x < reshx * 643 && x > reshx * 498 && y < reshy * 452 && y > reshy * 380) { tablero.eliminarTablero(); tablero.nuevoTablero(); estadojuego = TURNO; playMusica("recursos/Pokeselect.mp3"); musica(); return;/*restart*/ }
@@ -379,7 +387,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (estadojuego == AYUDA) {
-
+				turnotime = 2;
 				if (menu_help == H) {
 					if (x < reshx * 319 && x > reshx * 252 && y < reshy * 233 && y > reshy * 200) { estadojuego = TURNO; musica(); return; }
 					else if (x > reshx * 742 || x < reshx * 509 || y < reshy * 345 || y > reshy * 540) { return; /*no hay modo ayuda*/ }
@@ -427,6 +435,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 	}
 
 	if (estado == FIN) {
+		turnotime = 2;
 
 		if (modojuego == TRUE) {
 			if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
@@ -722,6 +731,9 @@ void Coordinador::dibuja()
 
 		////////   JUEGO   /////////
 		if (estado == JUEGO) {
+
+			ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", 20);
+			ETSIDI::printxy("Time left: 00:00", 48, 37);
 
 			// turno //
 			if (estadojuego == TURNO) {
@@ -1332,6 +1344,26 @@ void Coordinador::mueve(float t)
 				i = 0;
 				estado = FIN;
 			}
+		}
+	}
+
+	if (turnotime == 1)
+	{
+		j++;
+		if (j == 10)
+		{
+			timeWhite = timeWhite - 1;
+			j = 0;
+		}
+	}
+
+	if( turnotime == 0)
+	{
+		j++;
+		if (j == 10)
+		{
+			timeBlack = timeBlack - 1;
+			j = 0;
 		}
 	}
 }
