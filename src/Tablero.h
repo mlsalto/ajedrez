@@ -93,7 +93,8 @@ public:
 	static bool detectar_jaque_mate(char color);
 
 	// tablas //
-	static bool detectar_tablas(char color);
+	static bool detectar_ahogado(char color);
+	static bool detectar_tablas_muertas(char color);
 
 	// coronacion //
 	bool getCoronacion(char color);
