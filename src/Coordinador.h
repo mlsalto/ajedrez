@@ -264,6 +264,9 @@ public:
 	int getEstadoJuego();
 	int getMenuJuego();
 
+	// temporizador //
+	void dibujarTempWhite(int digito);
+
 protected:
 	Tablero tablero;
 
