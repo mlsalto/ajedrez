@@ -43,7 +43,7 @@ private:
 	Sprite blancasq{ "recursos/piezas/peonB.png", 0, 0, 10, 10 };
 	Sprite negrasq{ "recursos/piezas/peonA.png", 0, 0, 10, 10 };
 	Sprite blancask{ "recursos/piezas/peonR.png", 0, 0, 10, 10 };
-	Sprite negrask{ "recursos/piezas/peonN.png", 0, 0, 10, 10};
+	Sprite negrask{ "recursos/piezas/peonM.png", 0, 0, 10, 10};
 
 	///// JUGADORES ////
 	Jugador* jugador1;
