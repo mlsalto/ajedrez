@@ -303,7 +303,13 @@ void Coordinador::raton(int button, int state, int x, int y)
 						musica();
 						return;
 					}
-	
+
+					if (Tablero::detectar_ahogado('N') || Tablero::detectar_ahogado('B') || Tablero::detectar_tablas_muertas('N') || Tablero::detectar_tablas_muertas('B'))
+					{
+						estado = FIN;
+						ganador = 2;
+						return;
+					}
 				}
 
 				// si termina el turno de las blancas
@@ -330,6 +336,13 @@ void Coordinador::raton(int button, int state, int x, int y)
 						musicajaque = true;
 						estadojuego = JAQUE;
 						musica();
+						return;
+					}
+
+					if (Tablero::detectar_ahogado('N') || Tablero::detectar_ahogado('B') || Tablero::detectar_tablas_muertas('N') || Tablero::detectar_tablas_muertas('B'))
+					{
+						estado = FIN;
+						ganador = 2;
 						return;
 					}
 				}
@@ -1016,6 +1029,19 @@ void Coordinador::dibuja()
 							MenuGanadorBaN.draw();
 						}
 					}
+
+					if (ganador == 2)
+					{
+						switch (final)
+						{
+						case 0:
+							Tablas.draw();
+						case 1:
+							TablasRe.draw();
+						case 2:
+							TablasBa.draw();
+						}
+					}
 				}
 
 				if (tipojuego == 1)
@@ -1045,8 +1071,20 @@ void Coordinador::dibuja()
 							MenuGanadorBaN2.draw();
 						}
 					}
-				}
 
+					if (ganador == 2)
+					{
+						switch (final)
+						{
+						case 0:
+							Tablas2.draw();
+						case 1:
+							TablasRe2.draw();
+						case 2:
+							TablasBa2.draw();
+						}
+					}
+				}
 				tablero.dibuja();
 			}
 
@@ -1081,6 +1119,19 @@ void Coordinador::dibuja()
 								IaLFBa.draw();
 							}
 						}
+
+						if (ganador == 2)
+						{
+							switch (final)
+							{
+							case 0:
+								Tablas.draw();
+							case 1:
+								TablasRe.draw();
+							case 2:
+								TablasBa.draw();
+							}
+						}
 					}
 
 					if (tipojuego == 1)
@@ -1110,8 +1161,20 @@ void Coordinador::dibuja()
 								IaLFBa2.draw();
 							}
 						}
-					}
 
+						if (ganador == 2)
+						{
+							switch (final)
+							{
+							case 0:
+								Tablas2.draw();
+							case 1:
+								TablasRe2.draw();
+							case 2:
+								TablasBa2.draw();
+							}
+						}
+					}
 					tablero.dibuja();
 				}
 
@@ -1144,6 +1207,19 @@ void Coordinador::dibuja()
 								IaLFBa.draw();
 							}
 						}
+
+						if (ganador == 2)
+						{
+							switch (final)
+							{
+							case 0:
+								Tablas.draw();
+							case 1:
+								TablasRe.draw();
+							case 2:
+								TablasBa.draw();
+							}
+						}
 					}
 
 					if (tipojuego == 1)
@@ -1173,35 +1249,24 @@ void Coordinador::dibuja()
 								IaLFBa2.draw();
 							}
 						}
-					}
 
+						if (ganador == 2)
+						{
+							switch (final)
+							{
+							case 0:
+								Tablas2.draw();
+							case 1:
+								TablasRe2.draw();
+							case 2:
+								TablasBa2.draw();
+							}
+						}
+					}
 					tablero.dibuja();
 				}
 			}
-
 		}
-
-	
-
-}
-
-bool Coordinador::tiempo(char color)
-{
-	clock_t tiempo; //inicilizar una variable del tipo clock_t -librería <ctime>
-	// siempre va al inicio de cuando queremos empezar a contar el tiempo -cuando empiecen a jugar las blancas o negras en sus respectivos turnos
-	tiempo = clock(); //asignar a tiempo el valor de la función clock();
-
-	// clock() -> es el tiempo actual del ordenador
-
-	//AQUÍ VA LA ACCIÓN QUE TIENE QUE TEMPORIZAR
-
-	//Para 'parar' el tiempo: solo resta el tiempo actual con el tiempo que se ha cogido antes del juego
-	tiempo = clock() - tiempo;
-
-	//tiempo NO contiene en sí, la cantidad de segundos que ha pasado, contiene CLOCKS -> conversión
-	int tiempo_s = int(tiempo) / CLOCKS_PER_SEC;
-
-	return false;
 }
 
 void Coordinador::musica()
