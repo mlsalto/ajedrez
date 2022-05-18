@@ -87,7 +87,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 	{
 		tiempo_fin = clock();
 		tiempopasado = (double(tiempo_fin - tiempo_ini) / CLOCKS_PER_SEC);
-	} while (tiempopasado < 3);
+	} while (tiempopasado < 2);
 
 	//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	
@@ -290,138 +290,147 @@ void IA3::moverPieza(int button, int state, int x, int y)
 
 	// ****************   REALIZACIÓN DEL MOVIMIENTO DESPUÉS DE DECIDIR QUE ES LO QUE QUIERE HACER   *****************//
 
-		// si mueve a una casilla ocupada
-		if (tipomovf == 0)
+	// deshacer lo de la posibilidad del enpassant
+
+	if (posibilidad_passant == true)
+	{
+		EnPassant->setPassant(false);
+		posibilidad_passant = false;
+	}
+
+	// si mueve a una casilla ocupada
+	if (tipomovf == 0)
+	{
+		piezaini = Tablero::getCasillaT(posinix, posiniy)->getPieza();
+		piezafin = Tablero::getCasillaT(posfinx, posfiny)->getPieza();
+		Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
+		Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+		Tablero::eliminarPieza(piezafin); //elimina pieza
+
+		// mira si es el primer movimiento de la torre o rey
+		if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6 || piezaini->getTipoPieza() == 1) && piezaini->getPrimerMovimiento() == false)
 		{
-			piezaini = Tablero::getCasillaT(posinix, posiniy)->getPieza();
-			piezafin = Tablero::getCasillaT(posfinx, posfiny)->getPieza();
+			piezaini->setPrimerMovimiento(true);
+		}
+
+		if (piezaini->getTipoPieza() == 1)
+		{
+			piezaini->setPassant(false);
+		}
+
+		turnoterminado = TRUE;
+		return;
+	}
+
+	// si hace enroque
+	else if (tipomovf == 1)
+	{
+		piezaini = Tablero::getCasillaT(posinix, posiniy)->getPieza();
+
+		if (color == 'N')
+		{
+			if (posfinx == 6) // derecha
+			{
+				piezafin = Tablero::getCasillaT(7, 7)->getPieza();
+				Tablero::getCasillaT(7, 7)->colocarPieza(0);
+				Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+				Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
+				Tablero::getCasillaT(5, 7)->colocarPieza(piezafin);
+			}
+
+			if (posfinx == 2) // izquierda
+			{
+				piezafin = Tablero::getCasillaT(0, 7)->getPieza();
+				Tablero::getCasillaT(0, 7)->colocarPieza(0);
+				Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+				Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
+				Tablero::getCasillaT(3, 7)->colocarPieza(piezafin);
+			}
+		}
+
+		if (color == 'B')
+		{
+			if (posfinx == 6) // derecha
+			{
+				piezafin = Tablero::getCasillaT(7, 0)->getPieza();
+				Tablero::getCasillaT(7, 0)->colocarPieza(0);
+				Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+				Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
+				Tablero::getCasillaT(5, 0)->colocarPieza(piezafin);
+			}
+
+			if (posfinx == 2) // izquierda
+			{
+				piezafin = Tablero::getCasillaT(0, 0)->getPieza();
+				Tablero::getCasillaT(0, 0)->colocarPieza(0);
+				Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+				Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
+				Tablero::getCasillaT(3, 0)->colocarPieza(piezafin);
+			}
+		}
+
+		piezaini->setEnroque(true);
+		turnoterminado = TRUE;
+		return;
+	}
+
+	// si hace en passant
+	else if (tipomovf == 2)
+	{
+		piezaini = Tablero::getCasillaT(posinix, posiniy)->getPieza();
+
+		if (color == 'N')
+		{
+			piezafin = Tablero::getCasillaT(posfinx, posfiny + 1)->getPieza();
 			Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
 			Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+			Tablero::getCasillaT(posfinx, posfiny + 1)->colocarPieza(0);
 			Tablero::eliminarPieza(piezafin); //elimina pieza
-
-			// mira si es el primer movimiento de la torre o rey
-			if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
-			{
-				piezaini->setPrimerMovimiento(true);
-			}
-
-			if (piezaini->getTipoPieza() == 1)
-			{
-				piezaini->setPassant(false);
-			}
-
-			turnoterminado = TRUE;
-			return;
 		}
 
-		// si hace enroque
-		else if (tipomovf == 1)
+		if (color == 'B')
 		{
-			piezaini = Tablero::getCasillaT(posinix, posiniy)->getPieza();
-
-			if (color == 'N')
-			{
-				if (posfinx == 6) // derecha
-				{
-					piezafin = Tablero::getCasillaT(7, 7)->getPieza();
-					Tablero::getCasillaT(7, 7)->colocarPieza(0);
-					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-					Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
-					Tablero::getCasillaT(5, 7)->colocarPieza(piezafin);
-				}
-
-				if (posfinx == 2) // izquierda
-				{
-					piezafin = Tablero::getCasillaT(0, 7)->getPieza();
-					Tablero::getCasillaT(0, 7)->colocarPieza(0);
-					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-					Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
-					Tablero::getCasillaT(3, 7)->colocarPieza(piezafin);
-				}
-			}
-
-			if (color == 'B')
-			{
-				if (posfinx == 6) // derecha
-				{
-					piezafin = Tablero::getCasillaT(7, 0)->getPieza();
-					Tablero::getCasillaT(7, 0)->colocarPieza(0);
-					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-					Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
-					Tablero::getCasillaT(5, 0)->colocarPieza(piezafin);
-				}
-
-				if (posfinx == 2) // izquierda
-				{
-					piezafin = Tablero::getCasillaT(0, 0)->getPieza();
-					Tablero::getCasillaT(0, 0)->colocarPieza(0);
-					Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-					Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
-					Tablero::getCasillaT(3, 0)->colocarPieza(piezafin);
-				}
-			}
-
-			piezaini->setEnroque(true);
-			turnoterminado = TRUE;
-			return;
-		}
-
-		// si hace en passant
-		else if (tipomovf == 2)
-		{
-			piezaini = Tablero::getCasillaT(posinix, posiniy)->getPieza();
-
-			if (color == 'N')
-			{
-				piezafin = Tablero::getCasillaT(posfinx, posfiny + 1)->getPieza();
-				Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
-				Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-				Tablero::getCasillaT(posfinx, posfiny + 1)->colocarPieza(0);
-				Tablero::eliminarPieza(piezafin); //elimina pieza
-			}
-
-			if (color == 'B')
-			{
-				piezafin = Tablero::getCasillaT(posfinx, posfiny - 1)->getPieza();
-				Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
-				Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
-				Tablero::getCasillaT(posfinx, posfiny - 1)->colocarPieza(0);
-				Tablero::eliminarPieza(piezafin); //elimina pieza
-			}
-			turnoterminado = TRUE;
-			return;
-		}
-
-		// si mueve a una casilla vacia
-		else if (tipomovf == 3)
-		{
-			piezaini = Tablero::getCasillaT(posinix, posiniy)->getPieza();
+			piezafin = Tablero::getCasillaT(posfinx, posfiny - 1)->getPieza();
 			Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
 			Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
+			Tablero::getCasillaT(posfinx, posfiny - 1)->colocarPieza(0);
+			Tablero::eliminarPieza(piezafin); //elimina pieza
+		}
+		turnoterminado = TRUE;
+		return;
+	}
 
-			// mira si es el primer movimiento de la torre o rey
-			if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
-			{
-				piezaini->setPrimerMovimiento(true);
-			}
+	// si mueve a una casilla vacia
+	else if (tipomovf == 3)
+	{
+		piezaini = Tablero::getCasillaT(posinix, posiniy)->getPieza();
+		Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
+		Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 
-			// mira si es el primer movimiento del peón
-			if ((piezaini->getTipoPieza() == 1))
+		// mira si es el primer movimiento del peón
+		if ((piezaini->getTipoPieza() == 1))
+		{
+			if (color == 'N')
 			{
-				if (color == 'N')
-				{
-					if (posfiny == 4 && posiniy == 6) piezaini->setPassant(true);
-					else piezaini->setPassant(false);
-				}
-				if (color == 'B')
-				{
-					if (posfiny == 3 && posiniy == 1) piezaini->setPassant(true);
-					else piezaini->setPassant(false);
-				}
+				if (posfiny == 4 && posiniy == 6 && piezaini->getPrimerMovimiento() == false) { piezaini->setPassant(true); EnPassant = piezaini; posibilidad_passant = TRUE; }
+				else piezaini->setPassant(false);
 			}
+			if (color == 'B')
+			{
+				if (posfiny == 3 && posiniy == 1 && piezaini->getPrimerMovimiento() == false) { piezaini->setPassant(true); EnPassant = piezaini; posibilidad_passant = TRUE; }
+				else piezaini->setPassant(false);
+			}
+		}
+
+		// mira si es el primer movimiento de la torre o rey o peon
+		if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6 || piezaini->getTipoPieza() == 1) && piezaini->getPrimerMovimiento() == false)
+		{
+			piezaini->setPrimerMovimiento(true);
+		}
+
 			turnoterminado = TRUE;
 			return;
-		}
+	}
 }
 
 void IA3::movimientocontrario()
