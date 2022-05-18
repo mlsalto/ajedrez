@@ -195,6 +195,14 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 		if (turnoterminado == FALSE) {
 			
+			// primero deshacemos la posibilidad del en passat
+			
+			if (posibilidad_passant == true)
+			{
+				EnPassant->setPassant(false);
+				posibilidad_passant = false;
+			}
+
 			//AUN NO HAY PIEZA SELECCIONADA
 			if (seleccionpieza == FALSE) {
 
@@ -266,7 +274,7 @@ void Persona::moverPieza(int button, int state, int x, int y)
 						Tablero::eliminarPieza(piezafin); //elimina pieza
 
 						// mira si es el primer movimiento de la torre o rey
-						if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
+						if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6 || piezaini->getTipoPieza() == 1) && piezaini->getPrimerMovimiento() == false)
 						{
 							piezaini->setPrimerMovimiento(true);
 						}
@@ -423,25 +431,25 @@ void Persona::moverPieza(int button, int state, int x, int y)
 						else if (Tablero::detectar_jaque(color) == false)
 						{
 							
-							// mira si es el primer movimiento de la torre o rey
-							if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
-							{
-								piezaini->setPrimerMovimiento(true);
-							}
-
 							// mira si es el primer movimiento del peón
 							if ((piezaini->getTipoPieza() == 1))
 							{
 								if (color == 'N')
 								{
-									if (y_tablero == 4 && posiniy== 6) piezaini->setPassant(true);
+									if (y_tablero == 4 && posiniy == 6 && piezaini->getPrimerMovimiento() == false) { piezaini->setPassant(true); EnPassant = piezaini; posibilidad_passant = TRUE; }
 									else piezaini->setPassant(false);
 								}
 								if (color == 'B')
 								{
-									if (y_tablero == 3 && posiniy==1) piezaini->setPassant(true);
+									if (y_tablero == 3 && posiniy == 1 && piezaini->getPrimerMovimiento() == false) { piezaini->setPassant(true); EnPassant = piezaini; posibilidad_passant = TRUE; }
 									else piezaini->setPassant(false);
 								}
+							}
+
+							// mira si es el primer movimiento de la torre o rey o peon
+							if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6 || piezaini->getTipoPieza() == 1) && piezaini->getPrimerMovimiento() == false)
+							{
+								piezaini->setPrimerMovimiento(true);
 							}
 
 							// dibujar casillas legales
