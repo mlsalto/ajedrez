@@ -24,6 +24,7 @@ Coordinador::Coordinador()
 	pause = 0;
 	help = 0;
 
+	turnotime = 2;
 	// musica //
 	musica(); // para que suene al inicio la música
 }
@@ -114,9 +115,9 @@ void Coordinador::tecla(unsigned char key)
 {
 	if (estado == JUEGO) {
 		if (estadojuego == TURNO) {
-			if (key == 'p' || key == 'P') { estadojuego = PAUSA; stopMusica(); playMusica("recursos/Characterselection.mp3"); }
+			if (key == 'p' || key == 'P') { turnotime = 2;  estadojuego = PAUSA; stopMusica(); playMusica("recursos/Characterselection.mp3"); }
 			if (key == 'h' || key == 'H') {
-				estadojuego = AYUDA;  menu_help == H; stopMusica(); playMusica("recursos/Characterselection.mp3");
+				turnotime = 2; estadojuego = AYUDA;  menu_help == H; stopMusica(); playMusica("recursos/Characterselection.mp3");
 			}
 		}
 	}
@@ -143,6 +144,9 @@ void Coordinador::raton(int button, int state, int x, int y)
 				estado = S_PER_BLANCO;
 				modojuego = TRUE;
 				personajeB = 0;
+
+				timeBlack = 5400;
+				timeWhite = 5400;
 
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
 				return;
@@ -280,6 +284,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 				// si termina el turno de las negras
 				if (tablero.getTurnoAcabadoN() == true)
 				{
+					turnotime = 0;
 					if(musicajaque==true){
 						musica();
 						musicajaque = false;
@@ -315,6 +320,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 				// si termina el turno de las blancas
 				if (tablero.getTurnoAcabadoB() == true)
 				{
+					turnotime = 1;
 					if (musicajaque == true) {
 						musica();
 						musicajaque = false;
@@ -362,6 +368,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
+				turnotime = 2;
 				if (x > reshx * 760 || x < reshx * 600 || y < reshy * 254 || y > reshy * 593) { return; /*no hay modo coronar*/ }
 				else if (x < reshx * 760 && x > reshx * 600 && y < reshy * 289 && y > reshy * 254) { tablero.setCoronacion(3); estadojuego = TURNO; return;/*ALFIL*/ }
 				else if (x < reshx * 760 && x > reshx * 600 && y < reshy * 391 && y > reshy * 353) { tablero.setCoronacion(4); estadojuego = TURNO; return; /*CABALLO*/ }
@@ -370,7 +377,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (estadojuego == PAUSA) {
-
+				turnotime = 2;
 				if (x > reshx * 737 || x < reshx * 498 || y < reshy * 329 || y > reshy * 539) { return; /*no hay modo pausa*/ }
 				else if (x < reshx * 643 && x > reshx * 498 && y < reshy * 370 && y > reshy * 329) { estadojuego = TURNO; playMusica("recursos/Pokeselect.mp3"); musica(); return;/*resume*/ }
 				else if (x < reshx * 643 && x > reshx * 498 && y < reshy * 452 && y > reshy * 380) { tablero.eliminarTablero(); tablero.nuevoTablero(); estadojuego = TURNO; playMusica("recursos/Pokeselect.mp3"); musica(); return;/*restart*/ }
@@ -379,7 +386,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (estadojuego == AYUDA) {
-
+				turnotime = 2;
 				if (menu_help == H) {
 					if (x < reshx * 319 && x > reshx * 252 && y < reshy * 233 && y > reshy * 200) { estadojuego = TURNO; musica(); return; }
 					else if (x > reshx * 742 || x < reshx * 509 || y < reshy * 345 || y > reshy * 540) { return; /*no hay modo ayuda*/ }
@@ -427,6 +434,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 	}
 
 	if (estado == FIN) {
+		turnotime = 2;
 
 		if (modojuego == TRUE) {
 			if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
@@ -722,6 +730,14 @@ void Coordinador::dibuja()
 
 		////////   JUEGO   /////////
 		if (estado == JUEGO) {
+
+			ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", 20);
+			ETSIDI::printxy("Time left:", 48, 37);
+			dibujarTempWhite(1);
+			dibujarTempWhite(2);
+			ETSIDI::printxy(":", 69, 37);
+			dibujarTempWhite(3);
+			dibujarTempWhite(4);
 
 			// turno //
 			if (estadojuego == TURNO) {
@@ -1334,6 +1350,30 @@ void Coordinador::mueve(float t)
 			}
 		}
 	}
+
+	if (estadojuego == TURNO)
+	{
+		if (turnotime == 0)
+		{
+			j++;
+			if (j == 10)
+			{
+				timeWhite = timeWhite - 1;
+				dibuja();
+				j = 0;
+			}
+		}
+
+		if (turnotime == 1)
+		{
+			j++;
+			if (j == 10)
+			{
+				timeBlack = timeBlack - 1;
+				j = 0;
+			}
+		}
+	}
 }
 
 void Coordinador::setMenuInicio(int x)
@@ -1386,4 +1426,29 @@ int Coordinador::getMenuJuego()
 int Coordinador::getEstadoJuego()
 {
 	return estadojuego;
+}
+
+void Coordinador::dibujarTempWhite(int digito)
+{
+	int timemin, timesecs, numero;
+	timemin = timeWhite / 60;
+	timesecs = timeWhite % 60;
+	int posx, posy;
+
+	if (digito == 1) { posx = 65; posy = 37; numero = timemin / 10; }
+	if (digito == 2) { posx = 67; posy = 37; numero = timemin % 10; }
+	if (digito == 3) { posx = 70; posy = 37; numero = timesecs / 10; }
+	if (digito == 4) { posx = 72; posy = 37; numero = timesecs % 10; }
+
+	ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", 20);
+	if(numero == 0)ETSIDI::printxy("0", posx, posy);
+	else if (numero == 1)ETSIDI::printxy("1", posx, posy);
+	else if (numero == 2)ETSIDI::printxy("2", posx, posy);
+	else if (numero == 3)ETSIDI::printxy("3", posx, posy);
+	else if (numero == 4)ETSIDI::printxy("4", posx, posy);
+	else if (numero == 5)ETSIDI::printxy("5", posx, posy);
+	else if (numero == 6)ETSIDI::printxy("6", posx, posy);
+	else if (numero == 7)ETSIDI::printxy("7", posx, posy);
+	else if (numero == 8)ETSIDI::printxy("8", posx, posy);
+	else if (numero == 9)ETSIDI::printxy("9", posx, posy);
 }
