@@ -13,6 +13,9 @@ private:
 	Pieza* piezamovida2;
 	Pieza* piezafin;
 
+	Pieza* EnPassant;
+	bool posibilidad_passant = false;
+
 	int tipomovimiento; // comer pieza (0), enroque (1), passant (2), mover a casilla vacia (3)
 
 	int puntospropios, puntoscontrario;

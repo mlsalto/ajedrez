@@ -86,7 +86,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 	{
 		tiempo_fin = clock();
 		tiempopasado = (double(tiempo_fin - tiempo_ini) / CLOCKS_PER_SEC);
-	} while (tiempopasado < 3);
+	} while (tiempopasado < 2);
 
 		//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	for (x_ini = 0; x_ini < 8; x_ini++)
@@ -333,6 +333,12 @@ void IA1::moverPieza(int button, int state, int x, int y)
 
 	if (movimientoposible == TRUE)
 	{
+		if (posibilidad_passant == true)
+		{
+			EnPassant->setPassant(false);
+			posibilidad_passant = false;
+		}
+
 		// si mueve a una casilla ocupada
 		if (tipomovimiento == 0)
 		{
@@ -341,7 +347,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 			Tablero::eliminarPieza(piezafin); //elimina pieza
 
 			// mira si es el primer movimiento de la torre o rey
-			if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
+			if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6 || piezaini->getTipoPieza() == 1) && piezaini->getPrimerMovimiento() == false)
 			{
 				piezaini->setPrimerMovimiento(true);
 			}
@@ -422,25 +428,25 @@ void IA1::moverPieza(int button, int state, int x, int y)
 			Tablero::getCasillaT(posfinx, posfiny)->colocarPieza(piezaini);
 			Tablero::getCasillaT(posinix, posiniy)->colocarPieza(0);
 
-			// mira si es el primer movimiento de la torre o rey
-			if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6) && piezaini->getPrimerMovimiento() == false)
-			{
-				piezaini->setPrimerMovimiento(true);
-			}
-
 			// mira si es el primer movimiento del peón
 			if ((piezaini->getTipoPieza() == 1))
 			{
 				if (color == 'N')
 				{
-					if (posfiny == 4 && posiniy == 6) piezaini->setPassant(true);
+					if (posfiny == 4 && posiniy == 6 && piezaini->getPrimerMovimiento() == false) { piezaini->setPassant(true); EnPassant = piezaini; posibilidad_passant = TRUE; }
 					else piezaini->setPassant(false);
 				}
 				if (color == 'B')
 				{
-					if (posfiny == 3 && posiniy == 1) piezaini->setPassant(true);
+					if (posfiny == 3 && posiniy == 1 && piezaini->getPrimerMovimiento() == false) { piezaini->setPassant(true); EnPassant = piezaini; posibilidad_passant = TRUE; }
 					else piezaini->setPassant(false);
 				}
+			}
+
+			// mira si es el primer movimiento de la torre o rey o peon
+			if ((piezaini->getTipoPieza() == 2 || piezaini->getTipoPieza() == 6 || piezaini->getTipoPieza() == 1) && piezaini->getPrimerMovimiento() == false)
+			{
+				piezaini->setPrimerMovimiento(true);
 			}
 		}
 	}
