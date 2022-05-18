@@ -232,6 +232,16 @@ private:
 	Sprite IaSCRe2{ "recursos/menu/ia/STORYMODECOMPLETED_RESTART_rojo.png", 0, 0, 110, 50 };
 	Sprite IaSCBa2{ "recursos/menu/ia/STORYMODECOMPLETED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
+	// menu tablas queens //
+	Sprite Tablas{ "recursos/DRAW_NS.png", 0, 0, 110, 50 };
+	Sprite TablasRe{ "recursos/DRAW_REMATCH.png", 0, 0, 110, 50 };
+	Sprite TablasBa{ "recursos/DRAW_BACKTOMENU.png", 0, 0, 110, 50 };
+
+	// menu tablas kings //
+	Sprite Tablas2{ "recursos/DRAW_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite TablasRe2{ "recursos/DRAW_REMATCH_rojo.png", 0, 0, 110, 50 };
+	Sprite TablasBa2{ "recursos/DRAW_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+
 public:
 	Coordinador();
 	virtual ~Coordinador();
@@ -242,7 +252,6 @@ public:
 	void musica();
 	void mueve(float t);
 	void dibuja();
-	bool tiempo(char color);
 
 	// setters //
 	void setMenuInicio(int x);
@@ -282,7 +291,7 @@ protected:
 	//////////////////////////
 
 	// variables Jaque y Jaque Mate//
-	int ganador; // blancas(0) negras (1)
+	int ganador; // blancas(0) negras (1) tablas (2)
 	int final; // final (0) rematch (1) back to(2)
 	//////////////////////////
 
@@ -308,7 +317,7 @@ protected:
 	enum Estado { INICIO, OPCIONES , S_PER_BLANCO, S_PER_NEGRO, JUEGO,  FIN}; //editar los estados
 	Estado estado;
 
-	enum EstadoJuego { TURNO, TURNO_NEGRAS, JAQUE, JAQUE_MATE, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
+	enum EstadoJuego { TURNO, JAQUE, JAQUE_MATE, TABLAS, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
 	EstadoJuego estadojuego;
 
 	enum Coronar{ C, REINA, TORRE, ALFIL, CABALLO};
