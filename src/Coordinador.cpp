@@ -26,7 +26,7 @@ Coordinador::Coordinador()
 
 	turnotime = 2;
 	// musica //
-	musica(); // para que suene al inicio la música
+	//musica(); // para que suene al inicio la música
 }
 
 Coordinador::~Coordinador() {}
@@ -173,7 +173,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 				timeBlack = 5400;
 				timeWhite = 5400;
 
-				estado = JUEGO;
+				estado = PANTALLA;
 				musica();
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
 			}
@@ -510,7 +510,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 						timeBlack = 5400;
 						timeWhite = 5400;
 
-						estado = JUEGO; 
+						estado = PANTALLA; 
 						estadojuego = TURNO; 
 						i = 0; musica(); 
 						playMusica("recursos/Pokeselect.mp3");
@@ -568,7 +568,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 						timeBlack = 5400;
 						timeWhite = 5400;
 
-						estado = JUEGO;
+						estado = PANTALLA;
 						estadojuego = TURNO;
 						i = 0; musica();
 						playMusica("recursos/Pokeselect.mp3");
@@ -744,6 +744,19 @@ void Coordinador::dibuja()
 				QueenGamHE.draw();
 			case 7:
 				KingGamHE.draw();
+			}
+		}
+
+		if (estado == PANTALLA)
+		{
+			switch (nivel)
+			{
+			case 1:
+				Level1.draw();
+			case 2:
+				Level2.draw();
+			case 3:
+				Level3.draw();
 			}
 		}
 
@@ -1377,29 +1390,82 @@ void Coordinador::mueve(float t)
 		}
 	}
 
+	if (estado == PANTALLA)
+	{
+		j++;
+		if (j == 30)
+		{
+			estado = JUEGO;
+			turnotime = 0;
+			j = 0;
+		}
+	}
+
 	if (estado == JUEGO)
 	{
 		if (estadojuego == TURNO)
 		{
-			if (turnotime == 0)
+			if (modojuego == TRUE)
 			{
-				j++;
-				if (j == 10)
+				if (turnotime == 0)
 				{
-					timeWhite = timeWhite - 1;
-					dibuja();
-					j = 0;
+					j++;
+					if (j == 10)
+					{
+						timeWhite = timeWhite - 1;
+						dibuja();
+						j = 0;
+					}
+				}
+
+				if (turnotime == 1)
+				{
+					j++;
+					if (j == 10)
+					{
+						timeBlack = timeBlack - 1;
+						dibuja();
+						j = 0;
+					}
 				}
 			}
 
-			if (turnotime == 1)
+			if (modojuego == FALSE) 
 			{
-				j++;
-				if (j == 10)
+				if (tablero.getTurno() == TRUE)
 				{
-					timeBlack = timeBlack - 1;
-					dibuja();
-					j = 0;
+					j++;
+					if (j == 10)
+					{
+						timeWhite = timeWhite - 1;
+						dibuja();
+						j = 0;
+					}
+
+					pasada = FALSE;
+				}
+
+				if (tablero.getTurno() == FALSE)
+				{
+					j++;
+					k++;
+
+					if (j == 10)
+					{
+						timeBlack = timeBlack - 1;
+						dibuja();
+						j = 0;
+					}
+
+					if (pasada == FALSE)
+					{
+						if (k > 20)
+						{
+							tablero.ratonTablero(GLUT_RIGHT_BUTTON, GLUT_DOWN, 0, 0);
+							pasada = TRUE;
+							k = 0;
+						}
+					}
 				}
 			}
 		}

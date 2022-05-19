@@ -873,3 +873,8 @@ void Tablero::setCoronacion(int tipoficha)
 		piezas.agregar(q);
 	}
 }
+
+bool Tablero::getTurno() 
+{
+	return turno;
+}

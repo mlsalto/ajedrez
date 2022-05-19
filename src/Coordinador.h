@@ -242,6 +242,11 @@ private:
 	Sprite TablasRe2{ "recursos/DRAW_REMATCH_rojo.png", 0, 0, 110, 50 };
 	Sprite TablasBa2{ "recursos/DRAW_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
+	// menu niveles //
+	Sprite Level1{ "recursos/LEVEL1.png", 0, 0, 150, 80 };
+	Sprite Level2{ "recursos/LEVEL2.png", 0, 0, 150, 80 };
+	Sprite Level3{ "recursos/LEVEL3.png", 0, 0, 150, 80 };
+
 public:
 	Coordinador();
 	virtual ~Coordinador();
@@ -319,12 +324,17 @@ protected:
 
 	// variables de tiempo //
 	int j = 0;
+	int k = 0;
 	int timeBlack;
 	int timeWhite;
 	int turnotime; // blacno(1) negro(0) ninguno(2)
 	//////////////////////////////////
 
-	enum Estado { INICIO, OPCIONES , S_PER_BLANCO, S_PER_NEGRO, JUEGO,  FIN}; //editar los estados
+	// variable ayuda gestion ia //
+	bool pasada;
+	//////////////////////////
+
+	enum Estado { INICIO, OPCIONES , S_PER_BLANCO, S_PER_NEGRO, PANTALLA, JUEGO,  FIN}; //editar los estados
 	Estado estado;
 
 	enum EstadoJuego { TURNO, JAQUE, JAQUE_MATE, TABLAS, PAUSA, AYUDA, CORONAR_BLANCAS, CORONAR_NEGRAS }; // para gestionar Jugadores
