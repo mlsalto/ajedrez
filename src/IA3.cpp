@@ -79,15 +79,15 @@ void IA3::moverPieza(int button, int state, int x, int y)
 	maximo = -9999;
 	
 	// temporizador para que tarde un rato en hacer el movimiento
-	unsigned tiempo_ini, tiempo_fin;
-	double tiempopasado = 0;
-	tiempo_ini = clock();
+	//unsigned tiempo_ini, tiempo_fin;
+	//double tiempopasado = 0;
+	//tiempo_ini = clock();
 
-	do
-	{
-		tiempo_fin = clock();
-		tiempopasado = (double(tiempo_fin - tiempo_ini) / CLOCKS_PER_SEC);
-	} while (tiempopasado < 2);
+	//do
+	//{
+	//	tiempo_fin = clock();
+	//	tiempopasado = (double(tiempo_fin - tiempo_ini) / CLOCKS_PER_SEC);
+	//} while (tiempopasado < 2);
 
 	//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	

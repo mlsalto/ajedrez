@@ -87,6 +87,7 @@ public:
 	static bool getMovimientos();
 	bool getTurnoAcabadoN();
 	bool getTurnoAcabadoB();
+	bool getTurno();
 
 	// jaque y jaque mate //
 	static bool detectar_jaque(char color);
