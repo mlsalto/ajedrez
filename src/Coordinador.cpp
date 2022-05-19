@@ -1318,8 +1318,8 @@ void Coordinador::musica()
 		if (estadojuego==TURNO)
 			playMusica("recursos/juego.mp3", true);
 
-		/*else if (estadojuego==JAQUE)
-			playMusica("recursos/JaqueTheme.mp3");*/
+	    else if (estadojuego==JAQUE)
+			playMusica("recursos/JaqueTheme.mp3", true);
 	}
 	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");
 }
