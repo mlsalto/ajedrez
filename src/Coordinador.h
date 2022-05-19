@@ -266,6 +266,7 @@ public:
 
 	// temporizador //
 	void dibujarTempWhite(int digito);
+	void dibujarTempBlack(int digito);
 
 protected:
 	Tablero tablero;
