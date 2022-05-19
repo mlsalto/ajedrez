@@ -169,6 +169,10 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 				nivel = 1;
 				modojuego = FALSE;
+
+				timeBlack = 5400;
+				timeWhite = 5400;
+
 				estado = JUEGO;
 				musica();
 				tablero.nuevoTablero(); // inicializamos nuevo tablero
@@ -213,7 +217,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 	{
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 			if (tipojuego == 0) {
-				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeN != 0) { estado = JUEGO; estadojuego = TURNO; musica(); return; }
+				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeN != 0) { estado = JUEGO; estadojuego = TURNO; turnotime = 0; musica(); return; }
 				else if (x > reshx * 682 || x < reshx * 275 || y < reshy * 292 || y > reshy * 471) { personajeN = 0; tablero.setPersonaje2(0);  return;/*no hay personaje seleecionado*/ }
 				else if (x < reshx * 556 && x > reshx * 275 && y < reshy * 324 && y > reshy * 292) { personajeN = 1; tablero.setPersonaje2(1); playMusica("recursos/Characterselection.mp3"); return; }
 				else if (x < reshx * 513 && x > reshx * 275 && y < reshy * 370 && y > reshy * 344) { personajeN = 2; tablero.setPersonaje2(2); playMusica("recursos/Characterselection.mp3"); return; }
@@ -222,7 +226,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (tipojuego == 1) {
-				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeN != 0) { estado = JUEGO; estadojuego = TURNO; musica(); return; }
+				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeN != 0) { estado = JUEGO; estadojuego = TURNO; turnotime = 0; musica(); return; }
 				else if (x > reshx * 713 || x < reshx * 264 || y < reshy * 229 || y > reshy * 654) { personajeN = 0; tablero.setPersonaje2(0);  return;/*no hay personaje seleecionado*/ }
 				else if (x < reshx * 493 && x > reshx * 264 && y < reshy * 258 && y > reshy * 229) { personajeN = 1; tablero.setPersonaje2(1); playMusica("recursos/Characterselection.mp3"); return; }
 				else if (x < reshx * 568 && x > reshx * 264 && y < reshy * 307 && y > reshy * 278) { personajeN = 2; tablero.setPersonaje2(2); playMusica("recursos/Characterselection.mp3"); return; }
@@ -279,6 +283,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 
 			if (estadojuego == TURNO) {
+
 				tablero.ratonTablero(button, state, x, y);
 
 				// si termina el turno de las negras
@@ -439,7 +444,15 @@ void Coordinador::raton(int button, int state, int x, int y)
 		if (modojuego == TRUE) {
 			if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 				if (x > reshx * 708 || x < reshx * 470 || y < reshy * 423 || y > reshy * 521) { ; /*no hay final*/ }
-				else if (x < reshx * 624 && x > reshx * 470 && y < reshy * 462 && y > reshy * 423) { tablero.eliminarTablero(); tablero.nuevoTablero(); estado = JUEGO;  estadojuego = TURNO; i = 0; musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
+				else if (x < reshx * 624 && x > reshx * 470 && y < reshy * 462 && y > reshy * 423) {
+					tablero.eliminarTablero();
+					tablero.nuevoTablero(); 
+					estado = JUEGO;
+					timeBlack = 5400;
+					timeWhite = 5400;  
+					estadojuego = TURNO; 
+					i = 0;
+					musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
 				else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
 			}
 		}
@@ -493,6 +506,9 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 							nivel = 1;
 						}
+
+						timeBlack = 5400;
+						timeWhite = 5400;
 
 						estado = JUEGO; 
 						estadojuego = TURNO; 
@@ -548,6 +564,9 @@ void Coordinador::raton(int button, int state, int x, int y)
 							tablero.setPersonaje1(1); // personaje de la persona
 							tablero.setPersonaje2(3); // personaje de la IA
 						}
+
+						timeBlack = 5400;
+						timeWhite = 5400;
 
 						estado = JUEGO;
 						estadojuego = TURNO;
@@ -738,6 +757,13 @@ void Coordinador::dibuja()
 			ETSIDI::printxy(":", 69, 37);
 			dibujarTempWhite(3);
 			dibujarTempWhite(4);
+
+			ETSIDI::printxy("Time left:", -72, 37);
+			dibujarTempBlack(1);
+			dibujarTempBlack(2);
+			ETSIDI::printxy(":", -51, 37);
+			dibujarTempBlack(3);
+			dibujarTempBlack(4);
 
 			// turno //
 			if (estadojuego == TURNO) {
@@ -1351,26 +1377,30 @@ void Coordinador::mueve(float t)
 		}
 	}
 
-	if (estadojuego == TURNO)
+	if (estado == JUEGO)
 	{
-		if (turnotime == 0)
+		if (estadojuego == TURNO)
 		{
-			j++;
-			if (j == 10)
+			if (turnotime == 0)
 			{
-				timeWhite = timeWhite - 1;
-				dibuja();
-				j = 0;
+				j++;
+				if (j == 10)
+				{
+					timeWhite = timeWhite - 1;
+					dibuja();
+					j = 0;
+				}
 			}
-		}
 
-		if (turnotime == 1)
-		{
-			j++;
-			if (j == 10)
+			if (turnotime == 1)
 			{
-				timeBlack = timeBlack - 1;
-				j = 0;
+				j++;
+				if (j == 10)
+				{
+					timeBlack = timeBlack - 1;
+					dibuja();
+					j = 0;
+				}
 			}
 		}
 	}
@@ -1442,6 +1472,33 @@ void Coordinador::dibujarTempWhite(int digito)
 
 	ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", 20);
 	if(numero == 0)ETSIDI::printxy("0", posx, posy);
+	else if (numero == 1)ETSIDI::printxy("1", posx, posy);
+	else if (numero == 2)ETSIDI::printxy("2", posx, posy);
+	else if (numero == 3)ETSIDI::printxy("3", posx, posy);
+	else if (numero == 4)ETSIDI::printxy("4", posx, posy);
+	else if (numero == 5)ETSIDI::printxy("5", posx, posy);
+	else if (numero == 6)ETSIDI::printxy("6", posx, posy);
+	else if (numero == 7)ETSIDI::printxy("7", posx, posy);
+	else if (numero == 8)ETSIDI::printxy("8", posx, posy);
+	else if (numero == 9)ETSIDI::printxy("9", posx, posy);
+}
+
+
+void Coordinador::dibujarTempBlack(int digito)
+{
+	int timemin, timesecs, numero;
+	timemin = timeBlack / 60;
+	timesecs = timeBlack % 60;
+	int posx, posy;
+
+	// -72 48
+	if (digito == 1) { posx = -55; posy = 37; numero = timemin / 10; }
+	if (digito == 2) { posx = -53; posy = 37; numero = timemin % 10; }
+	if (digito == 3) { posx = -50; posy = 37; numero = timesecs / 10; }
+	if (digito == 4) { posx = -48; posy = 37; numero = timesecs % 10; }
+
+	ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", 20);
+	if (numero == 0)ETSIDI::printxy("0", posx, posy);
 	else if (numero == 1)ETSIDI::printxy("1", posx, posy);
 	else if (numero == 2)ETSIDI::printxy("2", posx, posy);
 	else if (numero == 3)ETSIDI::printxy("3", posx, posy);
