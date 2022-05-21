@@ -76,6 +76,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 	int posfinx = 0, posfiny = 0;
 	int posinix = 0, posiniy = 0;
 	int maximo = 0;
+	bool jaque = FALSE;
 
 		//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	for (x_ini = 0; x_ini < 8; x_ini++)
@@ -104,9 +105,8 @@ void IA1::moverPieza(int button, int state, int x, int y)
 
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									puntos = getPuntos(color);
-
-									if (puntos > maximo) {
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -114,6 +114,22 @@ void IA1::moverPieza(int button, int state, int x, int y)
 										maximo = puntos;
 										tipomovimiento = 0;
 										movimientoposible = TRUE;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										puntos = getPuntos(color);
+
+										if (puntos > maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											piezafin = piezacomida;
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 0;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
@@ -171,9 +187,8 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								// comprobar puntos
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									puntos = getPuntos(color);
-
-									if (puntos > maximo) {
+									if(Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezamovida;
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -181,6 +196,22 @@ void IA1::moverPieza(int button, int state, int x, int y)
 										maximo = puntos;
 										tipomovimiento = 1;
 										movimientoposible = TRUE;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										puntos = getPuntos(color);
+
+										if (puntos > maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											piezafin = piezamovida;
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 1;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
@@ -236,9 +267,8 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								// calcular puntos
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									puntos = getPuntos(color);
-
-									if (puntos > maximo) {
+									if(Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -246,6 +276,22 @@ void IA1::moverPieza(int button, int state, int x, int y)
 										maximo = puntos;
 										tipomovimiento = 2;
 										movimientoposible = TRUE;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										puntos = getPuntos(color);
+
+										if (puntos > maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											piezafin = piezacomida;
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 2;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
@@ -264,11 +310,10 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(0);
 
 								// calcular puntos
-								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
+								if (Tablero::detectar_jaque(color) == FALSE ) // comprobar que no haya jaque
 								{
-									puntos = getPuntos(color);
-
-									if (puntos > maximo) {
+									if(Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -276,6 +321,22 @@ void IA1::moverPieza(int button, int state, int x, int y)
 										maximo = puntos;
 										tipomovimiento = 2;
 										movimientoposible = TRUE;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										puntos = getPuntos(color);
+
+										if (puntos > maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											piezafin = piezacomida;
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 2;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
@@ -295,15 +356,29 @@ void IA1::moverPieza(int button, int state, int x, int y)
 								// calcular puntos
 								if (Tablero::detectar_jaque(color) == FALSE) 
 								{
-									puntos = getPuntos(color);
-
-									if (puntos > maximo) {
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
 										maximo = puntos;
 										tipomovimiento = 3;
 										movimientoposible = TRUE;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										puntos = getPuntos(color);
+
+										if (puntos > maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 3;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 

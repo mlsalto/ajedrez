@@ -77,7 +77,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 	int i, j;
 	minimo = -9999;
 	maximo = -9999;
-	
+	bool jaque = FALSE;
 	// evaluacion max 
 	// para cada movimiento posible del jugador sobre "tablero"
 
@@ -109,7 +109,20 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
 									tipomovimiento = 0;
-									movimientocontrario(); // hacer  movimiento del jugador contrario7
+
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
+										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+										tipomovf = tipomovimiento;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										movimientocontrario(); // hacer  movimiento del jugador contrario7
+									}
+									
 								}
 								// deshacemos el movimiento
 
@@ -166,7 +179,19 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
 									tipomovimiento = 1;
-									movimientocontrario();// hacer  movimiento del jugador contrario
+
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
+										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+										tipomovf = tipomovimiento;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										movimientocontrario(); // hacer  movimiento del jugador contrario7
+									}
 								}
 
 								// deshacer enroque
@@ -221,7 +246,19 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
 									tipomovimiento = 2;
-									movimientocontrario(); // hacer  movimiento del jugador contrario
+
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
+										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+										tipomovf = tipomovimiento;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										movimientocontrario(); // hacer  movimiento del jugador contrario7
+									}
 								}
 
 								// deshacer en passant
@@ -238,11 +275,23 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
 								Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(0);
 
-							if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
-							{
-								tipomovimiento = 2;
-								movimientocontrario(); // hacer  movimiento del jugador contrario
-							}
+								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
+								{
+									tipomovimiento = 2;
+
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
+										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+										tipomovf = tipomovimiento;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+									movimientocontrario(); // hacer  movimiento del jugador contrario7
+									}
+								}
 								// deshacer en passant
 								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
 								Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(piezacomida);
@@ -259,7 +308,19 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
 									tipomovimiento = 3;
-									movimientocontrario(); // hacer  movimiento del jugador contrario
+
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
+										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+										tipomovf = tipomovimiento;
+										jaque == TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										movimientocontrario(); // hacer  movimiento del jugador contrario7
+									}
 								}
 
 								// deshacemos el movimiento

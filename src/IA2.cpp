@@ -79,6 +79,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 	int posfinx = 0, posfiny = 0;
 	int posinix = 0, posiniy = 0;
 	int maximo = -9999;
+	bool jaque = FALSE;
 
 	//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	for (x_ini = 0; x_ini < 8; x_ini++)
@@ -107,22 +108,36 @@ void IA2::moverPieza(int button, int state, int x, int y)
 
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									// mirar puntos negros y blancos
-									puntosn = getPuntos('N');
-									puntosb = getPuntos('B');
-
-									if (color == 'N') puntos = puntosn - puntosb;
-									if (color == 'B') puntos = puntosb - puntosn;
-
-									// mirar si es mejor el movimiento o no
-									if (puntos >= maximo) {
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
-										maximo = puntos;
 										tipomovimiento = 0;
 										movimientoposible = TRUE;
+										jaque = TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										// mirar puntos negros y blancos
+										puntosn = getPuntos('N');
+										puntosb = getPuntos('B');
+
+										if (color == 'N') puntos = puntosn - puntosb;
+										if (color == 'B') puntos = puntosb - puntosn;
+
+										// mirar si es mejor el movimiento o no
+										if (puntos >= maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											piezafin = piezacomida;
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 0;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
@@ -180,22 +195,36 @@ void IA2::moverPieza(int button, int state, int x, int y)
 								// comprobar puntos
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									// mirar puntos negros y blancos
-									puntosn = getPuntos('N');
-									puntosb = getPuntos('B');
-
-									if (color == 'N') puntos = puntosn - puntosb;
-									if (color == 'B') puntos = puntosb - puntosn;
-
-									// mirar si es mejor el movimiento o no
-									if (puntos >= maximo) {
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezamovida;
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
-										maximo = puntos;
 										tipomovimiento = 1;
 										movimientoposible = TRUE;
+										jaque = TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										// mirar puntos negros y blancos
+										puntosn = getPuntos('N');
+										puntosb = getPuntos('B');
+
+										if (color == 'N') puntos = puntosn - puntosb;
+										if (color == 'B') puntos = puntosb - puntosn;
+
+										// mirar si es mejor el movimiento o no
+										if (puntos >= maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											piezafin = piezamovida;
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 1;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
@@ -251,22 +280,36 @@ void IA2::moverPieza(int button, int state, int x, int y)
 								// calcular puntos
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									// mirar puntos negros y blancos
-									puntosn = getPuntos('N');
-									puntosb = getPuntos('B');
-
-									if (color == 'N') puntos = puntosn - puntosb;
-									if (color == 'B') puntos = puntosb - puntosn;
-
-									// mirar si es mejor el movimiento o no
-									if (puntos >= maximo) {
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
-										maximo = puntos;
 										tipomovimiento = 2;
 										movimientoposible = TRUE;
+										jaque = TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										// mirar puntos negros y blancos
+										puntosn = getPuntos('N');
+										puntosb = getPuntos('B');
+
+										if (color == 'N') puntos = puntosn - puntosb;
+										if (color == 'B') puntos = puntosb - puntosn;
+
+										// mirar si es mejor el movimiento o no
+										if (puntos >= maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											piezafin = piezacomida;
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 2;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
@@ -287,22 +330,36 @@ void IA2::moverPieza(int button, int state, int x, int y)
 								// calcular puntos
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									// mirar puntos negros y blancos
-									puntosn = getPuntos('N');
-									puntosb = getPuntos('B');
-
-									if (color == 'N') puntos = puntosn - puntosb;
-									if (color == 'B') puntos = puntosb - puntosn;
-
-									// mirar si es mejor el movimiento o no
-									if (puntos >= maximo) {
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
-										maximo = puntos;
 										tipomovimiento = 2;
 										movimientoposible = TRUE;
+										jaque = TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										// mirar puntos negros y blancos
+										puntosn = getPuntos('N');
+										puntosb = getPuntos('B');
+
+										if (color == 'N') puntos = puntosn - puntosb;
+										if (color == 'B') puntos = puntosb - puntosn;
+
+										// mirar si es mejor el movimiento o no
+										if (puntos >= maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											piezafin = piezacomida;
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 2;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
@@ -322,21 +379,34 @@ void IA2::moverPieza(int button, int state, int x, int y)
 								// calcular puntos
 								if (Tablero::detectar_jaque(color) == FALSE)
 								{
-									// mirar puntos negros y blancos
-									puntosn = getPuntos('N');
-									puntosb = getPuntos('B');
-
-									if (color == 'N') puntos = puntosn - puntosb;
-									if (color == 'B') puntos = puntosb - puntosn;
-
-									// mirar si es mejor el movimiento o no
-									if (puntos >= maximo) {
+									if (Tablero::detectar_jaque(!color) == TRUE)
+									{
 										piezaini = pieza; //guardamos valor pieza
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
-										maximo = puntos;
 										tipomovimiento = 3;
 										movimientoposible = TRUE;
+										jaque = TRUE;
+									}
+
+									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									{
+										// mirar puntos negros y blancos
+										puntosn = getPuntos('N');
+										puntosb = getPuntos('B');
+
+										if (color == 'N') puntos = puntosn - puntosb;
+										if (color == 'B') puntos = puntosb - puntosn;
+
+										// mirar si es mejor el movimiento o no
+										if (puntos >= maximo) {
+											piezaini = pieza; //guardamos valor pieza
+											posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
+											posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
+											maximo = puntos;
+											tipomovimiento = 3;
+											movimientoposible = TRUE;
+										}
 									}
 								}
 
