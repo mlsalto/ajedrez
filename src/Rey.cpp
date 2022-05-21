@@ -42,7 +42,7 @@ void Rey::draw() {
 bool Rey::movimientoLegal(Casilla* fin) {
 	////// DEFINICIÓN DE VARIABLES DE AYUDA //////
 	int i, j, row, coll;
-
+	
 	////// FILA Y COLUMNA ACTUAL PIEZA //////
 	coll = (pos.x + 28) / 8;
 	row = (pos.y + 28) / 8;
@@ -102,47 +102,49 @@ bool Rey::movimientoLegal(Casilla* fin) {
 
 	//ENROQUES
 	////////// Enroques rey/torre negros ///////
-	 if(color == 'N' && enroque == FALSE && primermovimiento == FALSE)
-	 {
-	    //enroque corto (a la derecha)
-	    if (row == 7 && coll == 4 && x_fin == 6 && y_fin == 7 && Tablero::getTipoPiezasT(7, 7) == 2 && Tablero::getCasillaT(7, 7)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(7, 7)->getPrimerMovimiento() == false)
-	    {
-		    for (i = coll + 1; i < 7; i++){
-			      if(Tablero::getCasillaOcupada(i, y_fin) == true )	return false;
-		    }
-	        return true;
-	    }
 	
-	    //enroque largo (a la izquierda)
-	   if (row == 7 && coll == 4 && x_fin == 2 && y_fin == 7 && Tablero::getTipoPiezasT(0, 7) == 2 && Tablero::getCasillaT(0, 7)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(0, 7)->getPrimerMovimiento() == false)
-	   {
-		    for (i = coll - 1; i > 0 ; i--){
-			      if(Tablero::getCasillaOcupada(i, y_fin) == true )return false;
-		    }
-            return true;
-	   }
-	 }
-	 
-	//////////// Enroques rey/torre blancos ///////
-	 if(color == 'B' && enroque == FALSE && primermovimiento == FALSE ) {
-	     //enroque corto
-		 if (row == 0 && coll == 4 && x_fin == 6 && y_fin == 0 && Tablero::getTipoPiezasT(7, 0) == 2 && Tablero::getCasillaT(7, 0)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(7, 0)->getPrimerMovimiento() == false)
-		 {
-			 for (i = coll + 1; i < 7; i++) {
-				 if (Tablero::getCasillaOcupada(i, y_fin) == true)	return false;
-			 }
-			 return true;
-		 }
-	 
-	     //enroque largo (a la izquierda)
-	     if (row == 0 && coll == 4 && x_fin == 2 && y_fin == 0 && Tablero::getTipoPiezasT(0, 0) == 2 && Tablero::getCasillaT(0, 0)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(0, 0)->getPrimerMovimiento() == false)
-		 {
-		    for (i = coll - 1; i > 0 ; i--){
-			    if(Tablero::getCasillaOcupada(i, y_fin) == true )return false;
-		    }
-	        return true;
-	     }
-     }
+		if (color == 'N' && enroque == FALSE && primermovimiento == FALSE )
+		{
+			//enroque corto (a la derecha)
+			if (row == 7 && coll == 4 && x_fin == 6 && y_fin == 7 && Tablero::getTipoPiezasT(7, 7) == 2 && Tablero::getCasillaT(7, 7)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(7, 7)->getPrimerMovimiento() == false)
+			{
+				for (i = coll + 1; i < 7; i++) {
+					if (Tablero::getCasillaOcupada(i, y_fin) == true)	return false;
+				}
+				return true;
+			}
+
+			//enroque largo (a la izquierda)
+			if (row == 7 && coll == 4 && x_fin == 2 && y_fin == 7 && Tablero::getTipoPiezasT(0, 7) == 2 && Tablero::getCasillaT(0, 7)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(0, 7)->getPrimerMovimiento() == false)
+			{
+				for (i = coll - 1; i > 0; i--) {
+					if (Tablero::getCasillaOcupada(i, y_fin) == true)return false;
+				}
+				return true;
+			}
+		}
+
+		//////////// Enroques rey/torre blancos ///////
+		if (color == 'B' && enroque == FALSE && primermovimiento == FALSE ) {
+			//enroque corto
+			if (row == 0 && coll == 4 && x_fin == 6 && y_fin == 0 && Tablero::getTipoPiezasT(7, 0) == 2 && Tablero::getCasillaT(7, 0)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(7, 0)->getPrimerMovimiento() == false)
+			{
+				for (i = coll + 1; i < 7; i++) {
+					if (Tablero::getCasillaOcupada(i, y_fin) == true)	return false;
+				}
+				return true;
+			}
+
+			//enroque largo (a la izquierda)
+			if (row == 0 && coll == 4 && x_fin == 2 && y_fin == 0 && Tablero::getTipoPiezasT(0, 0) == 2 && Tablero::getCasillaT(0, 0)->getPieza()->getColorPieza() == color && Tablero::getPiezasT(0, 0)->getPrimerMovimiento() == false)
+			{
+				for (i = coll - 1; i > 0; i--) {
+					if (Tablero::getCasillaOcupada(i, y_fin) == true)return false;
+				}
+				return true;
+			}
+		}
+	
 
 	return false;
 }
