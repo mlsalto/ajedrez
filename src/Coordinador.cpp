@@ -1407,6 +1407,7 @@ void Coordinador::mueve(float t)
 		if (j == 30)
 		{
 			estado = JUEGO;
+			estadojuego = TURNO;
 			turnotime = 0;
 			j = 0;
 		}
