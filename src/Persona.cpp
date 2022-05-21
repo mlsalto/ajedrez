@@ -104,6 +104,8 @@ void Persona::moverPieza(int button, int state, int x, int y)
 	int x_cell, y_cell;
 	int x_tablero, y_tablero;
 	int coorx, coory;
+	eleccionrey = FALSE;
+	primermovrey = FALSE;
 
 	// cálculo de coordenadas del tablero //
 	float ratioy = glutGet(GLUT_WINDOW_HEIGHT) * 1.0 / 768;
@@ -209,9 +211,21 @@ void Persona::moverPieza(int button, int state, int x, int y)
 					Tablero::getCasillaT(x_tablero, y_tablero)->setTipoCasilla(1);
 
 					// dibujar casillas legales
-					if (Tablero::detectar_jaque(color) == true && piezaini->getTipoPieza() == 6)
+					if (Tablero::detectar_jaque(color) == true && piezaini->getTipoPieza() == 6 )
 					{
-						piezaini->setPrimerMovimiento(true);
+						if (piezaini->getPrimerMovimiento() == false)
+						{
+							rey = piezaini;
+							eleccionrey = TRUE;
+							piezaini->setPrimerMovimiento(true);
+						}
+
+						if (piezaini->getPrimerMovimiento() == true)
+						{
+							primermovrey = TRUE;
+							rey = piezaini;
+							eleccionrey = TRUE;
+						}
 					}
 
 					for (i = 0 ; i < 8; i++ )
@@ -243,7 +257,33 @@ void Persona::moverPieza(int button, int state, int x, int y)
 
 					if (Tablero::detectar_jaque(color) == true && piezaini->getTipoPieza() == 6)
 					{
-						piezaini->setPrimerMovimiento(true);
+						if (piezaini->getPrimerMovimiento() == false)
+						{
+							rey = piezaini;
+							eleccionrey = TRUE;
+							piezaini->setPrimerMovimiento(true);
+						}
+
+						if (piezaini->getPrimerMovimiento() == true)
+						{
+							primermovrey = TRUE;
+							rey = piezaini;
+							eleccionrey = TRUE;
+						}
+					}
+
+					if (Tablero::detectar_jaque(color) == true && piezaini->getTipoPieza() != 6 && eleccionrey == TRUE )
+					{
+						if (primermovrey == TRUE)
+						{
+							eleccionrey = FALSE;
+						}
+
+						else if (primermovrey == FALSE)
+						{
+							rey->setPrimerMovimiento(false);
+							eleccionrey = FALSE;
+						}
 					}
 
 					// dibujar casillas legales

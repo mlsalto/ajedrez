@@ -10,8 +10,11 @@ private:
 	Pieza* piezaini;
 	Pieza* piezafin;
 	Pieza* EnPassant;
+	Pieza* rey;
 	bool posibilidad_passant = false;
 	int posinix, posiniy;
+	bool eleccionrey;
+	bool primermovrey;
 
 public:
 	Persona();
