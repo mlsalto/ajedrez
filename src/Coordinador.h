@@ -233,14 +233,14 @@ private:
 	Sprite IaSCBa2{ "recursos/menu/ia/STORYMODECOMPLETED_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
 	// menu tablas queens //
-	Sprite Tablas{ "recursos/DRAW_NS.png", 0, 0, 110, 50 };
-	Sprite TablasRe{ "recursos/DRAW_REMATCH.png", 0, 0, 110, 50 };
-	Sprite TablasBa{ "recursos/DRAW_BACKTOMENU.png", 0, 0, 110, 50 };
+	Sprite Tablas{ "recursos/menu/empate/DRAW_NS.png", 0, 0, 110, 50 };
+	Sprite TablasRe{ "recursos/menu/empate/DRAW_REMATCH.png", 0, 0, 110, 50 };
+	Sprite TablasBa{ "recursos/menu/empate/DRAW_BACKTOMENU.png", 0, 0, 110, 50 };
 
 	// menu tablas kings //
-	Sprite Tablas2{ "recursos/DRAW_NS_rojo.png", 0, 0, 110, 50 };
-	Sprite TablasRe2{ "recursos/DRAW_REMATCH_rojo.png", 0, 0, 110, 50 };
-	Sprite TablasBa2{ "recursos/DRAW_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
+	Sprite Tablas2{ "recursos/menu/empate/DRAW_NS_rojo.png", 0, 0, 110, 50 };
+	Sprite TablasRe2{ "recursos/menu/empate/DRAW_REMATCH_rojo.png", 0, 0, 110, 50 };
+	Sprite TablasBa2{ "recursos/menu/empate/DRAW_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
 	// menu niveles //
 	Sprite Level1{ "recursos/LEVEL1.png", 0, 0, 150, 80 };

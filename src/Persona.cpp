@@ -104,21 +104,15 @@ void Persona::moverPieza(int button, int state, int x, int y)
 	int x_cell, y_cell;
 	int x_tablero, y_tablero;
 	int coorx, coory;
-	/*coorx = x - 402;
-	coory = y - 103;*/
-	//w * 1.0 / 1366, h * 1.0 / 768
 
+	// cálculo de coordenadas del tablero //
 	float ratioy = glutGet(GLUT_WINDOW_HEIGHT) * 1.0 / 768;
 	float ratiox = (glutGet(GLUT_WINDOW_HEIGHT) * 1.7786) / 1366;
 
 	float ratio = glutGet(GLUT_WINDOW_WIDTH) * 1.0 / glutGet(GLUT_WINDOW_HEIGHT);
 
-	cout << x << ',' << y << endl;
-
 	coorx =  x - (402 * ratiox) - (glutGet(GLUT_WINDOW_WIDTH) - (glutGet(GLUT_WINDOW_HEIGHT) * 1.7786)) / 2;
 	coory =  y - (103 * ratioy);
-	
-	cout << coorx << ',' << coory << endl;
 
 	if (coorx < 0 || coory < 0) return; // tienen que ser coords pos
 

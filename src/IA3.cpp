@@ -78,21 +78,9 @@ void IA3::moverPieza(int button, int state, int x, int y)
 	minimo = -9999;
 	maximo = -9999;
 	
-	// temporizador para que tarde un rato en hacer el movimiento
-	//unsigned tiempo_ini, tiempo_fin;
-	//double tiempopasado = 0;
-	//tiempo_ini = clock();
-
-	//do
-	//{
-	//	tiempo_fin = clock();
-	//	tiempopasado = (double(tiempo_fin - tiempo_ini) / CLOCKS_PER_SEC);
-	//} while (tiempopasado < 2);
-
-	//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
-	
 	// evaluacion max 
 	// para cada movimiento posible del jugador sobre "tablero"
+
 	for (x_ini = 0; x_ini < 8; x_ini++)
 	{
 		for (y_ini = 0; y_ini < 8; y_ini++)
@@ -224,59 +212,59 @@ void IA3::moverPieza(int button, int state, int x, int y)
 							// si hace en passant
 							else if (color == 'B' && Tablero::getTipoPiezasT(x_ini, y_ini) == 1 && Tablero::getTipoPiezasT(x_fin, y_fin) == 0 && y_fin == y_ini + 1 && y_fin == 5 && (x_fin == x_ini + 1 || x_fin == x_ini - 1) && Tablero::getTipoPiezasT(x_fin, y_fin - 1) == 1 && Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza()->getColorPieza() != color && Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza()->getPassant() == true)
 							{
-							// hace en passant
-							piezacomida = Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza();
-							Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
-							Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
-							Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(0);
+								// hace en passant
+								piezacomida = Tablero::getCasillaT(x_fin, y_fin - 1)->getPieza();
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
+								Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(0);
 
-							if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
-							{
-								tipomovimiento = 2;
-								movimientocontrario(); // hacer  movimiento del jugador contrario
-							}
+								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
+								{
+									tipomovimiento = 2;
+									movimientocontrario(); // hacer  movimiento del jugador contrario
+								}
 
-							// deshacer en passant
-							Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
-							Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(piezacomida);
-							Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
+								// deshacer en passant
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
+								Tablero::getCasillaT(x_fin, y_fin - 1)->colocarPieza(piezacomida);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
 							}
 
 							else if (color == 'N' && Tablero::getTipoPiezasT(x_ini, y_ini) == 1 && Tablero::getTipoPiezasT(x_fin, y_fin) == 0 && y_fin == y_ini - 1 && y_fin == 2 && (x_fin == x_ini + 1 || x_fin == x_ini - 1) && Tablero::getTipoPiezasT(x_fin, y_fin + 1) == 1 && Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza()->getColorPieza() != color && Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza()->getPassant() == true)
 							{
-							// hace en passant
-							piezacomida = Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza();
-							Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
-							Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
-							Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(0);
+								// hace en passant
+								piezacomida = Tablero::getCasillaT(x_fin, y_fin + 1)->getPieza();
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
+								Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(0);
 
 							if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 							{
 								tipomovimiento = 2;
 								movimientocontrario(); // hacer  movimiento del jugador contrario
 							}
-							// deshacer en passant
-							Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
-							Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(piezacomida);
-							Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
+								// deshacer en passant
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
+								Tablero::getCasillaT(x_fin, y_fin + 1)->colocarPieza(piezacomida);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
 							}
 
 							// si no come ninguna pieza
 							else if (Tablero::getTipoPiezasT(x_fin, y_fin) == 0)
 							{
-							 // copia del tablero y realizar el movimiento si se mueve a una casilla vacía
-							 Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
-							 Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
+								 // copia del tablero y realizar el movimiento si se mueve a una casilla vacía
+								 Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza);
+								 Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
 
-							 if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
-							 {
-								 tipomovimiento = 3;
-								 movimientocontrario(); // hacer  movimiento del jugador contrario
-							 }
+								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
+								{
+									tipomovimiento = 3;
+									movimientocontrario(); // hacer  movimiento del jugador contrario
+								}
 
-							// deshacemos el movimiento
-							Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
-							Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
+								// deshacemos el movimiento
+								Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(0);
+								Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(pieza);
 							}
 						}
 					}
@@ -470,13 +458,17 @@ void IA3::movimientocontrario()
 								puntosb = getPuntos('B');
 
 								// mirar puntos negros y blancos
-								if (color == 'B') puntoscontrario = puntosn - puntosb; puntospropios = puntosb - puntosn;
-								if (color == 'N') puntoscontrario = puntosb - puntosn; puntospropios = puntosn - puntosb;
+								if (color == 'B') puntoscontrario = puntosn - puntosb;
+								if (color == 'N') puntoscontrario = puntosb - puntosn; 
 
 								// mirar si es mejor el movimiento o no
 								if (puntoscontrario >= minimo) {
 									// hemos encontrado el mejor movimiento
 									minimo = puntoscontrario;
+
+									// vemos como es la situación de nuestras piezas
+									if (color == 'N') puntospropios = puntosn - puntosb;
+									if (color == 'B') puntospropios = puntosb - puntosn;
 
 									// comprobamos si el movimiento es mejor o no
 									if (puntospropios >= maximo) {
@@ -534,8 +526,8 @@ void IA3::movimientocontrario()
 									{
 										piezamovida2 = Tablero::getCasillaT(0, 0)->getPieza(); // torre
 										Tablero::getCasillaT(0, 0)->colocarPieza(0);
-										Tablero::getCasillaT(x_ini, y_ini)->colocarPieza(0);
-										Tablero::getCasillaT(x_fin, y_fin)->colocarPieza(pieza2);
+										Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
+										Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
 										Tablero::getCasillaT(3, 0)->colocarPieza(piezamovida2);
 									}
 								}
@@ -609,14 +601,14 @@ void IA3::movimientocontrario()
 							//// si hace en passant
 							else if (color != 'B' && Tablero::getTipoPiezasT(x_ini2, y_ini2) == 1 && Tablero::getTipoPiezasT(x_fin2, y_fin2) == 0 && y_fin2 == y_ini2 + 1 && y_fin2 == 5 && (x_fin2 == x_ini2 + 1 || x_fin2 == x_ini2 - 1) && Tablero::getTipoPiezasT(x_fin2, y_fin2 - 1) == 1 && Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza()->getColorPieza() == color && Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza()->getPassant() == true)
 							{
-							 //hace en passant
-							piezacomida2 = Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza();
-							Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
-							Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
-							Tablero::getCasillaT(x_fin2, y_fin2 - 1)->colocarPieza(0);
+								 //hace en passant
+								piezacomida2 = Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza();
+								Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
+								Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
+								Tablero::getCasillaT(x_fin2, y_fin2 - 1)->colocarPieza(0);
 
-							puntosn = getPuntos('N');
-							puntosb = getPuntos('B');
+								puntosn = getPuntos('N');
+								puntosb = getPuntos('B');
 
 								// mirar puntos negros y blancos
 								if (color == 'B') puntoscontrario = puntosn - puntosb;
@@ -650,14 +642,14 @@ void IA3::movimientocontrario()
 							else if (color != 'N' && Tablero::getTipoPiezasT(x_ini2, y_ini2) == 1 && Tablero::getTipoPiezasT(x_fin2, y_fin2) == 0 && y_fin2 == y_ini2 - 1 && y_fin2 == 2 && (x_fin2 == x_ini2 + 1 || x_fin2 == x_ini2 - 1) && Tablero::getTipoPiezasT(x_fin2, y_fin2 + 1) == 1 && Tablero::getCasillaT(x_fin2, y_fin2 + 1)->getPieza()->getColorPieza() == color && Tablero::getCasillaT(x_fin2, y_fin2 + 1)->getPieza()->getPassant() == true)
 							{
 
-							// hace en passant
-							piezacomida2 = Tablero::getCasillaT(x_fin2, y_fin2 + 1)->getPieza();
-							Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
-							Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
-							Tablero::getCasillaT(x_fin2, y_fin2 + 1)->colocarPieza(0);
+								// hace en passant
+								piezacomida2 = Tablero::getCasillaT(x_fin2, y_fin2 + 1)->getPieza();
+								Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
+								Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
+								Tablero::getCasillaT(x_fin2, y_fin2 + 1)->colocarPieza(0);
 
-							puntosn = getPuntos('N');
-							puntosb = getPuntos('B');
+								puntosn = getPuntos('N');
+								puntosb = getPuntos('B');
 								// mirar puntos negros y blancos
 								if (color == 'B') puntoscontrario = puntosn - puntosb;
 								if (color == 'N') puntoscontrario = puntosb - puntosn;
@@ -690,17 +682,17 @@ void IA3::movimientocontrario()
 							// si no come ninguna pieza
 							else if (Tablero::getTipoPiezasT(x_fin2, y_fin2) == 0)
 							{
-							// copia del tablero y realizar el movimiento si se mueve a una casilla vacía
-							Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
-							Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
+								// copia del tablero y realizar el movimiento si se mueve a una casilla vacía
+								Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(pieza2);
+								Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(0);
 								
 						
-							puntosn = getPuntos('N');
-							puntosb = getPuntos('B');
+								puntosn = getPuntos('N');
+								puntosb = getPuntos('B');
 							
-							// mirar puntos negros y blancos
-							if (color == 'B') puntoscontrario = puntosn - puntosb;
-							if (color == 'N') puntoscontrario = puntosb - puntosn;
+								// mirar puntos negros y blancos
+								if (color == 'B') puntoscontrario = puntosn - puntosb;
+								if (color == 'N') puntoscontrario = puntosb - puntosn;
 
 							// mirar si es mejor el movimiento o no
 							if (puntoscontrario >= minimo) {
