@@ -242,10 +242,15 @@ private:
 	Sprite TablasRe2{ "recursos/menu/empate/DRAW_REMATCH_rojo.png", 0, 0, 110, 50 };
 	Sprite TablasBa2{ "recursos/menu/empate/DRAW_BACKTOMENU_rojo.png", 0, 0, 110, 50 };
 
-	// menu niveles //
+	// menu niveles queens//
 	Sprite Level1{ "recursos/LEVEL1.png", 0, 0, 150, 80 };
 	Sprite Level2{ "recursos/LEVEL2.png", 0, 0, 150, 80 };
 	Sprite Level3{ "recursos/LEVEL3.png", 0, 0, 150, 80 };
+
+	// menu niveles kings//
+	Sprite Level1k{ "recursos/LEVEL1_rojo.png", 0, 0, 150, 80 };
+	Sprite Level2k{ "recursos/LEVEL2_rojo.png", 0, 0, 150, 80 };
+	Sprite Level3k{ "recursos/LEVEL3_rojo.png", 0, 0, 150, 80 };
 
 public:
 	Coordinador();

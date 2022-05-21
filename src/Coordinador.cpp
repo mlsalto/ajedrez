@@ -744,14 +744,30 @@ void Coordinador::dibuja()
 
 		if (estado == PANTALLA)
 		{
-			switch (nivel)
+			if (tipojuego == 0)
 			{
-			case 1:
-				Level1.draw();
-			case 2:
-				Level2.draw();
-			case 3:
-				Level3.draw();
+				switch (nivel)
+				{
+				case 1:
+					Level1.draw();
+				case 2:
+					Level2.draw();
+				case 3:
+					Level3.draw();
+				}
+			}
+
+			if (tipojuego == 1)
+			{
+				switch (nivel)
+				{
+				case 1:
+					Level1k.draw();
+				case 2:
+					Level2k.draw();
+				case 3:
+					Level3k.draw();
+				}
 			}
 		}
 
