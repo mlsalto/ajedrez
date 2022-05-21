@@ -95,6 +95,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 
 						// se puede realizar el movimiento
 						if (pieza->movimientoLegal(Tablero::getCasillaT(x_fin, y_fin)) == TRUE) {
+
 	
 							// si se come alguna pieza
 							if (Tablero::getTipoPiezasT(x_fin, y_fin) != 0 && Tablero::getCasillaT(x_fin, y_fin)->getPieza()->getColorPieza() != color)

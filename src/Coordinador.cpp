@@ -25,7 +25,7 @@ Coordinador::Coordinador()
 	help = 0;
 
 	// musica //
-	//musica(); // para que suene al inicio la música
+	musica(); // para que suene al inicio la música
 }
 
 Coordinador::~Coordinador() {}
@@ -148,9 +148,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 			else if (x < reshx * 557 && x > reshx * 246 && y < reshy * 490 && y > reshy * 448) {
 
-				stopMusica();
-
-				playMusica("recursos/Gamemode Select");
+			
 
 				Persona* Jugador1 = new Persona('B');
 				IA1* Jugador2 = new IA1('N');
@@ -169,7 +167,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 				estado = PANTALLA;
 				musica();
-				tablero.nuevoTablero(); // inicializamos nuevo tablero
+				tablero.nuevoTablero(); // inicializamos nuevo tablero 
+				
 			}
 
 			else if (x < reshx * 557 && x > reshx * 246 && y < reshy * 610 && y > reshy * 570) {
@@ -279,7 +278,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			if (estadojuego == TURNO) {
 
 				tablero.ratonTablero(button, state, x, y);
-				// SI SE AABA ALGUNO DE LOS TIEMPOS
+				// SI SE ACABA ALGUNO DE LOS TIEMPOS
 				if(timeWhite == 0) { ganador = 0; ganar = FALSE; }
 				if(timeBlack == 0) { ganador = 1; ganar = TRUE; }
 
@@ -287,8 +286,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 				if (tablero.getTurnoAcabadoN() == true)
 				{
 					if(musicajaque==true){
-						musica();
 						musicajaque = false;
+						musica();
 					}
 
 					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque_mate('B') == true)
@@ -312,6 +311,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 					if (Tablero::detectar_ahogado('N') || Tablero::detectar_ahogado('B') || Tablero::detectar_tablas_muertas('N') || Tablero::detectar_tablas_muertas('B'))
 					{
+
+						playMusica("recursos/Draw.mp3");
 						estado = FIN;
 						ganador = 2;
 						return;
@@ -348,6 +349,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 					if (Tablero::detectar_ahogado('N') || Tablero::detectar_ahogado('B') || Tablero::detectar_tablas_muertas('N') || Tablero::detectar_tablas_muertas('B'))
 					{
+						playMusica("recursos/Draw.mp3");
 						estado = FIN;
 						ganador = 2;
 						return;
@@ -448,7 +450,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 					estadojuego = TURNO; 
 					i = 0;
 					musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
-				else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+				else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; playMusica("recursos/menu.mp3");  estadojuego = TURNO; i = 0;  /*back to*/ }
 			}
 		}
 
@@ -506,20 +508,21 @@ void Coordinador::raton(int button, int state, int x, int y)
 						timeWhite = 5400;
 
 						estado = PANTALLA; 
-						estadojuego = TURNO; 
 						i = 0; musica(); 
-						playMusica("recursos/Pokeselect.mp3");
 						tablero.nuevoTablero();
 						return;
 						/*rematch*/ 
 					}
 
-					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; playMusica("recursos/menu.mp3"); estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
 				}
 			}
 
 			// si se pierde //
 			if (ganar == FALSE) {
+
+				
+				
 				if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 					if (x > reshx * 708 || x < reshx * 470 || y < reshy * 423 || y > reshy * 521) { ; /*no hay final*/ }
 					else if (x < reshx * 624 && x > reshx * 470 && y < reshy * 462 && y > reshy * 423)
@@ -564,10 +567,9 @@ void Coordinador::raton(int button, int state, int x, int y)
 						timeWhite = 5400;
 
 						estado = PANTALLA;
-						estadojuego = TURNO;
 						i = 0; musica();
-						playMusica("recursos/Pokeselect.mp3");
 						tablero.nuevoTablero();
+						
 						return;
 						/*rematch*/
 					}
@@ -1345,7 +1347,17 @@ void Coordinador::musica()
 	    else if (estadojuego==JAQUE)
 			playMusica("recursos/JaqueTheme.mp3", true);
 	}
-	if (estado == FIN || estadojuego == JAQUE_MATE) playMusica("recursos/VictoryTheme.mp3");
+	if (estado == FIN || estadojuego == JAQUE_MATE) {
+		
+		if (modojuego == FALSE) {
+			if (ganar == TRUE) playMusica("recursos/VictoryTheme.mp3");
+			if (ganar == FALSE) playMusica("recursos/defeat.mp3");
+		}
+
+		else playMusica("recursos/VictoryTheme.mp3");
+	}
+
+	if (estado==PANTALLA) playMusica("recursos/intro.mp3");
 }
 
 void Coordinador::mueve(float t)
@@ -1407,6 +1419,8 @@ void Coordinador::mueve(float t)
 		if (j == 30)
 		{
 			estado = JUEGO;
+			estadojuego = TURNO;
+			musica();
 			turnotime = 0;
 			j = 0;
 		}
