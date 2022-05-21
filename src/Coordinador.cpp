@@ -25,7 +25,7 @@ Coordinador::Coordinador()
 	help = 0;
 
 	// musica //
-	musica(); // para que suene al inicio la música
+	musica(); // para que suene al inicio la mÃºsica
 }
 
 Coordinador::~Coordinador() {}
@@ -1158,7 +1158,7 @@ void Coordinador::dibuja()
 
 			if (modojuego == FALSE)
 			{
-				if (nivel == 3) // si es el último nivel
+				if (nivel == 3) // si es el Ãºltimo nivel
 				{
 					if (tipojuego == 0)
 					{
