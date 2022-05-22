@@ -102,7 +102,7 @@ void OnTimer(int value)
 
 void reshape(int w, int h)
 {
-	coordinador.setReshape( w * 1.0 / 1366, h * 1.0 / 768);
+	coordinador.setReshape(w * 1.0 / 1366, h * 1.0 / 768);
 
 	// Prevent a divide by zero, when window is too short
      // (you cant make a window of zero width).
