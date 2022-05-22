@@ -539,7 +539,7 @@ void IA3::movimientocontrario()
 								if (color == 'N') puntoscontrario = puntosb - puntosn; 
 
 								// mirar si es mejor el movimiento o no
-								if (puntoscontrario >= minimo) {
+								if (puntoscontrario > minimo) {
 									// hemos encontrado el mejor movimiento
 									minimo = puntoscontrario;
 
@@ -548,7 +548,7 @@ void IA3::movimientocontrario()
 									if (color == 'B') puntospropios = puntosb - puntosn;
 
 									// comprobamos si el movimiento es mejor o no
-									if (puntospropios >= maximo) {
+									if (puntospropios > maximo) {
 										maximo = puntospropios; 
 										// guardamos datos del movimiento
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -617,7 +617,7 @@ void IA3::movimientocontrario()
 								if (color == 'N') puntoscontrario = puntosb - puntosn;
 
 								// mirar si es mejor el movimiento o no
-								if (puntoscontrario >= minimo) {
+								if (puntoscontrario > minimo) {
 									// hemos encontrado el mejor movimiento
 									minimo = puntoscontrario;
 
@@ -626,53 +626,54 @@ void IA3::movimientocontrario()
 									if (color == 'B') puntospropios = puntosb - puntosn;
 
 									// comprobamos si el movimiento es mejor o no
-									if (puntospropios >= maximo) {
+									if (puntospropios > maximo) {
 										maximo = puntospropios;
 										// guardamos datos del movimiento
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
 										tipomovf = tipomovimiento;
 									}
-
-									// deshacer enroque
-									if (colorcontrario == 'N')
+								}
+									
+								// deshacer enroque
+								if (colorcontrario == 'N')
+								{
+									if (x_fin2 == 6) // derecha
 									{
-										if (x_fin2 == 6) // derecha
-										{
-											Tablero::getCasillaT(7, 7)->colocarPieza(piezamovida2);
-											Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
-											Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
-											Tablero::getCasillaT(5, 7)->colocarPieza(0);
-										}
-
-										if (x_fin2 == 2) // izquierda
-										{
-											Tablero::getCasillaT(0, 7)->colocarPieza(piezamovida2);
-											Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
-											Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
-											Tablero::getCasillaT(3, 7)->colocarPieza(0);
-										}
+										Tablero::getCasillaT(7, 7)->colocarPieza(piezamovida2);
+										Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
+										Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
+										Tablero::getCasillaT(5, 7)->colocarPieza(0);
 									}
 
-									if (colorcontrario == 'B')
+									if (x_fin2 == 2) // izquierda
 									{
-										if (x_fin2 == 6) // derecha
-										{
-											Tablero::getCasillaT(7, 0)->colocarPieza(piezamovida2);
-											Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
-											Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
-											Tablero::getCasillaT(5, 0)->colocarPieza(0);
-										}
-
-										if (x_fin2 == 2) // izquierda
-										{
-											Tablero::getCasillaT(0, 0)->colocarPieza(piezamovida2);
-											Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
-											Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
-											Tablero::getCasillaT(3, 0)->colocarPieza(0);
-										}
+										Tablero::getCasillaT(0, 7)->colocarPieza(piezamovida2);
+										Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
+										Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
+										Tablero::getCasillaT(3, 7)->colocarPieza(0);
 									}
 								}
+
+								if (colorcontrario == 'B')
+								{
+									if (x_fin2 == 6) // derecha
+									{
+										Tablero::getCasillaT(7, 0)->colocarPieza(piezamovida2);
+										Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
+										Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
+										Tablero::getCasillaT(5, 0)->colocarPieza(0);
+									}
+
+									if (x_fin2 == 2) // izquierda
+									{
+										Tablero::getCasillaT(0, 0)->colocarPieza(piezamovida2);
+										Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
+										Tablero::getCasillaT(x_fin2, y_fin2)->colocarPieza(0);
+										Tablero::getCasillaT(3, 0)->colocarPieza(0);
+									}
+								}
+								
 							}
 
 							//// si hace en passant
@@ -692,7 +693,7 @@ void IA3::movimientocontrario()
 								if (color == 'N') puntoscontrario = puntosb - puntosn;
 
 								// mirar si es mejor el movimiento o no
-								if (puntoscontrario >= minimo) {
+								if (puntoscontrario > minimo) {
 									// hemos encontrado el mejor movimiento
 									minimo = puntoscontrario;
 
@@ -701,7 +702,7 @@ void IA3::movimientocontrario()
 									if (color == 'B') puntospropios = puntosb - puntosn;
 
 									// comprobamos si el movimiento es mejor o no
-									if (puntospropios >= maximo) {
+									if (puntospropios > maximo) {
 										maximo = puntospropios;
 										// guardamos datos del movimiento
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -732,7 +733,7 @@ void IA3::movimientocontrario()
 								if (color == 'N') puntoscontrario = puntosb - puntosn;
 
 								// mirar si es mejor el movimiento o no
-								if (puntoscontrario >= minimo) {
+								if (puntoscontrario > minimo) {
 									// hemos encontrado el mejor movimiento
 									minimo = puntoscontrario;
 
@@ -741,7 +742,7 @@ void IA3::movimientocontrario()
 									if (color == 'B') puntospropios = puntosb - puntosn;
 
 									// comprobamos si el movimiento es mejor o no
-									if (puntospropios >= maximo) {
+									if (puntospropios > maximo) {
 										maximo = puntospropios;
 										// guardamos datos del movimiento
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -772,7 +773,7 @@ void IA3::movimientocontrario()
 								if (color == 'N') puntoscontrario = puntosb - puntosn;
 
 							// mirar si es mejor el movimiento o no
-							if (puntoscontrario >= minimo) {
+							if (puntoscontrario > minimo) {
 								// hemos encontrado el mejor movimiento
 								minimo = puntoscontrario;
 
@@ -781,7 +782,7 @@ void IA3::movimientocontrario()
 								if (color == 'B') puntospropios = puntosb - puntosn;
 
 								// comprobamos si el movimiento es mejor o no
-								if (puntospropios >= maximo) {
+								if (puntospropios > maximo) {
 									maximo = puntospropios;
 									// guardamos datos del movimiento
 									posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -801,3 +802,4 @@ void IA3::movimientocontrario()
 		}
 	}
 }
+
