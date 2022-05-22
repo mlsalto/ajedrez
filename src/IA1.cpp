@@ -80,7 +80,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 	int puntos = 0;
 	int posfinx = 0, posfiny = 0;
 	int posinix = 0, posiniy = 0;
-	int maximo = 0;
+	int maximo = -9999;
 	bool jaque = FALSE;
 
 	char colorcontrario;
