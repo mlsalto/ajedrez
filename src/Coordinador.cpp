@@ -180,7 +180,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 	{
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 			if (tipojuego == 0) {
-				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; return; }
+				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; playMusica("recursos/Pokeselect.mp3"); return; }
 				else if (x > reshx * 682 || x < reshx * 275 || y < reshy * 292 || y > reshy * 471) { personajeB = 0; tablero.setPersonaje1(0); return;/*no hay personaje seleecionado*/ }
 				else if (x < reshx * 556 && x > reshx * 275 && y < reshy * 324 && y > reshy * 292) { personajeB = 1; tablero.setPersonaje1(1); playMusica("recursos/Characterselection.mp3"); return; }
 				else if (x < reshx * 513 && x > reshx * 275 && y < reshy * 370 && y > reshy * 344) { personajeB = 2; tablero.setPersonaje1(2); playMusica("recursos/Characterselection.mp3"); return; }
@@ -189,7 +189,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 			}
 
 			if (tipojuego == 1) {
-				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; return; }
+				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeB != 0) { estado = S_PER_NEGRO; personajeN = 0; playMusica("recursos/Pokeselect.mp3");  return; }
 				else if (x > reshx * 713 || x < reshx * 264 || y < reshy * 229 || y > reshy * 654) { personajeB = 0; tablero.setPersonaje1(0); return; /*no hay personaje seleecionado*/ }
 				else if (x < reshx * 493 && x > reshx * 264 && y < reshy * 258 && y > reshy * 229) { personajeB = 1; tablero.setPersonaje1(1); playMusica("recursos/Characterselection.mp3"); return; }
 				else if (x < reshx * 568 && x > reshx * 264 && y < reshy * 307 && y > reshy * 278) { personajeB = 2; tablero.setPersonaje1(2); playMusica("recursos/Characterselection.mp3"); return; }
@@ -303,6 +303,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 					{
 						musicajaque = true;
 						estadojuego = JAQUE;
+						i = 0;
 						musica();
 						return;
 					}
@@ -341,6 +342,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 						musicajaque = true;
 						estadojuego = JAQUE;
 						musica();
+						i = 0;
 						return;
 					}
 
@@ -511,7 +513,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 						/*rematch*/ 
 					}
 
-					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; /*back to*/ }
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; playMusica("recursos/menu.mp3");  estadojuego = TURNO; i = 0; /*back to*/ }
 				}
 			}
 
@@ -567,7 +569,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 						/*rematch*/
 					}
 
-					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0;  /*back to*/ }
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; playMusica("recursos/menu.mp3");  estadojuego = TURNO; i = 0;  /*back to*/ }
 				}
 			}
 		}
@@ -967,10 +969,12 @@ void Coordinador::dibuja()
 				if (tipojuego == 0) {
 					Jaque.setPos(0, 0);
 					Jaque.draw();
+					
 				}
 				if (tipojuego == 1) {
 					Jaque1.setPos(0, 0);
 					Jaque1.draw();
+				
 				}
 			}
 
@@ -1457,6 +1461,7 @@ void Coordinador::mueve(float t)
 						timeWhite = timeWhite - 1;
 						dibuja();
 						j = 0;
+						
 					}
 
 					pasada = FALSE;
@@ -1479,6 +1484,7 @@ void Coordinador::mueve(float t)
 						if (k > 20)
 						{
 							tablero.ratonTablero(GLUT_RIGHT_BUTTON, GLUT_DOWN, 0, 0);
+							raton(GLUT_RIGHT_BUTTON, GLUT_DOWN, 0, 0);
 							pasada = TRUE;
 							k = 0;
 						}
