@@ -535,8 +535,8 @@ void IA3::movimientocontrario()
 								puntosb = getPuntos('B');
 
 								// mirar puntos negros y blancos
-								if (color == 'B') puntoscontrario = puntosn - puntosb;
-								if (color == 'N') puntoscontrario = puntosb - puntosn; 
+								if (color == 'B') puntoscontrario = puntosn ;
+								if (color == 'N') puntoscontrario = puntosb ; 
 
 								// mirar si es mejor el movimiento o no
 								if (puntoscontrario > minimo) {
@@ -544,8 +544,8 @@ void IA3::movimientocontrario()
 									minimo = puntoscontrario;
 
 									// vemos como es la situación de nuestras piezas
-									if (color == 'N') puntospropios = puntosn - puntosb;
-									if (color == 'B') puntospropios = puntosb - puntosn;
+									if (color == 'N') puntospropios = puntosn ;
+									if (color == 'B') puntospropios = puntosb ;
 
 									// comprobamos si el movimiento es mejor o no
 									if (puntospropios > maximo) {
@@ -613,8 +613,8 @@ void IA3::movimientocontrario()
 								puntosb = getPuntos('B');
 
 								// mirar puntos negros y blancos
-								if (color == 'B') puntoscontrario = puntosn - puntosb;
-								if (color == 'N') puntoscontrario = puntosb - puntosn;
+								if (color == 'B') puntoscontrario = puntosn ;
+								if (color == 'N') puntoscontrario = puntosb ;
 
 								// mirar si es mejor el movimiento o no
 								if (puntoscontrario > minimo) {
@@ -622,8 +622,8 @@ void IA3::movimientocontrario()
 									minimo = puntoscontrario;
 
 									// vemos como es la situación de nuestras piezas
-									if (color == 'N') puntospropios = puntosn - puntosb;
-									if (color == 'B') puntospropios = puntosb - puntosn;
+									if (color == 'N') puntospropios = puntosn ;
+									if (color == 'B') puntospropios = puntosb ;
 
 									// comprobamos si el movimiento es mejor o no
 									if (puntospropios > maximo) {
@@ -689,8 +689,8 @@ void IA3::movimientocontrario()
 								puntosb = getPuntos('B');
 
 								// mirar puntos negros y blancos
-								if (color == 'B') puntoscontrario = puntosn - puntosb;
-								if (color == 'N') puntoscontrario = puntosb - puntosn;
+								if (color == 'B') puntoscontrario = puntosn ;
+								if (color == 'N') puntoscontrario = puntosb ;
 
 								// mirar si es mejor el movimiento o no
 								if (puntoscontrario > minimo) {
@@ -698,8 +698,8 @@ void IA3::movimientocontrario()
 									minimo = puntoscontrario;
 
 									// vemos como es la situación de nuestras piezas
-									if (color == 'N') puntospropios = puntosn - puntosb;
-									if (color == 'B') puntospropios = puntosb - puntosn;
+									if (color == 'N') puntospropios = puntosn ;
+									if (color == 'B') puntospropios = puntosb ;
 
 									// comprobamos si el movimiento es mejor o no
 									if (puntospropios > maximo) {
@@ -729,8 +729,8 @@ void IA3::movimientocontrario()
 								puntosn = getPuntos('N');
 								puntosb = getPuntos('B');
 								// mirar puntos negros y blancos
-								if (color == 'B') puntoscontrario = puntosn - puntosb;
-								if (color == 'N') puntoscontrario = puntosb - puntosn;
+								if (color == 'B') puntoscontrario = puntosn;
+								if (color == 'N') puntoscontrario = puntosb ;
 
 								// mirar si es mejor el movimiento o no
 								if (puntoscontrario > minimo) {
@@ -738,8 +738,8 @@ void IA3::movimientocontrario()
 									minimo = puntoscontrario;
 
 									// vemos como es la situación de nuestras piezas
-									if (color == 'N') puntospropios = puntosn - puntosb;
-									if (color == 'B') puntospropios = puntosb - puntosn;
+									if (color == 'N') puntospropios = puntosn ;
+									if (color == 'B') puntospropios = puntosb ;
 
 									// comprobamos si el movimiento es mejor o no
 									if (puntospropios > maximo) {
@@ -769,8 +769,8 @@ void IA3::movimientocontrario()
 								puntosb = getPuntos('B');
 							
 								// mirar puntos negros y blancos
-								if (color == 'B') puntoscontrario = puntosn - puntosb;
-								if (color == 'N') puntoscontrario = puntosb - puntosn;
+								if (color == 'B') puntoscontrario = puntosn ;
+								if (color == 'N') puntoscontrario = puntosb ;
 
 							// mirar si es mejor el movimiento o no
 							if (puntoscontrario > minimo) {
@@ -778,8 +778,8 @@ void IA3::movimientocontrario()
 								minimo = puntoscontrario;
 
 								// vemos como es la situación de nuestras piezas
-								if (color == 'N') puntospropios = puntosn - puntosb;
-								if (color == 'B') puntospropios = puntosb - puntosn;
+								if (color == 'N') puntospropios = puntosn ;
+								if (color == 'B') puntospropios = puntosb ;
 
 								// comprobamos si el movimiento es mejor o no
 								if (puntospropios > maximo) {
