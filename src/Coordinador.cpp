@@ -25,7 +25,7 @@ Coordinador::Coordinador()
 	help = 0;
 
 	// musica //
-	//musica(); // para que suene al inicio la música
+	musica(); // para que suene al inicio la música
 }
 
 Coordinador::~Coordinador() {}
