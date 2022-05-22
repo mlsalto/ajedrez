@@ -523,7 +523,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 						/*rematch*/ 
 					}
 
-					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; playMusica("recursos/menu.mp3");  estadojuego = TURNO; i = 0; /*back to*/ }
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; playMusica("recursos/sonidos/menu.mp3");  estadojuego = TURNO; i = 0; /*back to*/ }
 				}
 			}
 
