@@ -296,7 +296,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 							musicajaque = false;
 							if (Tablero::detectar_jaque('N') == true) { ganador = 1; ganar = TRUE; }
 							else if (Tablero::detectar_jaque_mate('B') == true) { ganador = 0; ganar = FALSE; }
-
+							i = 0;
 							estadojuego = JAQUE_MATE;
 							musica();
 							return;
@@ -517,7 +517,8 @@ void Coordinador::raton(int button, int state, int x, int y)
 						timeWhite = 5400;
 
 						estado = PANTALLA; 
-						i = 0; musica(); 
+						i = 0; 
+						musica(); 
 						tablero.nuevoTablero();
 						return;
 						/*rematch*/ 
