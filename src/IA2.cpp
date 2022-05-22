@@ -158,7 +158,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 							}
 
 							// si hace enroque
-							else if (Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2)  && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && pieza->getEnroque() == false)
+							else if (Tablero::detectar_jaque(color) == FALSE && Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2)  && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && pieza->getEnroque() == false)
 							{
 								// hacer enroque
 								if (color == 'N')
