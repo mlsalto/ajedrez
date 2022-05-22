@@ -135,6 +135,9 @@ void Coordinador::raton(int button, int state, int x, int y)
 				tablero.setJugador1(Jugador1);
 				tablero.setJugador2(Jugador2);
 
+				tablero.setPersonaje1(0);
+				tablero.setPersonaje2(0);
+
 				estado = S_PER_BLANCO;
 				modojuego = TRUE;
 				personajeB = 0;
@@ -150,7 +153,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 		
 				Persona* Jugador1 = new Persona('B');
-				IA1* Jugador2 = new IA1('N');
+				IA1* Jugador2 = new IA1('N'); //ESTO HAY QUE CAMBIARLA A LA 1 QUE NO SE OLVIDE
 
 				tablero.setJugador1(Jugador1);
 				tablero.setJugador2(Jugador2);
@@ -208,7 +211,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 	{
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 			if (tipojuego == 0) {
-				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeN != 0) { estado = JUEGO; estadojuego = TURNO;  musica(); return; }
+				if (x < reshx * 1158 && x > reshx * 1086 && y < reshy * 135 && y > reshy * 102 && personajeN != 0) { estado = JUEGO; estadojuego = TURNO;  playMusica("recursos/Pokeselect.mp3"); musica(); return; }
 				else if (x > reshx * 682 || x < reshx * 275 || y < reshy * 292 || y > reshy * 471) { personajeN = 0; tablero.setPersonaje2(0);  return;/*no hay personaje seleecionado*/ }
 				else if (x < reshx * 556 && x > reshx * 275 && y < reshy * 324 && y > reshy * 292) { personajeN = 1; tablero.setPersonaje2(1); playMusica("recursos/Characterselection.mp3"); return; }
 				else if (x < reshx * 513 && x > reshx * 275 && y < reshy * 370 && y > reshy * 344) { personajeN = 2; tablero.setPersonaje2(2); playMusica("recursos/Characterselection.mp3"); return; }
@@ -449,7 +452,13 @@ void Coordinador::raton(int button, int state, int x, int y)
 					estadojuego = TURNO; 
 					i = 0;
 					musica(); playMusica("recursos/Pokeselect.mp3");/*rematch*/ }
-				else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  i = 0;  /*back to*/ }
+
+				else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { 
+					tablero.eliminarTablero();
+					estado = INICIO; 
+					estadojuego = TURNO;
+					playMusica("recursos/menu.mp3");
+					i = 0;  /*back to*/ }
 			}
 		}
 
@@ -569,7 +578,11 @@ void Coordinador::raton(int button, int state, int x, int y)
 						/*rematch*/
 					}
 
-					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; playMusica("recursos/menu.mp3");  estadojuego = TURNO; i = 0;  /*back to*/ }
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); 
+					estado = INICIO;
+					playMusica("recursos/menu.mp3");  
+					estadojuego = TURNO; 
+					i = 0;  /*back to*/ }
 				}
 			}
 		}
@@ -1483,7 +1496,7 @@ void Coordinador::mueve(float t)
 					{
 						if (k > 20)
 						{
-							tablero.ratonTablero(GLUT_RIGHT_BUTTON, GLUT_DOWN, 0, 0);
+							//tablero.ratonTablero(GLUT_RIGHT_BUTTON, GLUT_DOWN, 0, 0);
 							raton(GLUT_RIGHT_BUTTON, GLUT_DOWN, 0, 0);
 							pasada = TRUE;
 							k = 0;

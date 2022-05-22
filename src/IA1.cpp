@@ -76,7 +76,6 @@ void IA1::draw(int x)
 void IA1::moverPieza(int button, int state, int x, int y)
 {
 	turnoterminado = FALSE;
-	movimientoposible = FALSE;
 	int x_ini = 0, x_fin = 0, y_ini = 0, y_fin = 0;
 	int puntos = 0;
 	int posfinx = 0, posfiny = 0;
@@ -406,8 +405,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 
 		// ****************   REALIZACIÓN DEL MOVIMIENTO DESPUÉS DE DECIDIR QUE ES LO QUE QUIERE HACER   *****************//
 
-	if (movimientoposible == TRUE)
-	{
+	
 		if (posibilidad_passant == true)
 		{
 			EnPassant->setPassant(false);
@@ -524,7 +522,7 @@ void IA1::moverPieza(int button, int state, int x, int y)
 				piezaini->setPrimerMovimiento(true);
 			}
 		}
-	}
+	
 
 		turnoterminado = TRUE;
 }
