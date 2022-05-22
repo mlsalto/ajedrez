@@ -785,18 +785,18 @@ void Coordinador::dibuja()
 		////////   JUEGO   /////////
 		if (estado == JUEGO) {
 
-			ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", 20);
-			ETSIDI::printxy("Time left:", 48, 37);
+			ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", reshy*20);
+			ETSIDI::printxy("Time left:",  48,  37);
 			dibujarTempWhite(1);
 			dibujarTempWhite(2);
-			ETSIDI::printxy(":", 69, 37);
+			ETSIDI::printxy(":",  69,  37);
 			dibujarTempWhite(3);
 			dibujarTempWhite(4);
 
 			ETSIDI::printxy("Time left:", -72, 37);
 			dibujarTempBlack(1);
 			dibujarTempBlack(2);
-			ETSIDI::printxy(":", -51, 37);
+			ETSIDI::printxy(":",  -51, 37);
 			dibujarTempBlack(3);
 			dibujarTempBlack(4);
 
@@ -1572,17 +1572,17 @@ void Coordinador::dibujarTempWhite(int digito)
 	if (digito == 3) { posx = 70; posy = 37; numero = timesecs / 10; }
 	if (digito == 4) { posx = 72; posy = 37; numero = timesecs % 10; }
 
-	ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", 20);
-	if(numero == 0)ETSIDI::printxy("0", posx, posy);
-	else if (numero == 1)ETSIDI::printxy("1", posx, posy);
-	else if (numero == 2)ETSIDI::printxy("2", posx, posy);
-	else if (numero == 3)ETSIDI::printxy("3", posx, posy);
-	else if (numero == 4)ETSIDI::printxy("4", posx, posy);
-	else if (numero == 5)ETSIDI::printxy("5", posx, posy);
-	else if (numero == 6)ETSIDI::printxy("6", posx, posy);
-	else if (numero == 7)ETSIDI::printxy("7", posx, posy);
-	else if (numero == 8)ETSIDI::printxy("8", posx, posy);
-	else if (numero == 9)ETSIDI::printxy("9", posx, posy);
+	ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", reshy * 20);
+	if(numero == 0)ETSIDI::printxy("0",  posx,  posy);
+	else if (numero == 1)ETSIDI::printxy("1",  posx,  posy);
+	else if (numero == 2)ETSIDI::printxy("2",  posx,  posy);
+	else if (numero == 3)ETSIDI::printxy("3",  posx,  posy);
+	else if (numero == 4)ETSIDI::printxy("4",  posx,  posy);
+	else if (numero == 5)ETSIDI::printxy("5",  posx,  posy);
+	else if (numero == 6)ETSIDI::printxy("6",  posx,  posy);
+	else if (numero == 7)ETSIDI::printxy("7",  posx,  posy);
+	else if (numero == 8)ETSIDI::printxy("8",  posx,  posy);
+	else if (numero == 9)ETSIDI::printxy("9",  posx,  posy);
 }
 
 
@@ -1599,15 +1599,15 @@ void Coordinador::dibujarTempBlack(int digito)
 	if (digito == 3) { posx = -50; posy = 37; numero = timesecs / 10; }
 	if (digito == 4) { posx = -48; posy = 37; numero = timesecs % 10; }
 
-	ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", 20);
-	if (numero == 0)ETSIDI::printxy("0", posx, posy);
-	else if (numero == 1)ETSIDI::printxy("1", posx, posy);
-	else if (numero == 2)ETSIDI::printxy("2", posx, posy);
-	else if (numero == 3)ETSIDI::printxy("3", posx, posy);
-	else if (numero == 4)ETSIDI::printxy("4", posx, posy);
-	else if (numero == 5)ETSIDI::printxy("5", posx, posy);
-	else if (numero == 6)ETSIDI::printxy("6", posx, posy);
-	else if (numero == 7)ETSIDI::printxy("7", posx, posy);
-	else if (numero == 8)ETSIDI::printxy("8", posx, posy);
-	else if (numero == 9)ETSIDI::printxy("9", posx, posy);
+	ETSIDI::setFont("recursos/8bitOperatorPlus-Regular.ttf", reshy * 20);
+	if (numero == 0)ETSIDI::printxy("0",  posx,  posy);
+	else if (numero == 1)ETSIDI::printxy("1", posx,  posy);
+	else if (numero == 2)ETSIDI::printxy("2", posx,  posy);
+	else if (numero == 3)ETSIDI::printxy("3", posx,  posy);
+	else if (numero == 4)ETSIDI::printxy("4", posx,  posy);
+	else if (numero == 5)ETSIDI::printxy("5", posx,  posy);
+	else if (numero == 6)ETSIDI::printxy("6", posx,  posy);
+	else if (numero == 7)ETSIDI::printxy("7", posx,  posy);
+	else if (numero == 8)ETSIDI::printxy("8", posx,  posy);
+	else if (numero == 9)ETSIDI::printxy("9", posx,  posy);
 }

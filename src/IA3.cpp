@@ -143,7 +143,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 							}
 
 							// si hace enroque
-							else if (Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2)  && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && pieza->getEnroque() == false)
+							else if (Tablero::detectar_jaque(color) == FALSE && Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2)  && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && pieza->getEnroque() == false)
 							{
 								// hacer enroque
 								if (color == 'N')
@@ -564,7 +564,7 @@ void IA3::movimientocontrario()
 							}
 
 							// si hace enroque
-							else if (Tablero::getTipoPiezasT(x_ini2, y_ini2) == 6 && (x_fin2 == 6 || x_fin2 == 2) && (Tablero::getTipoPiezasT(7, y_ini2) == 2 || Tablero::getTipoPiezasT(0, y_ini2) == 2) && pieza2->getEnroque() == false)
+							else if (Tablero::detectar_jaque(colorcontrario) == FALSE && Tablero::getTipoPiezasT(x_ini2, y_ini2) == 6 && (x_fin2 == 6 || x_fin2 == 2) && (Tablero::getTipoPiezasT(7, y_ini2) == 2 || Tablero::getTipoPiezasT(0, y_ini2) == 2) && pieza2->getEnroque() == false)
 							{
 								// hacer enroque
 								if (colorcontrario  == 'N')
