@@ -81,6 +81,11 @@ void IA2::moverPieza(int button, int state, int x, int y)
 	int maximo = -9999;
 	bool jaque = FALSE;
 
+	char colorcontrario;
+
+	if (color == 'N') colorcontrario = 'B';
+	if (color == 'B') colorcontrario = 'N';
+
 	//********************** DECISIÓN DEL PRÓXIMO MOVIMIENTO DE LA IA  ********************//
 	for (x_ini = 0; x_ini < 8; x_ini++)
 	{
@@ -108,7 +113,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
@@ -119,7 +124,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 										jaque = TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										// mirar puntos negros y blancos
 										puntosn = getPuntos('N');
@@ -147,7 +152,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 							}
 
 							// si hace enroque
-							else if (Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2) && pieza->getPrimerMovimiento() == false && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && (Tablero::getCasillaT(7, y_ini)->getPieza()->getPrimerMovimiento() == false || Tablero::getCasillaT(0, y_ini)->getPieza()->getPrimerMovimiento() == false) && pieza->getEnroque() == false)
+							else if (Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2)  && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && pieza->getEnroque() == false)
 							{
 								// hacer enroque
 								if (color == 'N')
@@ -195,7 +200,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 								// comprobar puntos
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezamovida;
@@ -206,7 +211,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 										jaque = TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										// mirar puntos negros y blancos
 										puntosn = getPuntos('N');
@@ -280,7 +285,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 								// calcular puntos
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
@@ -291,7 +296,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 										jaque = TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										// mirar puntos negros y blancos
 										puntosn = getPuntos('N');
@@ -330,7 +335,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 								// calcular puntos
 								if (Tablero::detectar_jaque(color) == FALSE) // comprobar que no haya jaque
 								{
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										piezaini = pieza; //guardamos valor pieza
 										piezafin = piezacomida;
@@ -341,7 +346,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 										jaque = TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										// mirar puntos negros y blancos
 										puntosn = getPuntos('N');
@@ -379,7 +384,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 								// calcular puntos
 								if (Tablero::detectar_jaque(color) == FALSE)
 								{
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										piezaini = pieza; //guardamos valor pieza
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
@@ -389,7 +394,7 @@ void IA2::moverPieza(int button, int state, int x, int y)
 										jaque = TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										// mirar puntos negros y blancos
 										puntosn = getPuntos('N');

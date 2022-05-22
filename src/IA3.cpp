@@ -78,6 +78,12 @@ void IA3::moverPieza(int button, int state, int x, int y)
 	minimo = -9999;
 	maximo = -9999;
 	bool jaque = FALSE;
+
+	char colorcontrario;
+
+	if (color == 'N') colorcontrario = 'B';
+	if (color == 'B') colorcontrario = 'N';
+
 	// evaluacion max 
 	// para cada movimiento posible del jugador sobre "tablero"
 
@@ -110,7 +116,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								{
 									tipomovimiento = 0;
 
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
@@ -118,7 +124,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 										jaque == TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										movimientocontrario(); // hacer  movimiento del jugador contrario7
 									}
@@ -131,7 +137,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 							}
 
 							// si hace enroque
-							else if (Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2) && pieza->getPrimerMovimiento() == false && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && (Tablero::getCasillaT(7, y_ini)->getPieza()->getPrimerMovimiento() == false || Tablero::getCasillaT(0, y_ini)->getPieza()->getPrimerMovimiento() == false) && piezaini->getEnroque() == false)
+							else if (Tablero::getTipoPiezasT(x_ini, y_ini) == 6 && (x_fin == 6 || x_fin == 2)  && (Tablero::getTipoPiezasT(7, y_ini) == 2 || Tablero::getTipoPiezasT(0, y_ini) == 2) && pieza->getEnroque() == false)
 							{
 								// hacer enroque
 								if (color == 'N')
@@ -180,7 +186,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								{
 									tipomovimiento = 1;
 
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
@@ -188,7 +194,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 										jaque == TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										movimientocontrario(); // hacer  movimiento del jugador contrario7
 									}
@@ -247,7 +253,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								{
 									tipomovimiento = 2;
 
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
@@ -255,7 +261,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 										jaque == TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										movimientocontrario(); // hacer  movimiento del jugador contrario7
 									}
@@ -279,7 +285,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								{
 									tipomovimiento = 2;
 
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
@@ -287,7 +293,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 										jaque == TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 									movimientocontrario(); // hacer  movimiento del jugador contrario7
 									}
@@ -309,7 +315,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 								{
 									tipomovimiento = 3;
 
-									if (Tablero::detectar_jaque(!color) == TRUE)
+									if (Tablero::detectar_jaque(colorcontrario) == TRUE)
 									{
 										posinix = x_ini; posiniy = y_ini;// guardar valor posicion inicio pieza
 										posfinx = x_fin; posfiny = y_fin; // guardar valor posicion final pieza
@@ -317,7 +323,7 @@ void IA3::moverPieza(int button, int state, int x, int y)
 										jaque == TRUE;
 									}
 
-									if (Tablero::detectar_jaque(!color) == FALSE && jaque == FALSE)
+									if (Tablero::detectar_jaque(colorcontrario) == FALSE && jaque == FALSE)
 									{
 										movimientocontrario(); // hacer  movimiento del jugador contrario7
 									}
@@ -487,6 +493,10 @@ void IA3::movimientocontrario()
 	// evaluacion min
 	int x_ini2 = 0, y_ini2 = 0, x_fin2 = 0, y_fin2 = 0;
 	int i, j;
+	char colorcontrario;
+
+	if (color == 'N') colorcontrario = 'B';
+	if (color == 'B') colorcontrario = 'N';
 
 	// buscamos pieza del color contrario
 
@@ -495,7 +505,7 @@ void IA3::movimientocontrario()
 		for (y_ini2 = 0; y_ini2 < 8; y_ini2++)
 		{
 			// buscar una pieza para mover ( similar a seleccionar de persona )
-			if (Tablero::getCasillaT(x_ini2, y_ini2)->getOcupada() == TRUE && Tablero::getCasillaT(x_ini2, y_ini2)->getPieza()->getColorPieza() != color)
+			if (Tablero::getCasillaT(x_ini2, y_ini2)->getOcupada() == TRUE && Tablero::getCasillaT(x_ini2, y_ini2)->getPieza()->getColorPieza() == colorcontrario)
 			{
 				pieza2 = Tablero::getCasillaT(x_ini2, y_ini2)->getPieza();
 
@@ -548,10 +558,10 @@ void IA3::movimientocontrario()
 							}
 
 							// si hace enroque
-							else if (Tablero::getTipoPiezasT(x_ini2, y_ini2) == 6 && (x_fin2 == 6 || x_fin2 == 2) && pieza2->getPrimerMovimiento() == false && (Tablero::getTipoPiezasT(7, y_ini2) == 2 || Tablero::getTipoPiezasT(0, y_ini2) == 2) && (Tablero::getCasillaT(7, y_ini2)->getPieza()->getPrimerMovimiento() == false || Tablero::getCasillaT(0, y_ini2)->getPieza()->getPrimerMovimiento() == false) && pieza2->getEnroque() == false)
+							else if (Tablero::getTipoPiezasT(x_ini2, y_ini2) == 6 && (x_fin2 == 6 || x_fin2 == 2) && (Tablero::getTipoPiezasT(7, y_ini2) == 2 || Tablero::getTipoPiezasT(0, y_ini2) == 2) && pieza2->getEnroque() == false)
 							{
 								// hacer enroque
-								if (color != 'N')
+								if (colorcontrario  == 'N')
 								{
 									if (x_fin2 == 6) // derecha
 									{
@@ -572,7 +582,7 @@ void IA3::movimientocontrario()
 									}
 								}
 
-								if (color != 'B')
+								if (colorcontrario == 'B')
 								{
 									if (x_fin2 == 6) // derecha
 									{
@@ -619,7 +629,7 @@ void IA3::movimientocontrario()
 									}
 
 									// deshacer enroque
-									if (color != 'N')
+									if (colorcontrario == 'N')
 									{
 										if (x_fin2 == 6) // derecha
 										{
@@ -638,7 +648,7 @@ void IA3::movimientocontrario()
 										}
 									}
 
-									if (color != 'B')
+									if (colorcontrario == 'B')
 									{
 										if (x_fin2 == 6) // derecha
 										{
@@ -660,7 +670,7 @@ void IA3::movimientocontrario()
 							}
 
 							//// si hace en passant
-							else if (color != 'B' && Tablero::getTipoPiezasT(x_ini2, y_ini2) == 1 && Tablero::getTipoPiezasT(x_fin2, y_fin2) == 0 && y_fin2 == y_ini2 + 1 && y_fin2 == 5 && (x_fin2 == x_ini2 + 1 || x_fin2 == x_ini2 - 1) && Tablero::getTipoPiezasT(x_fin2, y_fin2 - 1) == 1 && Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza()->getColorPieza() == color && Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza()->getPassant() == true)
+							else if (colorcontrario == 'B' && Tablero::getTipoPiezasT(x_ini2, y_ini2) == 1 && Tablero::getTipoPiezasT(x_fin2, y_fin2) == 0 && y_fin2 == y_ini2 + 1 && y_fin2 == 5 && (x_fin2 == x_ini2 + 1 || x_fin2 == x_ini2 - 1) && Tablero::getTipoPiezasT(x_fin2, y_fin2 - 1) == 1 && Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza()->getColorPieza() == color && Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza()->getPassant() == true)
 							{
 								 //hace en passant
 								piezacomida2 = Tablero::getCasillaT(x_fin2, y_fin2 - 1)->getPieza();
@@ -700,7 +710,7 @@ void IA3::movimientocontrario()
 								Tablero::getCasillaT(x_ini2, y_ini2)->colocarPieza(pieza2);
 							}
 
-							else if (color != 'N' && Tablero::getTipoPiezasT(x_ini2, y_ini2) == 1 && Tablero::getTipoPiezasT(x_fin2, y_fin2) == 0 && y_fin2 == y_ini2 - 1 && y_fin2 == 2 && (x_fin2 == x_ini2 + 1 || x_fin2 == x_ini2 - 1) && Tablero::getTipoPiezasT(x_fin2, y_fin2 + 1) == 1 && Tablero::getCasillaT(x_fin2, y_fin2 + 1)->getPieza()->getColorPieza() == color && Tablero::getCasillaT(x_fin2, y_fin2 + 1)->getPieza()->getPassant() == true)
+							else if (colorcontrario == 'N' && Tablero::getTipoPiezasT(x_ini2, y_ini2) == 1 && Tablero::getTipoPiezasT(x_fin2, y_fin2) == 0 && y_fin2 == y_ini2 - 1 && y_fin2 == 2 && (x_fin2 == x_ini2 + 1 || x_fin2 == x_ini2 - 1) && Tablero::getTipoPiezasT(x_fin2, y_fin2 + 1) == 1 && Tablero::getCasillaT(x_fin2, y_fin2 + 1)->getPieza()->getColorPieza() == color && Tablero::getCasillaT(x_fin2, y_fin2 + 1)->getPieza()->getPassant() == true)
 							{
 
 								// hace en passant
