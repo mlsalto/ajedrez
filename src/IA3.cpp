@@ -37,6 +37,12 @@ void IA3::draw(int x)
 			if (color == 'N')player4.setPos(-60, 15);
 			player4.draw();
 		}
+
+		if (x == 5) {
+			if (color == 'B')player5.setPos(60, 15);
+			if (color == 'N')player5.setPos(-60, 15);
+			player5.draw();
+		}
 	}
 
 	// El modo de juego es kings gambit //

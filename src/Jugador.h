@@ -14,6 +14,7 @@ protected:
 	Sprite player3{ "recursos/jugadores/queens/benny.png", 0, 0, 28,40 };
 	Sprite player2{ "recursos/jugadores/queens/Capa_2.png", 0, 0, 28,40 };
 	Sprite player4{ "recursos/jugadores/queens/txt_BbabyBeth.png", 0, 0, 28,40 };
+	Sprite player5{ "recursos/jugadores/queens/old mr sheibel.png", 0,0, 28, 40 };
 
 	// Sprites personajes modo kings gambit //
 	Sprite TB{ "recursos/jugadores/kings/thebandit.png", 0, 0, 28,40 };

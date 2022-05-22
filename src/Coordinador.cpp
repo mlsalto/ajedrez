@@ -473,7 +473,7 @@ void Coordinador::raton(int button, int state, int x, int y)
 							tablero.setJugador2(Jugador2);
 
 							tablero.setPersonaje1(1); // personaje de la persona
-							tablero.setPersonaje2(2); // personaje de la IA
+							tablero.setPersonaje2(5); // personaje de la IA
 						}
 
 						if (nivel == 3) {
@@ -505,14 +505,13 @@ void Coordinador::raton(int button, int state, int x, int y)
 						timeWhite = 5400;
 
 						estado = PANTALLA; 
-						estadojuego = TURNO; 
 						i = 0; musica(); 
 						tablero.nuevoTablero();
 						return;
 						/*rematch*/ 
 					}
 
-					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; /*back to*/ }
 				}
 			}
 
@@ -562,15 +561,13 @@ void Coordinador::raton(int button, int state, int x, int y)
 						timeWhite = 5400;
 
 						estado = PANTALLA;
-						estadojuego = TURNO;
 						i = 0; musica();
-						playMusica("recursos/Pokeselect.mp3");
 						tablero.nuevoTablero();
 						return;
 						/*rematch*/
 					}
 
-					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0; playMusica("recursos/Pokeselect.mp3"); /*back to*/ }
+					else if (x < reshx * 708 && x > reshx * 470 && y < reshy * 521 && y > reshy * 496) { tablero.eliminarTablero(); estado = INICIO; musica();  estadojuego = TURNO; i = 0;  /*back to*/ }
 				}
 			}
 		}
