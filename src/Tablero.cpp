@@ -215,6 +215,7 @@ void Tablero::ratonTablero(int button, int state, int x, int y)
 	if (turno == TRUE)
 	{
 		jugador1->moverPieza(button, state, x, y);
+
 		if (jugador1->turnoTerminado() == TRUE)
 		{
 			finturnob = true;

@@ -25,7 +25,7 @@ Coordinador::Coordinador()
 	help = 0;
 
 	// musica //
-	musica(); // para que suene al inicio la música
+	//musica(); // para que suene al inicio la música
 }
 
 Coordinador::~Coordinador() {}
@@ -278,98 +278,99 @@ void Coordinador::raton(int button, int state, int x, int y)
 
 			if (estadojuego == TURNO) {
 
-				tablero.ratonTablero(button, state, x, y);
-				// SI SE AABA ALGUNO DE LOS TIEMPOS
-				if(timeWhite == 0) { ganador = 0; ganar = FALSE; }
-				if(timeBlack == 0) { ganador = 1; ganar = TRUE; }
+					tablero.ratonTablero(button, state, x, y);
+					// SI SE AABA ALGUNO DE LOS TIEMPOS
+					if (timeWhite == 0) { ganador = 0; ganar = FALSE; }
+					if (timeBlack == 0) { ganador = 1; ganar = TRUE; }
 
-				// si termina el turno de las negras
-				if (tablero.getTurnoAcabadoN() == true)
-				{
-					if(musicajaque==true){
-						musica();
-						musicajaque = false;
-					}
-
-					if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque_mate('B') == true)
+					// si termina el turno de las negras
+					if (tablero.getTurnoAcabadoN() == true)
 					{
-						musicajaque = false;
-						if (Tablero::detectar_jaque('N') == true) { ganador = 1; ganar = TRUE;}
-						else if (Tablero::detectar_jaque_mate('B') == true) { ganador = 0; ganar = FALSE;}
+						if (musicajaque == true) {
+							musica();
+							musicajaque = false;
+						}
 
-						estadojuego = JAQUE_MATE;
-						musica();
-						return;
+						if (Tablero::detectar_jaque('N') == true || Tablero::detectar_jaque_mate('B') == true)
+						{
+							musicajaque = false;
+							if (Tablero::detectar_jaque('N') == true) { ganador = 1; ganar = TRUE; }
+							else if (Tablero::detectar_jaque_mate('B') == true) { ganador = 0; ganar = FALSE; }
+
+							estadojuego = JAQUE_MATE;
+							musica();
+							return;
+						}
+
+						else if (Tablero::detectar_jaque('B') == true)
+						{
+							musicajaque = true;
+							estadojuego = JAQUE;
+							i = 0;
+							musica();
+							return;
+						}
+
+						if (Tablero::detectar_ahogado('N') || Tablero::detectar_ahogado('B') || Tablero::detectar_tablas_muertas('N') || Tablero::detectar_tablas_muertas('B'))
+						{
+							playMusica("recursos/Draw.mp3");
+							estado = FIN;
+							ganador = 2;
+							return;
+						}
 					}
 
-					else if (Tablero::detectar_jaque('B') == true)
+					// si termina el turno de las blancas
+					if (tablero.getTurnoAcabadoB() == true)
 					{
-						musicajaque = true;
-						estadojuego = JAQUE;
-						i = 0;
-						musica();
-						return;
+						turnotime = 1;
+						if (musicajaque == true) {
+							musica();
+							musicajaque = false;
+						}
+
+						if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('N') == true)
+						{
+							musicajaque = false;
+							if (Tablero::detectar_jaque_mate('N') == true) { ganador = 1; ganar = TRUE; }
+							else if (Tablero::detectar_jaque('B') == true) { ganador = 0; ganar = FALSE; }
+
+							estadojuego = JAQUE_MATE;
+							musica();
+							return;
+						}
+
+						else if (Tablero::detectar_jaque('N') == true)
+						{
+							musicajaque = true;
+							estadojuego = JAQUE;
+							musica();
+							i = 0;
+							return;
+						}
+
+						if (Tablero::detectar_ahogado('N') || Tablero::detectar_ahogado('B') || Tablero::detectar_tablas_muertas('N') || Tablero::detectar_tablas_muertas('B'))
+						{
+							playMusica("recursos/Draw.mp3");
+							estado = FIN;
+							ganador = 2;
+							return;
+						}
 					}
 
-					if (Tablero::detectar_ahogado('N') || Tablero::detectar_ahogado('B') || Tablero::detectar_tablas_muertas('N') || Tablero::detectar_tablas_muertas('B'))
+					if (modojuego == TRUE)
 					{
-						playMusica("recursos/Draw.mp3");
-						estado = FIN;
-						ganador = 2;
-						return;
-					}
-				}
+						if (tablero.getCoronacion('B') == TRUE) { estadojuego = CORONAR_BLANCAS; }
+						else if (tablero.getCoronacion('N') == TRUE) { estadojuego = CORONAR_NEGRAS; }
 
-				// si termina el turno de las blancas
-				if (tablero.getTurnoAcabadoB() == true)
-				{
-					turnotime = 1;
-					if (musicajaque == true) {
-						musica();
-						musicajaque = false;
 					}
 
-					if (Tablero::detectar_jaque('B') == true || Tablero::detectar_jaque_mate('N') == true)
+					if(modojuego == FALSE)
 					{
-						musicajaque = false;
-						if (Tablero::detectar_jaque_mate('N') == true) { ganador = 1; ganar = TRUE; }
-						else if (Tablero::detectar_jaque('B') == true) { ganador = 0; ganar = FALSE; }
-
-						estadojuego = JAQUE_MATE;
-						musica();
-						return;
-					}
-
-					else if (Tablero::detectar_jaque('N') == true)
-					{
-						musicajaque = true;
-						estadojuego = JAQUE;
-						musica();
-						i = 0;
-						return;
-					}
-
-					if (Tablero::detectar_ahogado('N') || Tablero::detectar_ahogado('B') || Tablero::detectar_tablas_muertas('N') || Tablero::detectar_tablas_muertas('B'))
-					{
-						playMusica("recursos/Draw.mp3");
-						estado = FIN;
-						ganador = 2;
-						return;
-					}
-				}
-
-				if (modojuego == TRUE)
-				{
-					if (tablero.getCoronacion('B') == TRUE) { estadojuego = CORONAR_BLANCAS; }
-					else if (tablero.getCoronacion('N') == TRUE) { estadojuego = CORONAR_NEGRAS; }
-				}
-
-				if (modojuego == FALSE)
-				{
 					// hay que meter cosas //
 					if (tablero.getCoronacion('B') == TRUE) { estadojuego = CORONAR_BLANCAS; }
 					else if (tablero.getCoronacion('N') == TRUE) { tablero.setCoronacion(5); }
-				}
+				    }
 			}
 
 			if (estadojuego == CORONAR_NEGRAS || estadojuego == CORONAR_BLANCAS) {
@@ -1496,8 +1497,7 @@ void Coordinador::mueve(float t)
 					{
 						if (k > 20)
 						{
-							//tablero.ratonTablero(GLUT_RIGHT_BUTTON, GLUT_DOWN, 0, 0);
-							raton(GLUT_RIGHT_BUTTON, GLUT_DOWN, 0, 0);
+							raton(GLUT_LEFT_BUTTON, GLUT_DOWN, 0, 0);
 							pasada = TRUE;
 							k = 0;
 						}
